@@ -1,30 +1,44 @@
-# AI Engineering Bootcamp
+# AI PM Bootcamp
 
-A two-week intensive program covering AI-powered development, context engineering, agentic workflows, and production systems.
+An intensive program covering AI foundations, improving productivity, opportunity identification, AI features and operating model.
 
-**Live site:** https://propel-ventures.github.io/ai-bootcamp-pages/
+**Live site:** https://yimingwei-pv.github.io/AI-PM-Bootcamp/
 
 ## Curriculum
 
-### Week 1: Elements of AI Engineering
+### Module 1: Foundations of AI
 
-| Module | Topic |
+| Lesson | Topic |
 |--------|-------|
-| 1 | AI-Powered Developer Productivity |
-| 2 | Working with Models |
-| 3 | Context Engineering & RAG |
-| 4 | Model Context Protocol (MCP) |
-| 5 | Enterprise Foundations |
+| 1.1 | LLMs |
+| 1.2 | Agents |
+| 1.3 | Context Engineering |
 
-### Week 2: AI Workflows & Engineering
+### Module 2: Improving Productivity with AI
 
-| Module | Topic |
+| Lesson | Topic |
 |--------|-------|
-| 1 | Workflow Frameworks |
-| 2 | Agentic Development in Practice |
-| 3 | Human-in-the-Loop Patterns |
-| 4 | Production Systems |
-| 5 | Emerging Protocols |
+| 2.1 | AI-Powered Mindset |
+| 2.2 | Prompt Engineering |
+| 2.3 | Prototyping |
+| 2.4 | Workflow Automation |
+
+### Module 3: Finding the Right AI Opportunities
+
+| Lesson | Topic |
+|--------|-------|
+| 3.1 | Identify Opportunities |
+| 3.2 | Assessing Viability |
+| 3.3 | Opportunity Exercise |
+
+### Module 4: Shipping AI Features
+
+| Lesson | Topic |
+|--------|-------|
+| 4.1 | Design AI Features |
+| 4.2 | Shipping with Quality |
+
+### Module 5: Operating AI Products at Scale (Coming Soon)
 
 ## Local Development
 
@@ -38,12 +52,12 @@ The dev server runs at http://localhost:4321
 
 ## Adding Content
 
-Module content lives in `site/src/content/modules/course-{N}/`. Each module is a markdown file with frontmatter:
+Module content lives in `site/src/content/modules/course-3/`. Each lesson is a markdown file with frontmatter:
 
 ```yaml
 ---
-title: "Module Title"
-course: 1
+title: "Lesson Title"
+course: 3
 module: 1
 description: "Brief description"
 objectives:
@@ -65,7 +79,7 @@ quiz:
 
 ## Overview
 
-Module content in markdown...
+Lesson content in markdown...
 ```
 
 ## Deployment
