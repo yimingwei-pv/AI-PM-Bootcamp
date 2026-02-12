@@ -1,6 +1,6 @@
-# AI Engineering Bootcamp
+# AI PM Bootcamp
 
-A two-week intensive program covering AI-powered development, context engineering, agentic workflows, and production systems.
+A 10 hour intensive program covering AI-powered development, context engineering, agentic workflows, and production systems. Course is split over 5 modules, each requiring 3 hours of commitment.
 
 **Live site:** https://propel-ventures.github.io/ai-bootcamp-pages/
 
