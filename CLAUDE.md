@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static site for an AI bootcamp curriculum, built with Astro and deployed to GitHub Pages at `https://propel-ventures.github.io/ai-bootcamp-pages/`.
+Static site for an AI bootcamp curriculum, built with Astro and deployed to GitHub Pages at `https://propel-ventures.github.io/AI-PM-Bootcamp/`.
 
 ## Commands
 
@@ -28,7 +28,7 @@ npm run preview      # Preview production build locally
 ### Routing
 - Dynamic routes via `[...slug].astro` files in `site/src/pages/course-{N}/`
 - `getStaticPaths()` generates routes from content collections at build time
-- Base path is `/ai-bootcamp-pages` - all internal links must include this prefix
+- Base path is `/AI-PM-Bootcamp` - all internal links must include this prefix
 
 ### Components
 - **Astro components** (`.astro`) for static content: CourseCard, ModuleCard, ObjectivesList, ResourceLink

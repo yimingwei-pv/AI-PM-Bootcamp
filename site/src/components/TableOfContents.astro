@@ -16,7 +16,7 @@ interface Props {
 const { headings, modules, currentSlug, courseNumber, groupTitle } = Astro.props;
 const toc = headings.filter(h => h.depth >= 2 && h.depth <= 3);
 const sortedModules = [...modules].sort((a, b) => a.module - b.module);
-const basePath = `/ai-bootcamp-pages/course-${courseNumber}`;
+const basePath = `/AI-PM-Bootcamp/course-${courseNumber}`;
 ---
 
 <nav class="hidden lg:block w-56 shrink-0">
