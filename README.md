@@ -1,6 +1,6 @@
 # AI PM Bootcamp
 
-A 10 hour intensive program covering AI foundations, improving productivity, opportunity identification, AI features and operating model. Course is split over 5 modules, each requiring 2 hours of commitment.
+A 10 hour intensive program covering AI foundations, improving productivity, opportunity identification, AI features and operating model. Course is split over 5 modules, each requiring ~3 hours of commitment.
 
 **Live site:** https://yimingwei-pv.github.io/AI-PM-Bootcamp/
 
