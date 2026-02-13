@@ -1,7 +1,7 @@
 ---
 title: "Context Engineering"
-course: 3
-module: 3
+module: 1
+lesson: 3
 description: "Master context engineering — the art and science of filling the context window with the right information. Covers prompt engineering techniques, RAG, and MCP."
 objectives:
   - "Understand different types of prompt engineering"
@@ -50,7 +50,7 @@ The difference between an AI feature that delights users and one they abandon of
 
 Andrej Karpathy, one of the most prominent voices in AI, captured this with a useful reframing: the term "prompt engineering" — writing better instructions — is giving way to **context engineering** — architecting the entire information environment your model operates in. Think of the distinction this way: **prompt engineering** is writing a perfect instruction on a sticky note; **context engineering** is designing the entire workspace — reference materials, tools, examples, and history — so your team member can do exceptional work.
 
-<img src="/AI-PM-Bootcamp/images/course-3/context-engineering-tweet.png" alt="Andrej Karpathy on context engineering" style="max-width: 600px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/context-engineering-tweet.png" alt="Andrej Karpathy on context engineering" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
 More formally: **context engineering is the art and science of filling the context window with just the right information for the next step.** As we covered in the LLMs lesson, the context window is the maximum number of tokens a model can process at once — everything inside is visible; everything outside is invisible. And as we discussed in the Agents lesson, agent failures are frequently context failures — the model is capable, but it's working with incomplete or poorly organised information. Your job as a PM: designing what goes into that context, in what order, at what time.
 

@@ -1,7 +1,7 @@
 ---
 title: "Prompt Engineering"
-course: 3
-module: 5
+module: 2
+lesson: 2
 description: "Master the PM Prompt Framework (Role, Context, Task, Format, Constraints) and six practical prompt templates for everyday product management work."
 objectives:
   - "Apply the ROLE | CONTEXT | TASK | FORMAT | CONSTRAINTS framework to craft effective prompts"

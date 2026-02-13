@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static site for an AI bootcamp curriculum, built with Astro and deployed to GitHub Pages at `https://propel-ventures.github.io/AI-PM-Bootcamp/`.
+Static site for an AI PM Bootcamp curriculum, built with Astro and deployed to GitHub Pages at `https://yimingwei-pv.github.io/AI-PM-Bootcamp/`.
 
 ## Commands
 
@@ -22,17 +22,19 @@ npm run preview      # Preview production build locally
 
 ### Content System
 - **Content collections** defined in `site/src/content/config.ts` using Zod schemas
-- **Module content** lives in `site/src/content/modules/course-{N}/` as markdown files with frontmatter
-- Each module has: title, course number, module number, description, objectives, optional resources, optional quiz
+- **Module content** lives in `site/src/content/modules/module-{N}/` as markdown files with frontmatter
+- 4 active modules (module-1 through module-4), module-5 is "Coming Soon"
+- Each lesson has: title, module number, lesson number, description, objectives, optional resources, optional quiz
 
 ### Routing
-- Dynamic routes via `[...slug].astro` files in `site/src/pages/course-{N}/`
+- Dynamic routes via `[...slug].astro` in `site/src/pages/modules/`
 - `getStaticPaths()` generates routes from content collections at build time
-- Base path is `/AI-PM-Bootcamp` - all internal links must include this prefix
+- Base path is `/AI-PM-Bootcamp` — all internal links must include this prefix
+- URL pattern: `/AI-PM-Bootcamp/modules/{lesson-slug}/`
 
 ### Components
-- **Astro components** (`.astro`) for static content: CourseCard, ModuleCard, ObjectivesList, ResourceLink
-- **React component** (`Quiz.tsx`) for interactive quiz with localStorage persistence - uses `client:load` directive
+- **Astro components** (`.astro`) for static content: CourseCard, ModuleCard, ObjectivesList, ResourceLink, TableOfContents
+- **React component** (`Quiz.tsx`) for interactive quiz with localStorage persistence — uses `client:load` directive
 
 ### Deployment
 - GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) deploys on push to `main` when `site/**` changes
@@ -41,9 +43,9 @@ npm run preview      # Preview production build locally
 ## Module Frontmatter Schema
 
 ```yaml
-title: "Module Title"
-course: 1                    # Course number (1 or 2)
-module: 1                    # Module order within course
+title: "Lesson Title"
+module: 1                    # Module number (1-4)
+lesson: 1                    # Lesson order within module
 description: "Description"
 objectives:
   - "Objective 1"
@@ -56,5 +58,13 @@ quiz:                        # Optional
     options: ["A", "B", "C", "D"]
     answer: 0                # Zero-indexed correct answer
 ```
-# Context Priming
-Read the claude.md and other files in doc/* to prime your understanding
+
+## Curriculum Structure
+
+| Module | Title | Lessons |
+|--------|-------|---------|
+| 1 | Foundations of AI | 3 (LLMs, Agents, Context Engineering) |
+| 2 | Improving Productivity with AI | 4 (AI-Powered Mindset, Prompt Engineering, Prototyping, Workflow Automation) |
+| 3 | Finding the Right AI Opportunities | 3 (Identify Opportunities, Assessing Viability, Opportunity Exercise) |
+| 4 | Shipping AI Features | 2 (Design AI Features, Shipping with Quality) |
+| 5 | Operating AI Products at Scale | Coming Soon |

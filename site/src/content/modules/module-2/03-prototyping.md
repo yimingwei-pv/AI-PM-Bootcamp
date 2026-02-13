@@ -1,7 +1,7 @@
 ---
 title: "Prototyping with AI"
-course: 3
-module: 6
+module: 2
+lesson: 3
 description: "Leverage AI-powered prototyping tools to collapse the timeline from idea to validated prototype, enabling faster product decisions and user testing."
 objectives:
   - "Evaluate and choose between major AI prototyping platforms based on project needs"

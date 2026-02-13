@@ -1,7 +1,7 @@
 ---
 title: "Design AI Features"
-course: 3
-module: 11
+module: 4
+lesson: 1
 description: "Make the four critical design decisions that separate successful AI features from cautionary tales: model selection, failure design, interaction patterns, and knowledge architecture."
 objectives:
   - "Evaluate and select AI models based on task quality, latency, cost, context window, and capabilities"

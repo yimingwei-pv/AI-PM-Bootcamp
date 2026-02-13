@@ -1,7 +1,7 @@
 ---
 title: "AI Agents"
-course: 3
-module: 2
+module: 1
+lesson: 2
 description: "Understanding AI agents — what differentiates them from basic LLMs, core agent architectures, and when to use agentic vs non-agentic AI in your products."
 objectives:
   - "Define what is an AI agent and what differentiates it from a basic LLM"
@@ -91,13 +91,13 @@ The difference isn't intelligence — the underlying LLM is the same. The differ
 
 ### The Basic LLM Call
 
-<img src="/AI-PM-Bootcamp/images/course-3/basic-llm-call.png" alt="Basic LLM call - User Input to LLM to Text Output" style="max-width: 400px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/basic-llm-call.png" alt="Basic LLM call - User Input to LLM to Text Output" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
 Simple, synchronous, stateless. One input, one output, no awareness of the outside world.
 
 ### The Agentic Loop
 
-<img src="/AI-PM-Bootcamp/images/course-3/agentic-loop.png" alt="Agentic Loop - Goal, Reason, Act, Observe, repeat until goal achieved" style="max-width: 400px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/agentic-loop.png" alt="Agentic Loop - Goal, Reason, Act, Observe, repeat until goal achieved" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
 This loop — reason, act, observe, repeat — is the heartbeat of every agent. The LLM powers the reasoning; the orchestration layer manages the loop and tool execution.
 
@@ -129,7 +129,7 @@ As a PM, you don't need to implement these patterns, but you need to recognise t
 
 **How it works:** You give an LLM access to a few tools and let it decide — in a single pass — whether to call one. There's no loop. The LLM sees the user's question, optionally makes one tool call, and generates a final response.
 
-<img src="/AI-PM-Bootcamp/images/course-3/augmented-llm.png" alt="Augmented LLM architecture" style="max-width: 500px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/augmented-llm.png" alt="Augmented LLM architecture" style="max-width: 500px; margin: 2rem auto; display: block;" />
 
 **Example:** A customer asks, "What's my account balance?" The LLM calls `get_account_info`, gets the data back, and writes a natural language response. One question, one tool call, one answer.
 
@@ -166,7 +166,7 @@ The loop repeats until the agent decides it has enough information.
 
 **How it works:** Instead of one agent doing everything, multiple specialised agents coordinate under a central orchestrator — like assigning tasks to different team members.
 
-<img src="/AI-PM-Bootcamp/images/course-3/multi-agent-orchestration.png" alt="Multi-agent orchestration pattern" style="max-width: 500px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/multi-agent-orchestration.png" alt="Multi-agent orchestration pattern" style="max-width: 500px; margin: 2rem auto; display: block;" />
 
 **Example:** Customer asks, "Can you deliver 50 units of product X by Friday at the best price?"
 1. **Orchestrator** decomposes the request
@@ -185,7 +185,7 @@ You've now seen four patterns ranging from dead simple to highly complex. So whi
 
 > **Start with the simplest architecture that could work. Add complexity only when you measure that it's necessary.**
 
-<img src="/AI-PM-Bootcamp/images/course-3/simplicity-hierarchy.png" alt="Simplicity hierarchy - start simple, add complexity only when needed" style="max-width: 500px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/simplicity-hierarchy.png" alt="Simplicity hierarchy - start simple, add complexity only when needed" style="max-width: 500px; margin: 2rem auto; display: block;" />
 
 Most problems that sound like they need a ReAct agent can be solved with structured workflows. Most problems that sound like they need multi-agent systems can be solved with a single well-designed agent. **Complexity is a cost, not a feature.**
 

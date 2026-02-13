@@ -1,7 +1,7 @@
 ---
 title: "AI-Powered Mindset"
-course: 3
-module: 4
+module: 2
+lesson: 1
 description: "Develop a framework for identifying which PM tasks to delegate to AI and which to keep human, and build practical habits for integrating AI into your daily workflow."
 objectives:
   - "Identify which PM lifecycle tasks are best suited for AI delegation versus human judgment"

@@ -1,7 +1,7 @@
 ---
 title: "Identify Opportunities for AI"
-course: 3
-module: 8
+module: 3
+lesson: 1
 description: "Develop pattern recognition for where AI creates real product value versus where it is hype, using the deterministic vs. probabilistic framework and an AI opportunity spotting checklist."
 objectives:
   - "Distinguish between proven, emerging, and limited AI capabilities for product features"

@@ -6,32 +6,50 @@ import ObjectivesList from '../../components/ObjectivesList.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import Quiz from '../../components/Quiz';
 
+// Module metadata for display
+const moduleInfo: Record<number, string> = {
+  1: "Foundations of AI",
+  2: "Improving Productivity with AI",
+  3: "Finding the Right AI Opportunities",
+  4: "Shipping AI Features",
+};
+
 export async function getStaticPaths() {
-  const modules = await getCollection('modules', ({ data }) => data.course === 1);
-  const allModules = modules.map(m => ({
-    slug: m.slug,
-    title: m.data.title,
-    module: m.data.module,
-  }));
-  return modules.map((module) => ({
-    params: { slug: module.slug.replace('course-1/', '') },
-    props: { module, allModules },
+  const allLessons = await getCollection('modules');
+  return allLessons.map((lesson) => ({
+    params: { slug: lesson.slug.replace(/^module-\d+\//, '') },
+    props: { lesson, allLessons },
   }));
 }
 
-const { module, allModules } = Astro.props;
-const { Content, headings } = await render(module);
-const { title, description, objectives, resources, quiz } = module.data;
+const { lesson, allLessons } = Astro.props;
+const { Content, headings } = await render(lesson);
+const { title, description, objectives, resources, quiz } = lesson.data;
+
+const moduleNumber = lesson.data.module;
+const lessonNumber = lesson.data.lesson;
+const groupTitle = moduleInfo[moduleNumber] || `Module ${moduleNumber}`;
+const moduleLabel = `Module ${moduleNumber} · Lesson ${lessonNumber}`;
+
+// Filter to only lessons within the same module for sidebar
+const sameModuleLessons = allLessons
+  .filter(l => l.data.module === moduleNumber)
+  .sort((a, b) => a.data.lesson - b.data.lesson)
+  .map(l => ({
+    slug: l.slug,
+    title: l.data.title,
+    lesson: l.data.lesson,
+  }));
 ---
 
 <Layout title={title} description={description}>
   <div class="max-w-6xl mx-auto px-4 md:px-8 py-12">
     <nav class="mb-8">
-      <a href="/AI-PM-Bootcamp/course-1/" class="text-blue-600 hover:text-blue-800">&larr; Back to Course 1</a>
+      <a href="/AI-PM-Bootcamp/modules/" class="text-blue-600 hover:text-blue-800">&larr; Back to All Modules</a>
     </nav>
 
     <header class="mb-8">
-      <span class="text-sm font-medium text-gray-500">Course 1 - Module {module.data.module}</span>
+      <span class="text-sm font-medium text-gray-500">{moduleLabel} — {groupTitle}</span>
       <h1 class="text-3xl md:text-4xl font-bold text-[--propel-navy] mt-1 mb-4">{title}</h1>
       <p class="text-lg text-gray-600">{description}</p>
     </header>
@@ -41,9 +59,9 @@ const { title, description, objectives, resources, quiz } = module.data;
     <div class="flex gap-8">
       <TableOfContents
         headings={headings}
-        modules={allModules}
-        currentSlug={module.slug}
-        courseNumber={1}
+        modules={sameModuleLessons}
+        currentSlug={lesson.slug}
+        groupTitle={groupTitle}
       />
 
       <div class="min-w-0 flex-1">
@@ -65,7 +83,7 @@ const { title, description, objectives, resources, quiz } = module.data;
         {quiz && quiz.length > 0 && (
           <section class="mb-10">
             <h2 class="text-xl font-semibold text-[--propel-navy] mb-4">Check Your Understanding</h2>
-            <Quiz client:load questions={quiz} moduleId={`course-1-${module.slug}`} />
+            <Quiz client:load questions={quiz} moduleId={`module-${moduleNumber}-${lesson.slug}`} />
           </section>
         )}
       </div>

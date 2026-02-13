@@ -1,7 +1,7 @@
 ---
 title: "Exercise: Map Workflows and Identify AI Opportunities"
-course: 3
-module: 10
+module: 3
+lesson: 3
 description: "A hands-on exercise to audit your team's real workflows, score them for AI fit using a structured scorecard, and produce prioritized opportunity briefs."
 objectives:
   - "Map your team's core workflows across the PM lifecycle and estimate time investment"

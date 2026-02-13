@@ -1,7 +1,7 @@
 ---
 title: "Large Language Models (LLMs)"
-course: 3
 module: 1
+lesson: 1
 description: "An introduction to the architecture and learning paradigms behind large language models, covering embeddings, transformers, neural networks, and their product implications."
 objectives:
   - "Explain the key components of LLMs: embeddings, transformers, and neural networks"
@@ -41,7 +41,7 @@ quiz:
 
 Before we dive into components, let's orient ourselves. The terms "AI," "machine learning," "deep learning," and "LLM" get thrown around interchangeably, but they describe different layers of the same technology stack. Understanding the hierarchy helps you speak precisely with engineering teams and evaluate vendor claims.
 
-<img src="/AI-PM-Bootcamp/images/course-3/ai-hierarchy.png" alt="AI hierarchy - from AI to Machine Learning to Deep Learning to Transformers to LLMs" style="max-width: 600px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/ai-hierarchy.png" alt="AI hierarchy - from AI to Machine Learning to Deep Learning to Transformers to LLMs" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
 **AI** is the broadest umbrella — any system that performs tasks typically requiring human intelligence (seeing, reasoning, deciding, creating). **Machine learning** is the dominant approach within AI: instead of programming explicit rules, you feed data to algorithms that discover patterns on their own. **Deep learning** is a subset of ML that uses neural networks with many layers to handle complex, unstructured data like images, audio, and text. **Transformers** are a specific deep learning architecture, introduced in 2017, that revolutionised how models process sequential data. And **LLMs** are transformer-based models trained on enormous text datasets — they are the technology powering ChatGPT (GPT-5), Claude, Gemini, and the AI features you're building into products today.
 
@@ -67,7 +67,7 @@ A **neural network** does exactly this, but with extraordinary complexity. It's 
 
 Here's the structure:
 
-<img src="/AI-PM-Bootcamp/images/course-3/neural-network-structure.png" alt="Neural Network Structure - Input Layer, Hidden Layers, Output Layer" style="max-width: 600px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/neural-network-structure.png" alt="Neural Network Structure - Input Layer, Hidden Layers, Output Layer" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
 For an LLM processing text, the input is your prompt, the hidden layers are where semantic understanding happens, and the output is the next predicted word.
 
@@ -156,7 +156,7 @@ The model compares queries to keys across all tokens, finds strong matches, and 
 
 **Multiple heads, multiple perspectives:** Transformers use "multi-head attention," meaning they run this process multiple times (typically 8–16 times) simultaneously. One attention head might capture grammar relationships, another captures semantic meaning, another captures discourse structure. This diversity makes the model more robust.
 
-<img src="/AI-PM-Bootcamp/images/course-3/transformer-attention.png" alt="Transformer Attention Process - Input Tokens, Queries/Keys/Values, Self-Attention, Output" style="max-width: 600px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/transformer-attention.png" alt="Transformer Attention Process - Input Tokens, Queries/Keys/Values, Self-Attention, Output" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
 #### 3. Feed-Forward Layers
 
@@ -197,7 +197,7 @@ Let's follow what happens when you prompt Claude with "Why is the sky blue?"
 5. **Prediction:** Final layer outputs probabilities for next tokens. Model picks "The" as most likely, then "sky", "appears", "blue"...
 6. **Autoregressive generation:** Each generated token becomes part of the context, and the entire process repeats for the next token
 
-<img src="/AI-PM-Bootcamp/images/course-3/llm-transformer-flowchart.png" alt="LLM Transformer Flowchart - from prompt through tokenisation, embedding, transformer blocks to output" style="max-width: 400px; margin: 2rem auto; display: block;" />
+<img src="/AI-PM-Bootcamp/images/modules/llm-transformer-flowchart.png" alt="LLM Transformer Flowchart - from prompt through tokenisation, embedding, transformer blocks to output" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
 **Why this matters for PMs:** The transformer architecture is why LLMs are so good at language. The attention mechanism lets the model understand context — what words mean in relation to other words. This is why an LLM can write coherent essays, not just string together statistically common word pairs.
 

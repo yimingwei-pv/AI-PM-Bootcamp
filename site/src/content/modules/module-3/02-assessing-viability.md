@@ -1,7 +1,7 @@
 ---
 title: "Assessing AI Viability"
-course: 3
-module: 9
+module: 3
+lesson: 2
 description: "Systematically evaluate whether an AI opportunity is worth pursuing using Impact, Feasibility, and Risk scoring, plus the Build vs. Buy decision framework."
 objectives:
   - "Evaluate AI engagement modes (off-the-shelf, API, fine-tune, custom) and choose the right one for your use case"

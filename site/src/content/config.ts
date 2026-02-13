@@ -4,8 +4,8 @@ const modulesCollection = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    course: z.number(),
     module: z.number(),
+    lesson: z.number(),
     description: z.string(),
     objectives: z.array(z.string()),
     resources: z.array(

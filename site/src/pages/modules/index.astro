@@ -3,39 +3,42 @@ import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ModuleCard from '../../components/ModuleCard.astro';
 
-const allModules = await getCollection('modules', ({ data }) => data.course === 3);
-const sortedModules = allModules.sort((a, b) => a.data.module - b.data.module);
+const allModules = await getCollection('modules');
+const sortedModules = allModules.sort((a, b) => {
+  if (a.data.module !== b.data.module) return a.data.module - b.data.module;
+  return a.data.lesson - b.data.lesson;
+});
 
-// Group sub-modules into their parent modules
+// Group lessons into their parent modules
 const moduleGroups = [
   {
     number: 1,
     title: "Foundations of AI",
     description: "Understand the technology behind LLMs, agents, and context engineering.",
-    subModules: sortedModules.filter(m => m.data.module >= 1 && m.data.module <= 3),
+    lessons: sortedModules.filter(m => m.data.module === 1),
   },
   {
     number: 2,
     title: "Improving Productivity with AI",
     description: "Use AI in your own work — mindset, prompting, prototyping, and workflow automation.",
-    subModules: sortedModules.filter(m => m.data.module >= 4 && m.data.module <= 7),
+    lessons: sortedModules.filter(m => m.data.module === 2),
   },
   {
     number: 3,
     title: "Finding the Right AI Opportunities",
     description: "Find and validate AI use cases with practical frameworks and exercises.",
-    subModules: sortedModules.filter(m => m.data.module >= 8 && m.data.module <= 10),
+    lessons: sortedModules.filter(m => m.data.module === 3),
   },
   {
     number: 4,
     title: "Shipping AI Features",
     description: "Design and deliver AI features with quality, safety, and measurable impact.",
-    subModules: sortedModules.filter(m => m.data.module >= 11 && m.data.module <= 12),
+    lessons: sortedModules.filter(m => m.data.module === 4),
   },
 ];
 ---
 
-<Layout title="Course 3: AI Product Management">
+<Layout title="AI Product Management">
   <!-- Course Header -->
   <section class="bg-propel-navy text-white py-12 relative overflow-hidden">
     <div class="absolute right-0 top-1/2 -translate-y-1/2 w-32 md:w-48 opacity-40 pointer-events-none">
@@ -74,25 +77,25 @@ const moduleGroups = [
           </div>
         </div>
 
-        <!-- Sub-Modules -->
+        <!-- Lessons -->
         <div class="space-y-3 ml-14">
-          {group.subModules.map((mod) => (
+          {group.lessons.map((lesson) => (
             <a
-              href={`/AI-PM-Bootcamp/course-3/${mod.slug.replace('course-3/', '')}/`}
+              href={`/AI-PM-Bootcamp/modules/${lesson.slug.replace(/^module-\d+\//, '')}/`}
               class="group block bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-propel-cyan transition-all duration-300"
             >
               <div class="flex items-center gap-3">
                 <span class="flex-shrink-0 text-xs font-semibold text-propel-blue bg-propel-cyan-light/30 px-2 py-0.5 rounded-full">
-                  {group.number}.{mod.data.module - group.subModules[0].data.module + 1}
+                  {group.number}.{lesson.data.lesson}
                 </span>
                 <h3 class="text-base font-semibold text-propel-navy group-hover:text-propel-blue transition-colors flex-1">
-                  {mod.data.title}
+                  {lesson.data.title}
                 </h3>
                 <svg class="w-4 h-4 text-propel-cyan flex-shrink-0 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                 </svg>
               </div>
-              <p class="text-gray-500 text-sm mt-1 ml-[calc(2rem+0.75rem)]">{mod.data.description}</p>
+              <p class="text-gray-500 text-sm mt-1 ml-[calc(2rem+0.75rem)]">{lesson.data.description}</p>
             </a>
           ))}
         </div>

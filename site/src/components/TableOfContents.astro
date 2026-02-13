@@ -2,32 +2,31 @@
 interface ModuleInfo {
   slug: string;
   title: string;
-  module: number;
+  lesson: number;
 }
 
 interface Props {
   headings: { depth: number; slug: string; text: string }[];
   modules: ModuleInfo[];
   currentSlug: string;
-  courseNumber: number;
   groupTitle?: string;
 }
 
-const { headings, modules, currentSlug, courseNumber, groupTitle } = Astro.props;
+const { headings, modules, currentSlug, groupTitle } = Astro.props;
 const toc = headings.filter(h => h.depth >= 2 && h.depth <= 3);
-const sortedModules = [...modules].sort((a, b) => a.module - b.module);
-const basePath = `/AI-PM-Bootcamp/course-${courseNumber}`;
+const sortedModules = [...modules].sort((a, b) => a.lesson - b.lesson);
+const basePath = '/AI-PM-Bootcamp/modules';
 ---
 
 <nav class="hidden lg:block w-56 shrink-0">
   <div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
-    <!-- Course Modules -->
+    <!-- Module Lessons -->
     <div class="mb-6">
-      <h4 class="text-sm font-semibold text-propel-navy mb-3">{groupTitle || `Course ${courseNumber}`}</h4>
+      <h4 class="text-sm font-semibold text-propel-navy mb-3">{groupTitle || 'Lessons'}</h4>
       <ul class="space-y-1">
         {sortedModules.map(m => {
           const isActive = m.slug === currentSlug;
-          const href = `${basePath}/${m.slug.replace(`course-${courseNumber}/`, '')}/`;
+          const href = `${basePath}/${m.slug.replace(/^module-\d+\//, '')}/`;
           return (
             <li>
               <a
@@ -39,7 +38,7 @@ const basePath = `/AI-PM-Bootcamp/course-${courseNumber}`;
                     : "text-gray-600 hover:text-propel-navy hover:bg-gray-100"
                 ]}
               >
-                {m.module}. {m.title}
+                {m.lesson}. {m.title}
               </a>
             </li>
           );

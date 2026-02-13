@@ -1,7 +1,7 @@
 ---
 title: "Shipping with Quality"
-course: 3
-module: 12
+module: 4
+lesson: 2
 description: "Ensure AI features succeed in production by mastering data quality, three-layer metrics, automated evaluation suites, staged rollouts, and responsible AI practices."
 objectives:
   - "Audit data quality across five dimensions before shipping AI features"

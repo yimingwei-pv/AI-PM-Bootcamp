@@ -1,7 +1,7 @@
 ---
 title: "Extension: Workflow Automation"
-course: 3
-module: 7
+module: 2
+lesson: 4
 description: "Eliminate PM glue work by building AI-powered workflow automations that summarize, route, and report across your tools automatically."
 objectives:
   - "Identify repetitive PM workflows suitable for AI automation"
