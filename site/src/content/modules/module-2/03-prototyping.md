@@ -163,7 +163,7 @@ Gather materials:
 - Screenshot of your Figma wireframe (or sketch)
 - Clear description of the data you'd show
 - List of metrics to display
-- Specific color palette or brand guidelines (optional)
+- Specific colour palette or brand guidelines (optional)
 
 **Your prompt to v0:**
 ```
@@ -174,7 +174,7 @@ The dashboard should show:
 - Top features by usage (table showing feature name, user count, % of active users)
 - Usage timeline (line chart showing total events per day over last 30 days)
 
-Use a clean, professional design. Color scheme: primary blue (#0066cc), dark text, light gray backgrounds.
+Use a clean, professional design. Colour scheme: primary blue (#0066cc), dark text, light gray backgrounds.
 The dashboard should be responsive and work on tablets.
 Here's my Figma wireframe [ATTACH IMAGE].
 ```
@@ -194,7 +194,7 @@ v0 processes your input and generates a React component. You see a live preview 
 Your preview shows the dashboard. You notice:
 - The line chart is hard to read with overlapping lines
 - The "Top Features" table needs better sorting
-- The color of the adoption rate card should match your brand blue more closely
+- The colour of the adoption rate card should match your brand blue more closely
 
 You request changes via chat:
 ```

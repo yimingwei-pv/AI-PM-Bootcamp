@@ -38,7 +38,7 @@ quiz:
 
 Finding an AI opportunity is step one. Most teams can do that—there's a use case hiding everywhere. Assessing whether to *actually pursue it* is where product managers earn their salary.
 
-You've identified a problem that AI might solve. Maybe it's automating customer support, personalizing recommendations, or surfacing insights from unstructured data. But not every AI opportunity is worth pursuing. Some require data you don't have. Others carry risks that outweigh the upside. Still others can be solved cheaper and faster with a simpler approach.
+You've identified a problem that AI might solve. Maybe it's automating customer support, personalising recommendations, or surfacing insights from unstructured data. But not every AI opportunity is worth pursuing. Some require data you don't have. Others carry risks that outweigh the upside. Still others can be solved cheaper and faster with a simpler approach.
 
 This module walks you through a systematic way to evaluate whether an AI opportunity is viable—and if it is, how to decide whether to build it, buy it, or partner for it.
 
@@ -80,14 +80,14 @@ Use ChatGPT, Claude, Copilot, or other consumer or enterprise AI products direct
 
 **When to use:**
 - You're experimenting fast and cheap
-- The use case is generic (writing, summarization, Q&A)
+- The use case is generic (writing, summarisation, Q&A)
 - You need zero integration with your systems
 - Users can tolerate vendor lock-in
 
 **Tradeoffs:**
 - Fastest time-to-value
 - Zero data ownership or privacy guarantees (watch what you share)
-- No customization; everyone gets the same model
+- No customisation; everyone gets the same model
 - Vendor controls pricing and features; can't scale predictably
 
 **Example:** A PMO office uses ChatGPT to generate meeting agendas and status templates.
@@ -104,14 +104,14 @@ Embed pre-trained models from OpenAI, Anthropic (Claude), Google (Gemini), or ot
 **Tradeoffs:**
 - Faster than building models; weeks instead of months
 - Your data stays in your systems (mostly)
-- Model capabilities are fixed; no customization
+- Model capabilities are fixed; no customisation
 - Pay per API call; costs grow with usage (but predictable)
 - Depends on vendor uptime and rate limits
 
 **Example:** A recruitment SaaS embeds OpenAI's API to auto-generate job descriptions from rough notes.
 
 #### Mode 3: Fine-Tune Existing Models
-Take a pre-trained model (e.g., OpenAI's GPT, Claude) and fine-tune it on *your* data to specialize it for your domain.
+Take a pre-trained model (e.g., OpenAI's GPT, Claude) and fine-tune it on *your* data to specialise it for your domain.
 
 **When to use:**
 - Your use case is domain-specific (legal, medical, finance)
@@ -152,7 +152,7 @@ Ask these questions in order:
 
 1. **Is speed critical?** If you need to ship in weeks, Mode 2 (API). If you need it in days, Mode 1.
 2. **Is this your competitive moat?** If yes, Mode 4 (custom). If no, continue.
-3. **Do you have specialized domain data?** If yes and you have budget, Mode 3 (fine-tune). If no, Mode 2.
+3. **Do you have specialised domain data?** If yes and you have budget, Mode 3 (fine-tune). If no, Mode 2.
 4. **Can off-the-shelf work for your accuracy bar?** If yes, Mode 1 or 2. If no, Mode 3 or 4.
 
 Reality check: Most healthy companies live in Mode 1-2, with Mode 3 for specific use cases, and Mode 4 only when they're Google, Netflix, or Tesla.
@@ -168,7 +168,7 @@ Every AI opportunity carries risk. As a PM, it's your job to name them, quantify
 | Risk Category | What It Is | Why It Matters | Example |
 |---|---|---|---|
 | **Hallucination & Accuracy** | Model generates false, misleading, or outdated information | Wrong answer in a critical domain (medical, legal, finance) can cause real harm. Users lose trust. | LLM hallucinating a legal precedent that doesn't exist in a contract review tool |
-| **Data Privacy & Security** | Your user data or training data leaks, is misused, or is exposed to unauthorized parties | GDPR, HIPAA, SOX violations. Loss of customer trust. Regulatory fines. | Customer data sent to OpenAI API without explicit consent (check your data processing agreements) |
+| **Data Privacy & Security** | Your user data or training data leaks, is misused, or is exposed to unauthorised parties | GDPR, HIPAA, SOX violations. Loss of customer trust. Regulatory fines. | Customer data sent to OpenAI API without explicit consent (check your data processing agreements) |
 | **Bias & Fairness** | Model systematically underperforms for certain groups or makes unfair decisions | Hiring discrimination. Lending discrimination. Unequal user experience. Legal liability. | Resume screening tool rates women 20% lower than men for equivalent experience |
 | **Regulatory & Compliance** | New AI-specific regulations (EU AI Act, AI Bill of Rights proposals, industry-specific rules) impose requirements you can't meet | EU AI Act fines up to EUR 35 million or 7% of global revenue for high-risk AI | Using an unaudited LLM in a bank to make lending decisions without documentation |
 | **Vendor Lock-In & Dependency** | You become dependent on a single vendor's API, pricing, or roadmap | Vendor raises prices, deprecates features, shuts down, or pivots. You're forced to rebuild. | Building your entire product on OpenAI API v1, then having to rewrite when they sunset it |
@@ -234,14 +234,14 @@ Score 1-5:
 Can you actually build this with your constraints?
 
 **Data Availability:**
-- Do you have clean, labeled data in sufficient volume (100s to 1000s of examples, depending on task)?
+- Do you have clean, labelled data in sufficient volume (100s to 1000s of examples, depending on task)?
 - Can you get more data if the first attempt fails?
 - Is your data representative of real-world cases?
 
 Score 1-5:
-- 1 = No labeled data; would take months to collect
+- 1 = No labelled data; would take months to collect
 - 3 = You have some data, but it's messy or incomplete
-- 5 = Clean, labeled dataset already in hand; easy to update
+- 5 = Clean, labelled dataset already in hand; easy to update
 
 **Technical Complexity:**
 - Is this a solved problem (text classification, sentiment analysis, Q&A on documents)?
@@ -358,7 +358,7 @@ graph TD
 
 **Real Example:**
 
-You're considering AI-powered personalized email subject lines.
+You're considering AI-powered personalised email subject lines.
 
 | Dimension | Subscore | Reasoning |
 |---|---|---|
@@ -404,8 +404,8 @@ Build only if you expect >$5M in value from that advantage.
 ### Buy: When to Integrate APIs or Use SaaS
 
 **Buy when:**
-1. **Speed matters more than customization.** You need to ship in weeks, not months. An API or SaaS product gets you there.
-2. **The use case is commoditized.** Generic models (GPT, Claude, Gemini) already solve your problem well. Fine-tuning or custom training adds little value.
+1. **Speed matters more than customisation.** You need to ship in weeks, not months. An API or SaaS product gets you there.
+2. **The use case is commoditised.** Generic models (GPT, Claude, Gemini) already solve your problem well. Fine-tuning or custom training adds little value.
 3. **You lack AI talent.** You don't have ML engineers, and hiring is expensive/slow. Buy instead of building.
 4. **You want vendor-backed compliance.** Enterprise API vendors (OpenAI, Anthropic) provide compliance artifacts (DPAs, audit trails, SOC 2) that reduce your legal/compliance risk.
 
@@ -427,7 +427,7 @@ The real answer for most companies is a **blend**: buy the platform and governan
 
 This gives you:
 - Speed: Use a vendor's proven model and safety infrastructure.
-- Control: Customize the prompts, retrieval, and evaluation to your domain.
+- Control: Customise the prompts, retrieval, and evaluation to your domain.
 - Cost: Pay per API call; add your own last-mile logic for <$200k.
 
 ### The Build vs. Buy Decision Matrix
@@ -440,7 +440,7 @@ graph TD
     B -->|No| E["BUY or BLEND"]
     D -->|Yes| F["BUILD"]
     D -->|No| E
-    C -->|Yes| G["Do you need customization?"]
+    C -->|Yes| G["Do you need customisation?"]
     C -->|No| E
     G -->|Yes| I["Can you fine-tune?"]
     G -->|No| E
@@ -455,11 +455,11 @@ graph TD
 
 **Decision rules** (based on current enterprise research):
 - **Build if:** AI is a competitive moat AND you have the budget, time, and talent.
-- **Buy if:** The use case is commoditized, off-the-shelf works 80%+, or you need to ship fast.
-- **Blend if:** You need customization but can't justify building from scratch. Buy the platform, build the last mile.
+- **Buy if:** The use case is commoditised, off-the-shelf works 80%+, or you need to ship fast.
+- **Blend if:** You need customisation but can't justify building from scratch. Buy the platform, build the last mile.
 
 **Hidden costs to budget for:**
-- Fine-tuning: Data labeling ($5k-$100k), model training ($5k-$50k), iteration (6-12 weeks)
+- Fine-tuning: Data labelling ($5k-$100k), model training ($5k-$50k), iteration (6-12 weeks)
 - Custom models: Red-teaming and safety validation ($100k-$500k), observability infrastructure ($50k-$200k)
 - All modes: Integration engineering, testing, monitoring, support (add 20-50% to stated costs)
 
@@ -532,7 +532,7 @@ You're a PM at an online lending platform. You want to use AI to auto-score loan
 
 1. **Don't default to "build."** Most companies should live in Modes 1-3 (off-the-shelf, API, fine-tuning). Only Mode 4 (custom models) if AI is truly core to your business.
 
-2. **Use the viability framework.** Score Impact, Feasibility, and Risk. Use it to make go/no-go decisions and to prioritize which risks to address first.
+2. **Use the viability framework.** Score Impact, Feasibility, and Risk. Use it to make go/no-go decisions and to prioritise which risks to address first.
 
 3. **Name your risks explicitly.** The biggest killer of AI projects is ignoring risk until it's too late. Hallucination, privacy, bias, vendor lock-in, cost, and trust are real. Size them early.
 

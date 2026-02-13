@@ -19,7 +19,7 @@ resources:
     url: "https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard"
     type: "docs"
 quiz:
-  - question: "When evaluating AI models for a product feature, what should you prioritize over benchmark scores like MMLU?"
+  - question: "When evaluating AI models for a product feature, what should you prioritise over benchmark scores like MMLU?"
     options:
       - "The model's parameter count"
       - "Quality on YOUR specific task with real examples from your product"
@@ -35,7 +35,7 @@ quiz:
     answer: 2
 ---
 
-Consider a scenario that plays out regularly across the industry: a well-funded fintech startup launches an AI feature that auto-categorizes expenses for small business owners. The model is accurate, the UX is slick, and the launch blog post goes viral. Within six weeks, they quietly roll it back. The problem isn't the AI — it's the design decisions around it. No fallback when the model is uncertain. No way for users to correct miscategorizations. No monitoring to catch the drift that creeps in as tax season brings unusual expense patterns the model has never seen.
+Consider a scenario that plays out regularly across the industry: a well-funded fintech startup launches an AI feature that auto-categorises expenses for small business owners. The model is accurate, the UX is slick, and the launch blog post goes viral. Within six weeks, they quietly roll it back. The problem isn't the AI — it's the design decisions around it. No fallback when the model is uncertain. No way for users to correct miscategorisations. No monitoring to catch the drift that creeps in as tax season brings unusual expense patterns the model has never seen.
 
 You've found an opportunity. You've validated it's viable. Now comes the part where most AI features quietly die: the design decisions between "great idea" and "shipped product."
 
@@ -55,15 +55,15 @@ As of this writing, the major model families include OpenAI's GPT series, Anthro
 
 When evaluating models for a product feature, assess these dimensions in order of importance for your use case:
 
-**1. Quality on YOUR task** — Not benchmark quality. YOUR task quality. MMLU, HumanEval, and other benchmarks tell you how a model performs on standardized academic tests. They correlate loosely with real-world performance, but a model that scores 2% higher on MMLU may perform worse on your specific customer support classification task. Always run your own evaluation with real examples from your product.
+**1. Quality on YOUR task** — Not benchmark quality. YOUR task quality. MMLU, HumanEval, and other benchmarks tell you how a model performs on standardised academic tests. They correlate loosely with real-world performance, but a model that scores 2% higher on MMLU may perform worse on your specific customer support classification task. Always run your own evaluation with real examples from your product.
 
-**2. Latency** — How fast does the response arrive? This varies dramatically. A frontier model might take 3-8 seconds for a complex response; a smaller model might return in under 500ms. For inline suggestions (like smart compose), anything above 200ms feels sluggish. For a background summarization job, 10 seconds is fine.
+**2. Latency** — How fast does the response arrive? This varies dramatically. A frontier model might take 3-8 seconds for a complex response; a smaller model might return in under 500ms. For inline suggestions (like smart compose), anything above 200ms feels sluggish. For a background summarisation job, 10 seconds is fine.
 
-**3. Cost per token** — Model pricing follows a pattern: larger, more capable models cost more per input and output token. The gap can be 10-50x between a frontier model and a small one. For a feature that processes thousands of requests daily, this difference is the difference between a viable product and a cost center.
+**3. Cost per token** — Model pricing follows a pattern: larger, more capable models cost more per input and output token. The gap can be 10-50x between a frontier model and a small one. For a feature that processes thousands of requests daily, this difference is the difference between a viable product and a cost centre.
 
 **4. Context window** — How much text can you send the model at once? Ranges from 4K tokens (some older models) to 200K+ tokens (Claude, Gemini). If your feature needs to process a 50-page document, a small context window is a dealbreaker — or forces you into chunking strategies that add complexity.
 
-**5. Capabilities** — Does it handle images? Audio? Function calling? Structured JSON output? Not all models support all modalities. If your feature requires analyzing screenshots, you need a multimodal model.
+**5. Capabilities** — Does it handle images? Audio? Function calling? Structured JSON output? Not all models support all modalities. If your feature requires analysing screenshots, you need a multimodal model.
 
 ### The Evaluation Framework
 
@@ -113,9 +113,9 @@ For every AI feature, answer these four questions before writing a single line o
 
 **1. What does failure look like?**
 
-Map the specific failure modes for your feature. For an AI that summarizes customer support tickets:
+Map the specific failure modes for your feature. For an AI that summarises customer support tickets:
 - **Hallucination**: Invents details that weren't in the ticket ("customer mentioned they're cancelling" when they didn't)
-- **Omission**: Misses the key issue and summarizes the small talk
+- **Omission**: Misses the key issue and summarises the small talk
 - **Misclassification**: Tags a billing issue as a feature request
 - **Tone mismatch**: Produces a casual summary for an escalated legal complaint
 
@@ -129,7 +129,7 @@ For every AI-powered flow, design the non-AI path. If the model is down, slow, o
 - **Graceful degradation**: Show the original content without the AI summary
 - **Human escalation**: Route to a person when confidence is low
 - **Cached response**: Show the last good output until quality recovers
-- **Transparent failure**: "I wasn't able to summarize this ticket. Here's the original."
+- **Transparent failure**: "I wasn't able to summarise this ticket. Here's the original."
 
 The worst outcome is silent failure — the AI produces a confidently wrong answer and nobody notices.
 
@@ -148,7 +148,7 @@ Let's trace through the framework for a feature that automatically routes incomi
 | Failure Mode | Frequency | Severity | Blast Radius | Mitigation |
 |---|---|---|---|---|
 | Wrong team assignment | ~10% of tickets | Medium — adds 15 min delay | Customer waits longer | Show routing suggestion to agent; agent confirms or overrides |
-| Unrecognized ticket type | ~3% of tickets | Low — falls to general queue | Slight delay | Default to general queue with "needs triage" flag |
+| Unrecognised ticket type | ~3% of tickets | Low — falls to general queue | Slight delay | Default to general queue with "needs triage" flag |
 | Model downtime | ~0.1% of time | High — all routing stops | All tickets unrouted | Automatic fallback to keyword-based rules engine |
 | Confident wrong answer | ~2% of tickets | High — agent trusts AI, doesn't verify | Wrong resolution sent | Display confidence score; flag low-confidence predictions visibly |
 
@@ -218,7 +218,7 @@ The user interacts through natural language dialogue. The AI interprets intent, 
 
 AI surfaces information or suggestions proactively, without the user explicitly asking. It appears in the flow of work, not as a separate interface.
 
-**Examples**: Gmail's Smart Reply (suggested quick responses), Spotify Discover Weekly (personalized recommendations), IDE error detection with fix suggestions.
+**Examples**: Gmail's Smart Reply (suggested quick responses), Spotify Discover Weekly (personalised recommendations), IDE error detection with fix suggestions.
 
 **When to use**:
 - The suggestion is low-stakes and easy to ignore
@@ -256,7 +256,7 @@ graph TD
 
 ## Part 4: Fine-Tune vs. Prompt Engineer vs. RAG
 
-You've chosen your model, designed for failure, and picked your interaction pattern. The last design decision: how does the model get the knowledge and behavior it needs?
+You've chosen your model, designed for failure, and picked your interaction pattern. The last design decision: how does the model get the knowledge and behaviour it needs?
 
 This connects directly to the foundations in the Context Engineering module. Here, we focus on the PM's decision framework.
 
@@ -290,20 +290,20 @@ This connects directly to the foundations in the Context Engineering module. Her
 - You want the model to cite its sources
 
 **When it doesn't**:
-- Your data is unstructured, poorly organized, or contradictory
-- The task is about behavior (how the model responds) rather than knowledge (what it knows)
+- Your data is unstructured, poorly organised, or contradictory
+- The task is about behaviour (how the model responds) rather than knowledge (what it knows)
 - Retrieval quality is poor — the system pulls irrelevant documents, and the model generates answers from the wrong context
 
 **Cost**: Moderate. You need a vector database, an embedding model, a retrieval pipeline, and ongoing data ingestion. Expect 2-4 weeks of engineering for a basic setup.
 
-**PM rule of thumb**: Use RAG when the model needs to know things it wasn't trained on. Don't use RAG to fix behavior problems — that's a prompt engineering or fine-tuning issue.
+**PM rule of thumb**: Use RAG when the model needs to know things it wasn't trained on. Don't use RAG to fix behaviour problems — that's a prompt engineering or fine-tuning issue.
 
 ### Option 3: Fine-Tuning
 
-**What it is**: Training the model on your data so it learns new behaviors, formats, or domain expertise. The model's weights are modified.
+**What it is**: Training the model on your data so it learns new behaviours, formats, or domain expertise. The model's weights are modified.
 
 **When it works**:
-- You need consistent behavior that prompt engineering can't reliably produce (specific tone of voice, output format, domain terminology)
+- You need consistent behaviour that prompt engineering can't reliably produce (specific tone of voice, output format, domain terminology)
 - You have hundreds to thousands of high-quality input-output examples
 - Latency matters and you want a smaller, faster model that performs like a bigger one on your specific task
 - Cost at scale justifies the upfront investment (a fine-tuned small model is often cheaper per request than prompting a frontier model)
@@ -325,13 +325,13 @@ graph TD
     A -->|Yes| C["Does the data<br/>change frequently?"]
 
     B -->|Yes| D["Prompt Engineering<br/>Ship it"]
-    B -->|No| E["Is the problem<br/>knowledge or behavior?"]
+    B -->|No| E["Is the problem<br/>knowledge or behaviour?"]
 
     C -->|Yes| F["RAG<br/>Build retrieval pipeline"]
     C -->|No| G["Do you have 500+<br/>training examples?"]
 
     E -->|Knowledge| F
-    E -->|Behavior| G
+    E -->|Behaviour| G
 
     G -->|Yes| H["Fine-Tune<br/>Train on your data"]
     G -->|No| I["Collect more data first.<br/>Use prompt engineering<br/>+ RAG as a bridge."]
@@ -359,7 +359,7 @@ These are layers, not alternatives. Start with prompt engineering alone. Add RAG
 - **Benchmark on your task, not leaderboards.** Model rankings change monthly; your use case doesn't. Test 3-4 candidates on 50+ real examples before committing.
 - **Design for failure first.** Map every failure mode, its blast radius, and the fallback path before you build. Silent failure is the worst outcome.
 - **Start with Copilot, graduate to autonomous.** Most AI features should launch with human oversight and earn trust through data before running independently.
-- **Prompt first, RAG second, fine-tune last.** This ordering minimizes cost, complexity, and time-to-ship. Only escalate when you have evidence the simpler approach falls short.
+- **Prompt first, RAG second, fine-tune last.** This ordering minimises cost, complexity, and time-to-ship. Only escalate when you have evidence the simpler approach falls short.
 - **Model routing saves money.** Use a cheap, fast model for easy requests and a frontier model for hard ones. You don't have to pick just one.
 
 ---

@@ -25,7 +25,7 @@ quiz:
     options:
       - "Backpropagation"
       - "Self-attention"
-      - "Tokenization"
+      - "Tokenisation"
       - "Embedding lookup"
     answer: 1
   - question: "Which learning paradigm is used to align LLM outputs with human preferences, making models like Claude feel conversational rather than like raw text predictors?"
@@ -71,7 +71,7 @@ Here's the structure:
 
 For an LLM processing text, the input is your prompt, the hidden layers are where semantic understanding happens, and the output is the next predicted word.
 
-**Why this matters for PMs:** Neural networks can learn patterns from data without being explicitly programmed. If your training data has 10,000 customer reviews labeled as "positive" or "negative," the network learns what signals predict sentiment — without you listing rules.
+**Why this matters for PMs:** Neural networks can learn patterns from data without being explicitly programmed. If your training data has 10,000 customer reviews labelled as "positive" or "negative," the network learns what signals predict sentiment — without you listing rules.
 
 ### How Neural Networks Learn: The Training Loop
 
@@ -191,7 +191,7 @@ Let's follow what happens when you prompt Claude with "Why is the sky blue?"
 3. **Positional encoding:** Position information is added (token 0, token 1, etc.) so the model knows word order — critical since transformers process all tokens in parallel
 4. **Transformer layers:**
    - Layer 1: Attention heads notice that "sky" relates to "blue"
-   - Layer 2: Feed-forward refines understanding of color and light
+   - Layer 2: Feed-forward refines understanding of colour and light
    - Layer 3: Attention notices "Why" indicates the model should explain causation
    - ...and so on through dozens of layers
 5. **Prediction:** Final layer outputs probabilities for next tokens. Model picks "The" as most likely, then "sky", "appears", "blue"...
@@ -209,7 +209,7 @@ Let's follow what happens when you prompt Claude with "Why is the sky blue?"
 
 Now that you understand LLM architecture, let's talk about how they learn. There are fundamentally different ways to train machine learning models, each with distinct tradeoffs and applications. You'll encounter all of these in conversations with your ML team.
 
-### Supervised Learning: Learning from Labeled Examples
+### Supervised Learning: Learning from Labelled Examples
 
 In supervised learning, you provide the model with pairs of inputs and correct outputs (labels), and the model learns to map from input to output.
 
@@ -217,12 +217,12 @@ In supervised learning, you provide the model with pairs of inputs and correct o
 - Input: Email text ("Congratulations, you've won $1 million!")
 - Label: "Spam"
 
-You collect 10,000 emails labeled as spam or not-spam. The model learns patterns that distinguish them. Once trained, it predicts labels for new emails.
+You collect 10,000 emails labelled as spam or not-spam. The model learns patterns that distinguish them. Once trained, it predicts labels for new emails.
 
 **Characteristics:**
-- Requires labeled training data (expensive and time-consuming to create)
+- Requires labelled training data (expensive and time-consuming to create)
 - Extremely accurate when you have good labels
-- Can't learn patterns beyond what's explicitly labeled
+- Can't learn patterns beyond what's explicitly labelled
 - Used for: classification, regression, detection tasks
 
 **Product examples:** Fraud detection, sentiment analysis, content moderation, spam filtering
@@ -232,12 +232,12 @@ You collect 10,000 emails labeled as spam or not-spam. The model learns patterns
 In unsupervised learning, you provide data without labels. The model discovers hidden structure, patterns, or relationships on its own.
 
 **Example:** Customer segmentation
-- Input: Customer purchase history, browsing behavior, demographics
+- Input: Customer purchase history, browsing behaviour, demographics
 - No label telling you which customers are "high-value" or "churn-risk"
 - The model clusters similar customers together
 
 **Characteristics:**
-- No labeled data needed
+- No labelled data needed
 - Discovers unexpected patterns
 - Harder to evaluate (no ground truth to compare against)
 - Used for: clustering, dimensionality reduction, anomaly detection
@@ -279,7 +279,7 @@ Deep learning excels with unstructured data (images, audio, raw text) because ne
 
 | Learning Type | When to Use | Data Requirement | Accuracy | Cost |
 |---|---|---|---|---|
-| **Supervised** | You have clear input-output pairs; accuracy is critical | Labeled data (expensive) | Very high | High upfront, low ongoing |
+| **Supervised** | You have clear input-output pairs; accuracy is critical | Labelled data (expensive) | Very high | High upfront, low ongoing |
 | **Unsupervised** | You want to explore patterns; labels don't exist or are expensive | Raw data (cheap) | Medium | Low |
 | **Reinforcement** | Sequential decisions; learning from interaction is natural | Simulation or live environment | Varies | Very high (compute-intensive) |
 | **Deep Learning** | Unstructured data (images, text, audio); complex patterns | Large datasets | Very high | High (requires GPUs) |
@@ -362,7 +362,7 @@ Modern LLMs aren't just text. Vision transformers can process images; today's fr
    - This repeats across dozens of layers, building up understanding
 
 3. **Learning paradigms differ fundamentally:**
-   - Supervised learning: labeled data, high accuracy, high cost
+   - Supervised learning: labelled data, high accuracy, high cost
    - Unsupervised learning: unlabeled data, pattern discovery, lower cost
    - Reinforcement learning: learning from interaction, complex decision-making
    - Deep learning: using neural networks for any of the above

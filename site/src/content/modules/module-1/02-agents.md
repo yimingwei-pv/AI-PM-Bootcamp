@@ -225,7 +225,7 @@ Here's the four-question framework applied to common scenarios — use this as a
 | Lead scoring in CRM | Yes | No | Yes | Structured workflow |
 | Report generation with data | Yes | No | No | LLM + structured prompting |
 | Dynamic pricing optimiser | Yes | Yes | Yes | ReAct agent or function calling |
-| E-commerce order fulfillment | Yes | Yes | Yes | Multi-agent (one per domain) |
+| E-commerce order fulfilment | Yes | Yes | Yes | Multi-agent (one per domain) |
 | Research assistant | Yes | Yes | No | ReAct with tool access |
 
 ### Red Flags: When NOT to Build an Agent

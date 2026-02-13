@@ -2,7 +2,7 @@
 title: "Extension: Workflow Automation"
 module: 2
 lesson: 4
-description: "Eliminate PM glue work by building AI-powered workflow automations that summarize, route, and report across your tools automatically."
+description: "Eliminate PM glue work by building AI-powered workflow automations that summarise, route, and report across your tools automatically."
 objectives:
   - "Identify repetitive PM workflows suitable for AI automation"
   - "Evaluate and select workflow automation platforms (Zapier, n8n, Make, MCP)"
@@ -30,19 +30,19 @@ quiz:
       - "The workflow runs daily"
       - "The workflow touches 3+ tools"
       - "The workflow touches customer-facing systems without human review"
-      - "The workflow involves summarizing Slack messages"
+      - "The workflow involves summarising Slack messages"
     answer: 2
 ---
 
 ## The PM's Hidden Pain: Glue Work
 
-Every PM knows the drain. You spend 10 minutes gathering feedback from Slack, another 15 copying it into a spreadsheet, then 20 more categorizing it manually. By the time you've routed the third message to the design team, you've burned an hour on pure busywork—tasks that require zero creativity, just rote execution.
+Every PM knows the drain. You spend 10 minutes gathering feedback from Slack, another 15 copying it into a spreadsheet, then 20 more categorising it manually. By the time you've routed the third message to the design team, you've burned an hour on pure busywork—tasks that require zero creativity, just rote execution.
 
 This is *glue work*. It's the connective tissue between systems that should talk to each other but don't. For PMs, it's particularly toxic because every hour spent shuffling data is an hour *not* spent thinking about strategy, talking to customers, or making product decisions.
 
 **The good news?** This is exactly what AI workflow automation solves.
 
-Rather than manually copying, pasting, categorizing, and routing information between tools, you define the workflow once, then let AI and automations do the busywork 24/7. The result: fewer errors, faster decisions, and reclaimed hours for actual product thinking.
+Rather than manually copying, pasting, categorising, and routing information between tools, you define the workflow once, then let AI and automations do the busywork 24/7. The result: fewer errors, faster decisions, and reclaimed hours for actual product thinking.
 
 ---
 
@@ -53,7 +53,7 @@ At its core, **AI workflow automation** means connecting AI capabilities into re
 Think of it as building a system that:
 
 1. **Listens** for a trigger (new Slack message, customer feedback, competitor mention)
-2. **Processes** using AI (extracts sentiment, categorizes, summarizes, generates a response)
+2. **Processes** using AI (extracts sentiment, categorises, summarises, generates a response)
 3. **Acts** automatically (routes to Slack channel, creates ticket, sends email, updates spreadsheet)
 
 It's not just dumb automation (if X, then Y). It's intelligent automation—AI evaluates context, interprets nuance, and makes decisions in-flight.
@@ -69,10 +69,10 @@ The ecosystem has matured significantly. You don't need to code. Here's what's a
 ### 1. **Zapier AI**
 **Best for:** Speed to market, small/medium teams, minimal technical lift.
 
-Connects 8,000+ apps (Slack, Notion, Google Sheets, HubSpot, Stripe, Airtable, etc.). Zapier's natural language Copilot lets you describe what you want—*"summarize Slack conversations daily and email me the digest"*—and it builds the workflow. No coding required.
+Connects 8,000+ apps (Slack, Notion, Google Sheets, HubSpot, Stripe, Airtable, etc.). Zapier's natural language Copilot lets you describe what you want—*"summarise Slack conversations daily and email me the digest"*—and it builds the workflow. No coding required.
 
 - Strength: Ecosystem depth, ease of use, AI Copilot
-- Weakness: Less customization than code-based tools, costs scale with workflow complexity
+- Weakness: Less customisation than code-based tools, costs scale with workflow complexity
 - Cost model: Pay per task/action executed
 
 ### 2. **Make.com** (formerly Integromat)
@@ -94,7 +94,7 @@ Open-source and self-hosted option. Node-based builder (connect apps via nodes).
 - Cost model: Self-hosted (free) or cloud subscription
 
 ### 4. **Relay.app**
-**Best for:** Larger organizations needing collaborative workflows and governance.
+**Best for:** Larger organisations needing collaborative workflows and governance.
 
 Modern automation with human-in-the-loop approval steps, shared workflow libraries, version control, and role-based permissions.
 
@@ -126,7 +126,7 @@ Python/Node.js scripts with libraries (e.g., `schedule`, `requests`) that call A
 
 Here are four realistic workflows PMs actually build:
 
-### **Example 1: Auto-Summarize Slack Conversations into Daily Digest**
+### **Example 1: Auto-Summarise Slack Conversations into Daily Digest**
 
 **Problem:** 50+ messages in your product-feedback channel daily. You can't read them all, but might miss critical insights.
 
@@ -137,16 +137,16 @@ Slack trigger: 8 AM daily
   ↓
 Fetch all messages from #product-feedback (past 24 hours)
   ↓
-Send to Claude via API: "Summarize these into 3-5 key themes"
+Send to Claude via API: "Summarise these into 3-5 key themes"
   ↓
 Format summary as email + Slack post
   ↓
 Email to product@company.com + post in #daily-digest
 ```
 
-**Tools:** Zapier or n8n (for orchestration) + Claude API (for summarization)
+**Tools:** Zapier or n8n (for orchestration) + Claude API (for summarisation)
 
-**Time saved:** 20-30 min/day reading and synthesizing
+**Time saved:** 20-30 min/day reading and synthesising
 
 **Build time:** 30 minutes in Zapier, 2 hours in n8n
 
@@ -154,7 +154,7 @@ Email to product@company.com + post in #daily-digest
 
 ### **Example 2: Auto-Triage Customer Feedback & Route to Teams**
 
-**Problem:** Customer feedback comes from Intercom, email, and survey platforms. Right now, it lands in Slack and someone manually reads each piece, categorizes it, and routes it.
+**Problem:** Customer feedback comes from Intercom, email, and survey platforms. Right now, it lands in Slack and someone manually reads each piece, categorises it, and routes it.
 
 **Workflow:**
 
@@ -163,7 +163,7 @@ Trigger: New feedback submitted (Intercom, survey, email)
   ↓
 Extract text + metadata (customer name, product area, sentiment)
   ↓
-Send to Claude: "Categorize this into: Bug, Feature Request, Pricing, Support, Other"
+Send to Claude: "Categorise this into: Bug, Feature Request, Pricing, Support, Other"
   ↓
 Extract sentiment: Positive, Neutral, Negative
   ↓
@@ -173,7 +173,7 @@ Route based on rules:
    - Pricing → email sales-team@
    - Support + Negative → escalate to support@
   ↓
-Send customer thank-you email (personalized based on sentiment)
+Send customer thank-you email (personalised based on sentiment)
 ```
 
 **Tools:** Zapier (simpler) or n8n (more complex) + Claude API
@@ -188,7 +188,7 @@ Send customer thank-you email (personalized based on sentiment)
 
 ### **Example 3: Auto-Generate Weekly Status Reports from Project Tools**
 
-**Problem:** Every Friday, you manually pull data from Jira, Linear, and Google Drive, synthesize it into a status report, and email stakeholders.
+**Problem:** Every Friday, you manually pull data from Jira, Linear, and Google Drive, synthesise it into a status report, and email stakeholders.
 
 **Workflow:**
 
@@ -210,7 +210,7 @@ Email to exec-team@, post to Slack #status-updates
 
 **Tools:** Make or n8n (good for multi-API querying) + Claude API
 
-**Quality:** Claude synthesizes raw data into narrative, pulling themes
+**Quality:** Claude synthesises raw data into narrative, pulling themes
 
 **Time saved:** 45 min – 1 hour/week
 
@@ -278,7 +278,7 @@ Zapier automatically extracts:
 You may need to add a **Formatter** step if the data is nested:
 - Use Zapier's Formatter to extract `sentiment_score` or clean up text
 
-#### **Step 3: Call Claude to Categorize**
+#### **Step 3: Call Claude to Categorise**
 
 Add a new step: **Code by Zapier** (or **OpenAI** integration if you prefer).
 
@@ -287,7 +287,7 @@ Add a new step: **Code by Zapier** (or **OpenAI** integration if you prefer).
 const feedback = inputData.conversation_body;
 const customerName = inputData.customer_name;
 
-const prompt = `Categorize this customer feedback into ONE of: Bug, Feature Request, Pricing, Support, Other.
+const prompt = `Categorise this customer feedback into ONE of: Bug, Feature Request, Pricing, Support, Other.
 Also rate sentiment as Positive, Neutral, or Negative.
 
 Feedback: "${feedback}"
@@ -342,22 +342,22 @@ Add **Gmail** step:
 ```
 To: {customer_email}
 Subject: We've received your feedback – thanks!
-Body: "Hi {customer_name}, thanks for reaching out. We've categorized your feedback as '{category}' and routed it to the right team. We'll follow up within 48 hours."
+Body: "Hi {customer_name}, thanks for reaching out. We've categorised your feedback as '{category}' and routed it to the right team. We'll follow up within 48 hours."
 ```
 
-Personalization via Zapier variables (`{category}`, `{customer_name}`) makes it feel human.
+Personalisation via Zapier variables (`{category}`, `{customer_name}`) makes it feel human.
 
 #### **Step 6: Test End-to-End**
 
 - Send yourself a test message in Intercom
 - Watch the workflow execute in Zapier's logs
 - Verify the Slack message appeared, JIRA ticket created, email sent
-- Iterate: Refine the Claude prompt if categorization is wrong
+- Iterate: Refine the Claude prompt if categorisation is wrong
 
 #### **Step 7: Monitor & Maintain**
 
-- **Weekly check:** Spot-check 5-10 categorizations for accuracy
-- **Adjust prompt:** If feedback keeps miscategorizing, refine the prompt (e.g., *"Pricing complaints about feature paywalls should be 'Feature Request', not 'Pricing'"*)
+- **Weekly check:** Spot-check 5-10 categorisations for accuracy
+- **Adjust prompt:** If feedback keeps miscategorising, refine the prompt (e.g., *"Pricing complaints about feature paywalls should be 'Feature Request', not 'Pricing'"*)
 - **Add rules:** New team? Add a path. New product area? Update the categories
 
 ---
@@ -408,7 +408,7 @@ Build time + Maintenance burden per month × Months
 1. **Start Small**
    - Pick one low-risk workflow (e.g., daily digest, not critical bug routing)
    - Prove the pattern before automating 10 workflows
-   - A failed digest is annoying; a miscategorized critical bug is a disaster
+   - A failed digest is annoying; a miscategorised critical bug is a disaster
 
 2. **Always Include a Human-in-the-Loop Option**
    - Never fully black-box decisions
@@ -460,7 +460,7 @@ Is this done >10 times/month?
 
 - **The tool landscape is mature:** Zapier is fastest for small teams; n8n is most flexible; Make balances both. Claude MCP is emerging for deeply integrated AI workflows.
 
-- **Three repeatable workflow types** cover most PM needs: **summarization** (daily digests), **routing** (categorize & send), and **reporting** (synthesize & email).
+- **Three repeatable workflow types** cover most PM needs: **summarisation** (daily digests), **routing** (categorise & send), and **reporting** (synthesise & email).
 
 - **Build once, run forever:** A 4-hour build effort that saves 5 hours/week pays for itself in 50 days.
 

@@ -102,7 +102,7 @@ Now classify: "Great service, but expensive." →
 
 Few-shot prompting dramatically improves consistency and accuracy on domain-specific tasks, because the examples teach the model your exact format and standards.
 
-**When to use:** Domain-specific tasks, when you need consistent output format, or when zero-shot quality isn't good enough. Multiple examples anchor the AI's behavior, reducing "hallucinations" and inconsistent responses compared to **zero-shot** prompting. It is also one of the best ways to ensure the AI follows a specific output structure, such as JSON or a specific bulleted list.
+**When to use:** Domain-specific tasks, when you need consistent output format, or when zero-shot quality isn't good enough. Multiple examples anchor the AI's behaviour, reducing "hallucinations" and inconsistent responses compared to **zero-shot** prompting. It is also one of the best ways to ensure the AI follows a specific output structure, such as JSON or a specific bulleted list.
 
 ### Chain-of-Thought (CoT) Prompting
 
@@ -126,7 +126,7 @@ Your system prompt is hidden infrastructure that sets the model's behaviour befo
 
 **Example:**
 ```
-You are a B2B SaaS product strategy consultant. You favor data-driven
+You are a B2B SaaS product strategy consultant. You favour data-driven
 thinking, acknowledge ambiguity, and are concise but thorough.
 When you don't have enough information, ask clarifying questions
 rather than guessing.
@@ -384,4 +384,4 @@ The same framework, applied to different products, produces different architectu
 - [Anthropic: Effective Context Engineering for AI Agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — The definitive guide on context engineering principles from Anthropic's engineering team.
 - [Introducing the Model Context Protocol - Anthropic](https://www.anthropic.com/news/model-context-protocol) — The original MCP announcement with architecture details.
 - [Prompt Engineering Guide](https://www.promptingguide.ai/) — Comprehensive reference for all prompting techniques with research papers.
-- [OpenAI Tokenizer](https://platform.openai.com/tokenizer) — Paste any text to see how it gets tokenized. Essential for estimating context window usage and costs.
+- [OpenAI Tokenizer](https://platform.openai.com/tokenizer) — Paste any text to see how it gets tokenised. Essential for estimating context window usage and costs.

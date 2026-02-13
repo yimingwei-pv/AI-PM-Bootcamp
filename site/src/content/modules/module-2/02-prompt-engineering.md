@@ -123,7 +123,7 @@ Providing 2–5 examples is the single highest-impact technique. It's like showi
 
 Instead of:
 ```
-Analyze Notion vs. Confluence vs. Microsoft 365.
+Analyse Notion vs. Confluence vs. Microsoft 365.
 ```
 
 Use:
@@ -136,9 +136,9 @@ EXAMPLE:
 - Key differentiator: Timeline & portfolio views
 - User base: Mid-market (50–500 person teams)
 - Pricing model: Seat-based, $10.99–24.99/user/month
-- Biggest gap vs. us: Lacks deep customization for technical workflows
+- Biggest gap vs. us: Lacks deep customisation for technical workflows
 
-Now analyze: Notion, Confluence, Microsoft 365.
+Now analyse: Notion, Confluence, Microsoft 365.
 Use the same structure for each. Keep each to 3–4 bullets.
 ```
 
@@ -264,7 +264,7 @@ Analysis purpose: [E.g., "Understand their go-to-market strategy for SMBs"]
 TASK: Create a competitive analysis.
 
 FORMAT:
-For both us and the competitor, analyze:
+For both us and the competitor, analyse:
 - Feature breadth: What's included? (Use a simple table or list)
 - Target personas: Who are they building for?
 - Pricing model: (Seat-based? Usage-based? Enterprise custom?)
@@ -362,16 +362,16 @@ CONSTRAINTS:
 
 ---
 
-### Template 4: Sprint Planning & Roadmap Prioritization
+### Template 4: Sprint Planning & Roadmap Prioritisation
 
 **Before (Bad):**
 ```
-Should we prioritize Feature A or Feature B?
+Should we prioritise Feature A or Feature B?
 ```
 
 **After (Good):**
 ```
-ROLE: You are a product strategist helping a PM prioritize.
+ROLE: You are a product strategist helping a PM prioritise.
 
 CONTEXT:
 Product: [What you build, target market]
@@ -397,7 +397,7 @@ Option C: [Technical debt / bug fix / etc.]
 - Business impact: [Stability / performance / etc.]
 - Risk: [What could go wrong?]
 
-TASK: Help me prioritize. For each option, assess:
+TASK: Help me prioritise. For each option, assess:
 1. Impact vs. effort ratio (High/Medium/Low)
 2. Strategic alignment (Does it match our roadmap?)
 3. Risk assessment (What blockers exist?)
@@ -405,7 +405,7 @@ TASK: Help me prioritize. For each option, assess:
 5. Recommendation with reasoning
 
 FORMAT:
-Create a prioritization matrix or scoring table showing:
+Create a prioritisation matrix or scoring table showing:
 - Option name
 - Effort
 - Estimated impact (qualitative)
@@ -462,7 +462,7 @@ FORMAT:
 - 2-3 sentence status summary (What happened? What's the status?)
 - Wins this week (2–3 bullets)
 - Risks / blockers (2–3 bullets, with mitigation)
-- Next steps (3–4 bullets, prioritized)
+- Next steps (3–4 bullets, prioritised)
 - Ask for stakeholder input (Is there anything we need from you?)
 
 CONSTRAINTS:
@@ -485,7 +485,7 @@ CONSTRAINTS:
 
 **Before (Bad):**
 ```
-Analyze our user engagement data and tell me what it means.
+Analyse our user engagement data and tell me what it means.
 ```
 
 **After (Good):**
@@ -506,7 +506,7 @@ Data columns represent: [Explain what each column means]
 TASK:
 1. Describe what the data shows (What's the trend?)
 2. Identify anomalies (What's surprising or unexpected?)
-3. Hypothesize why (What caused this trend?)
+3. Hypothesise why (What caused this trend?)
 4. Recommend actions (What should we do about it?)
 
 FORMAT:
@@ -522,7 +522,7 @@ CONSTRAINTS:
 - Only use the data provided; don't speculate beyond it
 - Cite specific numbers (not just "users increased")
 - Flag if sample size is small or data seems incomplete
-- Prioritize insights by business impact (not statistical significance)
+- Prioritise insights by business impact (not statistical significance)
 - Recommend only actions we can actually take
 ```
 
@@ -542,7 +542,7 @@ You're not writing prompts once and throwing them away. Great product managers b
 
 Use one of these:
 - **Obsidian/Notion database:** Each prompt is a note with tags for category (PRD, Competitive, User stories, etc.)
-- **GitHub repo:** Organized by folder (e.g., `/prd-writing`, `/competitive-analysis`)
+- **GitHub repo:** Organised by folder (e.g., `/prd-writing`, `/competitive-analysis`)
 - **Spreadsheet:** Columns for Category, Use Case, Prompt, Output Example, Notes
 - **Claude Projects feature:** Save prompts with context as pinned instructions
 
@@ -635,14 +635,14 @@ Now write 5 more stories covering [specific areas].
 
 **Bad:**
 ```
-Analyze our market, our competitors, our opportunities, and recommend a new product.
+Analyse our market, our competitors, our opportunities, and recommend a new product.
 ```
 
 **Fix:**
 ```
 Let's break this into steps.
 
-Step 1: Analyze our market (TAM, growth, trends)
+Step 1: Analyse our market (TAM, growth, trends)
 Step 2: Competitive landscape (who's winning, how)
 Step 3: Market gaps (where we could fit)
 Step 4: Then recommend a new product that fills those gaps.
@@ -673,7 +673,7 @@ Write a one-page PRD (max 500 words). Focus on:
 Skip the technical architecture and detailed acceptance criteria (that's for later).
 ```
 
-**Why:** AI optimizes for clarity. Give it one constraint set, not five competing goals.
+**Why:** AI optimises for clarity. Give it one constraint set, not five competing goals.
 
 ---
 
@@ -705,7 +705,7 @@ Skip the technical architecture and detailed acceptance criteria (that's for lat
 
 ### Tip 1: Put Instructions After Context (For Claude)
 
-Claude processes information better when documents/context come first, then instructions. Unlike some models, Claude benefits from seeing the data before being asked to analyze it.
+Claude processes information better when documents/context come first, then instructions. Unlike some models, Claude benefits from seeing the data before being asked to analyse it.
 
 ```
 CONTEXT: [your situation]
@@ -742,7 +742,7 @@ Negative constraints can backfire. Instead of "Don't be too technical," try "Use
 If you want JSON, start with `{`. If you want a numbered list, start with `1. `. AI will complete the pattern.
 
 ```
-Analyze this competitive market.
+Analyse this competitive market.
 
 Analysis:
 1. Market size:
@@ -756,7 +756,7 @@ Analysis:
 For Claude, you can ask it to show its reasoning:
 
 ```
-I need help prioritizing these three features. Please think through the trade-offs
+I need help prioritising these three features. Please think through the trade-offs
 and then give me a recommendation. Show your reasoning for each step.
 ```
 

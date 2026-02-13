@@ -27,7 +27,7 @@ quiz:
     answer: 1
   - question: "Which of the following is something AI CANNOT replace in product management?"
     options:
-      - "Synthesizing user feedback from interviews"
+      - "Synthesising user feedback from interviews"
       - "Drafting PRDs from structured inputs"
       - "Making trade-off decisions under uncertainty"
       - "Generating release notes from ticket data"
@@ -36,7 +36,7 @@ quiz:
 
 ## The Time Is Now
 
-Product managers are drowning in busywork. You manage 40% more data sources today than you did five years ago—analytics platforms, customer feedback channels, internal communications, market research. You're writing PRDs, synthesizing feedback, analyzing competitors, drafting roadmaps, transcribing meetings, writing release notes.
+Product managers are drowning in busywork. You manage 40% more data sources today than you did five years ago—analytics platforms, customer feedback channels, internal communications, market research. You're writing PRDs, synthesising feedback, analysing competitors, drafting roadmaps, transcribing meetings, writing release notes.
 
 This is not the work you should be doing.
 
@@ -53,13 +53,13 @@ Before we talk about AI, let's map the full PM lifecycle. You already know these
 | Phase | Goal | Typical PM Tasks |
 |---|---|---|
 | **Discovery** | Understand the problem | User interviews, feedback synthesis, competitive research, pattern identification, problem framing |
-| **Definition** | Define the solution | PRDs, acceptance criteria, user journeys, success metrics, stakeholder alignment, prioritization |
+| **Definition** | Define the solution | PRDs, acceptance criteria, user journeys, success metrics, stakeholder alignment, prioritisation |
 | **Design** | Create the blueprint | UX collaboration, prototype review, edge-case stress testing, design iteration |
 | **Development** | Build and test | Standups, unblocking engineers, scope management, QA, acceptance testing |
 | **Delivery** | Ship to users | Launch planning, release notes, marketing coordination, rollout monitoring |
 | **Analytics** | Measure and learn | Metrics analysis, post-launch feedback synthesis, retrospectives, next-iteration planning |
 
-Look at that list. Notice how many tasks are fundamentally about *processing information* — reading, synthesizing, summarizing, drafting, comparing. These are exactly the tasks that LLMs handle well (recall from the LLMs module that language models are trained to recognize patterns in text). That's where AI creates the most leverage, as we'll see next.
+Look at that list. Notice how many tasks are fundamentally about *processing information* — reading, synthesising, summarising, drafting, comparing. These are exactly the tasks that LLMs handle well (recall from the LLMs module that language models are trained to recognise patterns in text). That's where AI creates the most leverage, as we'll see next.
 
 ---
 
@@ -69,11 +69,11 @@ Here's where AI genuinely shines—and where it falls short.
 
 ### High-Value AI Applications
 
-In **discovery**, AI creates the most leverage through feedback analysis—summarizing dozens of user interviews in minutes and surfacing patterns you might have missed—alongside competitive intelligence systems that monitor competitor sites, pricing, and features automatically, and market research synthesis that distills research reports and trends into actionable insights.
+In **discovery**, AI creates the most leverage through feedback analysis—summarising dozens of user interviews in minutes and surfacing patterns you might have missed—alongside competitive intelligence systems that monitor competitor sites, pricing, and features automatically, and market research synthesis that distills research reports and trends into actionable insights.
 
-During **definition**, AI becomes your co-writer. It drafts 80% of structured PRDs from your inputs, organizes features into roadmap themes by impact and effort, transforms raw tickets into polished release notes, and generates initial technical specs for clarity. The entire definition phase accelerates dramatically.
+During **definition**, AI becomes your co-writer. It drafts 80% of structured PRDs from your inputs, organises features into roadmap themes by impact and effort, transforms raw tickets into polished release notes, and generates initial technical specs for clarity. The entire definition phase accelerates dramatically.
 
-In **design** and **development**, AI handles the mechanical tasks. It converts high-level features into detailed user stories, brainstorms edge cases and scenarios you might have missed, auto-transcribes and summarizes standups, drafts weekly status updates from ticket data, and flags blockers and risks early.
+In **design** and **development**, AI handles the mechanical tasks. It converts high-level features into detailed user stories, brainstorms edge cases and scenarios you might have missed, auto-transcribes and summarises standups, drafts weekly status updates from ticket data, and flags blockers and risks early.
 
 At **delivery**, AI handles the final-mile work: drafting launch copy (emails, in-app messages, changelog entries), creating executive briefings for stakeholders, and aggregating post-launch metrics with early user feedback into comprehensive summaries.
 
@@ -136,11 +136,11 @@ Here's a practical toolkit of the most valuable options available today:
 | **ChatGPT (OpenAI)** | General AI Model | Broadly capable, great for brainstorming and ideation. Good for fast iteration. |
 | **Gemini (Google)** | General AI Model | Competitive alternative with strong research capabilities. |
 | **ChatPRD** | PM-Specific | Converts basic inputs into structured PRDs and roadmaps. Saves 30–45 minutes per document. |
-| **Kraftful** | PM-Specific | Analyzes user feedback at scale, surfacing themes and sentiment. |
-| **Notion AI / Slite AI** | PM-Specific | Integrated summarization and drafting within your workspace. |
+| **Kraftful** | PM-Specific | Analyses user feedback at scale, surfacing themes and sentiment. |
+| **Notion AI / Slite AI** | PM-Specific | Integrated summarisation and drafting within your workspace. |
 | **Visualping** | PM-Specific | Monitors competitor sites, flags pricing and feature changes automatically. |
 | **Linear AI** | Workflow Automation | Automatically triages issues and drafts summaries. |
-| **Slack / Teams AI** | Workflow Automation | Meeting transcription and message summarization built in. |
+| **Slack / Teams AI** | Workflow Automation | Meeting transcription and message summarisation built in. |
 
 ---
 
@@ -150,7 +150,7 @@ Not every PM task is ready for AI. Before automating, ask yourself five key ques
 
 First, **can you verify the output quickly?** PRD drafts and feedback summaries are easy to assess—but strategic decisions are not. Similarly, **what's the cost if AI gets it wrong?** A feedback summary has low stakes; customer-facing messaging has much higher stakes. Tasks with high error costs deserve extra scrutiny.
 
-Next, **can you define success clearly?** "Summarize this feedback" has clear success criteria. "Write a visionary PRD" does not. Tasks with vague success metrics are hard for AI to nail. Additionally, **is your input high-quality?** Garbage in, garbage out applies to AI more than humans. Feed AI structured data, not rambling notes, and you'll get better results.
+Next, **can you define success clearly?** "Summarise this feedback" has clear success criteria. "Write a visionary PRD" does not. Tasks with vague success metrics are hard for AI to nail. Additionally, **is your input high-quality?** Garbage in, garbage out applies to AI more than humans. Feed AI structured data, not rambling notes, and you'll get better results.
 
 Finally, **can you review the output quickly?** If review takes longer than doing the task yourself, the leverage disappears. The sweet spot is tasks where AI saves you 30–60 minutes and review takes 10–15.
 
@@ -159,7 +159,7 @@ Finally, **can you review the output quickly?** If review takes longer than doin
 ## Concrete Examples: AI in the PM Lifecycle
 
 ### Discovery
-**Before:** Spend 8 hours synthesizing 20 user interviews.
+**Before:** Spend 8 hours synthesising 20 user interviews.
 **With AI:** Feed interview transcripts to Claude. Ask: "What are the top 3 pain points? Which are mentioned most frequently? What surprised you?" Get structured analysis in 10 minutes. You review for accuracy and add context.
 
 **Competitive Analysis**
@@ -171,16 +171,16 @@ Finally, **can you review the output quickly?** If review takes longer than doin
 **With AI:** Provide basic inputs: problem statement, success metrics, constraints. Claude generates a 2000-word PRD structure. You spend 30 minutes refining and adding strategic nuance.
 
 **Roadmap Generation**
-**Before:** Spend 4 hours organizing features into a roadmap.
-**With AI:** Dump all feature requests into Claude. Ask it to categorize by theme, estimate impact/effort, and suggest a sequence. You make final prioritization calls based on business goals.
+**Before:** Spend 4 hours organising features into a roadmap.
+**With AI:** Dump all feature requests into Claude. Ask it to categorise by theme, estimate impact/effort, and suggest a sequence. You make final prioritisation calls based on business goals.
 
 ### Development
-**Before:** Spend 30 minutes per week synthesizing standup notes.
+**Before:** Spend 30 minutes per week synthesising standup notes.
 **With AI:** Linear or Slack AI auto-transcribes standups, flags blockers, drafts status update. You copy-paste and edit.
 
 **Release Notes**
 **Before:** Spend 2 hours writing cohesive release notes from tickets.
-**With AI:** Feed your changelog. Ask Claude to write marketing-friendly copy organized by user benefit. You polish and approve.
+**With AI:** Feed your changelog. Ask Claude to write marketing-friendly copy organised by user benefit. You polish and approve.
 
 ---
 
@@ -224,7 +224,7 @@ Take your last 10 customer interviews (or feedback tickets). Paste them into Cla
 
 Compare AI output to your instinct. Did it capture the nuance? What did it miss? This teaches you how to work with AI.
 
-### Day 3–4: Meeting Summarization
+### Day 3–4: Meeting Summarisation
 Turn on transcript-to-summary for your next three meetings (Slack, Google Meet, or Notion). Review the summaries. Are the action items clear? Did it capture context correctly?
 
 ### Day 5: Draft a Document with AI

@@ -21,8 +21,8 @@ quiz:
   - question: "Which type of task is most appropriate for AI according to the deterministic vs. probabilistic framework?"
     options:
       - "Calculating exact tax amounts"
-      - "Authorizing bank payments based on PIN verification"
-      - "Recommending movies based on user behavior patterns"
+      - "Authorising bank payments based on PIN verification"
+      - "Recommending movies based on user behaviour patterns"
       - "Sorting a list of names alphabetically"
     answer: 2
   - question: "What is the FIRST question in the AI Opportunity Spotting Quick Filter?"
@@ -34,13 +34,13 @@ quiz:
     answer: 1
 ---
 
-Not every problem is an AI problem. Your job as a PM is to recognize where AI creates real value versus where it's hype. This module teaches you to think strategically about WHERE AI belongs in your product—and critically, where it doesn't.
+Not every problem is an AI problem. Your job as a PM is to recognise where AI creates real value versus where it's hype. This module teaches you to think strategically about WHERE AI belongs in your product—and critically, where it doesn't.
 
 ## The Core Insight: Not All Opportunities Are Equal
 
-Imagine you're an engineer tasked with "improving something." You could optimize code, add caching, rewrite in a faster language. Each approach is valid for different problems. The same logic applies to AI.
+Imagine you're an engineer tasked with "improving something." You could optimise code, add caching, rewrite in a faster language. Each approach is valid for different problems. The same logic applies to AI.
 
-AI is a tool that excels at specific problem types. Before you evangelize your company's "AI strategy," you need to develop pattern recognition: **Can we solve this better with AI, or is this a case of hammer-seeking-nails?**
+AI is a tool that excels at specific problem types. Before you evangelise your company's "AI strategy," you need to develop pattern recognition: **Can we solve this better with AI, or is this a case of hammer-seeking-nails?**
 
 This matters because:
 - **Resource cost**: Building AI features is expensive (data annotation, compute, testing, ongoing maintenance)
@@ -56,14 +56,14 @@ Your strategic task is ruthlessly honest evaluation: Does AI make this better, c
 
 These domains have proven, reliable AI solutions deployed at scale. If your opportunity maps to one of these, you're on solid ground.
 
-### Text Generation & Summarization
+### Text Generation & Summarisation
 
 **The capability**: Take input text and produce human-readable output. This includes emails, product descriptions, social media captions, documentation, summaries of long documents.
 
 **Why it works**: Large language models (LLMs) have absorbed patterns from billions of text examples. They're exceptionally good at the structure and fluency of language.
 
 **Real-world examples**:
-- **Slack** uses AI to summarize threads, cutting through noise
+- **Slack** uses AI to summarise threads, cutting through noise
 - **HubSpot** generates email templates and subject lines
 - **Notion** auto-completes documentation
 - **GitHub Copilot** writes code comments and docstrings
@@ -72,9 +72,9 @@ These domains have proven, reliable AI solutions deployed at scale. If your oppo
 
 ### Classification & Tagging
 
-**The capability**: Assign a label or category to text, images, or user behavior. Examples: Is this email spam? Sentiment (positive/negative/neutral)? Is this support ticket urgent or routine?
+**The capability**: Assign a label or category to text, images, or user behaviour. Examples: Is this email spam? Sentiment (positive/negative/neutral)? Is this support ticket urgent or routine?
 
-**Why it works**: Classification is a bounded problem. There are a finite set of valid outputs, and AI learns to recognize patterns in inputs that predict them.
+**Why it works**: Classification is a bounded problem. There are a finite set of valid outputs, and AI learns to recognise patterns in inputs that predict them.
 
 **Real-world examples**:
 - **Gmail** filters spam with high accuracy
@@ -112,7 +112,7 @@ These domains have proven, reliable AI solutions deployed at scale. If your oppo
 
 ### Image Recognition & Analysis
 
-**The capability & why it works**: Computer vision has matured significantly and can recognize thousands of objects and patterns—**Stripe** extracts card details from photos and **Figma** auto-generates alt-text with high reliability.
+**The capability & why it works**: Computer vision has matured significantly and can recognise thousands of objects and patterns—**Stripe** extracts card details from photos and **Figma** auto-generates alt-text with high reliability.
 
 **PM consideration**: Vision is most reliable for common objects and patterns; it struggles with artistic interpretation or edge cases. Always provide a manual override path.
 
@@ -139,7 +139,7 @@ These areas are advancing rapidly but haven't reached production reliability for
 
 **The capability**: Make split-second decisions in live systems (trading, autonomous vehicles, real-time pricing).
 
-**Current state**: Real-time AI works if decisions are pre-computed and cached (like price optimization), but live inference at scale is still expensive and latency-sensitive.
+**Current state**: Real-time AI works if decisions are pre-computed and cached (like price optimisation), but live inference at scale is still expensive and latency-sensitive.
 
 **Examples of attempts**:
 - Real-time fraud detection (hybrid: rules + model scoring)
@@ -199,13 +199,13 @@ Know where to avoid. These areas consistently fail or deliver poor ROI.
 
 **PM consideration**: If your product requires real-time data, AI is better used for insights or batch processing, not live decision-making.
 
-### Tasks Requiring Specialized Domain Knowledge
+### Tasks Requiring Specialised Domain Knowledge
 
 **The problem**: LLMs have broad knowledge but shallow expertise. They don't know your company's proprietary systems, your customer data, or your business rules.
 
 **Real example**: You ask GPT-4 a question about your internal API. It makes a plausible but wrong guess because it's never seen your code.
 
-**PM consideration**: AI works best when augmented with your data (retrieval-augmented generation, or RAG). Raw AI on specialized domains often fails.
+**PM consideration**: AI works best when augmented with your data (retrieval-augmented generation, or RAG). Raw AI on specialised domains often fails.
 
 ---
 
@@ -220,7 +220,7 @@ This is the single most important concept for PM decision-making around AI. It d
 **Examples**:
 - Calculating interest = `(principal x rate x time) / 100`
 - Sorting a list of names alphabetically
-- Authorizing a payment (rules engine: "check account balance, verify PIN, approve or deny")
+- Authorising a payment (rules engine: "check account balance, verify PIN, approve or deny")
 
 **Characteristics**:
 - Predictable and reliable
@@ -251,11 +251,11 @@ The question you must ask: **Is this task inherently probabilistic, or am I forc
 | Task Type | Best Approach | Why |
 |-----------|---------------|-----|
 | Banking transaction | Deterministic | Customers need 100% certainty. Rules-based systems are reliable. AI adds risk. |
-| Recommending a movie | Probabilistic | No single "correct" answer. AI learns from behavior patterns. |
+| Recommending a movie | Probabilistic | No single "correct" answer. AI learns from behaviour patterns. |
 | Spam filtering | Probabilistic | Some borderline cases exist. AI's "best guess" is valuable. |
 | Calculating tax | Deterministic | Legal requirement for precision. Use math, not learned patterns. |
 | Detecting fraud | Hybrid | Deterministic rules (impossible transactions) + probabilistic scoring (anomaly detection). |
-| Personalizing content | Probabilistic | Users appreciate variety. AI's probabilistic ranking provides it. |
+| Personalising content | Probabilistic | Users appreciate variety. AI's probabilistic ranking provides it. |
 
 ### Real-World Example: Meta's Ad System
 
@@ -287,16 +287,16 @@ Here's a practical framework for spotting AI opportunities in your product. Thes
 |----------|--------------|----------|------|-----|
 | Chatbot for FAQs | Classification + retrieval | Proven | Low | High |
 | Ticket routing | Classification | Proven | Low | High |
-| Agent assist (summaries) | Summarization | Proven | Low | High |
+| Agent assist (summaries) | Summarisation | Proven | Low | High |
 | Sentiment analysis | Classification | Proven | Low | Medium |
 | Predictive churn | Regression/classification | Proven | Low | High |
-| Personalized help articles | Semantic search | Emerging | Low | Medium |
+| Personalised help articles | Semantic search | Emerging | Low | Medium |
 
 ### Content & Knowledge Management
 
 | Use Case | AI Technique | Maturity | Risk | ROI |
 |----------|--------------|----------|------|-----|
-| Auto-summarization | Summarization | Proven | Low | High |
+| Auto-summarisation | Summarisation | Proven | Low | High |
 | Smart tagging | Classification | Proven | Low | Medium |
 | Search | Semantic search | Emerging | Low | High |
 | Content generation | Text generation | Proven | Medium | High |
@@ -316,7 +316,7 @@ Here's a practical framework for spotting AI opportunities in your product. Thes
 
 | Use Case | AI Technique | Maturity | Risk | ROI |
 |----------|--------------|----------|------|-----|
-| Expense categorization | Classification | Proven | Low | Medium |
+| Expense categorisation | Classification | Proven | Low | Medium |
 | Fraud detection | Anomaly detection | Proven | Low | High |
 | Data extraction | OCR + classification | Proven | Low | Medium |
 | Predictive maintenance | Time series forecasting | Emerging | Medium | Medium |
@@ -327,7 +327,7 @@ Here's a practical framework for spotting AI opportunities in your product. Thes
 | Use Case | AI Technique | Maturity | Risk | ROI |
 |----------|--------------|----------|------|-----|
 | Code generation | Text generation | Proven | Medium | High |
-| Documentation writing | Summarization + generation | Proven | Low | Medium |
+| Documentation writing | Summarisation + generation | Proven | Low | Medium |
 | Bug triage | Classification | Emerging | Medium | Medium |
 | Test case generation | Code generation | Emerging | Medium | Medium |
 
@@ -349,15 +349,15 @@ Three or more "yes"? This is likely worth deeper investigation.
 
 ### Detailed Assessment
 
-**Problem Assessment.** Start by asking whether this is genuinely high-friction — does it waste meaningful customer or employee time? The strongest AI opportunities are repetitive tasks happening at high volume (thousands of times), involve prediction (assigning labels, scores, or rankings) or generation (creating content like text, code, or images), and deal with unstructured data like text, images, or user behavior where AI has a natural advantage over rule-based systems.
+**Problem Assessment.** Start by asking whether this is genuinely high-friction — does it waste meaningful customer or employee time? The strongest AI opportunities are repetitive tasks happening at high volume (thousands of times), involve prediction (assigning labels, scores, or rankings) or generation (creating content like text, code, or images), and deal with unstructured data like text, images, or user behaviour where AI has a natural advantage over rule-based systems.
 
-**Feasibility Assessment.** Does the opportunity have a solid foundation? You'll need accessible data—thousands of labeled examples minimum—to train and validate any model, and those examples must be representative of real-world scenarios. Establish what the current human or rule-based approach costs, what success metrics look like (accuracy, latency, user satisfaction), and whether you can scope an MVP that captures 80% of the value in the first iteration. The question is never "can we build this perfectly," but "can we build this now and improve it in production?"
+**Feasibility Assessment.** Does the opportunity have a solid foundation? You'll need accessible data—thousands of labelled examples minimum—to train and validate any model, and those examples must be representative of real-world scenarios. Establish what the current human or rule-based approach costs, what success metrics look like (accuracy, latency, user satisfaction), and whether you can scope an MVP that captures 80% of the value in the first iteration. The question is never "can we build this perfectly," but "can we build this now and improve it in production?"
 
 **Risk Assessment.** Honestly evaluate what could go wrong. Does the task genuinely require perfect accuracy (medical diagnosis, compliance decisions), or can it tolerate imperfect results with human review? Are there legal or compliance implications that require explainability—can you justify a decision to a regulator or customer? Is this safety-critical? Do users need to trust the recommendation, or will they verify it? How will the system degrade gracefully when it's uncertain? These questions determine whether your project is high-risk or manageable.
 
 **Strategic Assessment.** Finally, ask whether this actually moves the business. Is this a core competitive advantage or a nice-to-have? Can you iterate quickly on a real feature with real users, or are you stuck in proof-of-concept mode? Will it improve retention, reduce support costs, or increase customer lifetime value? If you're building an AI feature that doesn't improve any meaningful business metric, you're likely solving the wrong problem.
 
-**Red Flags — Do Not Proceed Without Strong Justification.** Before you commit resources, check for these warning signs: the task requires 99%+ accuracy and you plan to ship without human review; you don't have labeled data and can't realistically create it; you're using raw AI for financial calculations or legal decisions; you can't explain why the AI made a specific decision to a customer or regulator; this "feels" like an AI problem but doesn't solve a real customer pain point; or competitors have vastly superior solutions and you're years behind. Any of these should trigger a step back.
+**Red Flags — Do Not Proceed Without Strong Justification.** Before you commit resources, check for these warning signs: the task requires 99%+ accuracy and you plan to ship without human review; you don't have labelled data and can't realistically create it; you're using raw AI for financial calculations or legal decisions; you can't explain why the AI made a specific decision to a customer or regulator; this "feels" like an AI problem but doesn't solve a real customer pain point; or competitors have vastly superior solutions and you're years behind. Any of these should trigger a step back.
 
 ---
 
@@ -387,7 +387,7 @@ graph LR
 
 **Proven**: These have been shipping at scale for 3+ years. Start here. Risk of failure is low; risk of suboptimal results is higher.
 
-**Scaling**: These are gaining adoption but still encountering novel edge cases. Expect to spend time on customization and fine-tuning.
+**Scaling**: These are gaining adoption but still encountering novel edge cases. Expect to spend time on customisation and fine-tuning.
 
 **Frontier**: These are research-grade. Ship only if you have high risk tolerance and strong technical expertise. Expect the broader industry to catch up soon.
 
@@ -419,7 +419,7 @@ AI is a tool. Use it to solve real problems, not to be fashionable.
 
 3. **Some areas are emerging**: complex reasoning, real-time decision-making, creative work. These are higher-risk; prototype, don't ship.
 
-4. **AI struggles with**: precise arithmetic, perfect accuracy tasks, real-time data, and tasks requiring specialized domain knowledge. Avoid or use with caution.
+4. **AI struggles with**: precise arithmetic, perfect accuracy tasks, real-time data, and tasks requiring specialised domain knowledge. Avoid or use with caution.
 
 5. **Deterministic vs. probabilistic is critical.** Use probabilistic AI for problems that are inherently probabilistic (predictions, recommendations). Don't force AI into deterministic problems (financial calculations, yes/no rules).
 

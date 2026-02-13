@@ -2,7 +2,7 @@
 title: "Exercise: Map Workflows and Identify AI Opportunities"
 module: 3
 lesson: 3
-description: "A hands-on exercise to audit your team's real workflows, score them for AI fit using a structured scorecard, and produce prioritized opportunity briefs."
+description: "A hands-on exercise to audit your team's real workflows, score them for AI fit using a structured scorecard, and produce prioritised opportunity briefs."
 objectives:
   - "Map your team's core workflows across the PM lifecycle and estimate time investment"
   - "Score workflows against the five-dimension AI Opportunity Scorecard"
@@ -33,7 +33,7 @@ quiz:
 
 You've learned where AI excels in the Identify Opportunities module and how to assess whether an opportunity is worth pursuing in Assessing AI Viability. Now it's time to apply those frameworks to your own team's work.
 
-This exercise takes 20-30 minutes. By the end, you'll have a prioritized shortlist of AI opportunities grounded in real workflows — not wishful thinking.
+This exercise takes 20-30 minutes. By the end, you'll have a prioritised shortlist of AI opportunities grounded in real workflows — not wishful thinking.
 
 ---
 
@@ -43,8 +43,8 @@ Start by listing the recurring workflows your team performs weekly or monthly. D
 
 **Prompt yourself with these categories:**
 
-- **Discovery & Research**: How do you gather customer insights, analyze competitors, synthesize user feedback?
-- **Planning & Prioritization**: How do you write PRDs, score features, plan sprints, update roadmaps?
+- **Discovery & Research**: How do you gather customer insights, analyse competitors, synthesise user feedback?
+- **Planning & Prioritisation**: How do you write PRDs, score features, plan sprints, update roadmaps?
 - **Design & Build**: How do you create specs, review designs, write acceptance criteria, prototype?
 - **Launch & Measure**: How do you write launch docs, monitor metrics, create reports, run retrospectives?
 - **Communication**: How do you update stakeholders, write status reports, prepare for reviews?
@@ -77,7 +77,7 @@ For each workflow, score these five dimensions on a 1-5 scale (maximum possible 
 ### Scoring Criteria
 
 **1. Pattern Match (Does AI excel here?)**
-- 5 = Core AI strength (text generation, classification, summarization, search)
+- 5 = Core AI strength (text generation, classification, summarisation, search)
 - 3 = Emerging capability (reasoning over complex data, multi-step workflows)
 - 1 = AI weakness (precise math, real-time physical systems, novel judgment)
 
@@ -88,7 +88,7 @@ For each workflow, score these five dimensions on a 1-5 scale (maximum possible 
 
 **3. Error Tolerance (Can you absorb mistakes?)**
 - 5 = Low stakes, human reviews output (draft emails, summaries)
-- 3 = Medium stakes, some oversight needed (ticket routing, prioritization)
+- 3 = Medium stakes, some oversight needed (ticket routing, prioritisation)
 - 1 = High stakes, errors are costly (legal compliance, financial calculations)
 
 **4. Data Availability (Do you have what AI needs?)**
@@ -156,7 +156,7 @@ For your top 3 opportunities, fill in this one-paragraph brief. This is what you
 
 > **Problem**: [What pain does this solve? How much time/effort does it cost today?]
 >
-> **Proposed AI approach**: [Which AI capability? Summarization? Classification? Generation? Reference the categories from the Identify Opportunities module]
+> **Proposed AI approach**: [Which AI capability? Summarisation? Classification? Generation? Reference the categories from the Identify Opportunities module]
 >
 > **Engagement mode**: [Off-the-shelf tool / API integration / Fine-tuned model? Reference the spectrum from the Assessing AI Viability module]
 >
@@ -180,23 +180,23 @@ To show what a completed exercise looks like, here's a worked example for a mid-
 
 **1. Customer Feedback Clustering (Score: 24/25)**
 - *Problem*: 200+ feedback items per month across Intercom, NPS surveys, and sales call notes. Currently, one PM spends a full day each month manually tagging and grouping them.
-- *AI approach*: Classification + summarization. Use an LLM to tag each item by theme, sentiment, and customer segment, then generate a weekly digest.
+- *AI approach*: Classification + summarisation. Use an LLM to tag each item by theme, sentiment, and customer segment, then generate a weekly digest.
 - *Engagement mode*: API integration (Claude or GPT via API, connected to existing feedback database).
 - *Success looks like*: Monthly feedback synthesis drops from 8 hours to 1 hour. Theme accuracy above 85% (validated by PM spot-checks).
-- *Biggest risk*: Miscategorization could cause the team to miss an emerging issue. Mitigate by keeping a human review step for "low confidence" classifications.
+- *Biggest risk*: Miscategorisation could cause the team to miss an emerging issue. Mitigate by keeping a human review step for "low confidence" classifications.
 - *First step*: Export last month's 200 feedback items. Run them through Claude with a classification prompt. Compare AI tags to the PM's manual tags.
 
 **2. Release Notes Drafting (Score: 20/25)**
-- *Problem*: Every two weeks, the PM writes release notes from Jira tickets. Takes 2 hours of reading tickets, summarizing, and formatting.
+- *Problem*: Every two weeks, the PM writes release notes from Jira tickets. Takes 2 hours of reading tickets, summarising, and formatting.
 - *AI approach*: Text generation from structured input. Feed Jira ticket titles, descriptions, and acceptance criteria to an LLM with a release notes template.
 - *Success looks like*: First draft quality good enough that PM only edits for 15 minutes.
 - *First step*: Copy last sprint's Jira tickets into Claude with a system prompt specifying the release notes format. Compare output to what was actually published.
 
 **3. Competitive Intelligence Monitoring (Score: 18/25)**
 - *Problem*: Tracking 5 competitors across blogs, changelogs, social media, and review sites. Currently ad-hoc — things get missed.
-- *AI approach*: Summarization + classification. Set up automated collection and use an LLM to surface "things our PM team should know about."
+- *AI approach*: Summarisation + classification. Set up automated collection and use an LLM to surface "things our PM team should know about."
 - *Biggest risk*: AI might miss nuanced competitive moves or hallucinate features competitors don't actually have. Requires human verification before acting on any insight.
-- *First step*: Collect last month's competitor blog posts and changelogs. Use an LLM to summarize key product changes and flag anything relevant to our roadmap.
+- *First step*: Collect last month's competitor blog posts and changelogs. Use an LLM to summarise key product changes and flag anything relevant to our roadmap.
 
 ---
 

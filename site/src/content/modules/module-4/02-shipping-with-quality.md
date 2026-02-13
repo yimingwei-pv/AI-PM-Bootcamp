@@ -53,11 +53,11 @@ This sounds obvious. It's also the #1 reason AI features fail in production. Not
 
 Before you ship any AI feature, audit your data against these five dimensions:
 
-**1. Representativeness** — Does your data reflect the full range of inputs the model will encounter in production? A customer support classifier trained on English-only tickets will fail on Spanish tickets. A summarizer tested on 200-word tickets will choke on 2,000-word escalation threads. The distribution of your evaluation data should match the distribution of your production traffic.
+**1. Representativeness** — Does your data reflect the full range of inputs the model will encounter in production? A customer support classifier trained on English-only tickets will fail on Spanish tickets. A summariser tested on 200-word tickets will choke on 2,000-word escalation threads. The distribution of your evaluation data should match the distribution of your production traffic.
 
 **2. Freshness** — How current is your data? If you built a RAG pipeline over your knowledge base six months ago and haven't updated it, your model is answering based on stale information. Set up automated data ingestion or define a refresh cadence. For rapidly changing domains (pricing, product features, regulatory requirements), weekly or even daily refreshes may be necessary.
 
-**3. Accuracy (Labels)** — If you're using labeled data for evaluation or fine-tuning, how reliable are those labels? Human labelers disagree on ambiguous cases. If your "ground truth" has 15% inter-annotator disagreement, your model can't realistically exceed 85% accuracy — and that might be fine, or it might be fatal, depending on your use case.
+**3. Accuracy (Labels)** — If you're using labelled data for evaluation or fine-tuning, how reliable are those labels? Human labelers disagree on ambiguous cases. If your "ground truth" has 15% inter-annotator disagreement, your model can't realistically exceed 85% accuracy — and that might be fine, or it might be fatal, depending on your use case.
 
 **4. Completeness** — Are there gaps? If 30% of your customer tickets are missing category labels, training a classifier on the remaining 70% introduces selection bias. The tickets without labels might be the hardest to classify — exactly the cases where you need AI most.
 
@@ -101,7 +101,7 @@ These measure the model's raw performance on your task. The specific metrics dep
 - **Recall**: Of the actual positive items, what % did the model catch? High recall = few missed cases
 - **F1 Score**: The harmonic mean of precision and recall. Useful when you need to balance both
 
-**For generation tasks** (summarization, drafting, Q&A):
+**For generation tasks** (summarisation, drafting, Q&A):
 - **Factual accuracy**: Does the output contain only facts supported by the input? (Critical for RAG applications)
 - **Relevance**: Does the output address the actual question or task?
 - **Completeness**: Does it cover all the key points?
@@ -154,7 +154,7 @@ To make this concrete, here's what a real metrics dashboard might look like for 
 | Agent hours saved/week | Business | >= 6 hrs | 7.5 hrs | On target |
 | Support ticket volume | Business | -15% | -12% | Trending |
 
-This dashboard tells a story: the model works well on categorization but underperforms on sentiment. Users accept AI suggestions 76% of the time — close but below target. Investigation reveals that the "Below target" metrics correlate: tickets with wrong sentiment get edited more often and accepted less. The fix is clear: improve sentiment detection, not the entire model.
+This dashboard tells a story: the model works well on categorisation but underperforms on sentiment. Users accept AI suggestions 76% of the time — close but below target. Investigation reveals that the "Below target" metrics correlate: tickets with wrong sentiment get edited more often and accepted less. The fix is clear: improve sentiment detection, not the entire model.
 
 ### Staged Rollouts: How to Ship Without Betting the Farm
 
@@ -225,7 +225,7 @@ Set alerts for score drops. A 5% accuracy decline on your eval set should trigge
 
 Suppose you built the customer feedback classifier from the Opportunity Exercise. Here's what your eval suite looks like:
 
-**Test set**: 150 real feedback items, manually labeled by two PMs (disagreements resolved through discussion). Categories: Bug Report, Feature Request, Praise, Complaint, Question.
+**Test set**: 150 real feedback items, manually labelled by two PMs (disagreements resolved through discussion). Categories: Bug Report, Feature Request, Praise, Complaint, Question.
 
 **Scoring**: Exact match on category (it's classification). Also track: "Was the sentiment correct?" and "Was the summary accurate?" using an LLM-as-judge.
 
@@ -295,7 +295,7 @@ Beyond bias, AI features can create safety risks. Here are the guardrails every 
 
 **Transparency**: Tell users when they're interacting with AI. Label AI-generated content clearly. This isn't just ethical — it manages expectations. Users are more forgiving of AI mistakes when they know it's AI.
 
-**Data handling**: Be explicit about how user inputs to your AI feature are stored, used, and potentially used for training. Many users are uncomfortable with their data being used to improve models. Provide clear opt-out mechanisms and comply with your organization's privacy policies.
+**Data handling**: Be explicit about how user inputs to your AI feature are stored, used, and potentially used for training. Many users are uncomfortable with their data being used to improve models. Provide clear opt-out mechanisms and comply with your organisation's privacy policies.
 
 **Incident response**: Have a plan for when things go wrong. Who gets alerted? What's the escalation path? Can you disable the AI feature quickly without bringing down the entire product? (Feature flags are your friend here.) Your AI feature should have a kill switch that any on-call engineer can flip.
 
