@@ -2,17 +2,17 @@
 title: "Exercise: Map Workflows and Identify AI Opportunities"
 module: 3
 lesson: 3
-description: "A hands-on exercise to audit your team's real workflows, score them for AI fit using a structured scorecard, and produce prioritised opportunity briefs."
+description: "A hands-on exercise to audit your team's real workflows, score them for AI fit, and produce prioritised opportunity briefs you can take to stakeholders."
 objectives:
   - "Map your team's core workflows across the PM lifecycle and estimate time investment"
   - "Score workflows against the five-dimension AI Opportunity Scorecard"
   - "Produce actionable opportunity briefs for your top AI candidates"
 resources:
-  - title: "15 AI Business Use Cases + Real-World Examples - Product School"
-    url: "https://productschool.com/blog/artificial-intelligence/ai-business-use-cases"
+  - title: "Why Most AI Products Fail — Mind the Product (MIT 2025 Report)"
+    url: "https://www.mindtheproduct.com/why-most-ai-products-fail-key-findings-from-mits-2025-ai-report/"
     type: "article"
-  - title: "AI for product managers: essential tools and strategies"
-    url: "https://monday.com/blog/rnd/ai-for-product-managers/"
+  - title: "The Agentic AI Framework Every PM Needs in 2026"
+    url: "https://www.productreleasenotes.com/p/agentic-ai-is-here-the-5-step-framework"
     type: "article"
 quiz:
   - question: "In the five-dimension AI Opportunity Scorecard, which dimension asks 'Can users absorb mistakes?'"
@@ -31,32 +31,36 @@ quiz:
     answer: 1
 ---
 
-You've learned where AI excels in the Identify Opportunities module and how to assess whether an opportunity is worth pursuing in Assessing AI Viability. Now it's time to apply those frameworks to your own team's work.
+## Applying the Frameworks
 
-This exercise takes 20-30 minutes. By the end, you'll have a prioritised shortlist of AI opportunities grounded in real workflows — not wishful thinking.
+You've now learned how to distinguish proven AI capabilities from emerging ones (Lesson 3.1) and how to score opportunities for viability (Lesson 3.2). This exercise applies those frameworks to something concrete — your own team's work.
+
+The exercise takes 20–30 minutes. By the end, you'll have a prioritised shortlist of AI opportunities grounded in actual workflows, and opportunity briefs specific enough to bring to a stakeholder conversation.
+
+One thing to expect: the best opportunities are almost never the glamorous ones. Teams consistently find that their highest-scoring workflow is something unglamorous — feedback triage, status report assembly, data reconciliation — rather than the flashy AI feature that came up at the last all-hands.
 
 ---
 
-## Step 1: Map Your Team's Core Workflows (10 minutes)
+## Step 1: Map Your Team's Core Workflows (10 Minutes)
 
-Start by listing the recurring workflows your team performs weekly or monthly. Don't filter yet — just capture them. Think across the full PM lifecycle from the AI-Powered Mindset module.
+Open your calendar and look at last week. What meetings did you prepare for? What documents did you create? What recurring tasks ate your time? Those are your workflows.
 
-**Prompt yourself with these categories:**
+List 6–8 recurring workflows your team performs weekly or monthly. Don't filter yet — just capture them. To jog your memory, here are the kinds of tasks that consistently surface when PMs do this exercise:
 
-- **Discovery & Research**: How do you gather customer insights, analyse competitors, synthesise user feedback?
-- **Planning & Prioritisation**: How do you write PRDs, score features, plan sprints, update roadmaps?
-- **Design & Build**: How do you create specs, review designs, write acceptance criteria, prototype?
-- **Launch & Measure**: How do you write launch docs, monitor metrics, create reports, run retrospectives?
-- **Communication**: How do you update stakeholders, write status reports, prepare for reviews?
+- Reading through 50+ Intercom tickets or NPS responses to find the three things that actually matter for the roadmap
+- Pulling numbers from Amplitude, Jira, and Salesforce into a stakeholder update every Friday afternoon
+- Writing the same sprint review summary in slightly different formats for engineering, design, and leadership
+- Manually tagging and categorising feature requests that arrive across email, Slack, sales calls, and support tickets
+- Drafting release notes from a list of Jira tickets every two weeks
+- Preparing for QBRs by assembling metrics, customer quotes, and progress updates from five different tools
+- Reviewing competitor changelogs and pricing pages to spot what's changed
 
-### Your Workflow Map
-
-Use this template. For each workflow, estimate how many hours per week your team spends on it and note the primary pain point.
+For each workflow, estimate hours per week and note the primary pain point — the specific thing that makes it tedious, slow, or error-prone.
 
 | # | Workflow | Hours/Week | Primary Pain Point |
 |---|---------|-----------|-------------------|
-| 1 | Example: Triage customer support tickets for product signals | 4 hrs | Manual reading of hundreds of tickets; easy to miss patterns |
-| 2 | Example: Write weekly stakeholder update | 2 hrs | Gathering data from 5 different tools; mostly copy-paste |
+| 1 | *Example: Read Intercom tickets and NPS responses for product signals* | 4 hrs | Manually reading 200+ items/month; easy to miss emerging patterns buried in noise |
+| 2 | *Example: Write Friday stakeholder update* | 2 hrs | Pulling data from Amplitude, Jira, and Salesforce; 80% of the time is copy-paste, 20% is writing |
 | 3 | | | |
 | 4 | | | |
 | 5 | | | |
@@ -64,49 +68,43 @@ Use this template. For each workflow, estimate how many hours per week your team
 | 7 | | | |
 | 8 | | | |
 
-**Tip**: If you're stuck, open your calendar and look at last week. What meetings did you prepare for? What documents did you create? What repetitive tasks ate your time? Those are your workflows.
+**If you're stuck:** Look at your Slack/Teams messages from the past week. What tasks did you complain about, delegate reluctantly, or put off until the last minute? Those are almost always your best candidates.
 
 ---
 
-## Step 2: Score Each Workflow for AI Fit (10 minutes)
+## Step 2: Score Each Workflow for AI Fit (10 Minutes)
 
-Now evaluate each workflow using the **AI Opportunity Scorecard** below. This draws directly from the frameworks in the Identify Opportunities and Assessing AI Viability modules.
+Now evaluate each workflow against five dimensions on a 1–5 scale. Maximum possible score is 25. These dimensions map directly to the capability tiers and checklist from Lesson 3.1.
 
-For each workflow, score these five dimensions on a 1-5 scale (maximum possible total: 25):
+**1. Pattern Match — Does AI excel at this type of task?**
+- 5 = core AI strength (text generation, classification, summarisation, search)
+- 3 = emerging capability (reasoning over complex data, multi-step workflows)
+- 1 = AI weakness (precise calculations, real-time physical systems, deep domain judgement)
 
-### Scoring Criteria
+**2. Volume and Repetition — Is there enough scale to justify automation?**
+- 5 = daily, high volume (hundreds of items)
+- 3 = weekly, moderate volume
+- 1 = rare or one-off
 
-**1. Pattern Match (Does AI excel here?)**
-- 5 = Core AI strength (text generation, classification, summarisation, search)
-- 3 = Emerging capability (reasoning over complex data, multi-step workflows)
-- 1 = AI weakness (precise math, real-time physical systems, novel judgment)
+**3. Error Tolerance — Can users absorb mistakes?**
+- 5 = low stakes, human reviews output anyway (draft emails, internal summaries)
+- 3 = medium stakes, some oversight needed (ticket routing, prioritisation)
+- 1 = errors are costly (legal compliance, financial calculations, customer-facing with no review)
 
-**2. Volume & Repetition (Is there enough scale?)**
-- 5 = Daily task, high volume (hundreds of items)
-- 3 = Weekly task, moderate volume
-- 1 = Rare or one-off task
+**4. Data Availability — Do you have what AI needs?**
+- 5 = abundant, clean, accessible data (existing documents, structured databases)
+- 3 = data exists but scattered or messy
+- 1 = little or no relevant data; you'd build the dataset from scratch
 
-**3. Error Tolerance (Can you absorb mistakes?)**
-- 5 = Low stakes, human reviews output (draft emails, summaries)
-- 3 = Medium stakes, some oversight needed (ticket routing, prioritisation)
-- 1 = High stakes, errors are costly (legal compliance, financial calculations)
+**5. Time Savings — How much human effort would this replace?**
+- 5 = saves 3+ hours per week
+- 3 = 1–2 hours
+- 1 = saves minutes at most
 
-**4. Data Availability (Do you have what AI needs?)**
-- 5 = Abundant, clean, accessible data (existing docs, structured databases)
-- 3 = Data exists but is scattered or messy
-- 1 = Little or no relevant data; would need to build from scratch
-
-**5. Time Savings (How much human effort does it replace?)**
-- 5 = Saves 3+ hours per week
-- 3 = Saves 1-2 hours per week
-- 1 = Saves minutes at most
-
-### Your Opportunity Scorecard
-
-| # | Workflow | Pattern Match | Volume | Error Tolerance | Data Available | Time Savings | **Total** |
+| # | Workflow | Pattern | Volume | Error Tol. | Data | Time | **Total** |
 |---|---------|:---:|:---:|:---:|:---:|:---:|:---:|
-| 1 | Triage support tickets | 5 | 5 | 4 | 5 | 4 | **23** |
-| 2 | Write stakeholder update | 4 | 3 | 4 | 3 | 3 | **17** |
+| 1 | *Triage support tickets* | 5 | 5 | 4 | 5 | 4 | **23** |
+| 2 | *Write stakeholder update* | 4 | 3 | 4 | 3 | 3 | **17** |
 | 3 | | | | | | | |
 | 4 | | | | | | | |
 | 5 | | | | | | | |
@@ -116,119 +114,135 @@ For each workflow, score these five dimensions on a 1-5 scale (maximum possible 
 
 ---
 
-## Step 3: Pick Your Top 3 and Pressure-Test Them (5 minutes)
+## Step 3: Pick Your Top 3 and Pressure-Test Them (5 Minutes)
 
-Sort by total score. Your top three are your candidates. But before you commit, run each through these three sanity checks:
+Sort by total score. Your top three are candidates. Before you invest further, run each through three sanity checks.
 
-### Sanity Check 1: The "What If It's Wrong?" Test
+### The "What If It's Wrong?" Test
 
-For each candidate, complete this sentence:
+For each candidate, complete this sentence: *"If the AI gets this wrong, the consequence is ___."*
 
-> "If the AI gets this wrong, the consequence is ___."
+"Someone gets a slightly awkward draft email" — you're in the clear. "We ship incorrect billing data to customers" — doesn't disqualify it, but it means you need a human-in-the-loop design, which changes the effort and the ROI calculation.
 
-If the consequence is "someone gets a slightly awkward draft email" — green light. If the consequence is "we ship incorrect billing data to customers" — that's a red flag that demands human-in-the-loop design, not necessarily disqualification.
+### The "Simpler Solution" Test
 
-### Sanity Check 2: The "Simpler Solution" Test
+*"Could a spreadsheet formula, a Zapier automation, or a better template solve 80% of this problem?"*
 
-Ask yourself honestly:
+If yes, start there. This catches the most common AI antipattern: overengineering a solution that's simpler than it looks. Remember the Simplicity Hierarchy from the Agents lesson — always start with the simplest approach that works.
 
-> "Could a spreadsheet formula, a Zapier automation, or a better template solve 80% of this problem?"
+### The "Data Reality" Test
 
-If yes, start there. AI should solve problems that simpler tools can't. Revisit the Simplicity Hierarchy from the Agents module — always start with the simplest approach that works.
+*"Do I have at least 20 real examples of this workflow's input and ideal output?"*
 
-### Sanity Check 3: The "Data Reality" Test
-
-For each candidate:
-
-> "Do I have at least 20 real examples of this workflow's input and ideal output?"
-
-If not, you'll struggle to evaluate whether any AI solution actually works. You don't need thousands of examples for a proof of concept, but you need enough to test meaningfully.
+Twenty isn't magic, but it's the minimum for a meaningful proof of concept. If you can't assemble 20 examples this week, your data availability score was probably too optimistic.
 
 ---
 
 ## Step 4: Write Your Opportunity Briefs
 
-For your top 3 opportunities, fill in this one-paragraph brief. This is what you'd bring to a stakeholder conversation or use to kick off a proof of concept.
-
-### Opportunity Brief Template
+For your top 3, fill in this brief. This is what you'd bring to a stakeholder conversation or use to scope a proof of concept.
 
 **Opportunity #1: [Workflow Name]**
 
-> **Problem**: [What pain does this solve? How much time/effort does it cost today?]
+> **Problem:** What pain does this solve? How much time or effort does it cost today? Be specific with numbers.
 >
-> **Proposed AI approach**: [Which AI capability? Summarisation? Classification? Generation? Reference the categories from the Identify Opportunities module]
+> **Proposed AI approach:** Which AI capability? Classification, summarisation, generation, semantic search?
 >
-> **Engagement mode**: [Off-the-shelf tool / API integration / Fine-tuned model? Reference the spectrum from the Assessing AI Viability module]
+> **Engagement mode:** Off-the-shelf tool? API integration? Fine-tuned model? (Reference the spectrum from Lesson 3.2.)
 >
-> **Success looks like**: [What measurable outcome would make this worth it? e.g., "Reduce triage time from 4 hours to 30 minutes per week with 90% routing accuracy"]
+> **Success looks like:** What measurable outcome would make this worth it? e.g., "Reduce triage time from 4 hours to 30 minutes per week with 90% routing accuracy."
 >
-> **Biggest risk**: [What could go wrong? How would you mitigate it?]
+> **Biggest risk:** What could go wrong? How would you mitigate it?
 >
-> **First step**: [What's the smallest experiment you could run this week?]
+> **First step:** What's the smallest experiment you could run this week?
 
 Repeat for opportunities #2 and #3.
 
 ---
 
-## Worked Example: SaaS Feedback Intelligence
+## Worked Example: A Real PM Team Runs the Exercise
 
-To show what a completed exercise looks like, here's a worked example for a mid-market B2B SaaS PM team.
+To show what a completed exercise looks like — including the scoring deliberations and the first experiment — here's a worked example. The hypothetical context: a PM team at a B2B project management tool (think a Jira or Asana competitor) with roughly 2,000 paying customers and a team of two PMs, four engineers, and two designers.
 
-**Context**: A product team at a project management tool (think Asana or Monday.com competitor) with 2,000 customers. The PM team of three manages roadmap, customer feedback, and feature launches.
+### Their Workflow Map
 
-**Top 3 Identified Opportunities:**
+The team mapped eight workflows. Here are the ones that scored highest, with their reasoning:
 
-**1. Customer Feedback Clustering (Score: 24/25)**
-- *Problem*: 200+ feedback items per month across Intercom, NPS surveys, and sales call notes. Currently, one PM spends a full day each month manually tagging and grouping them.
-- *AI approach*: Classification + summarisation. Use an LLM to tag each item by theme, sentiment, and customer segment, then generate a weekly digest.
-- *Engagement mode*: API integration (Claude or GPT via API, connected to existing feedback database).
-- *Success looks like*: Monthly feedback synthesis drops from 8 hours to 1 hour. Theme accuracy above 85% (validated by PM spot-checks).
-- *Biggest risk*: Miscategorisation could cause the team to miss an emerging issue. Mitigate by keeping a human review step for "low confidence" classifications.
-- *First step*: Export last month's 200 feedback items. Run them through Claude with a classification prompt. Compare AI tags to the PM's manual tags.
+| # | Workflow | Hrs/Wk | Pain Point | Pat. | Vol. | Err. | Data | Time | **Total** |
+|---|---------|:---:|-----------|:---:|:---:|:---:|:---:|:---:|:---:|
+| 1 | Triage Intercom + NPS for product signals | 4 | Reading 200+ items/month; tagging in a spreadsheet; missing patterns | 5 | 5 | 4 | 5 | 4 | **23** |
+| 2 | Write fortnightly release notes from Jira | 2 | Reading 30+ tickets, summarising, formatting; repetitive grunt work | 5 | 4 | 4 | 5 | 3 | **21** |
+| 3 | Compile Friday stakeholder update | 2 | Pulling metrics from Amplitude, pipeline from Salesforce, status from Jira | 4 | 4 | 4 | 3 | 3 | **18** |
 
-**2. Release Notes Drafting (Score: 20/25)**
-- *Problem*: Every two weeks, the PM writes release notes from Jira tickets. Takes 2 hours of reading tickets, summarising, and formatting.
-- *AI approach*: Text generation from structured input. Feed Jira ticket titles, descriptions, and acceptance criteria to an LLM with a release notes template.
-- *Success looks like*: First draft quality good enough that PM only edits for 15 minutes.
-- *First step*: Copy last sprint's Jira tickets into Claude with a system prompt specifying the release notes format. Compare output to what was actually published.
+Some scoring deliberations that came up:
 
-**3. Competitive Intelligence Monitoring (Score: 18/25)**
-- *Problem*: Tracking 5 competitors across blogs, changelogs, social media, and review sites. Currently ad-hoc — things get missed.
-- *AI approach*: Summarisation + classification. Set up automated collection and use an LLM to surface "things our PM team should know about."
-- *Biggest risk*: AI might miss nuanced competitive moves or hallucinate features competitors don't actually have. Requires human verification before acting on any insight.
-- *First step*: Collect last month's competitor blog posts and changelogs. Use an LLM to summarise key product changes and flag anything relevant to our roadmap.
+- **Feedback triage scored 4 (not 5) on Error Tolerance** because the team worried about missing a critical bug report. But they realised the PM already misses things manually — so AI at 85%+ accuracy with a human scan of flagged items is strictly better than the status quo.
+- **Stakeholder update scored 3 on Data** because the data exists but lives across three tools with no API connections set up. The data is there; the plumbing isn't.
+- **Release notes scored 5 on Pattern Match** because it's pure summarisation from structured input (Jira tickets with titles, descriptions, and acceptance criteria) — exactly what LLMs are best at.
+
+### The First Experiment (Feedback Triage)
+
+Rather than building anything, the PM spent 45 minutes testing the top opportunity. Here's exactly what they did:
+
+**Step 1:** Exported last month's 217 Intercom messages and NPS responses into a CSV with three columns: source, date, and raw text.
+
+**Step 2:** Took a batch of 20 items and pasted them into Claude with this prompt:
+
+*"You are a product manager for a B2B project management tool. Classify each piece of customer feedback below into exactly one category: Bug Report, Feature Request, UX Complaint, Praise, or Churn Risk. For each, also provide a one-line summary and a sentiment score (positive, neutral, negative). Return the results as a table."*
+
+**Step 3:** Compared the AI output to how the PM had manually tagged the same 20 items.
+
+**What happened:** 17 out of 20 matched the PM's manual tags exactly. Two items the AI tagged as "Feature Request" the PM had tagged as "UX Complaint" — arguable either way. One item was genuinely wrong: a customer writing sarcastically about a bug ("Love how the app crashes every time I export") was classified as "Praise." The AI missed the sarcasm.
+
+**What this told them:** 85% exact match, 95% if you count the arguable cases. The sarcasm failure is a known LLM limitation — fixable by adding "Watch for sarcasm" to the prompt and including a sarcastic example. After updating the prompt and testing on another 20 items: 19/20 correct.
+
+**The opportunity brief they wrote:**
+
+> **Problem:** One PM spends 8 hours per month manually reading and tagging 200+ feedback items from Intercom and NPS. Pattern recognition is inconsistent — a critical export bug was buried for two weeks last quarter because it was spread across 12 different messages.
+>
+> **Proposed AI approach:** Classification + summarisation via API (Mode 2). Tag each item by category, sentiment, and customer tier. Generate a weekly digest of top themes with example quotes.
+>
+> **Success looks like:** Monthly triage drops from 8 hours to 1 hour. Theme accuracy above 90%. No critical issue goes undetected for more than one weekly digest cycle.
+>
+> **Biggest risk:** AI misses a critical pattern by miscategorising related tickets into different themes. Mitigated by: human review of all items the model flags as low-confidence, and a weekly 15-minute scan of the raw feed.
+>
+> **First step (already done):** 45-minute test on 40 real items showed 90–95% accuracy after one prompt iteration. Next: run on the full month's data and compare the AI-generated digest to the PM's manual synthesis.
+
+Notice what makes this brief useful: it has specific numbers from an actual test, not estimates from a planning meeting. "90–95% accuracy after one prompt iteration" is a fact, not a hope. That's what makes it credible in a stakeholder conversation.
 
 ---
 
-## Reflection Questions
+## Thinking Bigger: AI Across the Product Development Lifecycle
 
-Before you move on to Module 4, sit with these:
+The exercise above focuses on your team's current workflows. But the most impactful AI opportunities often emerge when you zoom out to the entire product development lifecycle — not just the PM's tasks, but every stage from discovery through release.
 
-- **Which opportunity surprised you?** Often the highest-scoring workflow isn't the one you expected. Pay attention to that.
-- **What's stopping you from testing your #1 opportunity this week?** If it's "I need engineering resources" — challenge that assumption. Many AI experiments can start with a PM, an API key, and a spreadsheet.
-- **Where did you score low on Data Availability?** That's your biggest practical blocker. Consider whether you could start collecting that data now, even before building anything.
+When Propel Ventures worked with Colonial First State on their AI-augmented product development framework, we mapped every stage of their product process and identified where AI tools could augment specific activities. The result wasn't one big AI project — it was a layer of AI augmentation across the whole lifecycle, each piece relatively simple on its own.
+
+Here's what a simplified version of that mapping looks like:
+
+| Phase | Traditional Activity | AI Augmentation |
+|---|---|---|
+| **Discovery & Requirements** | User research synthesis, writing PRDs | AI to synthesise interview transcripts and user research; tools like ChatPRD to draft requirements documents from raw notes |
+| **Planning & Prioritisation** | Sprint planning, backlog scoring | AI to draft sprint goals aligned with value, auto-score backlog items, pull delivery metrics |
+| **Build & Review** | Code review, PR summaries | GitHub Copilot or Claude Code for implementation; AI-generated PR summaries and pattern violation flagging |
+| **Launch & Iterate** | Release notes, support triage, knowledge base | Auto-draft release notes from tickets; AI support chatbots for triage; automated knowledge base generation |
+
+**Why this matters for PMs:** AI augmentation isn't a single feature you ship — it's a layer across the entire way your team works. Use the table above as a prompt, not a checklist. Ask: which phase of our process has the most friction? Where are people doing work that matches AI's reliable capabilities (classification, summarisation, generation)? The cumulative time savings from several small AI augmentations often exceed what one big AI feature delivers.
 
 ---
 
-## Key Takeaways
+## Reflection
 
-- **Map before you leap**: Real AI opportunities come from auditing actual workflows, not brainstorming "cool AI features."
-- **Score ruthlessly**: The five-dimension scorecard prevents you from chasing low-impact or high-risk opportunities.
-- **Pressure-test your top picks**: The "What If It's Wrong?", "Simpler Solution?", and "Data Reality" checks catch blind spots.
-- **Start with the smallest experiment**: Your first step should take hours, not weeks. Export data, run it through an LLM, compare the output. That's your proof of concept.
-- **Your top 3 aren't permanent**: Revisit this exercise quarterly as AI capabilities evolve and your team's needs change.
+Before you move to Module 4, sit with these questions:
 
----
+**Which opportunity surprised you?** The highest-scoring workflow is often something unglamorous that nobody thought of as an "AI opportunity." Pay attention to that — the best AI features solve boring problems at scale.
 
-## Explore Further
+**What's stopping you from testing your top opportunity this week?** If the answer is "I need engineering resources," challenge that assumption. Many AI experiments start with a PM, an API key, and a spreadsheet.
 
-- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/01-identify-opportunities/) — Review the AI capability categories to refine your scoring
-- [Assessing AI Viability](/AI-PM-Bootcamp/modules/02-assessing-viability/) — Run a full viability assessment on your top opportunity
-- [Design AI Features](/AI-PM-Bootcamp/modules/01-design-ai-features/) — Choose the right model, design for failure, and pick the right AI pattern
-- [Shipping with Quality](/AI-PM-Bootcamp/modules/02-shipping-with-quality/) — Define metrics, build evals, and ship responsibly
+**Where did you score low on Data Availability?** That's your biggest practical blocker. Consider whether you could start collecting that data now, even before building anything. Six months of intentional data collection turns a "no data" problem into a viable opportunity.
 
 ---
 
 ## What's Next
 
-With your top opportunities identified and validated, Module 4 takes you into execution. You'll use the opportunities you identified here as your running example throughout the Design AI Features and Shipping with Quality modules.
+With your top opportunities identified, scored, and pressure-tested, Module 4 takes you from "what to build" to "how to build it." The opportunity briefs you wrote above become a real running example you can use throughout both lessons.

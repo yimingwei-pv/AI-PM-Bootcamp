@@ -2,17 +2,17 @@
 title: "Assessing AI Viability"
 module: 3
 lesson: 2
-description: "Systematically evaluate whether an AI opportunity is worth pursuing using Impact, Feasibility, and Risk scoring, plus the Build vs. Buy decision framework."
+description: "Systematically evaluate whether an AI opportunity is worth pursuing — and if it is, decide how to build it."
 objectives:
-  - "Evaluate AI engagement modes (off-the-shelf, API, fine-tune, custom) and choose the right one for your use case"
-  - "Score AI opportunities using the Impact x Feasibility x Risk viability framework"
+  - "Evaluate AI engagement modes (off-the-shelf, API, fine-tune, custom) and choose the right one for your context"
+  - "Score AI opportunities using the Impact × Feasibility × Risk viability framework"
   - "Apply the Build vs. Buy decision matrix to determine the right execution approach"
 resources:
-  - title: "Managing AI Products: Feasibility, Desirability and Viability"
-    url: "https://valohai.com/blog/managing-ai-products/"
+  - title: "Why 95% of Corporate AI Projects Fail — MIT 2025 Study"
+    url: "https://complexdiscovery.com/why-95-of-corporate-ai-projects-fail-lessons-from-mits-2025-study/"
     type: "article"
-  - title: "DVF Framework Explained: Build Better Products"
-    url: "https://productschool.com/blog/product-fundamentals/dvf-framework"
+  - title: "The Biggest AI Fails of 2025: Lessons from Billions in Losses"
+    url: "https://www.ninetwothree.co/blog/ai-fails"
     type: "article"
   - title: "Build vs Buy for Enterprise AI: A Decision Framework"
     url: "https://www.marktechpost.com/2025/08/24/build-vs-buy-for-enterprise-ai-2025-a-u-s-market-decision-framework-for-vps-of-ai-product/"
@@ -29,465 +29,235 @@ quiz:
     options:
       - "Mode 4: Train custom models from scratch"
       - "Mode 3: Fine-tune existing models"
-      - "Modes 1-2: Off-the-shelf products and API integration"
-      - "Mode 3-4: Fine-tune and custom models"
+      - "Modes 1–2: Off-the-shelf products and API integration"
+      - "Modes 3–4: Fine-tune and custom models"
     answer: 2
 ---
 
-## The Hard Part Comes Now
+## The Decision That Actually Matters
 
-Finding an AI opportunity is step one. Most teams can do that—there's a use case hiding everywhere. Assessing whether to *actually pursue it* is where product managers earn their salary.
+You've identified some AI opportunities using the quick filter from Lesson 3.1. Your backlog has candidates that scored well. Maybe your VP has been asking about AI. Maybe an engineer prototyped something over a weekend and it looked promising in a demo.
 
-You've identified a problem that AI might solve. Maybe it's automating customer support, personalising recommendations, or surfacing insights from unstructured data. But not every AI opportunity is worth pursuing. Some require data you don't have. Others carry risks that outweigh the upside. Still others can be solved cheaper and faster with a simpler approach.
+Now comes the decision that makes or breaks the next three months of your team's time: **should you actually commit to this, and if so, how?**
 
-This module walks you through a systematic way to evaluate whether an AI opportunity is viable—and if it is, how to decide whether to build it, buy it, or partner for it.
+Getting this wrong is expensive in a specific way. You won't know you got it wrong for weeks or months — after your team has built a prototype nobody uses, or after you've signed an enterprise AI contract that doesn't fit your use case, or after you've hired an ML engineer for a problem that could have been solved with an API call. The MIT 2025 study's "perpetual piloting" problem? It starts here — with teams that skip the viability question and jump straight to building.
 
----
-
-## Part 1: Modes of Engaging with AI
-
-AI isn't binary. You don't simply choose "build" or "not build." There's a spectrum of engagement modes, each with different tradeoffs around speed, control, cost, and risk.
-
-### The AI Engagement Spectrum
-
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/04-engagement-spectrum.png" alt="AI Engagement Spectrum — from Off-the-Shelf (low cost, fast, low control) through API Integration and Fine-Tuning to Custom Models (high cost, slow, high control)" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
-
-#### Mode 1: Off-the-Shelf AI Products
-Use ChatGPT, Claude, Copilot, or other consumer or enterprise AI products directly.
-
-**When to use:**
-- You're experimenting fast and cheap
-- The use case is generic (writing, summarisation, Q&A)
-- You need zero integration with your systems
-- Users can tolerate vendor lock-in
-
-**Tradeoffs:**
-- Fastest time-to-value
-- Zero data ownership or privacy guarantees (watch what you share)
-- No customisation; everyone gets the same model
-- Vendor controls pricing and features; can't scale predictably
-
-**Example:** A PMO office uses ChatGPT to generate meeting agendas and status templates.
-
-#### Mode 2: Integration via API
-Embed pre-trained models from OpenAI, Anthropic (Claude), Google (Gemini), or others via their APIs.
-
-**When to use:**
-- You need AI embedded in your product
-- Speed-to-market matters; you can't wait months to build
-- The use case is common enough that off-the-shelf works
-- You want some control over the interface but not the model
-
-**Tradeoffs:**
-- Faster than building models; weeks instead of months
-- Your data stays in your systems (mostly)
-- Model capabilities are fixed; no customisation
-- Pay per API call; costs grow with usage (but predictable)
-- Depends on vendor uptime and rate limits
-
-**Example:** A recruitment SaaS embeds OpenAI's API to auto-generate job descriptions from rough notes.
-
-#### Mode 3: Fine-Tune Existing Models
-Take a pre-trained model (e.g., OpenAI's GPT, Claude) and fine-tune it on *your* data to specialise it for your domain.
-
-**When to use:**
-- Your use case is domain-specific (legal, medical, finance)
-- You have enough high-quality examples to train on (hundreds to thousands)
-- You need better accuracy than a generic model
-- You want the model to "speak" your language or follow your style
-
-**Tradeoffs:**
-- Moderate time-to-value; weeks to months to collect and label data
-- Better accuracy than generic models
-- Still depends on vendor infrastructure
-- Can be costly if you fine-tune often or on large models
-- Your training data may be used to improve the vendor's model (check terms)
-
-**Example:** A healthcare startup fine-tunes Claude on its medical records to generate clinical summaries tailored to your EHR workflows.
-
-#### Mode 4: Train Custom Models from Scratch
-Hire machine learning engineers to build a model from the ground up using your data and infrastructure.
-
-**When to use:**
-- AI is a core competitive advantage (think Google's search ranking, Netflix's recommendations)
-- You have proprietary data that gives you an unfair advantage
-- You need extreme control over latency, privacy, or inference costs
-- Off-the-shelf models actively harm your business (competitor visibility, quality)
-
-**Tradeoffs:**
-- Months to years to build; high upfront R&D cost
-- Ongoing maintenance, retraining, and infrastructure costs (often 2-3x build cost)
-- Full control and ownership; no vendor lock-in
-- Requires world-class ML talent (expensive, scarce)
-- Only worth it if AI is genuinely core to your product
-
-**Example:** Spotify builds custom recommendation models on billions of user interactions—generic models can't compete.
-
-### Decision Framework: Which Mode Should You Choose?
-
-Ask these questions in order:
-
-1. **Is speed critical?** If you need to ship in weeks, Mode 2 (API). If you need it in days, Mode 1.
-2. **Is this your competitive moat?** If yes, Mode 4 (custom). If no, continue.
-3. **Do you have specialised domain data?** If yes and you have budget, Mode 3 (fine-tune). If no, Mode 2.
-4. **Can off-the-shelf work for your accuracy bar?** If yes, Mode 1 or 2. If no, Mode 3 or 4.
-
-Reality check: Most healthy companies live in Mode 1-2, with Mode 3 for specific use cases, and Mode 4 only when they're Google, Netflix, or Tesla.
+This lesson teaches you how to make that call. We'll use a running example throughout — a case study of a decision a PM team at a B2B SaaS company actually faced — so you can see how each framework applies to the same problem.
 
 ---
 
-## Part 2: AI Risks You Must Evaluate
+## The Running Example
 
-Every AI opportunity carries risk. As a PM, it's your job to name them, quantify them, and decide if they're acceptable.
+Here's the scenario. You're the PM for a B2B customer support platform — think Zendesk but smaller, with about 3,000 paying customers. Your support team processes around 800 tickets per week. Right now, tickets arrive in a single queue and a senior agent manually reads each one to decide: which team handles this (billing, technical, account management, feature request)? How urgent is it? Does it need escalation?
 
-### The Risk Landscape
+This triage step takes your team roughly 15 hours per week. It's slow, it's inconsistent (different agents route the same ticket type differently), and when the senior agent is on leave, the queue backs up.
 
-| Risk Category | What It Is | Why It Matters | Example |
-|---|---|---|---|
-| **Hallucination & Accuracy** | Model generates false, misleading, or outdated information | Wrong answer in a critical domain (medical, legal, finance) can cause real harm. Users lose trust. | LLM hallucinating a legal precedent that doesn't exist in a contract review tool |
-| **Data Privacy & Security** | Your user data or training data leaks, is misused, or is exposed to unauthorised parties | GDPR, HIPAA, SOX violations. Loss of customer trust. Regulatory fines. | Customer data sent to OpenAI API without explicit consent (check your data processing agreements) |
-| **Bias & Fairness** | Model systematically underperforms for certain groups or makes unfair decisions | Hiring discrimination. Lending discrimination. Unequal user experience. Legal liability. | Resume screening tool rates women 20% lower than men for equivalent experience |
-| **Regulatory & Compliance** | New AI-specific regulations (EU AI Act, AI Bill of Rights proposals, industry-specific rules) impose requirements you can't meet | EU AI Act fines up to EUR 35 million or 7% of global revenue for high-risk AI | Using an unaudited LLM in a bank to make lending decisions without documentation |
-| **Vendor Lock-In & Dependency** | You become dependent on a single vendor's API, pricing, or roadmap | Vendor raises prices, deprecates features, shuts down, or pivots. You're forced to rebuild. | Building your entire product on OpenAI API v1, then having to rewrite when they sunset it |
-| **Cost Unpredictability** | AI inference, training, or fine-tuning costs balloon faster than you forecasted | A viral feature causes 10x inference costs overnight. Model training takes longer than expected. | Launched an AI-powered feature that unexpectedly went viral; monthly API bills jumped from $5k to $50k |
-| **User Trust & Adoption Risk** | Users distrust AI, don't understand how it works, or feel it's replacing them | Adoption stalls. Negative sentiment. Attrition, especially if AI makes mistakes. | Customer support team fears the AI chatbot will replace them; they hide it from customers |
+Your engineering lead says: "We should use AI for this." Your VP asks: "What would that cost, and is it worth it?"
 
-### Where AI Risks Show Up
-
-**During training/fine-tuning:**
-- Do you have enough clean, representative data?
-- Are you accidentally encoding historical bias?
-- Can you afford the compute cost to train and iterate?
-
-**During inference:**
-- Will the model hallucinate in ways that matter?
-- Can you verify the model's output before it reaches users?
-- What's your latency requirement, and can the model meet it?
-
-**In deployment:**
-- Do users trust the AI? Can you explain how it works?
-- Does the model degrade in production on out-of-distribution data?
-- Can you monitor it, detect drift, and roll back if it breaks?
-
-**Post-launch:**
-- How do you monitor for bias over time?
-- What happens if a regulatory change makes your use case illegal?
-- Can you switch vendors or models without rebuilding the product?
+Those two questions are what this lesson answers.
 
 ---
 
-## Part 3: The Viability Evaluation Framework
+## Part 1: How Deep Should You Go?
 
-Use this framework to score any AI opportunity. It combines three dimensions: **Impact**, **Feasibility**, and **Risk**. This mirrors the classic **Desirability, Viability, Feasibility (DVF)** framework used in product innovation, adapted for AI.
+The first question isn't "should we use AI?" — it's "how much AI do we actually need?" There's a spectrum, and most teams default to a point that's more complex and more expensive than necessary.
 
-### Dimension 1: Impact (Desirability)
+Here's what each level of commitment would look like for the ticket routing problem:
 
-Does solving this problem matter? Impact has two parts: user value and business value.
+**Mode 1 — Off-the-shelf.** Your senior agent opens Claude in a browser tab, pastes in each ticket, and asks "Which team should handle this: billing, technical, account management, or feature request? How urgent is it?" This actually works. For 20 tickets a day, it might be viable. But at 800 tickets a week, copying and pasting every ticket into a browser tab is a different kind of triage problem. Mode 1 is for internal workflows where you're augmenting one person's work, not automating a production process.
 
-**User Value:**
-- How much does this reduce friction or create new capability?
-- How often will users encounter this feature?
-- Would users choose your product over a competitor because of this?
+**Mode 2 — API integration.** You integrate Claude's API into your support platform. Every incoming ticket is automatically sent to the model with a system prompt that defines your categories, routing rules, and urgency criteria. The model returns a classification and confidence score. Tickets above the confidence threshold are auto-routed; tickets below it go to a human. Cost: roughly $30,000 for the integration work, plus $200–500/month in API costs at your volume. Timeline: 4–6 weeks to build and test.
 
-Score 1-5:
-- 1 = Nice-to-have; users will live without it
-- 3 = Solves a real problem; users will appreciate it
-- 5 = Must-have; directly addresses a top-3 user need
+**Mode 3 — Fine-tuning.** You take 5,000 of your historically routed tickets and fine-tune a model on them. This teaches the model your specific categories, your company's definition of "urgent," and the routing patterns unique to your product. You do this when Mode 2 keeps getting a specific category wrong — say, it can't distinguish between "billing complaint" and "account management request" because your categories overlap in ways that are obvious to your team but not to a generic model. Cost: the Mode 2 integration work plus $10,000–50,000 for data preparation, training, and evaluation. Timeline: 2–4 months.
 
-**Business Value:**
-- How does this tie to revenue (upsell, retention, CAC reduction)?
-- How much operational cost does it save?
-- What's the addressable market?
+**Mode 4 — Custom model from scratch.** You hire two ML engineers and build a proprietary ticket classification system on your own infrastructure. You'd do this if ticket routing was your core product differentiator — if you were Zendesk and your AI routing was the reason customers chose you over competitors. For our scenario? This is wildly overbuilt. You're not selling ticket routing; you're selling a support platform. Ticket routing is a feature, not the product. Cost: $1.8M–$5M+ over three years.
 
-Score 1-5:
-- 1 = Unrelated to business metrics
-- 3 = Modest revenue or cost impact
-- 5 = Direct path to >5% revenue uplift or >10% cost reduction
+### The Decision
 
-**Impact Score = (User Value + Business Value) / 2**
+For this problem, the answer is almost certainly **Mode 2**, with a possible move to Mode 3 later if accuracy on specific categories needs improvement. Here's how you'd walk through it:
 
-### Dimension 2: Feasibility
+1. Can off-the-shelf hit your quality bar? → Mode 1 works for the task itself, but not at your volume. Mode 2 automates what Mode 1 does manually.
+2. Is speed critical? → Yes — the queue backs up when the senior agent is out. Modes 1–2.
+3. Do you have specialised domain data that matters? → Not yet clear. Start with Mode 2, see where accuracy falls short, then decide.
+4. Is this your competitive moat? → No. Ticket routing is a cost centre, not a differentiator.
 
-Can you actually build this with your constraints?
+**Why this matters for PMs:** Most healthy companies live in Modes 1–2 for the vast majority of their AI use cases. Volkswagen's Cariad project accumulated $7.5 billion in losses building a custom unified software platform for twelve car brands, when proven third-party solutions could have handled most of it. If someone on your team is pushing for Mode 3 or 4 on a non-differentiating feature, push back. Ask them: "What specific evidence do we have that Mode 2 won't work?"
 
-**Data Availability:**
-- Do you have clean, labelled data in sufficient volume (100s to 1000s of examples, depending on task)?
-- Can you get more data if the first attempt fails?
-- Is your data representative of real-world cases?
-
-Score 1-5:
-- 1 = No labelled data; would take months to collect
-- 3 = You have some data, but it's messy or incomplete
-- 5 = Clean, labelled dataset already in hand; easy to update
-
-**Technical Complexity:**
-- Is this a solved problem (text classification, sentiment analysis, Q&A on documents)?
-- Or is it novel and risky (real-time video analysis, multi-step reasoning)?
-- Can a standard API or fine-tuned model do it, or do you need custom R&D?
-
-Score 1-5:
-- 1 = Requires novel research; no clear solution path
-- 3 = Standard approach exists; some uncertainty
-- 5 = Off-the-shelf solution exists; minimal engineering
-
-**Team Capability:**
-- Do you have ML engineers? How senior?
-- Can your team own this end-to-end, or do you need to hire?
-- Do you have product sense for AI products (how to evaluate, monitor, iterate)?
-
-Score 1-5:
-- 1 = No AI expertise; major hiring needed
-- 3 = Moderate capability; can build with some consulting
-- 5 = Strong ML and product AI expertise in-house
-
-**Feasibility Score = (Data + Complexity + Team) / 3**
-
-### Dimension 3: Risk
-
-What can go wrong, and how much does it cost if it does?
-
-For each risk category below, score 1-5 where 1 = high risk, 5 = low risk.
-
-**Accuracy Risk:**
-- How much must the model be right? (e.g., resume screening vs. typo detection)
-- What happens if it's wrong 5% of the time? 10%?
-- Can you have a human-in-the-loop fallback?
-
-Score 1-5:
-- 1 = Model must be >99% accurate; any error is costly; no fallback
-- 3 = Model should be 90%+ accurate; occasional errors are recoverable
-- 5 = Accuracy is nice-to-have; users can tolerate errors
-
-**Data Privacy Risk:**
-- Will you send customer data to an external API or vendor?
-- Are you storing sensitive data (PII, health info, financial data)?
-- What compliance regs apply (GDPR, HIPAA, CCPA)?
-
-Score 1-5:
-- 1 = Handling sensitive data; regulatory exposure; no DPA in place
-- 3 = Some PII; vendor has compliance certifications
-- 5 = No sensitive data; or robust privacy controls in place
-
-**Bias & Fairness Risk:**
-- Are you making or influencing high-stakes decisions (hiring, lending, diagnosis)?
-- Do you have diverse training data?
-- Can you audit for disparate impact?
-
-Score 1-5:
-- 1 = High-stakes decisions; training data is non-representative; no audit plan
-- 3 = Medium-stakes decisions; training data is mostly diverse; audit planned
-- 5 = Low-stakes decisions; training data is representative; audited
-
-**Vendor Lock-In Risk:**
-- Are you building on an API from a single vendor?
-- How easy is it to switch to another model or vendor?
-- What's your exit strategy if the vendor changes direction?
-
-Score 1-5:
-- 1 = Fully dependent on one vendor; expensive to switch
-- 3 = Moderate dependency; could switch in weeks
-- 5 = Open, portable architecture; can swap models easily
-
-**Cost Predictability Risk:**
-- Can you forecast inference costs for the next 12 months?
-- How sensitive is cost to usage growth?
-- Are there per-call limits or surprise charges?
-
-Score 1-5:
-- 1 = Unpredictable; per-call pricing; potential surprise costs
-- 3 = Mostly predictable; some variable costs
-- 5 = Fixed costs or fixed-per-unit costs; fully predictable
-
-**Trust & Adoption Risk:**
-- Will users accept AI-driven outcomes?
-- Can you explain how the AI works in plain language?
-- Are there internal concerns (e.g., will this displace employees)?
-
-Score 1-5:
-- 1 = Low trust in AI; hard to explain; internal resistance
-- 3 = Neutral stance; explainability moderate
-- 5 = High trust; easy to explain; internal buy-in
-
-**Risk Score = Average of all 6 risk dimensions**
-(Higher score = lower risk, which is good.)
-
-### Putting It Together: The Viability Matrix
-
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/05-viability-matrix.png" alt="Viability Matrix — score Impact, Feasibility, and Risk on 1-5, then decide: STOP (below 2), CONDITIONAL GO (2-3.5), or GO (above 3.5)" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
-
-**Interpretation:**
-
-- **Viability < 2.0:** Stop. One dimension is badly broken. Don't invest time here; pick a different opportunity.
-- **Viability 2.0-3.5:** Conditional go. Build a prototype to test your biggest risk (usually feasibility or accuracy). Use the prototype to raise your score before committing.
-- **Viability > 3.5:** Green light. You have strong signals. Define your engagement mode (API, fine-tune, custom?) and ship.
-
-**Real Example:**
-
-You're considering AI-powered personalised email subject lines.
-
-| Dimension | Subscore | Reasoning |
-|---|---|---|
-| User Value | 3 | Users open more emails if subject lines are better, but it's not the #1 complaint. |
-| Business Value | 4 | 10% improvement in open rate = 5% revenue uplift. |
-| **Impact** | **3.5** | Solid business case. |
-| Data Availability | 4 | You have 2 years of email open/click data, segmented by user. Easy to label. |
-| Technical Complexity | 5 | This is a solved problem; GPT-4 can do it easily. |
-| Team Capability | 4 | Your team has built with APIs before. |
-| **Feasibility** | **4.3** | Very feasible. |
-| Accuracy Risk | 4 | Occasional weird subject lines are fine; users just ignore them. |
-| Privacy Risk | 5 | You're not exposing PII; subject line is already public. |
-| Bias Risk | 5 | No high-stakes decisions; low harm from bias. |
-| Vendor Lock-In | 4 | You're using OpenAI API; could switch to Anthropic in a week. |
-| Cost Risk | 4 | Per-email cost is <$0.001; predictable. |
-| Trust Risk | 5 | It's a suggestion tool; users see the AI is helping. |
-| **Risk** | **4.5** | Low risk overall. |
-| **Overall Viability** | **4.1** | **Strong GO.** Ship with Mode 2 (API integration). |
+> **Exercise:** Think about the top opportunity from your Lesson 3.1 quick filter. Which mode would you start with? If your instinct is Mode 3 or 4, challenge yourself: what specific evidence do you have that Modes 1–2 won't work?
 
 ---
 
-## Part 4: The Build vs. Buy Decision
+## Part 2: Is This Opportunity Actually Viable?
 
-Once you've decided an AI opportunity is viable, the next decision is *how* to build it. Should you use an off-the-shelf tool, integrate an API, fine-tune a model, or build custom?
+You've picked Mode 2. Now the harder question: should you actually commit engineering time and budget to this?
 
-This overlaps with the engagement modes above, but here we're specifically comparing total cost of ownership and control.
+Your VP will ask some version of three questions: *"What's the impact?"*, *"Can we actually build this?"*, and *"What could go wrong?"* Let's score the ticket routing opportunity across all three.
 
-### Build: When to Invest
+### Question 1: What's the Impact?
 
-**Build custom models when:**
-1. **AI is your core competitive advantage.** Your business model depends on AI being better than competitors. (Spotify recommendations. Tesla autonomous driving. Google Search.)
-2. **You have unique data.** You possess proprietary data that off-the-shelf models can't access. Fine-tuning or custom training lets you leverage this advantage.
-3. **You need extreme control.** Control over latency (inference must be <100ms), privacy (all data on-premises), cost (millions of inferences/month), or compliance (model decisions must be auditable).
-4. **Off-the-shelf doesn't work.** Generic models produce unacceptable results. You've tested APIs, fine-tuning, and none are good enough.
+Score two things on a 1–5 scale:
 
-**Real cost of building:**
-- Initial development: 6-18 months, 3-8 ML engineers ($600k-$2M)
-- Ongoing maintenance: 2-4 engineers, continuous retraining, infrastructure ($400k-$1M/year)
-- **Total 3-year cost: $1.8M-$5M+**
+**User value** — how much does this reduce friction or create new capability? A 1 means nice-to-have. A 5 means top-three user need.
 
-Build only if you expect >$5M in value from that advantage.
+For ticket routing, the team debated this. The PM argued it was a 3 — customers don't directly see or care about internal routing. The support lead pushed back: "Faster routing means faster first response. We have data showing that tickets routed to the right team in under 5 minutes get resolved 40% faster. Customers absolutely feel that." They settled on **4**.
 
-### Buy: When to Integrate APIs or Use SaaS
+**Business value** — what's the tie to revenue or cost? A 1 means no clear connection. A 5 means a direct path to more than 5% revenue uplift or more than 10% cost reduction.
 
-**Buy when:**
-1. **Speed matters more than customisation.** You need to ship in weeks, not months. An API or SaaS product gets you there.
-2. **The use case is commoditised.** Generic models (GPT, Claude, Gemini) already solve your problem well. Fine-tuning or custom training adds little value.
-3. **You lack AI talent.** You don't have ML engineers, and hiring is expensive/slow. Buy instead of building.
-4. **You want vendor-backed compliance.** Enterprise API vendors (OpenAI, Anthropic) provide compliance artifacts (DPAs, audit trails, SOC 2) that reduce your legal/compliance risk.
+The maths: 15 hours/week of senior agent time at $45/hour = $35,000/year. Plus the cost of misrouted tickets (estimated 12% misroute rate, each costing 20 minutes of rework): another $15,000/year. Total: roughly $50,000/year in addressable cost. The integration costs about $30,000 plus $4,000/year in API fees. Payback period: under 8 months. **Business value: 4.**
 
-**Real cost of buying:**
-- APIs: $0-$10k/month depending on volume (pay-per-call)
-- SaaS: $500-$50k/month depending on vendor and features
-- Implementation: 2-8 weeks, 1-2 engineers ($30k-$100k)
-- **Total 3-year cost: $200k-$500k**
+**Impact Score: (4 + 4) / 2 = 4.0**
 
-Buy if you can solve 70%+ of your use case off-the-shelf.
+The key discipline here: if you can't articulate the impact in a sentence with a number in it, you're not ready. "It would save time" is not impact. "$50,000/year in addressable cost with an 8-month payback" is.
 
-### The Hybrid "Blend" Approach (Current Best Practice)
+### Question 2: Can We Actually Build This?
 
-The real answer for most companies is a **blend**: buy the platform and governance layer, build the last mile.
+Score three things:
 
-**Example architecture:**
-- **Buy:** OpenAI API or Claude API for core model + OpenAI or Anthropic's platform SDKs for governance, routing, and safety.
-- **Build:** Your retrieval pipeline, prompt engineering, domain-specific evaluation datasets, and guardrails.
+**Data availability** — do you actually have the data? The team has 18 months of historically routed tickets in Zendesk — about 60,000 tickets with team assignment, priority level, and resolution time. That's strong. But a closer look reveals a problem: the "feature request" category was only added 6 months ago, so only 4,000 of the 60,000 tickets have that label. For the other three categories, data is abundant. **Score: 4.** (Would be a 5 if all categories had equal history.)
 
-This gives you:
-- Speed: Use a vendor's proven model and safety infrastructure.
-- Control: Customise the prompts, retrieval, and evaluation to your domain.
-- Cost: Pay per API call; add your own last-mile logic for <$200k.
+**Technical complexity** — is this a solved problem? Text classification into predefined categories with a confidence score is one of the most well-understood AI tasks. Multiple off-the-shelf APIs handle this. **Score: 5.**
 
-### The Build vs. Buy Decision Matrix
+**Team capability** — can your team do this? You have two backend engineers comfortable with APIs but no ML experience. For a Mode 2 integration, ML expertise isn't required — you're calling an API, not training a model. **Score: 4.**
 
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/06-build-vs-buy.png" alt="Build vs Buy decision matrix — decision tree from 'Is AI a core differentiator?' to BUILD, BUY, BLEND, or BUY + FINE-TUNE outcomes" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
+**Feasibility Score: (4 + 5 + 4) / 3 = 4.3**
 
-**Decision rules** (based on current enterprise research):
-- **Build if:** AI is a competitive moat AND you have the budget, time, and talent.
-- **Buy if:** The use case is commoditised, off-the-shelf works 80%+, or you need to ship fast.
-- **Blend if:** You need customisation but can't justify building from scratch. Buy the platform, build the last mile.
+**Product implication:** Feasibility is where most AI projects quietly die. The demo worked because someone hand-picked 20 examples. In production, you need it to work on the messy, misspelled, multi-topic tickets your users actually send. The data gap on "feature request" tickets is exactly the kind of thing that's easy to miss in a planning meeting and painful to discover three weeks into development.
 
-**Hidden costs to budget for:**
-- Fine-tuning: Data labelling ($5k-$100k), model training ($5k-$50k), iteration (6-12 weeks)
-- Custom models: Red-teaming and safety validation ($100k-$500k), observability infrastructure ($50k-$200k)
-- All modes: Integration engineering, testing, monitoring, support (add 20-50% to stated costs)
+### Question 3: What Could Go Wrong?
+
+Score six risk categories, each on 1–5 where **1 = high risk** and **5 = low risk**:
+
+| Risk Category | Score | The Team's Reasoning |
+|---|:---:|---|
+| Accuracy risk | 4 | A misrouted ticket adds 10 minutes of delay. Annoying, not catastrophic. The current manual process already has a 12% error rate. |
+| Data privacy risk | 4 | Tickets contain customer names and account details. Need to confirm the API provider's data processing terms. Not a dealbreaker, but needs legal review. |
+| Bias and fairness risk | 5 | Ticket routing doesn't affect individuals differently by demographic. Low concern. |
+| Vendor lock-in risk | 4 | Classification prompts are portable across providers. Switching from Claude to GPT would take a week of prompt adjustments, not a rebuild. |
+| Cost predictability | 4 | At 800 tickets/week, API costs are roughly $300–500/month. Even at 5× volume, it's under $2,500/month. Not a budget risk. |
+| User trust/adoption risk | 3 | The support team is protective of their routing expertise. Three agents have expressed scepticism: "AI doesn't understand our product well enough." Rolling this out needs careful change management — internal demos, a trial period, easy override. |
+
+**Risk Score: (4 + 4 + 5 + 4 + 4 + 3) / 6 = 4.0**
+
+Notice the adoption risk scored lowest. That's useful — it tells you that the hardest part of this project isn't technical. It's getting your support team to trust and use the tool. If you'd only looked at the technical dimensions, you'd have missed this entirely.
+
+### The Verdict
+
+**Overall: (4.0 + 4.3 + 4.0) / 3 = 4.1 — green light.** Strong signals across all dimensions. But the adoption risk means your rollout plan matters as much as your technical implementation. This isn't a "build it and they'll come" project.
+
+**A note on weighting:** The dimensions and equal weighting used here are a starting point, not a prescription. Different teams and organisational cultures will — and should — prioritise differently. A fintech startup operating under regulatory scrutiny might weight risk more heavily than a consumer social app. A company with a strong ML team might score technical complexity differently than one hiring its first data scientist. The framework's value isn't in the exact numbers — it's in forcing the conversation. Adapt the dimensions and weightings to your context, but don't skip the scoring. The discipline of quantifying your assumptions exposes disagreements that informal conversations miss.
 
 ---
 
-## Part 5: Putting It All Together
+## Part 3: When the Score Says "Not Yet"
 
-Here's the decision flow from opportunity identification to execution:
+The ticket routing example scored well across the board. That's useful for learning the framework, but the framework earns its real value on the harder calls — opportunities that look exciting but carry hidden risk.
 
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/07-end-to-end-flow.png" alt="End-to-end decision flow — from identified AI opportunity through viability scoring, prototyping, mode selection (BUILD, BUY, or BLEND) to execution planning" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
+Here's a contrasting scenario. You're a PM at an online lending platform. The team wants AI to auto-score loan applications. The pitch is compelling: reduce underwriting cost by 30%, speed approval from 3 days to 2 hours.
 
-### Example: A Fintech PM's Decision
+**Impact: score of 5.** No question — massive business value and genuine user value.
 
-You're a PM at an online lending platform. You want to use AI to auto-score loan applications (predict default risk).
+**Feasibility: 3.** Ten years of loan data, but it's messy and spread across legacy systems. Minimal ML expertise on the team.
 
-**Step 1: Viability Assessment**
-- Impact: 5 (reduces underwriting cost by 30%, speeds approval from 3 days to 2 hours)
-- Feasibility: 3 (you have 10 years of loan data, but it's dirty; minimal ML expertise)
-- Risk: 1 (regulatory exposure under Fair Lending Act; must audit for bias; accuracy must be >95%; vendor lock-in is dangerous)
-- **Viability = 2.3: Conditional go.** Build a prototype to prove the model works and bias audit is feasible.
+**Risk: 1.** Regulatory exposure under the Fair Lending Act. Mandatory bias auditing. Accuracy must exceed 95%. In 2025, a lending company paid a $2.5 million settlement because its AI underwriting model discriminated along racial lines. The aggregate accuracy looked fine; nobody had checked performance across demographics.
 
-**Step 2: Prototype & Validation**
-- Spend 4 weeks fine-tuning an existing model (Mode 3) on your historical data.
-- Validate it reaches 94% accuracy on a holdout set.
-- Run a fairness audit; find a 5% disparate impact for women. Iterate.
-- After 8 weeks, you've hit 96% accuracy and resolved the bias issue.
-- **New viability: 3.8 (go sign).** Risk is now manageable.
+**Overall: 2.3 — conditional go.** The impact is obvious, but the risk is the bottleneck.
 
-**Step 3: Engagement Mode Decision**
-- Is auto-scoring a core differentiator? No; all lenders do it.
-- Does off-the-shelf work? Partially; generic credit scoring exists but doesn't know your loan book.
-- **Decision: BLEND.** Use a fine-tuned model (Mode 3) running on your infrastructure for full control and compliance, but partner with a vendor (e.g., Zest AI) for bias monitoring and audit trails. You keep the model on-premises; they provide governance.
+A less experienced PM might see "Impact: 5" and push forward regardless. A more experienced PM reads the risk score and asks a different question: *what would it take to move that 1 to a 3?*
 
-**Step 4: Execution**
-- Hire 1 ML engineer to own the fine-tuning and retraining pipeline.
-- Build a CI/CD pipeline to retrain monthly and audit for drift.
-- Integrate the model into your underwriting engine with a human review step (no pure AI decisions).
-- Launch to 10% of applications; monitor for 4 weeks; expand.
-- **Timeline: 3 months. Cost: $150k (engineer + infrastructure). Payoff: $500k/year in underwriting savings.**
+In this case, the answer was a time-boxed prototype. The team spent four weeks fine-tuning on historical loan data and measured accuracy on a holdout set: 94%. Promising, but the fairness audit revealed a 5% disparate impact for women — a finding that would have been invisible without explicit bias testing. They iterated on the training data and evaluation criteria. After eight weeks total: 96% accuracy with the bias issue resolved. The new viability score: **3.8 — go.**
+
+The engagement mode followed naturally from the constraints. Auto-scoring isn't a core differentiator for this company, so Mode 4 was out. Off-the-shelf APIs could handle the basic scoring, but regulatory compliance required more control over the model. The decision was to **blend**: a fine-tuned model on their own infrastructure for compliance, vendor-backed bias monitoring, and a mandatory human review step — no pure AI decisions on loan approvals. Timeline: 3 months. Total cost: $150K. Expected annual payoff: $500K.
+
+**Product implication:** A score of 2.3 didn't mean "don't do it." It meant "prove the risk is manageable before committing." The prototype was the proof. This is the most important move in the framework — converting a conditional score into a confident one, without betting three months of engineering time on hope.
+
+> **Exercise:** Take the top opportunity you identified in Lesson 3.1's quick filter. Score it across all three dimensions. Where does it land? If it's below 3.5, identify the single weakest dimension. What would a four-week prototype look like that specifically tests that weakness?
+
+---
+
+## Part 4: Build, Buy, or Blend
+
+Back to our ticket routing example. You've decided Mode 2 (API integration) with a viability score of 4.1. One question remains: do you build the integration yourself, buy a pre-built ticket routing product, or blend?
+
+This decision exists for all software, but AI sharpens it. With traditional software, "build" means months of development from scratch. With AI, the model itself is almost always bought — you're not training GPT-5 in your garage. The real "build" is everything around the model: the integration, the prompt logic, the confidence scoring, the fallback paths, the feedback loops. So the question isn't really "build or buy the AI." It's "how much of the workflow around the AI do you own yourself?"
+
+**Buy** would mean adopting a product like Forethought or Assembled that already does AI ticket routing. You'd get faster time-to-value — potentially weeks instead of months — but you'd give up control over the classification logic, the confidence thresholds, and how the system integrates with your specific workflow. Cost: $200K–$500K over three years depending on seat count and volume.
+
+**Build** would mean writing the integration from scratch — your API call, your prompt, your confidence scoring, your routing logic. You'd get full control but carry the maintenance burden. For a Mode 2 integration, this is reasonable. Cost: roughly $30,000 upfront plus ongoing API and engineering time.
+
+**Blend** — and this is what most teams actually do — means buying the infrastructure layer (the API, the hosting, the monitoring) and building the last mile yourself. In this case: use Claude's API for the classification, but build your own routing rules, confidence thresholds, escalation logic, and feedback loop. You get the speed of buying the AI capability and the control of building the workflow around it.
+
+For our ticket routing problem, **blend** is the right answer. The classification itself is a commodity — any frontier model can do it well. The value is in how you integrate it with your specific routing rules, escalation paths, and team structure. That last mile is what makes it work for your product specifically.
+
+### How to Decide
+
+Ask three questions in order.
+
+**Does a pre-built product already solve your specific problem?** If yes, and if the total cost of ownership makes sense over two to three years, buy. You'll ship faster and avoid the maintenance burden. But verify that the product integrates with your actual workflow — not just the demo workflow. A tool that doesn't fit how your team really works is a tool that won't get used.
+
+**Is the AI capability itself your competitive advantage?** If yes, build. You need control over the model, the data pipeline, and the iteration cycle. This is rare — most AI features are utilities, not differentiators — but when it applies, the investment in owning the full stack is justified.
+
+**For everything else, blend.** Buy the AI capability (the model, the API, the infrastructure), build the workflow around it (your routing logic, your confidence thresholds, your escalation paths, your feedback loop). This is the most common pattern in production because it balances speed, cost, and control. You can ship in weeks, iterate on the parts that matter, and switch providers if the model landscape shifts.
+
+### The Costs That Catch You
+
+There may be expensive surprises around your model — and they're predictable once you know where to look.
+
+**Prompt iteration.** Your first prompt won't work well enough. For the ticket routing example, the team spent two weeks iterating specifically to handle multi-topic tickets — ones that are both a billing complaint and a feature request. The model kept picking one category and ignoring the other. This kind of iteration is normal, but teams rarely budget for it because the initial integration "works" in a demo. Plan for two to four weeks of prompt engineering beyond the initial build.
+
+**Confidence calibration.** Setting the right confidence threshold — the score below which the AI hands off to a human — takes experimentation with production data. Set it too high and too many tickets go to humans, defeating the purpose. Set it too low and you route tickets to the wrong team. The ticket routing team spent a week tuning this, testing different thresholds against historical routing decisions until they found the sweet spot.
+
+**Change management.** Three support agents were openly sceptical: "AI doesn't understand our product well enough." Rolling the feature out required internal demos, a trial period where agents could easily override the AI, and weekly reviews of accuracy data. This took a week of the PM's time — and it was the difference between adoption and quiet resistance. If you skip this step, you build a tool your team resents instead of one they rely on.
+
+**Infrastructure you'll forget to budget for.** Observability and monitoring (can you actually see what the AI is doing in production?), data labelling if you decide to move to Mode 3 later ($5K–$100K depending on volume and complexity), and red-teaming and safety validation (especially for customer-facing features where a bad output isn't just embarrassing — it's a support ticket generator).
+
+For the ticket routing example, the original $30,000 estimate became $45,000 — a 50% overrun. Still worthwhile against $50,000/year in savings, but the overrun would have been painful if the budget had been tight.
+
+**Why this matters for PMs:** When you present an AI initiative to leadership, name these line items explicitly. Don't bury them in a contingency percentage — list them, estimate them, and explain why they matter. A realistic budget builds trust; a budget that doubles post-approval destroys it. Rule of thumb: add 30–50% to whatever the engineering estimate is for the core AI integration itself.
+
+### What This Looks Like at Enterprise Scale
+
+The same framework scales. At Propel Ventures, we applied this approach with EBOS Group — a major healthcare and medtech distributor — running workshops across four business divisions. Each use case was evaluated on business value (our Impact dimension) and implementation complexity (our Feasibility dimension). The result was a prioritised portfolio of five use cases worth an estimated $14–16M annually.
+
+Three disciplines made the difference at this scale, and they're worth adopting even on smaller projects.
+
+First, every use case started with a hypothesis tied to a dollar figure. Not "we should use AI for ordering" but "AI-assisted ordering could reduce manual processing errors, saving an estimated $4.9M per year." The dollar figure forced teams to be specific about where the value actually came from — and made it straightforward to compare opportunities against each other. Vague impact claims can't be ranked; dollar estimates can.
+
+Second, use cases were plotted on a value-versus-complexity matrix so leadership could see the full portfolio at a glance. High-value, low-complexity opportunities go first. High-value, high-complexity opportunities get prototyped to de-risk them before committing. Low-value opportunities get deprioritised regardless of how technically interesting they are — a hard discipline, but an essential one.
+
+Third, blockers were named upfront. Every use case included a list of dependencies and risks that needed to be resolved before committing. Nobody could greenlight an initiative without acknowledging the infrastructure work, data gaps, or organisational changes it depended on. This prevented the "we'll figure it out as we go" optimism that turns three-month projects into twelve-month ones.
+
+**Why this matters for PMs:** Whether you're scoring one ticket routing feature or prioritising across an entire enterprise portfolio, the discipline is identical. Tie every opportunity to a number. Compare them on the same dimensions. Name the blockers before you commit. The scale changes; the rigour doesn't.
+
+> **Exercise:** For the opportunity you scored in Part 2, decide: build, buy, or blend? Write a one-paragraph proposal that includes the approach, estimated cost range, timeline, and the two biggest hidden costs you'd flag for leadership. If you're not sure of exact numbers, use ranges — the discipline of estimating is more valuable than the precision.
+
+---
+
+## Reflection
+
+Before moving to the exercise in Lesson 3.3, sit with these questions:
+
+**Did your viability score surprise you?** If it was lower than expected, which dimension pulled it down? That dimension is where you should focus your de-risking work — not the overall score.
+
+**What's your team's default engagement mode?** Most teams have a bias — some always want to build from scratch (Modes 3–4), others reach for off-the-shelf tools (Mode 1) even when the problem needs more. Notice your team's default and question it.
+
+**Where are the hidden costs in your opportunity?** The ticket routing example's budget grew 50% because of prompt iteration, confidence threshold tuning, and change management. What equivalent surprises might be hiding in your opportunity?
 
 ---
 
 ## Key Takeaways
 
-1. **Don't default to "build."** Most companies should live in Modes 1-3 (off-the-shelf, API, fine-tuning). Only Mode 4 (custom models) if AI is truly core to your business.
+1. **Start with the least complex engagement mode that could work.** For the ticket routing example, Mode 2 (API integration) was right. Mode 4 (custom model) would have been a $2M+ mistake. Always ask: "What evidence do we have that the simpler mode won't work?"
 
-2. **Use the viability framework.** Score Impact, Feasibility, and Risk. Use it to make go/no-go decisions and to prioritise which risks to address first.
+2. **The viability framework exposes what planning conversations miss.** The ticket routing project's biggest risk wasn't technical — it was agent adoption. Without scoring risk explicitly, the team would have built a technically sound tool that nobody used.
 
-3. **Name your risks explicitly.** The biggest killer of AI projects is ignoring risk until it's too late. Hallucination, privacy, bias, vendor lock-in, cost, and trust are real. Size them early.
+3. **A conditional score is not a "no."** The lending example scored 2.3 — but an eight-week prototype converted that to 3.8. The framework's real value is telling you *what to test*, not just whether to proceed.
 
-4. **"Blend" is the current best practice.** Buy vendor platforms for governance and safety. Build custom last-mile logic for your domain. Get speed, control, and cost all at once.
-
-5. **Prototyping isn't just for validation; it's for learning.** A 4-week prototype will teach you more about feasibility and risk than a 100-slide deck. Use it.
+4. **Blend is the default.** Buy the AI capability (the API, the model), build the last mile (your routing logic, your confidence thresholds, your escalation paths). This is what most production AI features actually look like in 2026.
 
 ---
 
 ## Explore Further
 
-- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/01-identify-opportunities/) — Where to find AI opportunities in the first place
-- [Opportunity Exercise](/AI-PM-Bootcamp/modules/03-opportunity-exercise/) — Assess a real AI opportunity using this framework
-- [Design AI Features](/AI-PM-Bootcamp/modules/01-design-ai-features/) — Once you've decided to build, how to deliver it safely and get users to adopt it
+- [Why 95% of Corporate AI Projects Fail — MIT 2025 Study](https://complexdiscovery.com/why-95-of-corporate-ai-projects-fail-lessons-from-mits-2025-study/) — Deep dive into the research behind the failure statistics cited in this module.
+- [The Biggest AI Fails of 2025](https://www.ninetwothree.co/blog/ai-fails) — Case studies of real AI project failures, including the Volkswagen Cariad example.
+- [Build vs Buy for Enterprise AI](https://www.marktechpost.com/2025/08/24/build-vs-buy-for-enterprise-ai-2025-a-u-s-market-decision-framework-for-vps-of-ai-product/) — A detailed decision framework with cost models for build, buy, and blend approaches.
