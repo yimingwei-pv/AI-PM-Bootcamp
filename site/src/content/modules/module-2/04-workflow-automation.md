@@ -132,17 +132,15 @@ Here are four realistic workflows PMs actually build:
 
 **Workflow:**
 
-```
-Slack trigger: 8 AM daily
-  ↓
-Fetch all messages from #product-feedback (past 24 hours)
-  ↓
-Send to Claude via API: "Summarise these into 3-5 key themes"
-  ↓
-Format summary as email + Slack post
-  ↓
-Email to product@company.com + post in #daily-digest
-```
+> Slack trigger: 8 AM daily
+>   ↓
+> Fetch all messages from #product-feedback (past 24 hours)
+>   ↓
+> Send to Claude via API: "Summarise these into 3-5 key themes"
+>   ↓
+> Format summary as email + Slack post
+>   ↓
+> Email to product@company.com + post in #daily-digest
 
 **Tools:** Zapier or n8n (for orchestration) + Claude API (for summarisation)
 
@@ -158,23 +156,21 @@ Email to product@company.com + post in #daily-digest
 
 **Workflow:**
 
-```
-Trigger: New feedback submitted (Intercom, survey, email)
-  ↓
-Extract text + metadata (customer name, product area, sentiment)
-  ↓
-Send to Claude: "Categorise this into: Bug, Feature Request, Pricing, Support, Other"
-  ↓
-Extract sentiment: Positive, Neutral, Negative
-  ↓
-Route based on rules:
-   - Bug + Negative → #critical-bugs channel + create JIRA ticket
-   - Feature Request → #feature-ideas + add to Airtable
-   - Pricing → email sales-team@
-   - Support + Negative → escalate to support@
-  ↓
-Send customer thank-you email (personalised based on sentiment)
-```
+> Trigger: New feedback submitted (Intercom, survey, email)
+>   ↓
+> Extract text + metadata (customer name, product area, sentiment)
+>   ↓
+> Send to Claude: "Categorise this into: Bug, Feature Request, Pricing, Support, Other"
+>   ↓
+> Extract sentiment: Positive, Neutral, Negative
+>   ↓
+> Route based on rules:
+>    - Bug + Negative → #critical-bugs channel + create JIRA ticket
+>    - Feature Request → #feature-ideas + add to Airtable
+>    - Pricing → email sales-team@
+>    - Support + Negative → escalate to support@
+>   ↓
+> Send customer thank-you email (personalised based on sentiment)
 
 **Tools:** Zapier (simpler) or n8n (more complex) + Claude API
 
@@ -192,21 +188,19 @@ Send customer thank-you email (personalised based on sentiment)
 
 **Workflow:**
 
-```
-Trigger: Friday 4 PM
-  ↓
-Query Jira API: All tickets closed this week + in-progress tickets
-  ↓
-Query Linear API: PRs merged, bugs fixed, sprints completed
-  ↓
-Fetch Google Drive docs: Design updates, user research findings
-  ↓
-Send to Claude: "Create a 1-page status report highlighting progress, blockers, and next week's focus"
-  ↓
-Format as email + PDF attachment
-  ↓
-Email to exec-team@, post to Slack #status-updates
-```
+> Trigger: Friday 4 PM
+>   ↓
+> Query Jira API: All tickets closed this week + in-progress tickets
+>   ↓
+> Query Linear API: PRs merged, bugs fixed, sprints completed
+>   ↓
+> Fetch Google Drive docs: Design updates, user research findings
+>   ↓
+> Send to Claude: "Create a 1-page status report highlighting progress, blockers, and next week's focus"
+>   ↓
+> Format as email + PDF attachment
+>   ↓
+> Email to exec-team@, post to Slack #status-updates
 
 **Tools:** Make or n8n (good for multi-API querying) + Claude API
 
@@ -224,22 +218,20 @@ Email to exec-team@, post to Slack #status-updates
 
 **Workflow:**
 
-```
-Trigger: Daily at 9 AM
-  ↓
-Web scrape competitor websites (Playwright/headless browser)
-  ↓
-Check RSS feeds + news aggregators (TechCrunch, Product Hunt)
-  ↓
-Send scraped content to Claude: "Identify any new features, pricing changes, or market moves"
-  ↓
-If changes detected:
-   - Create bullet-point summary
-   - Post alert to #competitive-intelligence Slack channel
-   - Tag product team members
-  ↓
-If no changes: silently pass (no alert noise)
-```
+> Trigger: Daily at 9 AM
+>   ↓
+> Web scrape competitor websites (Playwright/headless browser)
+>   ↓
+> Check RSS feeds + news aggregators (TechCrunch, Product Hunt)
+>   ↓
+> Send scraped content to Claude: "Identify any new features, pricing changes, or market moves"
+>   ↓
+> If changes detected:
+>    - Create bullet-point summary
+>    - Post alert to #competitive-intelligence Slack channel
+>    - Tag product team members
+>   ↓
+> If no changes: silently pass (no alert noise)
 
 **Tools:** n8n (has Playwright node for web scraping) or custom script + Claude API
 
@@ -282,35 +274,33 @@ You may need to add a **Formatter** step if the data is nested:
 
 Add a new step: **Code by Zapier** (or **OpenAI** integration if you prefer).
 
-```javascript
-// Pseudocode—actual Zapier Code step syntax
-const feedback = inputData.conversation_body;
-const customerName = inputData.customer_name;
-
-const prompt = `Categorise this customer feedback into ONE of: Bug, Feature Request, Pricing, Support, Other.
-Also rate sentiment as Positive, Neutral, or Negative.
-
-Feedback: "${feedback}"
-
-Respond in JSON: { "category": "...", "sentiment": "..." }`;
-
-// Call Claude API
-const response = await fetch('https://api.anthropic.com/v1/messages', {
-  method: 'POST',
-  headers: {
-    'x-api-key': process.env.CLAUDE_API_KEY,
-    'content-type': 'application/json'
-  },
-  body: JSON.stringify({
-    model: 'claude-sonnet-4-5-20250929',
-    max_tokens: 200,
-    messages: [{ role: 'user', content: prompt }]
-  })
-});
-
-const result = JSON.parse(response.text);
-return result; // { category, sentiment }
-```
+> // Pseudocode—actual Zapier Code step syntax
+> const feedback = inputData.conversation_body;
+> const customerName = inputData.customer_name;
+>
+> const prompt = `Categorise this customer feedback into ONE of: Bug, Feature Request, Pricing, Support, Other.
+> Also rate sentiment as Positive, Neutral, or Negative.
+>
+> Feedback: "${feedback}"
+>
+> Respond in JSON: { "category": "...", "sentiment": "..." }`;
+>
+> // Call Claude API
+> const response = await fetch('https://api.anthropic.com/v1/messages', {
+>   method: 'POST',
+>   headers: {
+>     'x-api-key': process.env.CLAUDE_API_KEY,
+>     'content-type': 'application/json'
+>   },
+>   body: JSON.stringify({
+>     model: 'claude-sonnet-4-5-20250929',
+>     max_tokens: 200,
+>     messages: [{ role: 'user', content: prompt }]
+>   })
+> });
+>
+> const result = JSON.parse(response.text);
+> return result; // { category, sentiment }
 
 **Output:** `category` and `sentiment` variables for next steps.
 
@@ -318,32 +308,28 @@ return result; // { category, sentiment }
 
 Add **Zapier Paths** (conditional branching):
 
-```
-IF category == "Bug" AND sentiment == "Negative"
-  → POST to Slack #critical-bugs
-  → CREATE JIRA ticket (Bug priority)
-  → SEND email to support@
-
-IF category == "Feature Request"
-  → CREATE Airtable row in Features table
-  → POST to Slack #feature-ideas
-  → SEND thank-you email to customer
-
-IF category == "Pricing"
-  → EMAIL sales-team@
-
-... etc
-```
+> IF category == "Bug" AND sentiment == "Negative"
+>   → POST to Slack #critical-bugs
+>   → CREATE JIRA ticket (Bug priority)
+>   → SEND email to support@
+>
+> IF category == "Feature Request"
+>   → CREATE Airtable row in Features table
+>   → POST to Slack #feature-ideas
+>   → SEND thank-you email to customer
+>
+> IF category == "Pricing"
+>   → EMAIL sales-team@
+>
+> ... etc
 
 #### **Step 5: Send Confirmation Email to Customer**
 
 Add **Gmail** step:
 
-```
-To: {customer_email}
-Subject: We've received your feedback – thanks!
-Body: "Hi {customer_name}, thanks for reaching out. We've categorised your feedback as '{category}' and routed it to the right team. We'll follow up within 48 hours."
-```
+> To: {customer_email}
+> Subject: We've received your feedback – thanks!
+> Body: "Hi {customer_name}, thanks for reaching out. We've categorised your feedback as '{category}' and routed it to the right team. We'll follow up within 48 hours."
 
 Personalisation via Zapier variables (`{category}`, `{customer_name}`) makes it feel human.
 
@@ -368,11 +354,9 @@ Not every workflow is worth automating. Here's the mental model:
 
 ### **The Equation**
 
-```
-Time saved per run × Runs per month × Months you'll use it
-  vs.
-Build time + Maintenance burden per month × Months
-```
+> Time saved per run × Runs per month × Months you'll use it
+>   vs.
+> Build time + Maintenance burden per month × Months
 
 **Automate if:**
 - **Runs >10 times/month** (enough volume to justify build time)
@@ -436,21 +420,19 @@ Build time + Maintenance burden per month × Months
 
 When faced with a tedious PM task, ask yourself:
 
-```
-Is this done >10 times/month?
-  |-- No → Do it manually
-  |
-  └-- Yes → Is it repetitive, with clear steps?
-     |-- No (requires judgment) → Do it manually or find a human process
-     |
-     └-- Yes → Does it touch 3+ tools?
-        |-- No → Maybe not worth automation complexity
-        |
-        └-- Yes → Will it run for the next 6+ months unchanged?
-           |-- No (changes weekly) → Document the manual process instead
-           |
-           └-- Yes → BUILD IT
-```
+> Is this done >10 times/month?
+>   |-- No → Do it manually
+>   |
+>   └-- Yes → Is it repetitive, with clear steps?
+>      |-- No (requires judgment) → Do it manually or find a human process
+>      |
+>      └-- Yes → Does it touch 3+ tools?
+>         |-- No → Maybe not worth automation complexity
+>         |
+>         └-- Yes → Will it run for the next 6+ months unchanged?
+>            |-- No (changes weekly) → Document the manual process instead
+>            |
+>            └-- Yes → BUILD IT
 
 ---
 

@@ -93,28 +93,26 @@ AI cannot replace human judgment in these areas:
 
 How do you know what to delegate? Use this framework:
 
-```mermaid
-quadrantChart
-    title Task Delegation Matrix
-    x-axis Low Judgment --> High Judgment
-    y-axis Low AI Capability --> High AI Capability
-
-    quadrant-1 Keep Human (High Judgment, High AI Capability)
-    quadrant-2 Keep Human (High Judgment, Low AI Capability)
-    quadrant-3 Automate (Low Judgment, Low AI Capability)
-    quadrant-4 AI + Human (Low Judgment, High AI Capability)
-
-    Writing PRDs: 0.6, 0.9
-    Roadmapping: 0.7, 0.7
-    Customer interviews: 0.9, 0.3
-    Feedback analysis: 0.2, 0.85
-    Competitive analysis: 0.4, 0.75
-    Meeting summaries: 0.1, 0.8
-    Strategic planning: 0.95, 0.2
-    Release notes: 0.15, 0.85
-    Success metrics: 0.8, 0.5
-    Problem framing: 0.9, 0.3
-```
+> quadrantChart
+>     title Task Delegation Matrix
+>     x-axis Low Judgment --> High Judgment
+>     y-axis Low AI Capability --> High AI Capability
+>
+>     quadrant-1 Keep Human (High Judgment, High AI Capability)
+>     quadrant-2 Keep Human (High Judgment, Low AI Capability)
+>     quadrant-3 Automate (Low Judgment, Low AI Capability)
+>     quadrant-4 AI + Human (Low Judgment, High AI Capability)
+>
+>     Writing PRDs: 0.6, 0.9
+>     Roadmapping: 0.7, 0.7
+>     Customer interviews: 0.9, 0.3
+>     Feedback analysis: 0.2, 0.85
+>     Competitive analysis: 0.4, 0.75
+>     Meeting summaries: 0.1, 0.8
+>     Strategic planning: 0.95, 0.2
+>     Release notes: 0.15, 0.85
+>     Success metrics: 0.8, 0.5
+>     Problem framing: 0.9, 0.3
 
 **The zones explained:**
 

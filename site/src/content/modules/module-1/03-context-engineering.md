@@ -77,9 +77,8 @@ Prompt engineering is the foundation. It's about how you structure the informati
 The simplest approach: ask the model to do something without providing any examples. The model relies entirely on its pre-training.
 
 **Example:**
-```
-Summarise the key risks in a Series A investment round.
-```
+
+> Summarise the key risks in a Series A investment round.
 
 The model draws on general knowledge to provide a reasonable answer. Zero-shot works surprisingly well for straightforward, well-defined tasks.
 
@@ -90,15 +89,14 @@ The model draws on general knowledge to provide a reasonable answer. Zero-shot w
 Provide 2–5 examples in your prompt showing the model what good output looks like. The model learns the pattern from your examples — this is called "in-context learning."
 
 **Example:**
-```
-Classify customer feedback as positive, neutral, or negative.
 
-"The product is amazing!" → Positive
-"It works, but nothing special." → Neutral
-"Broken on arrival." → Negative
-
-Now classify: "Great service, but expensive." →
-```
+> Classify customer feedback as positive, neutral, or negative.
+>
+> "The product is amazing!" → Positive
+> "It works, but nothing special." → Neutral
+> "Broken on arrival." → Negative
+>
+> Now classify: "Great service, but expensive." →
 
 Few-shot prompting dramatically improves consistency and accuracy on domain-specific tasks, because the examples teach the model your exact format and standards.
 
@@ -109,12 +107,10 @@ Few-shot prompting dramatically improves consistency and accuracy on domain-spec
 Ask the model to show its reasoning — to articulate intermediate steps before giving a final answer. For complex decisions, this dramatically improves accuracy.
 
 **Example:**
-```
-Should we launch Feature X? Consider: 60% of users want it,
-it takes 3 months to build, and a competitor just shipped something similar.
 
-Think through this step-by-step before giving your recommendation.
-```
+> Should we launch Feature X? Consider: 60% of users want it, it takes 3 months to build, and a competitor just shipped something similar.
+>
+> Think through this step-by-step before giving your recommendation.
 
 By forcing the model to reason explicitly, you reduce errors and get transparent logic you can audit — crucial for business decisions.
 
@@ -125,12 +121,8 @@ By forcing the model to reason explicitly, you reduce errors and get transparent
 Your system prompt is hidden infrastructure that sets the model's behaviour before it sees any user input. It's where you establish tone, constraints, domain expertise, and persona.
 
 **Example:**
-```
-You are a B2B SaaS product strategy consultant. You favour data-driven
-thinking, acknowledge ambiguity, and are concise but thorough.
-When you don't have enough information, ask clarifying questions
-rather than guessing.
-```
+
+> You are a B2B SaaS product strategy consultant. You favour data-driven thinking, acknowledge ambiguity, and are concise but thorough. When you don't have enough information, ask clarifying questions rather than guessing.
 
 System prompts are powerful for controlling voice and establishing guardrails. One important nuance: research suggests that role prompting (assigning a persona) improves style and communication more than it improves factual accuracy. Don't expect a role to fix reasoning problems — use CoT for that.
 
@@ -141,15 +133,13 @@ System prompts are powerful for controlling voice and establishing guardrails. O
 One of the most practical techniques for production features: **constrain the model's output format.** Instead of free-form text, ask for JSON, XML, or a specific schema.
 
 **Example:**
-```
-Extract the following from this customer email and return as JSON:
-{
-  "sentiment": "positive/neutral/negative",
-  "topic": "billing/technical/feature_request/other",
-  "urgency": "low/medium/high",
-  "summary": "one sentence"
-}
-```
+
+> Extract the following from this customer email and return as JSON:
+>
+> "sentiment": "positive/neutral/negative",
+> "topic": "billing/technical/feature\_request/other",
+> "urgency": "low/medium/high",
+> "summary": "one sentence"
 
 This makes LLM outputs parseable by downstream systems — essential when the AI's response feeds into your product's logic, not just a chat interface.
 
@@ -160,28 +150,27 @@ This makes LLM outputs parseable by downstream systems — essential when the AI
 To make the value of these techniques visceral, here's the same task with a lazy prompt versus a well-engineered one:
 
 **Lazy prompt:**
-```
-Tell me about our Q3 performance.
-```
+
+> Tell me about our Q3 performance.
+
 **Model response:** A generic, vague answer drawing on general knowledge. Potentially hallucinated.
 
 **Well-engineered prompt (combining system prompt + structured output + CoT):**
-```
-System: You are a financial analyst at [Company]. Be precise and cite
-specific numbers. Flag any data gaps.
 
-Here is the Q3 financial summary:
-- Revenue: $12.4M (up 8% from Q2)
-- Churn: 3.2% (up from 2.8%)
-- New logos: 14 (down from 19)
+> System: You are a financial analyst at [Company]. Be precise and cite specific numbers. Flag any data gaps.
+>
+> Here is the Q3 financial summary:
+> - Revenue: $12.4M (up 8% from Q2)
+> - Churn: 3.2% (up from 2.8%)
+> - New logos: 14 (down from 19)
+>
+> Analyse Q3 performance vs Q2. Structure your response as:
+> 1. Revenue change and key drivers
+> 2. Top 3 risks
+> 3. Recommended actions
+>
+> Think through each section step-by-step before concluding.
 
-Analyse Q3 performance vs Q2. Structure your response as:
-1. Revenue change and key drivers
-2. Top 3 risks
-3. Recommended actions
-
-Think through each section step-by-step before concluding.
-```
 **Model response:** A structured analysis grounded in the actual data you provided, with clear reasoning and actionable recommendations. Same model, radically different output — because you engineered the context.
 
 **Exercise:** Play around with these techniques and try improving your last 3 prompts.

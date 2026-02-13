@@ -76,6 +76,22 @@
     @apply bg-propel-gray;
   }
 
+  .prose blockquote {
+    @apply my-6 pl-5 pr-4 py-4 border-l-4 border-propel-blue bg-propel-gray rounded-r-lg text-propel-navy;
+  }
+
+  .prose blockquote p {
+    @apply my-2 leading-relaxed;
+  }
+
+  .prose blockquote p:first-child {
+    @apply mt-0;
+  }
+
+  .prose blockquote p:last-child {
+    @apply mb-0;
+  }
+
   .btn-primary {
     @apply bg-propel-orange text-white font-semibold px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200;
   }
