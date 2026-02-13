@@ -365,23 +365,25 @@ Three or more "yes"? This is likely worth deeper investigation.
 
 Different AI techniques have different maturity levels. Choose based on your appetite for risk.
 
-> graph LR
->     A["Proven<br/>(Use liberally)"] -->|Emerging| B["Scaling<br/>(Use carefully)"]
->     B -->|Research| C["Frontier<br/>(Prototype only)"]
->
->     A1["Spam filtering"] -.-> A
->     A2["Translation"] -.-> A
->     A3["Code generation"] -.-> A
->     A4["Classification"] -.-> A
->     A5["Semantic search"] -.-> A
->
->     B1["Real-time decision-making"] -.-> B
->     B2["Complex reasoning"] -.-> B
->     B3["Agentic workflows"] -.-> B
->
->     C1["Reasoning from scratch"] -.-> C
->     C2["Embodied AI"] -.-> C
->     C3["100% accurate predictions"] -.-> C
+```mermaid
+graph LR
+    A["Proven<br/>(Use liberally)"] -->|Emerging| B["Scaling<br/>(Use carefully)"]
+    B -->|Research| C["Frontier<br/>(Prototype only)"]
+
+    A1["Spam filtering"] -.-> A
+    A2["Translation"] -.-> A
+    A3["Code generation"] -.-> A
+    A4["Classification"] -.-> A
+    A5["Semantic search"] -.-> A
+
+    B1["Real-time decision-making"] -.-> B
+    B2["Complex reasoning"] -.-> B
+    B3["Agentic workflows"] -.-> B
+
+    C1["Reasoning from scratch"] -.-> C
+    C2["Embodied AI"] -.-> C
+    C3["100% accurate predictions"] -.-> C
+```
 
 **Proven**: These have been shipping at scale for 3+ years. Start here. Risk of failure is low; risk of suboptimal results is higher.
 

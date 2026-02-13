@@ -166,16 +166,18 @@ Gather materials:
 - Specific colour palette or brand guidelines (optional)
 
 **Your prompt to v0:**
-> I'm designing an analytics dashboard for a SaaS product management tool.
-> The dashboard should show:
-> - Active users (metric card showing number + 30-day trend)
-> - Feature adoption rate (percentage + line chart showing adoption over time)
-> - Top features by usage (table showing feature name, user count, % of active users)
-> - Usage timeline (line chart showing total events per day over last 30 days)
->
-> Use a clean, professional design. Colour scheme: primary blue (#0066cc), dark text, light gray backgrounds.
-> The dashboard should be responsive and work on tablets.
-> Here's my Figma wireframe [ATTACH IMAGE].
+```
+I'm designing an analytics dashboard for a SaaS product management tool.
+The dashboard should show:
+- Active users (metric card showing number + 30-day trend)
+- Feature adoption rate (percentage + line chart showing adoption over time)
+- Top features by usage (table showing feature name, user count, % of active users)
+- Usage timeline (line chart showing total events per day over last 30 days)
+
+Use a clean, professional design. Colour scheme: primary blue (#0066cc), dark text, light gray backgrounds.
+The dashboard should be responsive and work on tablets.
+Here's my Figma wireframe [ATTACH IMAGE].
+```
 
 ### Step 2: Generate Initial Prototype (5 minutes)
 
@@ -195,9 +197,11 @@ Your preview shows the dashboard. You notice:
 - The colour of the adoption rate card should match your brand blue more closely
 
 You request changes via chat:
-> Make the adoption rate card background #0066cc with white text.
-> On the line chart, add a legend and make the lines thicker.
-> Let users sort the "Top Features" table by clicking column headers.
+```
+Make the adoption rate card background #0066cc with white text.
+On the line chart, add a legend and make the lines thicker.
+Let users sort the "Top Features" table by clicking column headers.
+```
 
 v0 regenerates the code within seconds. You see changes in the live preview immediately.
 
@@ -248,15 +252,17 @@ If the feature is simpler than expected and doesn't require complex backend inte
 
 Most teams don't use AI prototyping alone. Instead, they fold it into existing workflows:
 
-> graph LR
->     A["Idea / User Feedback"] --> B["Define Success Criteria"]
->     B --> C["AI Rapid Prototype"]
->     C --> D["Test with Users"]
->     D --> E{Decision}
->     E -->|Kill| F["Archive"]
->     E -->|Pivot| C
->     E -->|Greenlight| G["Hand to Engineering"]
->     G --> H["Production Development"]
+```mermaid
+graph LR
+    A["Idea / User Feedback"] --> B["Define Success Criteria"]
+    B --> C["AI Rapid Prototype"]
+    C --> D["Test with Users"]
+    D --> E{Decision}
+    E -->|Kill| F["Archive"]
+    E -->|Pivot| C
+    E -->|Greenlight| G["Hand to Engineering"]
+    G --> H["Production Development"]
+```
 
 **The loop from idea to validated learning takes 1 week instead of 4.**
 

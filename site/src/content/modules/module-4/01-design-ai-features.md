@@ -67,19 +67,21 @@ When evaluating models for a product feature, assess these dimensions in order o
 
 ### The Evaluation Framework
 
-> graph TD
->     A["Define your task<br/>with 50+ real examples"] --> B["Test 3-4 candidate models<br/>on the same examples"]
->     B --> C["Score quality<br/>(accuracy, tone, format)"]
->     C --> D["Measure latency<br/>(p50, p95, p99)"]
->     D --> E["Calculate cost<br/>(per request x daily volume)"]
->     E --> F["Check capability fit<br/>(modality, context, tools)"]
->     F --> G{"Best quality model<br/>within latency and<br/>cost constraints?"}
->     G -->|Yes| H["Ship with that model"]
->     G -->|No| I["Consider model routing:<br/>fast model for simple tasks,<br/>frontier model for hard ones"]
->
->     style A fill:#e8f5e9
->     style H fill:#c8e6c9
->     style I fill:#fff3e0
+```mermaid
+graph TD
+    A["Define your task<br/>with 50+ real examples"] --> B["Test 3-4 candidate models<br/>on the same examples"]
+    B --> C["Score quality<br/>(accuracy, tone, format)"]
+    C --> D["Measure latency<br/>(p50, p95, p99)"]
+    D --> E["Calculate cost<br/>(per request x daily volume)"]
+    E --> F["Check capability fit<br/>(modality, context, tools)"]
+    F --> G{"Best quality model<br/>within latency and<br/>cost constraints?"}
+    G -->|Yes| H["Ship with that model"]
+    G -->|No| I["Consider model routing:<br/>fast model for simple tasks,<br/>frontier model for hard ones"]
+
+    style A fill:#e8f5e9
+    style H fill:#c8e6c9
+    style I fill:#fff3e0
+```
 
 **Key insight: Model routing.** You don't have to pick one model. Many production AI features use a lightweight model (fast, cheap) for 80% of requests and escalate complex cases to a frontier model. Think of it like a triage nurse before a specialist: most questions don't need the specialist.
 
@@ -227,24 +229,26 @@ AI surfaces information or suggestions proactively, without the user explicitly 
 
 ### Choosing Your Pattern
 
-> graph TD
->     A["How high are the<br/>stakes of a wrong answer?"] -->|Low| B["Is the task<br/>high-volume?"]
->     A -->|High| C["Can a human review<br/>every output?"]
->
->     B -->|Yes| D["**Ambient/Inline**<br/>or **Autonomous**"]
->     B -->|No| E["**Copilot**"]
->
->     C -->|Yes| F["**Human-in-the-Loop**"]
->     C -->|No| G["Is the task<br/>well-defined?"]
->
->     G -->|Yes| H["**Autonomous** with<br/>strong monitoring"]
->     G -->|No| I["**Conversational**<br/>or **Copilot**"]
->
->     style D fill:#e8f5e9
->     style E fill:#e8f5e9
->     style F fill:#fff3e0
->     style H fill:#ffebee
->     style I fill:#e8f5e9
+```mermaid
+graph TD
+    A["How high are the<br/>stakes of a wrong answer?"] -->|Low| B["Is the task<br/>high-volume?"]
+    A -->|High| C["Can a human review<br/>every output?"]
+
+    B -->|Yes| D["**Ambient/Inline**<br/>or **Autonomous**"]
+    B -->|No| E["**Copilot**"]
+
+    C -->|Yes| F["**Human-in-the-Loop**"]
+    C -->|No| G["Is the task<br/>well-defined?"]
+
+    G -->|Yes| H["**Autonomous** with<br/>strong monitoring"]
+    G -->|No| I["**Conversational**<br/>or **Copilot**"]
+
+    style D fill:#e8f5e9
+    style E fill:#e8f5e9
+    style F fill:#fff3e0
+    style H fill:#ffebee
+    style I fill:#e8f5e9
+```
 
 **Most AI features should start as Copilot or Human-in-the-Loop** and graduate to more autonomous patterns as you build confidence through data. Launching as fully autonomous is almost always premature unless you have extensive offline evaluation data.
 
@@ -315,26 +319,28 @@ This connects directly to the foundations in the Context Engineering module. Her
 
 ### The Decision Tree
 
-> graph TD
->     A["Does the model need<br/>your proprietary data?"] -->|No| B["Does prompt engineering<br/>achieve target quality?"]
->     A -->|Yes| C["Does the data<br/>change frequently?"]
->
->     B -->|Yes| D["Prompt Engineering<br/>Ship it"]
->     B -->|No| E["Is the problem<br/>knowledge or behaviour?"]
->
->     C -->|Yes| F["RAG<br/>Build retrieval pipeline"]
->     C -->|No| G["Do you have 500+<br/>training examples?"]
->
->     E -->|Knowledge| F
->     E -->|Behaviour| G
->
->     G -->|Yes| H["Fine-Tune<br/>Train on your data"]
->     G -->|No| I["Collect more data first.<br/>Use prompt engineering<br/>+ RAG as a bridge."]
->
->     style D fill:#e8f5e9
->     style F fill:#e8f5e9
->     style H fill:#fff3e0
->     style I fill:#ffebee
+```mermaid
+graph TD
+    A["Does the model need<br/>your proprietary data?"] -->|No| B["Does prompt engineering<br/>achieve target quality?"]
+    A -->|Yes| C["Does the data<br/>change frequently?"]
+
+    B -->|Yes| D["Prompt Engineering<br/>Ship it"]
+    B -->|No| E["Is the problem<br/>knowledge or behaviour?"]
+
+    C -->|Yes| F["RAG<br/>Build retrieval pipeline"]
+    C -->|No| G["Do you have 500+<br/>training examples?"]
+
+    E -->|Knowledge| F
+    E -->|Behaviour| G
+
+    G -->|Yes| H["Fine-Tune<br/>Train on your data"]
+    G -->|No| I["Collect more data first.<br/>Use prompt engineering<br/>+ RAG as a bridge."]
+
+    style D fill:#e8f5e9
+    style F fill:#e8f5e9
+    style H fill:#fff3e0
+    style I fill:#ffebee
+```
 
 ### They're Not Mutually Exclusive
 

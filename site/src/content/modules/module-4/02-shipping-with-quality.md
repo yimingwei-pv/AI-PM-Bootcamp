@@ -81,13 +81,15 @@ Most quality problems are data problems disguised as model problems.
 
 AI features need metrics at three levels. Most teams only measure the first and wonder why their feature doesn't improve.
 
-> graph TD
->     A["**Layer 1: Model Metrics**<br/>Accuracy, precision, recall, F1, latency<br/><em>Does the model work?</em>"] --> B["**Layer 2: Product Metrics**<br/>Task completion, user edits, fallback rate<br/><em>Does the feature work?</em>"]
->     B --> C["**Layer 3: Business Metrics**<br/>Revenue impact, cost savings, NPS, retention<br/><em>Does the feature matter?</em>"]
->
->     style A fill:#e8f5e9
->     style B fill:#fff3e0
->     style C fill:#ffebee
+```mermaid
+graph TD
+    A["**Layer 1: Model Metrics**<br/>Accuracy, precision, recall, F1, latency<br/><em>Does the model work?</em>"] --> B["**Layer 2: Product Metrics**<br/>Task completion, user edits, fallback rate<br/><em>Does the feature work?</em>"]
+    B --> C["**Layer 3: Business Metrics**<br/>Revenue impact, cost savings, NPS, retention<br/><em>Does the feature matter?</em>"]
+
+    style A fill:#e8f5e9
+    style B fill:#fff3e0
+    style C fill:#ffebee
+```
 
 ### Layer 1: Model Metrics (Does the Model Work?)
 
@@ -263,15 +265,17 @@ Every user affected by an AI decision should have a clear path to challenge it. 
 
 ### Building Fairness Into Your Process
 
-> graph LR
->     A["**Pre-Build**<br/>Audit data for<br/>representation gaps"] --> B["**During Build**<br/>Test across<br/>user segments"]
->     B --> C["**At Launch**<br/>Segment metrics<br/>in dashboard"]
->     C --> D["**Post-Launch**<br/>Monitor for<br/>emergent bias"]
->
->     style A fill:#e8f5e9
->     style B fill:#e8f5e9
->     style C fill:#fff3e0
->     style D fill:#ffebee
+```mermaid
+graph LR
+    A["**Pre-Build**<br/>Audit data for<br/>representation gaps"] --> B["**During Build**<br/>Test across<br/>user segments"]
+    B --> C["**At Launch**<br/>Segment metrics<br/>in dashboard"]
+    C --> D["**Post-Launch**<br/>Monitor for<br/>emergent bias"]
+
+    style A fill:#e8f5e9
+    style B fill:#e8f5e9
+    style C fill:#fff3e0
+    style D fill:#ffebee
+```
 
 **Pre-build**: Conduct a data audit. Document known gaps. Decide whether gaps are acceptable or need to be addressed before building.
 
@@ -317,15 +321,17 @@ This document takes an hour to write and saves you from the "we didn't think abo
 
 You've now completed the full journey from understanding AI foundations to shipping quality AI features. Here's how the modules connect:
 
-> graph TD
->     A["**Module 1: Foundations**<br/>Understand the technology<br/>(LLMs, Agents, Context)"] --> B["**Module 2: Productivity**<br/>Use AI in your own work<br/>(Mindset, Prompting, Prototyping)"]
->     B --> C["**Module 3: Opportunities**<br/>Find and validate AI use cases<br/>(Identify, Assess, Exercise)"]
->     C --> D["**Module 4: Ship**<br/>Design and deliver with quality<br/>(Design, Quality)"]
->
->     style A fill:#e8f5e9
->     style B fill:#e8f5e9
->     style C fill:#fff3e0
->     style D fill:#c8e6c9
+```mermaid
+graph TD
+    A["**Module 1: Foundations**<br/>Understand the technology<br/>(LLMs, Agents, Context)"] --> B["**Module 2: Productivity**<br/>Use AI in your own work<br/>(Mindset, Prompting, Prototyping)"]
+    B --> C["**Module 3: Opportunities**<br/>Find and validate AI use cases<br/>(Identify, Assess, Exercise)"]
+    C --> D["**Module 4: Ship**<br/>Design and deliver with quality<br/>(Design, Quality)"]
+
+    style A fill:#e8f5e9
+    style B fill:#e8f5e9
+    style C fill:#fff3e0
+    style D fill:#c8e6c9
+```
 
 The best AI PMs combine technical fluency (Module 1) with personal productivity (Module 2), strategic thinking (Module 3), and execution discipline (Module 4). You don't need to be an ML engineer. You do need to ask the right questions, set the right quality bars, and make decisions that balance ambition with responsibility.
 
