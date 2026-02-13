@@ -43,7 +43,7 @@ quiz:
 
 ## Why Agents Matter Right Now
 
-Starting in late 2024 and accelerating through 2025, every major AI company shifted its roadmap from "chat" to "agents." Anthropic released Claude with computer use. Salesforce launched AgentForce. Google introduced Project Mariner. OpenAI shipped Operator. The direction is unmistakable.
+Starting in late 2024, every major AI company shifted its roadmap from "chat" to "agents." Anthropic released Claude with computer use. Salesforce launched AgentForce. Google introduced Project Mariner. OpenAI shipped Operator. The direction is unmistakable.
 
 The reason is simple: **chatbots answer questions; agents do work.** And the products that will win in the next few years are the ones that don't just inform users — they act on their behalf.
 
@@ -93,7 +93,7 @@ The difference isn't intelligence — the underlying LLM is the same. The differ
 
 <img src="/AI-PM-Bootcamp/images/modules/basic-llm-call.png" alt="Basic LLM call - User Input to LLM to Text Output" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
-Simple, synchronous, stateless. One input, one output, no awareness of the outside world.
+Simple, synchronous, stateless — it remembers nothing between calls. One input, one output, no awareness of the outside world.
 
 ### The Agentic Loop
 
@@ -238,11 +238,11 @@ Here's the four-question framework applied to common scenarios — use this as a
 
 ## Real-World Agent Patterns (2024–2026)
 
-Understanding how agents are actually being deployed — not in demos, but in production — helps calibrate your expectations.
+Understanding how companies actually deploy agents — not in demos, but in production — helps calibrate your expectations.
 
-**Customer service (Zendesk, Intercom):** Agents auto-resolve tickets by checking knowledge bases, looking up account info, and applying standard policies. Architecture is typically augmented LLM + function calling. Early adopters report significant reductions in tickets requiring human handling — often 40% or more, depending on implementation quality and use case specificity. These are the most mature agent deployments today.
+**Customer service (Zendesk, Intercom):** Agents auto-resolve tickets by checking knowledge bases, looking up account info, and applying standard policies. Architecture is typically augmented LLM + function calling. Early adopters report resolving 40% or more of tickets without human involvement, depending on implementation quality and use case specificity. These are the most mature agent deployments today.
 
-**Sales workflows (Salesforce AgentForce):** Agents analyse deal pipelines, draft follow-up emails, update forecasts, and suggest next-best-actions. Typically ReAct or multi-agent. Sales teams report meaningful time savings on administrative work.
+**Sales workflows (Salesforce AgentForce):** Agents analyse deal pipelines, draft follow-up emails, update forecasts, and suggest next-best-actions. Typically ReAct or multi-agent. Sales teams report saving hours per week on administrative work.
 
 **Code generation (GitHub Copilot, Cursor, Claude Code):** Coding agents that can read codebases, write code, run tests, and iterate on failures. This is the canonical example of the agentic loop working in production — the ability to run code and observe results creates a natural feedback loop.
 

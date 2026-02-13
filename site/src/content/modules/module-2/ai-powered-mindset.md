@@ -59,7 +59,7 @@ Before we talk about AI, let's map the full PM lifecycle. You already know these
 | **Delivery** | Ship to users | Launch planning, release notes, marketing coordination, rollout monitoring |
 | **Analytics** | Measure and learn | Metrics analysis, post-launch feedback synthesis, retrospectives, next-iteration planning |
 
-Look at that list. Notice how many tasks are fundamentally about *processing information* — reading, synthesising, summarising, drafting, comparing. These are exactly the tasks that LLMs handle well (recall from the LLMs module that language models are trained to recognise patterns in text). That's where AI creates the most leverage, as we'll see next.
+Look at that list. Notice how many tasks are fundamentally about *processing information* — reading, synthesising, summarising, drafting, comparing. These are exactly the tasks that LLMs (large language models) handle well — recall from the LLMs module that they are trained to recognise patterns in text. That's where AI creates the most leverage, as we'll see next.
 
 ---
 
@@ -238,7 +238,7 @@ Identify your 3 most time-consuming tasks. Automate one per week. Review, iterat
 
 ## Explore Further
 
-- [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) — Learn how to write better prompts to get better outputs
-- [Prototyping](/AI-PM-Bootcamp/modules/03-prototyping/) — Use AI to accelerate prototyping and design iteration
-- [Workflow Automation](/AI-PM-Bootcamp/modules/04-workflow-automation/) — Build automated workflows that save hours per week
-- [LLMs](/AI-PM-Bootcamp/modules/01-llms/) — Refresh on how LLMs work to better understand their limits
+- [Prompt Engineering](/AI-PM-Bootcamp/modules/prompt-engineering/) — Learn how to write better prompts to get better outputs
+- [Prototyping](/AI-PM-Bootcamp/modules/prototyping/) — Use AI to accelerate prototyping and design iteration
+- [Workflow Automation](/AI-PM-Bootcamp/modules/workflow-automation/) — Build automated workflows that save hours per week
+- [LLMs](/AI-PM-Bootcamp/modules/llms/) — Refresh on how LLMs work to better understand their limits

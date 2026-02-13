@@ -106,7 +106,7 @@ Replit Agent is an autonomous agent that can build, test, and fix code on its ow
 #### **Figma AI & Design Tools**
 **Category:** AI-assisted design plugin ecosystem
 
-Figma has integrated AI capabilities directly into its design tool, including prototype generation (describe screens and get design mockups), copy generation (tools like Frontitude provide UX copy suggestions), and layout assistance (AI helps structure designs according to best practices). Its main advantage is seamless integration into existing design workflows with no context switching, and teams already using Figma can start immediately with good visual consistency. The limitation: it generates mockups rather than code (requiring a handoff to development) and is less comprehensive than dedicated prototyping platforms.
+Figma has integrated AI capabilities directly into its design tool, including prototype generation (describe screens and get design mockups), copy generation (tools like Frontitude provide UX copy suggestions), and layout assistance (AI helps structure designs according to best practices). Its main advantage is seamless integration into existing design workflows with no context switching, and teams already using Figma can start immediately with good visual consistency. The limitation: it generates mockups rather than code (you still hand off to developers) and is less comprehensive than dedicated prototyping platforms.
 
 **Best for:** Design teams using Figma, teams wanting to stay in their existing design workflow, and mockup-heavy work.
 
@@ -341,9 +341,9 @@ AI is powerful, but it's not magic. Knowing its limits prevents wasted effort an
 
 ## Explore Further
 
-- [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) – Learn to write better prompts for all your AI prototyping tools
-- [AI-Powered Mindset](/AI-PM-Bootcamp/modules/01-ai-powered-mindset/) – Understand how to think about AI as a PM
-- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/01-identify-opportunities/) – Spot where AI prototyping creates the most value in your product workflow
+- [Prompt Engineering](/AI-PM-Bootcamp/modules/prompt-engineering/) – Learn to write better prompts for all your AI prototyping tools
+- [AI-Powered Mindset](/AI-PM-Bootcamp/modules/ai-powered-mindset/) – Understand how to think about AI as a PM
+- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/identify-opportunities/) – Spot where AI prototyping creates the most value in your product workflow
 
 ### Resources & Links
 

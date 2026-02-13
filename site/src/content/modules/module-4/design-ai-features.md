@@ -97,7 +97,7 @@ This is the section that separates AI features that users trust from AI features
 
 Not might. *Will*. Every LLM hallucinates. Every classifier has false positives. Every extraction model misses edge cases. The question isn't "will it fail?" — it's "what happens when it does?"
 
-Recall from the LLMs module that LLMs are probabilistic, not deterministic. They generate the most likely next token, not the "correct" answer. This architectural reality means failure is built into the system. Your job is to make failure graceful.
+Recall from the LLMs module that LLMs are probabilistic, not deterministic. They generate the most likely next token, not the "correct" answer. This architectural reality means the system will fail. Your job is to make those failures graceful.
 
 ### The Failure Design Framework
 
@@ -279,7 +279,7 @@ This connects directly to the foundations in the Context Engineering module. Her
 
 ### Option 3: Fine-Tuning
 
-**What it is**: Training the model on your data so it learns new behaviours, formats, or domain expertise. The model's weights are modified.
+**What it is**: Training the model on your data so it learns new behaviours, formats, or domain expertise. The training process modifies the model's weights.
 
 **When it works**:
 - You need consistent behaviour that prompt engineering can't reliably produce (specific tone of voice, output format, domain terminology)

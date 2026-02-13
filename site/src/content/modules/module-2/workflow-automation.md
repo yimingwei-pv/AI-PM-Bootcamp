@@ -48,7 +48,7 @@ Rather than manually copying, pasting, categorising, and routing information bet
 
 ## What Is AI Workflow Automation?
 
-At its core, **AI workflow automation** means connecting AI capabilities into repeatable, event-driven processes that eliminate manual steps.
+At its core, **AI workflow automation** connects AI capabilities into repeatable, event-driven processes that eliminate manual steps.
 
 Think of it as building a system that:
 
@@ -475,11 +475,11 @@ Is this done >10 times/month?
 ## Explore Further
 
 - **Related modules:**
-  - [AI-Powered Mindset](/AI-PM-Bootcamp/modules/01-ai-powered-mindset/) – understanding when (and when not) to use AI
-  - [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) – prompt strategies that improve automation accuracy
-  - [Prototyping](/AI-PM-Bootcamp/modules/03-prototyping/) – rapid testing before full automation
-  - [Agents](/AI-PM-Bootcamp/modules/02-agents/) – understanding agentic workflows and multi-step reasoning
-  - [Context Engineering](/AI-PM-Bootcamp/modules/03-context-engineering/) – building custom integrations with MCP
+  - [AI-Powered Mindset](/AI-PM-Bootcamp/modules/ai-powered-mindset/) – understanding when (and when not) to use AI
+  - [Prompt Engineering](/AI-PM-Bootcamp/modules/prompt-engineering/) – prompt strategies that improve automation accuracy
+  - [Prototyping](/AI-PM-Bootcamp/modules/prototyping/) – rapid testing before full automation
+  - [Agents](/AI-PM-Bootcamp/modules/agents/) – understanding agentic workflows and multi-step reasoning
+  - [Context Engineering](/AI-PM-Bootcamp/modules/context-engineering/) – building custom integrations with MCP
 
 - **Hands-on next steps:**
   - Pick one workflow from the examples above

@@ -56,7 +56,7 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Summarisation and extraction** has matured rapidly. Slack summarises threads. Notion condenses pages. Legal tech tools pull key clauses from contracts. The model doesn't need to *know* things — it compresses what's already there. The failure mode is omission (missing something important), not fabrication, which is a far more manageable risk.
 
-**Semantic search** replaces keyword search (which returns irrelevant results) with meaning-based retrieval (which understands what you *meant*). Notion, GitHub, and thousands of internal knowledge bases now use embeddings to retrieve by meaning rather than exact text match.
+**Semantic search** replaces keyword search (which returns irrelevant results) with meaning-based retrieval (which understands what you *meant*). Notion, GitHub, and thousands of internal knowledge bases now use embeddings — numerical representations of meaning — to retrieve by meaning rather than exact text match.
 
 **Why this matters for PMs:** Remember from Lesson 1.1 — embeddings encode semantic similarity. Semantic search is one of the highest-ROI AI features you can ship because you're surfacing content that already exists in your data, with minimal risk.
 
@@ -78,7 +78,7 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Perfect-accuracy tasks.** AI is probabilistic. It makes confident-sounding mistakes. Medical diagnosis, legal interpretation, compliance decisions — these require accuracy thresholds that current AI can't reliably hit without human oversight.
 
-**Tasks requiring proprietary knowledge.** An LLM doesn't know your internal API, your business rules, or your customer data. It will make plausible-sounding guesses that are wrong. This is solvable with RAG (covered in Lesson 1.3), but "just add AI" without a knowledge architecture will fail.
+**Tasks requiring proprietary knowledge.** An LLM doesn't know your internal API, your business rules, or your customer data. It will make plausible-sounding guesses that are wrong. You can solve this with RAG (covered in Lesson 1.3), but "just add AI" without a knowledge architecture will fail.
 
 **Product implication:** These aren't "temporary" limitations you can wait out. They're structural properties of how LLMs work — rooted in the transformer architecture you studied in Lesson 1.1. Design around them rather than hoping the next model release fixes them.
 

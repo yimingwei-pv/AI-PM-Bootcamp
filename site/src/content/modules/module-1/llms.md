@@ -39,11 +39,11 @@ quiz:
 
 ## Where LLMs Fit: The AI Landscape
 
-Before we dive into components, let's orient ourselves. The terms "AI," "machine learning," "deep learning," and "LLM" get thrown around interchangeably, but they describe different layers of the same technology stack. Understanding the hierarchy helps you speak precisely with engineering teams and evaluate vendor claims.
+Before we dive into components, let's orient ourselves. People use the terms "AI," "machine learning," "deep learning," and "LLM" interchangeably, but they describe different layers of the same technology stack. Understanding the hierarchy helps you speak precisely with engineering teams and evaluate vendor claims.
 
 <img src="/AI-PM-Bootcamp/images/modules/ai-hierarchy.png" alt="AI hierarchy - from AI to Machine Learning to Deep Learning to Transformers to LLMs" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
-**AI** is the broadest umbrella — any system that performs tasks typically requiring human intelligence (seeing, reasoning, deciding, creating). **Machine learning** is the dominant approach within AI: instead of programming explicit rules, you feed data to algorithms that discover patterns on their own. **Deep learning** is a subset of ML that uses neural networks with many layers to handle complex, unstructured data like images, audio, and text. **Transformers** are a specific deep learning architecture, introduced in 2017, that revolutionised how models process sequential data. And **LLMs** are transformer-based models trained on enormous text datasets — they are the technology powering ChatGPT (GPT-5), Claude, Gemini, and the AI features you're building into products today.
+**AI** is the broadest umbrella — any system that performs tasks typically requiring human intelligence (seeing, reasoning, deciding, creating). **Machine learning** is the dominant approach within AI: instead of programming explicit rules, you feed data to algorithms that discover patterns on their own. **Deep learning** is a subset of ML that uses neural networks with many layers to handle complex, unstructured data like images, audio, and text. **Transformers** are a specific deep learning architecture, introduced in 2017, that fundamentally changed how models process sequential data. And **LLMs** are transformer-based models trained on enormous text datasets — they are the technology powering ChatGPT (GPT-5), Claude, Gemini, and the AI features you're building into products today.
 
 **Why this hierarchy matters for PMs:** When a vendor says "our product uses AI," that tells you almost nothing. When they say "we fine-tuned a transformer-based LLM on your domain data," you know exactly what you're evaluating. This vocabulary helps you cut through marketing, ask the right questions, and make informed build-vs-buy decisions.
 
@@ -51,7 +51,7 @@ Before we dive into components, let's orient ourselves. The terms "AI," "machine
 
 ## What Is an LLM? The Thirty-Second Version
 
-An LLM is a machine learning model trained to predict the next word in a sequence, thousands of billions of times, using massive amounts of text data. Through this simple task — repeated at enormous scale — these models develop remarkable abilities to write, reason, code, summarise, translate, and answer questions.
+An LLM is a machine learning model trained to predict the next word in a sequence — billions to trillions of times — using massive amounts of text data. Through this simple task — repeated at enormous scale — these models develop remarkable abilities to write, reason, code, summarise, translate, and answer questions.
 
 That's it. The magic isn't in a secret algorithm. It's in the architecture (transformers), the data (billions of words), and the training approach (self-supervised learning). Let's unpack each piece.
 
@@ -83,9 +83,9 @@ Understanding how neural networks learn is essential for PMs because it explains
 
 3. **Backpropagation:** This is the key insight that makes neural networks trainable. The algorithm works backward through the network, calculating how much each weight contributed to the error. It's like tracing back through a chain of decisions to find which ones led to a bad outcome.
 
-4. **Weight update:** Each weight gets adjusted slightly in the direction that reduces the error. The size of each adjustment is controlled by the **learning rate** — too large and the model overshoots, too small and training takes forever.
+4. **Weight update:** Each weight gets adjusted slightly in the direction that reduces the error. The **learning rate** controls the size of each adjustment — too large and the model overshoots, too small and training takes forever.
 
-5. **Repeat:** This cycle runs millions of times across the training data. Over many iterations (**epochs**), the network's predictions improve as weights converge toward values that minimise loss.
+5. **Repeat:** This cycle runs millions of times across the training data. Over many iterations — called **epochs**, where each epoch is one full pass through the training data — the network's predictions improve as weights converge toward values that minimise loss.
 
 **Why this matters for PMs:** This is why training LLMs costs millions of dollars — it requires running this loop across billions of text examples on thousands of GPUs. It's also why **fine-tuning** is cheaper than training from scratch: you start with weights that already encode general language understanding, then adjust them slightly for your specific domain.
 
@@ -102,11 +102,11 @@ For example, in an embedding space:
 - "Paris" and "France" might be near each other (related concepts)
 - "dog" and "cat" might be relatively close (both animals)
 
-More formally: an embedding is a learned mapping that represents a word as a vector of numbers (typically 100–4,000 dimensions in modern LLMs). These vectors capture semantic meaning in a way mathematical operations can manipulate.
+More formally: an embedding is a learned mapping that represents a word as a vector of numbers (typically 100–4,000 numbers per word in modern LLMs). These vectors capture semantic meaning in a way mathematical operations can manipulate.
 
 **How embeddings get created:**
 
-When text enters an LLM, it first gets broken into **tokens** (words or subwords). Each token is then converted to an embedding via a lookup table learned during training. The model learns this mapping by figuring out which embeddings make good predictions when passed through the transformer.
+When text enters an LLM, it first gets broken into **tokens** (words or subwords). The model then converts each token to an embedding using a lookup table it learned during training. The model learns this mapping by figuring out which embeddings make good predictions when passed through the transformer.
 
 **Why this matters for PMs:** Embeddings power some of your most valuable features — semantic search, recommendation engines, and similarity matching all depend on embeddings. When Spotify recommends a song similar to one you like, or when your search engine finds relevant documents despite different wording, embeddings are working behind the scenes.
 
@@ -152,7 +152,7 @@ Self-attention does this by computing three things for each token:
 - **Key (K):** "What information do I contain?"
 - **Value (V):** "What should I contribute to other tokens?"
 
-The model compares queries to keys across all tokens, finds strong matches, and pulls in the corresponding values. This happens in parallel across all tokens, letting context flow through the entire sequence instantly.
+The model compares queries to keys across all tokens, finds strong matches, and pulls in the corresponding values. All of this happens in parallel, letting context flow through the entire sequence instantly.
 
 **Multiple heads, multiple perspectives:** Transformers use "multi-head attention," meaning they run this process multiple times (typically 8–16 times) simultaneously. One attention head might capture grammar relationships, another captures semantic meaning, another captures discourse structure. This diversity makes the model more robust.
 
@@ -160,7 +160,7 @@ The model compares queries to keys across all tokens, finds strong matches, and 
 
 #### 3. Feed-Forward Layers
 
-Between attention blocks, transformers use feed-forward neural networks (MLPs — Multilayer Perceptrons) that operate independently on each token. While attention routes information *between* tokens, feed-forward layers refine and deepen each token's internal representation.
+Between attention blocks, transformers use feed-forward neural networks that operate independently on each token. While attention routes information *between* tokens, feed-forward layers refine and deepen each token's internal representation.
 
 Think of it as a two-step dance:
 1. **Attention:** Tokens share information with each other (contextual awareness)

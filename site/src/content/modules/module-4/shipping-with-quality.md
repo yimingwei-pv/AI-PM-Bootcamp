@@ -285,11 +285,11 @@ Beyond bias, AI features can create safety risks. Here are the guardrails every 
 
 **Content filtering**: If your AI generates text that users will see, implement output filtering for harmful, offensive, or inappropriate content. Most model providers offer built-in safety filters; supplement with your own rules for domain-specific risks.
 
-**Rate limiting and abuse prevention**: AI features can be exploited. A chatbot can be prompted to generate spam. A content generation tool can be used to produce misinformation at scale. Implement rate limits, usage monitoring, and escalation paths for suspicious patterns.
+**Rate limiting and abuse prevention**: AI features can be exploited. Bad actors can prompt a chatbot to generate spam or use a content generation tool to produce misinformation at scale. Implement rate limits, usage monitoring, and escalation paths for suspicious patterns.
 
 **Transparency**: Tell users when they're interacting with AI. Label AI-generated content clearly. This isn't just ethical — it manages expectations. Users are more forgiving of AI mistakes when they know it's AI.
 
-**Data handling**: Be explicit about how user inputs to your AI feature are stored, used, and potentially used for training. Many users are uncomfortable with their data being used to improve models. Provide clear opt-out mechanisms and comply with your organisation's privacy policies.
+**Data handling**: Be explicit about how you store and use inputs to your AI feature, and whether you use them for training. Many users are uncomfortable with their data being used to improve models. Provide clear opt-out mechanisms and comply with your organisation's privacy policies.
 
 **Incident response**: Have a plan for when things go wrong. Who gets alerted? What's the escalation path? Can you disable the AI feature quickly without bringing down the entire product? (Feature flags are your friend here.) Your AI feature should have a kill switch that any on-call engineer can flip.
 

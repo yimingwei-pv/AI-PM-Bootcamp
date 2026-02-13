@@ -376,7 +376,7 @@ ROLE: You are a product strategist helping a PM prioritise.
 CONTEXT:
 Product: [What you build, target market]
 Sprint capacity: [How many story points / engineering days available?]
-Shipping window: [Timeline: e.g., "Q1 2025"]
+Shipping window: [Timeline: e.g., "Q1 2026"]
 Current metric: [What are we measuring? E.g., "user retention", "revenue"]
 
 Option A: [Feature name]
@@ -784,7 +784,7 @@ Claude will take more time and produce more thoughtful output.
 
 ## Explore Further
 
-- [Context Engineering](/AI-PM-Bootcamp/modules/03-context-engineering/) — Theory behind few-shot prompting, chain-of-thought, and structured output
+- [Context Engineering](/AI-PM-Bootcamp/modules/context-engineering/) — Theory behind few-shot prompting, chain-of-thought, and structured output
 - **Claude's Prompt Engineering Guide** — Advanced techniques from Anthropic
 - **Prompt Engineering 2025: The Latest Best Practices** — Research roundup from industry leaders
 - **ProdPad Guide: Prompt Engineering for Product Managers** — PM-specific examples and frameworks
