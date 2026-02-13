@@ -103,7 +103,7 @@
   }
 
   .prose hr {
-    @apply my-10 border-t-2 border-gray-200;
+    @apply hidden;
   }
 
   .prose .table-wrapper {
