@@ -76,6 +76,14 @@
     @apply bg-propel-gray;
   }
 
+  .prose .wide-img {
+    @apply my-8;
+    width: 100vw;
+    max-width: 1100px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+
   .btn-primary {
     @apply bg-propel-orange text-white font-semibold px-6 py-3 rounded-lg hover:bg-opacity-90 transition-all duration-200;
   }

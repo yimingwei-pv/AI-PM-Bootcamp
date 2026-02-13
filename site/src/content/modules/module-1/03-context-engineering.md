@@ -214,7 +214,9 @@ The flow in plain language:
 4. **Context gets augmented.** The retrieved passages are inserted into the LLM's prompt alongside the user's question.
 5. **LLM generates a grounded response.** The model answers using the retrieved information, not just its general training data.
 
-<img src="/AI-PM-Bootcamp/images/modules/rag-sequence-diagram.png" alt="RAG sequence diagram showing the flow from user question through retrieval to grounded response" style="width: 100%; margin: 2rem auto; display: block;" />
+<div class="wide-img">
+<img src="/AI-PM-Bootcamp/images/modules/rag-sequence-diagram.png" alt="RAG sequence diagram showing the flow from user question through retrieval to grounded response" style="width: 100%;" />
+</div>
 
 ### Why RAG Changes the Game
 
