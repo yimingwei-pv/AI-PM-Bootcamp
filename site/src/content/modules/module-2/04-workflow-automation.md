@@ -475,11 +475,11 @@ Is this done >10 times/month?
 ## Explore Further
 
 - **Related modules:**
-  - AI-Powered Mindset – understanding when (and when not) to use AI
-  - Prompt Engineering – prompt strategies that improve automation accuracy
-  - Prototyping – rapid testing before full automation
-  - Agents – understanding agentic workflows and multi-step reasoning
-  - Context Engineering – building custom integrations with MCP
+  - [AI-Powered Mindset](/AI-PM-Bootcamp/modules/01-ai-powered-mindset/) – understanding when (and when not) to use AI
+  - [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) – prompt strategies that improve automation accuracy
+  - [Prototyping](/AI-PM-Bootcamp/modules/03-prototyping/) – rapid testing before full automation
+  - [Agents](/AI-PM-Bootcamp/modules/02-agents/) – understanding agentic workflows and multi-step reasoning
+  - [Context Engineering](/AI-PM-Bootcamp/modules/03-context-engineering/) – building custom integrations with MCP
 
 - **Hands-on next steps:**
   - Pick one workflow from the examples above

@@ -396,12 +396,3 @@ The same framework, applied to different products, produces different architectu
 5. **Context rot is real.** More information doesn't always mean better results. Be ruthless about what goes into the context window — every token costs money, adds latency, and can dilute focus.
 
 6. **Use the three-question framework:** What does the AI need? → How current? → Does it fit in the window? This tells you which combination of techniques to use.
-
----
-
-## Explore Further
-
-- [Anthropic: Effective Context Engineering for AI Agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — The definitive guide on context engineering principles from Anthropic's engineering team.
-- [Introducing the Model Context Protocol - Anthropic](https://www.anthropic.com/news/model-context-protocol) — The original MCP announcement with architecture details.
-- [Prompt Engineering Guide](https://www.promptingguide.ai/) — Comprehensive reference for all prompting techniques with research papers.
-- [OpenAI Tokenizer](https://platform.openai.com/tokenizer) — Paste any text to see how it gets tokenised. Essential for estimating context window usage and costs.

@@ -16,6 +16,9 @@ const { title, description = 'AI PM Bootcamp - Learn AI Product Management' } = 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/AI-PM-Bootcamp/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <title>{title} | AI PM Bootcamp</title>
   </head>
   <body class="min-h-screen flex flex-col">
@@ -28,6 +31,17 @@ const { title, description = 'AI PM Bootcamp - Learn AI Product Management' } = 
         <nav class="hidden md:flex items-center gap-6">
           <a href="/AI-PM-Bootcamp/modules/" class="text-white/80 hover:text-propel-cyan transition-colors font-medium">Modules</a>
         </nav>
+        <!-- Mobile hamburger button -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 text-white/80 hover:text-propel-cyan transition-colors" aria-label="Toggle menu">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <!-- Mobile menu dropdown -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4 py-3">
+          <a href="/AI-PM-Bootcamp/modules/" class="block py-2 text-white/80 hover:text-propel-cyan transition-colors font-medium">Modules</a>
+        </div>
       </div>
     </header>
 
@@ -61,6 +75,19 @@ const { title, description = 'AI PM Bootcamp - Learn AI Product Management' } = 
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+        menuBtn?.addEventListener('click', () => {
+          const isOpen = !mobileMenu?.classList.contains('hidden');
+          mobileMenu?.classList.toggle('hidden');
+          iconOpen?.classList.toggle('hidden');
+          iconClose?.classList.toggle('hidden');
+        });
+
+        // Expandable image overlay
         const overlay = document.getElementById('img-overlay');
         const overlayImg = document.getElementById('img-overlay-img') as HTMLImageElement;
 

@@ -252,17 +252,13 @@ If the feature is simpler than expected and doesn't require complex backend inte
 
 Most teams don't use AI prototyping alone. Instead, they fold it into existing workflows:
 
-```mermaid
-graph LR
-    A["Idea / User Feedback"] --> B["Define Success Criteria"]
-    B --> C["AI Rapid Prototype"]
-    C --> D["Test with Users"]
-    D --> E{Decision}
-    E -->|Kill| F["Archive"]
-    E -->|Pivot| C
-    E -->|Greenlight| G["Hand to Engineering"]
-    G --> H["Production Development"]
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/02-prototyping-workflow.png" alt="Prototyping workflow — from idea through AI rapid prototype, user testing, and decision to archive, pivot, or greenlight" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **The loop from idea to validated learning takes 1 week instead of 4.**
 
@@ -345,9 +341,9 @@ AI is powerful, but it's not magic. Knowing its limits prevents wasted effort an
 
 ## Explore Further
 
-- Prompt Engineering – Learn to write better prompts for all your AI prototyping tools
-- AI-Powered Mindset – Understand how to think about AI as a PM
-- Identify Opportunities for AI – Spot where AI prototyping creates the most value in your product workflow
+- [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) – Learn to write better prompts for all your AI prototyping tools
+- [AI-Powered Mindset](/AI-PM-Bootcamp/modules/01-ai-powered-mindset/) – Understand how to think about AI as a PM
+- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/01-identify-opportunities/) – Spot where AI prototyping creates the most value in your product workflow
 
 ### Resources & Links
 

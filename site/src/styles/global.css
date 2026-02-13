@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -76,6 +74,42 @@
     @apply bg-propel-gray;
   }
 
+  .prose code {
+    @apply bg-gray-100 text-propel-navy px-1.5 py-0.5 rounded text-sm font-mono;
+  }
+
+  .prose pre {
+    @apply bg-propel-gray border border-gray-200 rounded-lg p-5 my-6 overflow-x-auto;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 text-sm leading-relaxed;
+  }
+
+  .prose blockquote {
+    @apply my-6 pl-5 pr-4 py-4 border-l-4 border-propel-blue bg-propel-gray rounded-r-lg text-propel-navy;
+  }
+
+  .prose blockquote p {
+    @apply my-2 leading-relaxed;
+  }
+
+  .prose blockquote p:first-child {
+    @apply mt-0;
+  }
+
+  .prose blockquote p:last-child {
+    @apply mb-0;
+  }
+
+  .prose hr {
+    @apply my-10 border-t-2 border-gray-200;
+  }
+
+  .prose .table-wrapper {
+    @apply overflow-x-auto my-6;
+  }
+
   .prose .expandable-img {
     @apply my-6 cursor-pointer relative;
   }
@@ -94,6 +128,14 @@
 
   .prose .expandable-img:hover .expand-hint {
     @apply text-propel-blue;
+  }
+
+  .no-underline {
+    text-decoration: none !important;
+  }
+
+  .no-underline:hover {
+    text-decoration: none !important;
   }
 
   .btn-primary {

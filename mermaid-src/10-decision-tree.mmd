@@ -1,0 +1,20 @@
+graph TD
+    A["Does the model need<br/>your proprietary data?"] -->|No| B["Does prompt engineering<br/>achieve target quality?"]
+    A -->|Yes| C["Does the data<br/>change frequently?"]
+
+    B -->|Yes| D["Prompt Engineering<br/>Ship it"]
+    B -->|No| E["Is the problem<br/>knowledge or behaviour?"]
+
+    C -->|Yes| F["RAG<br/>Build retrieval pipeline"]
+    C -->|No| G["Do you have 500+<br/>training examples?"]
+
+    E -->|Knowledge| F
+    E -->|Behaviour| G
+
+    G -->|Yes| H["Fine-Tune<br/>Train on your data"]
+    G -->|No| I["Collect more data first.<br/>Use prompt engineering<br/>+ RAG as a bridge."]
+
+    style D fill:#e8f5e9
+    style F fill:#e8f5e9
+    style H fill:#fff3e0
+    style I fill:#ffebee

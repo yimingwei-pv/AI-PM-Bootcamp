@@ -784,7 +784,7 @@ Claude will take more time and produce more thoughtful output.
 
 ## Explore Further
 
-- **Context Engineering** — Theory behind few-shot prompting, chain-of-thought, and structured output
+- [Context Engineering](/AI-PM-Bootcamp/modules/03-context-engineering/) — Theory behind few-shot prompting, chain-of-thought, and structured output
 - **Claude's Prompt Engineering Guide** — Advanced techniques from Anthropic
 - **Prompt Engineering 2025: The Latest Best Practices** — Research roundup from industry leaders
 - **ProdPad Guide: Prompt Engineering for Product Managers** — PM-specific examples and frameworks

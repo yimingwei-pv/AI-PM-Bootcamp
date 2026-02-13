@@ -222,10 +222,10 @@ Before you move on to Module 4, sit with these:
 
 ## Explore Further
 
-- Identify Opportunities for AI — Review the AI capability categories to refine your scoring
-- Assessing AI Viability — Run a full viability assessment on your top opportunity
-- Design AI Features — Choose the right model, design for failure, and pick the right AI pattern
-- Shipping with Quality — Define metrics, build evals, and ship responsibly
+- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/01-identify-opportunities/) — Review the AI capability categories to refine your scoring
+- [Assessing AI Viability](/AI-PM-Bootcamp/modules/02-assessing-viability/) — Run a full viability assessment on your top opportunity
+- [Design AI Features](/AI-PM-Bootcamp/modules/01-design-ai-features/) — Choose the right model, design for failure, and pick the right AI pattern
+- [Shipping with Quality](/AI-PM-Bootcamp/modules/02-shipping-with-quality/) — Define metrics, build evals, and ship responsibly
 
 ---
 

@@ -1,0 +1,22 @@
+graph LR
+    A["Use Off-the-Shelf<br/>ChatGPT, Copilot"]
+    B["Integrate via API<br/>OpenAI, Claude, Gemini"]
+    C["Fine-Tune Models<br/>Your data on their model"]
+    D["Custom Models<br/>Train from scratch"]
+
+    A -->|Cost: $| B
+    B -->|Cost: $$| C
+    C -->|Cost: $$$| D
+
+    A -->|Speed: Fast| B
+    B -->|Speed: Moderate| C
+    C -->|Speed: Slow| D
+
+    A -->|Control: Low| B
+    B -->|Control: Medium| C
+    C -->|Control: High| D
+
+    style A fill:#e1f5ff
+    style B fill:#b3e5fc
+    style C fill:#81d4fa
+    style D fill:#4fc3f7

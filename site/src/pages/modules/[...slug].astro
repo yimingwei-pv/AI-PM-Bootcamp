@@ -40,17 +40,31 @@ const sameModuleLessons = allLessons
     title: l.data.title,
     lesson: l.data.lesson,
   }));
+
+// Compute prev/next across all lessons (sorted by module then lesson)
+const allSorted = [...allLessons].sort((a, b) =>
+  a.data.module !== b.data.module
+    ? a.data.module - b.data.module
+    : a.data.lesson - b.data.lesson
+);
+const currentIdx = allSorted.findIndex(l => l.slug === lesson.slug);
+const prevLesson = currentIdx > 0 ? allSorted[currentIdx - 1] : null;
+const nextLesson = currentIdx < allSorted.length - 1 ? allSorted[currentIdx + 1] : null;
+
+function lessonUrl(l: typeof lesson) {
+  return `/AI-PM-Bootcamp/modules/${l.slug.replace(/^module-\d+\//, '')}/`;
+}
 ---
 
 <Layout title={title} description={description}>
   <div class="max-w-6xl mx-auto px-4 md:px-8 py-12">
     <nav class="mb-8">
-      <a href="/AI-PM-Bootcamp/modules/" class="text-blue-600 hover:text-blue-800">&larr; Back to All Modules</a>
+      <a href="/AI-PM-Bootcamp/modules/" class="text-propel-blue hover:text-propel-cyan transition-colors">&larr; Back to All Modules</a>
     </nav>
 
     <header class="mb-8">
       <span class="text-sm font-medium text-gray-500">{moduleLabel} — {groupTitle}</span>
-      <h1 class="text-3xl md:text-4xl font-bold text-[--propel-navy] mt-1 mb-4">{title}</h1>
+      <h1 class="text-3xl md:text-4xl font-bold text-propel-navy mt-1 mb-4">{title}</h1>
       <p class="text-lg text-gray-600">{description}</p>
     </header>
 
@@ -71,7 +85,7 @@ const sameModuleLessons = allLessons
 
         {resources && resources.length > 0 && (
           <section class="mb-10">
-            <h2 class="text-xl font-semibold text-[--propel-navy] mb-4">Resources</h2>
+            <h2 class="text-xl font-semibold text-propel-navy mb-4">Resources</h2>
             <div class="space-y-3">
               {resources.map((resource) => (
                 <ResourceLink title={resource.title} url={resource.url} type={resource.type} />
@@ -82,10 +96,31 @@ const sameModuleLessons = allLessons
 
         {quiz && quiz.length > 0 && (
           <section class="mb-10">
-            <h2 class="text-xl font-semibold text-[--propel-navy] mb-4">Check Your Understanding</h2>
+            <h2 class="text-xl font-semibold text-propel-navy mb-4">Check Your Understanding</h2>
             <Quiz client:load questions={quiz} moduleId={`module-${moduleNumber}-${lesson.slug}`} />
           </section>
         )}
+
+        <!-- Prev / Next navigation -->
+        <nav class="flex items-stretch gap-4 mt-12 pt-8 border-t-2 border-gray-200">
+          {prevLesson ? (
+            <a href={lessonUrl(prevLesson)} class="flex-1 group p-4 rounded-lg border border-gray-200 hover:border-propel-blue hover:bg-propel-gray transition-all no-underline">
+              <span class="text-xs font-medium text-gray-400 group-hover:text-propel-blue transition-colors">&larr; Previous</span>
+              <span class="block mt-1 text-sm font-semibold text-propel-navy group-hover:text-propel-blue transition-colors">{prevLesson.data.title}</span>
+            </a>
+          ) : <div class="flex-1" />}
+          {nextLesson ? (
+            <a href={lessonUrl(nextLesson)} class="flex-1 group p-4 rounded-lg border border-gray-200 hover:border-propel-blue hover:bg-propel-gray transition-all text-right no-underline">
+              <span class="text-xs font-medium text-gray-400 group-hover:text-propel-blue transition-colors">Next &rarr;</span>
+              <span class="block mt-1 text-sm font-semibold text-propel-navy group-hover:text-propel-blue transition-colors">{nextLesson.data.title}</span>
+            </a>
+          ) : (
+            <a href="/AI-PM-Bootcamp/modules/" class="flex-1 group p-4 rounded-lg border border-gray-200 hover:border-propel-blue hover:bg-propel-gray transition-all text-right no-underline">
+              <span class="text-xs font-medium text-gray-400 group-hover:text-propel-blue transition-colors">Complete &check;</span>
+              <span class="block mt-1 text-sm font-semibold text-propel-navy group-hover:text-propel-blue transition-colors">Back to All Modules</span>
+            </a>
+          )}
+        </nav>
       </div>
     </div>
   </div>

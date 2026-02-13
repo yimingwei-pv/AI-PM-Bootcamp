@@ -1,0 +1,9 @@
+graph LR
+    A["Idea / User Feedback"] --> B["Define Success Criteria"]
+    B --> C["AI Rapid Prototype"]
+    C --> D["Test with Users"]
+    D --> E{Decision}
+    E -->|Kill| F["Archive"]
+    E -->|Pivot| C
+    E -->|Greenlight| G["Hand to Engineering"]
+    G --> H["Production Development"]

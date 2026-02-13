@@ -267,11 +267,3 @@ The common thread: **narrow scope, human checkpoints, measurable goals.** No pro
 5. **Agents need different product design.** Users interact differently with systems that take autonomous action. You need transparency (what is the agent doing?), reversibility (can we undo it?), and trust-building (human approval for high-stakes actions).
 
 6. **Context engineering makes or breaks agents.** The quality of what goes into the agent's context window at each step determines success or failure — more on this in the Context Engineering lesson.
-
----
-
-## Explore Further
-
-- [Anthropic: Building Effective Agents](https://www.anthropic.com/research/building-effective-agents) — The most practical guide to agent architecture patterns, from the team behind Claude.
-- [OpenAI: A Practical Guide to Building Agents](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) — Covers tool use, orchestration, and guardrails.
-- [Prompt Engineering Guide: ReAct](https://www.promptingguide.ai/techniques/react) — Deep dive on the ReAct pattern with research references.

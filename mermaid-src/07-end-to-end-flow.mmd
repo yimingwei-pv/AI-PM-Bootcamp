@@ -1,0 +1,25 @@
+graph TD
+    A["Identified AI Opportunity<br/>(from module 8)"] --> B["Score Viability<br/>Impact x Feasibility x Risk"]
+    B --> C{Viability Score?}
+    C -->|< 2.0| D["PASS<br/>Pick different opportunity"]
+    C -->|2.0-3.5| E["Build Prototype<br/>Test biggest risk"]
+    C -->|> 3.5| F["Proceed to Mode Selection"]
+    E --> G{Prototype Successful?}
+    G -->|No| D
+    G -->|Yes| F
+    F --> H["Is AI core differentiator?"]
+    H -->|Yes| I["BUILD<br/>Custom models"]
+    H -->|No| J["Does off-the-shelf work?"]
+    J -->|Yes| K["BUY<br/>API integration"]
+    J -->|No| L["BLEND<br/>Buy platform + build last mile"]
+    I --> M["Define roadmap, hire ML team, allocate budget"]
+    K --> N["Define API strategy, integration plan, cost model"]
+    L --> O["Select vendor, design architecture, staff team"]
+
+    style D fill:#ffcccc
+    style I fill:#ff9999
+    style K fill:#99ccff
+    style L fill:#ffff99
+    style M fill:#ff9999
+    style N fill:#99ccff
+    style O fill:#ffff99

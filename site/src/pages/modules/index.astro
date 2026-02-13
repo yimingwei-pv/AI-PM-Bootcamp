@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import ModuleCard from '../../components/ModuleCard.astro';
 
 const allModules = await getCollection('modules');
 const sortedModules = allModules.sort((a, b) => {

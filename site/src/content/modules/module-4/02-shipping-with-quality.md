@@ -81,15 +81,13 @@ Most quality problems are data problems disguised as model problems.
 
 AI features need metrics at three levels. Most teams only measure the first and wonder why their feature doesn't improve.
 
-```mermaid
-graph TD
-    A["**Layer 1: Model Metrics**<br/>Accuracy, precision, recall, F1, latency<br/><em>Does the model work?</em>"] --> B["**Layer 2: Product Metrics**<br/>Task completion, user edits, fallback rate<br/><em>Does the feature work?</em>"]
-    B --> C["**Layer 3: Business Metrics**<br/>Revenue impact, cost savings, NPS, retention<br/><em>Does the feature matter?</em>"]
-
-    style A fill:#e8f5e9
-    style B fill:#fff3e0
-    style C fill:#ffebee
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/11-metrics-layers.png" alt="Three layers of AI metrics — Layer 1: Model Metrics (does the model work?), Layer 2: Product Metrics (does the feature work?), Layer 3: Business Metrics (does the feature matter?)" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 ### Layer 1: Model Metrics (Does the Model Work?)
 
@@ -265,17 +263,13 @@ Every user affected by an AI decision should have a clear path to challenge it. 
 
 ### Building Fairness Into Your Process
 
-```mermaid
-graph LR
-    A["**Pre-Build**<br/>Audit data for<br/>representation gaps"] --> B["**During Build**<br/>Test across<br/>user segments"]
-    B --> C["**At Launch**<br/>Segment metrics<br/>in dashboard"]
-    C --> D["**Post-Launch**<br/>Monitor for<br/>emergent bias"]
-
-    style A fill:#e8f5e9
-    style B fill:#e8f5e9
-    style C fill:#fff3e0
-    style D fill:#ffebee
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/12-fairness-process.png" alt="Building fairness into your process — Pre-Build (audit data), During Build (test across segments), At Launch (segment metrics), Post-Launch (monitor for emergent bias)" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **Pre-build**: Conduct a data audit. Document known gaps. Decide whether gaps are acceptable or need to be addressed before building.
 
@@ -321,17 +315,13 @@ This document takes an hour to write and saves you from the "we didn't think abo
 
 You've now completed the full journey from understanding AI foundations to shipping quality AI features. Here's how the modules connect:
 
-```mermaid
-graph TD
-    A["**Module 1: Foundations**<br/>Understand the technology<br/>(LLMs, Agents, Context)"] --> B["**Module 2: Productivity**<br/>Use AI in your own work<br/>(Mindset, Prompting, Prototyping)"]
-    B --> C["**Module 3: Opportunities**<br/>Find and validate AI use cases<br/>(Identify, Assess, Exercise)"]
-    C --> D["**Module 4: Ship**<br/>Design and deliver with quality<br/>(Design, Quality)"]
-
-    style A fill:#e8f5e9
-    style B fill:#e8f5e9
-    style C fill:#fff3e0
-    style D fill:#c8e6c9
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/13-module-overview.png" alt="Course module overview — Module 1: Foundations leads to Module 2: Productivity, then Module 3: Opportunities, then Module 4: Ship" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 The best AI PMs combine technical fluency (Module 1) with personal productivity (Module 2), strategic thinking (Module 3), and execution discipline (Module 4). You don't need to be an ML engineer. You do need to ask the right questions, set the right quality bars, and make decisions that balance ambition with responsibility.
 

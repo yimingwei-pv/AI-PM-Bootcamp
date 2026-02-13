@@ -1,0 +1,13 @@
+graph TD
+    A["Define your task<br/>with 50+ real examples"] --> B["Test 3-4 candidate models<br/>on the same examples"]
+    B --> C["Score quality<br/>(accuracy, tone, format)"]
+    C --> D["Measure latency<br/>(p50, p95, p99)"]
+    D --> E["Calculate cost<br/>(per request x daily volume)"]
+    E --> F["Check capability fit<br/>(modality, context, tools)"]
+    F --> G{"Best quality model<br/>within latency and<br/>cost constraints?"}
+    G -->|Yes| H["Ship with that model"]
+    G -->|No| I["Consider model routing:<br/>fast model for simple tasks,<br/>frontier model for hard ones"]
+
+    style A fill:#e8f5e9
+    style H fill:#c8e6c9
+    style I fill:#fff3e0

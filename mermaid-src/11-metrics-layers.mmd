@@ -1,0 +1,7 @@
+graph TD
+    A["**Layer 1: Model Metrics**<br/>Accuracy, precision, recall, F1, latency<br/><em>Does the model work?</em>"] --> B["**Layer 2: Product Metrics**<br/>Task completion, user edits, fallback rate<br/><em>Does the feature work?</em>"]
+    B --> C["**Layer 3: Business Metrics**<br/>Revenue impact, cost savings, NPS, retention<br/><em>Does the feature matter?</em>"]
+
+    style A fill:#e8f5e9
+    style B fill:#fff3e0
+    style C fill:#ffebee

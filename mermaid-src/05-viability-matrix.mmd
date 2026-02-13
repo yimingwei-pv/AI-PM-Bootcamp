@@ -1,0 +1,11 @@
+graph TD
+    A["Score Impact 1-5"] --> B["Score Feasibility 1-5"]
+    B --> C["Score Risk 1-5"]
+    C --> D{{"Viability = <br/> Impact x Feasibility x Risk <br/> (average to 1-5)"}}
+    D --> E["Viability < 2:<br/>STOP<br/><br/>Impact, Feasibility, or Risk<br/>is too low. Pick a<br/>different opportunity."]
+    D --> F["Viability 2-3:<br/>CONDITIONAL GO<br/><br/>Build prototypes.<br/>Address biggest<br/>weakness."]
+    D --> G["Viability > 3.5:<br/>GO<br/><br/>Strong signal.<br/>Define engagement<br/>mode & roadmap."]
+
+    style E fill:#ffcccc
+    style F fill:#fff9e6
+    style G fill:#ccffcc

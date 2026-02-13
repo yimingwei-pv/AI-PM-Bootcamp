@@ -78,9 +78,9 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
   if (showResults) {
     return (
       <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-        <h3 className="text-xl font-semibold text-[#0b1035] mb-4">Quiz Complete!</h3>
+        <h3 className="text-xl font-semibold text-propel-navy mb-4">Quiz Complete!</h3>
         <p className="text-lg mb-4">
-          You got <span className="font-bold text-[#2254FE]">{correctCount}</span> out of{' '}
+          You got <span className="font-bold text-propel-blue">{correctCount}</span> out of{' '}
           <span className="font-bold">{questions.length}</span> correct.
         </p>
         <div className="mb-6">
@@ -97,7 +97,7 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
         </div>
         <button
           onClick={handleReset}
-          className="px-5 py-2.5 bg-[#0b1035] text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium"
+          className="px-5 py-2.5 bg-propel-navy text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium"
         >
           Retake Quiz
         </button>
@@ -122,7 +122,7 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
               key={i}
               className={`w-2.5 h-2.5 rounded-full transition-colors ${
                 i === currentQuestion
-                  ? 'bg-[#2254FE]'
+                  ? 'bg-propel-blue'
                   : submitted[i]
                   ? selectedAnswers[i] === questions[i].answer
                     ? 'bg-green-500'
@@ -134,7 +134,7 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
         </div>
       </div>
 
-      <h3 className="text-lg font-medium text-[#0b1035] mb-4">{question.question}</h3>
+      <h3 className="text-lg font-medium text-propel-navy mb-4">{question.question}</h3>
 
       <div className="space-y-3 mb-6">
         {question.options.map((option, i) => (
@@ -150,8 +150,8 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
                   ? 'bg-red-50 border-red-500'
                   : 'bg-gray-50 border-gray-200'
                 : selectedAnswers[currentQuestion] === i
-                ? 'bg-[#73DEFF]/10 border-[#73DEFF]'
-                : 'bg-gray-50 border-gray-200 hover:bg-[#f4f6fa] hover:border-[#73DEFF]/50'
+                ? 'bg-propel-cyan/10 border-propel-cyan'
+                : 'bg-gray-50 border-gray-200 hover:bg-propel-gray hover:border-propel-cyan/50'
             }`}
           >
             {option}
@@ -176,7 +176,7 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
             disabled={!isAnswered}
             className={`px-5 py-2.5 rounded-lg transition-all duration-200 font-medium ${
               isAnswered
-                ? 'bg-[#f9a500] text-white hover:bg-opacity-90'
+                ? 'bg-propel-orange text-white hover:bg-opacity-90'
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed'
             }`}
           >
@@ -185,7 +185,7 @@ export default function Quiz({ questions, moduleId }: QuizProps) {
         ) : (
           <button
             onClick={handleNext}
-            className="px-5 py-2.5 bg-[#2254FE] text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium"
+            className="px-5 py-2.5 bg-propel-blue text-white rounded-lg hover:bg-opacity-90 transition-colors font-medium"
           >
             {currentQuestion < questions.length - 1 ? 'Next Question' : 'See Results'}
           </button>

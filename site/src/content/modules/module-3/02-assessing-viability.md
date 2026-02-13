@@ -50,30 +50,13 @@ AI isn't binary. You don't simply choose "build" or "not build." There's a spect
 
 ### The AI Engagement Spectrum
 
-```mermaid
-graph LR
-    A["Use Off-the-Shelf<br/>ChatGPT, Copilot"]
-    B["Integrate via API<br/>OpenAI, Claude, Gemini"]
-    C["Fine-Tune Models<br/>Your data on their model"]
-    D["Custom Models<br/>Train from scratch"]
-
-    A -->|Cost: $| B
-    B -->|Cost: $$| C
-    C -->|Cost: $$$| D
-
-    A -->|Speed: Fast| B
-    B -->|Speed: Moderate| C
-    C -->|Speed: Slow| D
-
-    A -->|Control: Low| B
-    B -->|Control: Medium| C
-    C -->|Control: High| D
-
-    style A fill:#e1f5ff
-    style B fill:#b3e5fc
-    style C fill:#81d4fa
-    style D fill:#4fc3f7
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/04-engagement-spectrum.png" alt="AI Engagement Spectrum — from Off-the-Shelf (low cost, fast, low control) through API Integration and Fine-Tuning to Custom Models (high cost, slow, high control)" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 #### Mode 1: Off-the-Shelf AI Products
 Use ChatGPT, Claude, Copilot, or other consumer or enterprise AI products directly.
@@ -336,19 +319,13 @@ Score 1-5:
 
 ### Putting It Together: The Viability Matrix
 
-```mermaid
-graph TD
-    A["Score Impact 1-5"] --> B["Score Feasibility 1-5"]
-    B --> C["Score Risk 1-5"]
-    C --> D{{"Viability = <br/> Impact x Feasibility x Risk <br/> (average to 1-5)"}}
-    D --> E["Viability < 2:<br/>STOP<br/><br/>Impact, Feasibility, or Risk<br/>is too low. Pick a<br/>different opportunity."]
-    D --> F["Viability 2-3:<br/>CONDITIONAL GO<br/><br/>Build prototypes.<br/>Address biggest<br/>weakness."]
-    D --> G["Viability > 3.5:<br/>GO<br/><br/>Strong signal.<br/>Define engagement<br/>mode & roadmap."]
-
-    style E fill:#ffcccc
-    style F fill:#fff9e6
-    style G fill:#ccffcc
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/05-viability-matrix.png" alt="Viability Matrix — score Impact, Feasibility, and Risk on 1-5, then decide: STOP (below 2), CONDITIONAL GO (2-3.5), or GO (above 3.5)" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **Interpretation:**
 
@@ -432,26 +409,13 @@ This gives you:
 
 ### The Build vs. Buy Decision Matrix
 
-```mermaid
-graph TD
-    A["Is AI a core differentiator?"] -->|Yes| B["Can you build in 12 months?"]
-    A -->|No| C["Does off-the-shelf solve it?"]
-    B -->|Yes| D["Do you have $1.5M+?"]
-    B -->|No| E["BUY or BLEND"]
-    D -->|Yes| F["BUILD"]
-    D -->|No| E
-    C -->|Yes| G["Do you need customisation?"]
-    C -->|No| E
-    G -->|Yes| I["Can you fine-tune?"]
-    G -->|No| E
-    I -->|Yes| J["BUY + FINE-TUNE<br/>or BLEND"]
-    I -->|No| H["BUILD or BLEND"]
-
-    style F fill:#ff9999
-    style E fill:#99ccff
-    style H fill:#ffff99
-    style J fill:#ffff99
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/06-build-vs-buy.png" alt="Build vs Buy decision matrix — decision tree from 'Is AI a core differentiator?' to BUILD, BUY, BLEND, or BUY + FINE-TUNE outcomes" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **Decision rules** (based on current enterprise research):
 - **Build if:** AI is a competitive moat AND you have the budget, time, and talent.
@@ -469,33 +433,13 @@ graph TD
 
 Here's the decision flow from opportunity identification to execution:
 
-```mermaid
-graph TD
-    A["Identified AI Opportunity<br/>(from module 8)"] --> B["Score Viability<br/>Impact x Feasibility x Risk"]
-    B --> C{Viability Score?}
-    C -->|< 2.0| D["PASS<br/>Pick different opportunity"]
-    C -->|2.0-3.5| E["Build Prototype<br/>Test biggest risk"]
-    C -->|> 3.5| F["Proceed to Mode Selection"]
-    E --> G{Prototype Successful?}
-    G -->|No| D
-    G -->|Yes| F
-    F --> H["Is AI core differentiator?"]
-    H -->|Yes| I["BUILD<br/>Custom models"]
-    H -->|No| J["Does off-the-shelf work?"]
-    J -->|Yes| K["BUY<br/>API integration"]
-    J -->|No| L["BLEND<br/>Buy platform + build last mile"]
-    I --> M["Define roadmap, hire ML team, allocate budget"]
-    K --> N["Define API strategy, integration plan, cost model"]
-    L --> O["Select vendor, design architecture, staff team"]
-
-    style D fill:#ffcccc
-    style I fill:#ff9999
-    style K fill:#99ccff
-    style L fill:#ffff99
-    style M fill:#ff9999
-    style N fill:#99ccff
-    style O fill:#ffff99
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/07-end-to-end-flow.png" alt="End-to-end decision flow — from identified AI opportunity through viability scoring, prototyping, mode selection (BUILD, BUY, or BLEND) to execution planning" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 ### Example: A Fintech PM's Decision
 
@@ -544,6 +488,6 @@ You're a PM at an online lending platform. You want to use AI to auto-score loan
 
 ## Explore Further
 
-- Identify Opportunities for AI — Where to find AI opportunities in the first place
-- Opportunity Exercise — Assess a real AI opportunity using this framework
-- Design AI Features — Once you've decided to build, how to deliver it safely and get users to adopt it
+- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/01-identify-opportunities/) — Where to find AI opportunities in the first place
+- [Opportunity Exercise](/AI-PM-Bootcamp/modules/03-opportunity-exercise/) — Assess a real AI opportunity using this framework
+- [Design AI Features](/AI-PM-Bootcamp/modules/01-design-ai-features/) — Once you've decided to build, how to deliver it safely and get users to adopt it

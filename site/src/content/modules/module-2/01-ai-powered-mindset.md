@@ -93,28 +93,13 @@ AI cannot replace human judgment in these areas:
 
 How do you know what to delegate? Use this framework:
 
-```mermaid
-quadrantChart
-    title Task Delegation Matrix
-    x-axis Low Judgment --> High Judgment
-    y-axis Low AI Capability --> High AI Capability
-
-    quadrant-1 Keep Human (High Judgment, High AI Capability)
-    quadrant-2 Keep Human (High Judgment, Low AI Capability)
-    quadrant-3 Automate (Low Judgment, Low AI Capability)
-    quadrant-4 AI + Human (Low Judgment, High AI Capability)
-
-    Writing PRDs: 0.6, 0.9
-    Roadmapping: 0.7, 0.7
-    Customer interviews: 0.9, 0.3
-    Feedback analysis: 0.2, 0.85
-    Competitive analysis: 0.4, 0.75
-    Meeting summaries: 0.1, 0.8
-    Strategic planning: 0.95, 0.2
-    Release notes: 0.15, 0.85
-    Success metrics: 0.8, 0.5
-    Problem framing: 0.9, 0.3
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/01-task-delegation.png" alt="Task Delegation Matrix — a quadrant chart showing PM tasks plotted by judgment level and AI capability" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **The zones explained:**
 
@@ -253,7 +238,7 @@ Identify your 3 most time-consuming tasks. Automate one per week. Review, iterat
 
 ## Explore Further
 
-- Prompt Engineering — Learn how to write better prompts to get better outputs
-- Prototyping — Use AI to accelerate prototyping and design iteration
-- Workflow Automation — Build automated workflows that save hours per week
-- LLMs — Refresh on how LLMs work to better understand their limits
+- [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) — Learn how to write better prompts to get better outputs
+- [Prototyping](/AI-PM-Bootcamp/modules/03-prototyping/) — Use AI to accelerate prototyping and design iteration
+- [Workflow Automation](/AI-PM-Bootcamp/modules/04-workflow-automation/) — Build automated workflows that save hours per week
+- [LLMs](/AI-PM-Bootcamp/modules/01-llms/) — Refresh on how LLMs work to better understand their limits

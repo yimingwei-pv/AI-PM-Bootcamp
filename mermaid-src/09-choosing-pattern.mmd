@@ -1,0 +1,18 @@
+graph TD
+    A["How high are the<br/>stakes of a wrong answer?"] -->|Low| B["Is the task<br/>high-volume?"]
+    A -->|High| C["Can a human review<br/>every output?"]
+
+    B -->|Yes| D["**Ambient/Inline**<br/>or **Autonomous**"]
+    B -->|No| E["**Copilot**"]
+
+    C -->|Yes| F["**Human-in-the-Loop**"]
+    C -->|No| G["Is the task<br/>well-defined?"]
+
+    G -->|Yes| H["**Autonomous** with<br/>strong monitoring"]
+    G -->|No| I["**Conversational**<br/>or **Copilot**"]
+
+    style D fill:#e8f5e9
+    style E fill:#e8f5e9
+    style F fill:#fff3e0
+    style H fill:#ffebee
+    style I fill:#e8f5e9

@@ -1,0 +1,18 @@
+graph TD
+    A["Is AI a core differentiator?"] -->|Yes| B["Can you build in 12 months?"]
+    A -->|No| C["Does off-the-shelf solve it?"]
+    B -->|Yes| D["Do you have $1.5M+?"]
+    B -->|No| E["BUY or BLEND"]
+    D -->|Yes| F["BUILD"]
+    D -->|No| E
+    C -->|Yes| G["Do you need customisation?"]
+    C -->|No| E
+    G -->|Yes| I["Can you fine-tune?"]
+    G -->|No| E
+    I -->|Yes| J["BUY + FINE-TUNE<br/>or BLEND"]
+    I -->|No| H["BUILD or BLEND"]
+
+    style F fill:#ff9999
+    style E fill:#99ccff
+    style H fill:#ffff99
+    style J fill:#ffff99

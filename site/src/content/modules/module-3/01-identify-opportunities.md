@@ -365,25 +365,13 @@ Three or more "yes"? This is likely worth deeper investigation.
 
 Different AI techniques have different maturity levels. Choose based on your appetite for risk.
 
-```mermaid
-graph LR
-    A["Proven<br/>(Use liberally)"] -->|Emerging| B["Scaling<br/>(Use carefully)"]
-    B -->|Research| C["Frontier<br/>(Prototype only)"]
-
-    A1["Spam filtering"] -.-> A
-    A2["Translation"] -.-> A
-    A3["Code generation"] -.-> A
-    A4["Classification"] -.-> A
-    A5["Semantic search"] -.-> A
-
-    B1["Real-time decision-making"] -.-> B
-    B2["Complex reasoning"] -.-> B
-    B3["Agentic workflows"] -.-> B
-
-    C1["Reasoning from scratch"] -.-> C
-    C2["Embodied AI"] -.-> C
-    C3["100% accurate predictions"] -.-> C
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/03-ai-maturity-spectrum.png" alt="AI maturity spectrum — Proven capabilities (spam filtering, translation, code generation), Scaling (real-time decisions, complex reasoning, agents), and Frontier (reasoning from scratch, embodied AI)" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **Proven**: These have been shipping at scale for 3+ years. Start here. Risk of failure is low; risk of suboptimal results is higher.
 
@@ -431,8 +419,8 @@ AI is a tool. Use it to solve real problems, not to be fashionable.
 
 ## Explore Further
 
-- LLMs — Deep dive into how large language models work
-- Prompt Engineering — Techniques to get better outputs from AI
-- Assessing AI Viability — Evaluate whether an AI opportunity is worth pursuing
-- Opportunity Exercise — Hands-on exercise to map workflows and identify AI opportunities
-- Design AI Features — Design patterns, model selection, and failure case planning
+- [LLMs](/AI-PM-Bootcamp/modules/01-llms/) — Deep dive into how large language models work
+- [Prompt Engineering](/AI-PM-Bootcamp/modules/02-prompt-engineering/) — Techniques to get better outputs from AI
+- [Assessing AI Viability](/AI-PM-Bootcamp/modules/02-assessing-viability/) — Evaluate whether an AI opportunity is worth pursuing
+- [Opportunity Exercise](/AI-PM-Bootcamp/modules/03-opportunity-exercise/) — Hands-on exercise to map workflows and identify AI opportunities
+- [Design AI Features](/AI-PM-Bootcamp/modules/01-design-ai-features/) — Design patterns, model selection, and failure case planning
