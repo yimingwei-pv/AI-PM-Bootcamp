@@ -216,7 +216,7 @@ For the ticket routing example, the original $30,000 estimate became $45,000 —
 
 ### What This Looks Like at Enterprise Scale
 
-The same framework scales. At Propel Ventures, we applied this approach with EBOS Group — a major healthcare and medtech distributor — running workshops across four business divisions. Each use case was evaluated on business value (our Impact dimension) and implementation complexity (our Feasibility dimension). The result was a prioritised portfolio of five use cases worth an estimated $14–16M annually.
+The same framework scales. We applied this approach with a major healthcare and medtech distributor, running workshops across four business divisions. Each use case was evaluated on business value (our Impact dimension) and implementation complexity (our Feasibility dimension). The result was a prioritised portfolio of five use cases worth an estimated $14–16M annually.
 
 Three disciplines made the difference at this scale, and they're worth adopting even on smaller projects.
 

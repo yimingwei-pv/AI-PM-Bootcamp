@@ -216,7 +216,7 @@ Notice what makes this brief useful: it has specific numbers from an actual test
 
 The exercise above focuses on your team's current workflows. But the most impactful AI opportunities often emerge when you zoom out to the entire product development lifecycle — not just the PM's tasks, but every stage from discovery through release.
 
-When Propel Ventures worked with Colonial First State on their AI-augmented product development framework, we mapped every stage of their product process and identified where AI tools could augment specific activities. The result wasn't one big AI project — it was a layer of AI augmentation across the whole lifecycle, each piece relatively simple on its own.
+When working with a large financial services company on their AI-augmented product development framework, we mapped every stage of their product process and identified where AI tools could augment specific activities. The result wasn't one big AI project — it was a layer of AI augmentation across the whole lifecycle, each piece relatively simple on its own.
 
 Here's what a simplified version of that mapping looks like:
 
