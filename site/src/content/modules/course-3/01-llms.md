@@ -17,6 +17,9 @@ resources:
   - title: "OpenAI Tokenizer"
     url: "https://platform.openai.com/tokenizer"
     type: "docs"
+  - title: "TensorFlow Playground"
+    url: "https://playground.tensorflow.org/"
+    type: "docs"
 quiz:
   - question: "What is the primary mechanism that allows transformers to understand relationships between all tokens in a sequence simultaneously?"
     options:
@@ -38,24 +41,9 @@ quiz:
 
 Before we dive into components, let's orient ourselves. The terms "AI," "machine learning," "deep learning," and "LLM" get thrown around interchangeably, but they describe different layers of the same technology stack. Understanding the hierarchy helps you speak precisely with engineering teams and evaluate vendor claims.
 
-```mermaid
-graph TD
-    A["Artificial Intelligence<br/>Machines performing tasks that<br/>normally require human intelligence"]
-    B["Machine Learning<br/>Systems that learn patterns<br/>from data without explicit programming"]
-    C["Deep Learning<br/>Neural networks with many layers<br/>that learn complex representations"]
-    D["Transformers<br/>Architecture using self-attention<br/>to process sequential data in parallel"]
-    E["Large Language Models<br/>Transformer-based models trained<br/>on massive text data to understand<br/>and generate language"]
+<img src="/AI-PM-Bootcamp/images/course-3/ai-hierarchy.png" alt="AI hierarchy - from AI to Machine Learning to Deep Learning to Transformers to LLMs" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
-    A --> B --> C --> D --> E
-
-    style A fill:#e8f4fd
-    style B fill:#d1ecf9
-    style C fill:#b8e0f5
-    style D fill:#9fd4f1
-    style E fill:#86c8ed
-```
-
-**AI** is the broadest umbrella — any system that performs tasks typically requiring human intelligence (seeing, reasoning, deciding, creating). **Machine learning** is the dominant approach within AI: instead of programming explicit rules, you feed data to algorithms that discover patterns on their own. **Deep learning** is a subset of ML that uses neural networks with many layers to handle complex, unstructured data like images, audio, and text. **Transformers** are a specific deep learning architecture, introduced in 2017, that revolutionized how models process sequential data. And **LLMs** are transformer-based models trained on enormous text datasets — they are the technology powering ChatGPT, Claude, Gemini, and the AI features you're building into products today.
+**AI** is the broadest umbrella — any system that performs tasks typically requiring human intelligence (seeing, reasoning, deciding, creating). **Machine learning** is the dominant approach within AI: instead of programming explicit rules, you feed data to algorithms that discover patterns on their own. **Deep learning** is a subset of ML that uses neural networks with many layers to handle complex, unstructured data like images, audio, and text. **Transformers** are a specific deep learning architecture, introduced in 2017, that revolutionised how models process sequential data. And **LLMs** are transformer-based models trained on enormous text datasets — they are the technology powering ChatGPT (GPT-5), Claude, Gemini, and the AI features you're building into products today.
 
 **Why this hierarchy matters for PMs:** When a vendor says "our product uses AI," that tells you almost nothing. When they say "we fine-tuned a transformer-based LLM on your domain data," you know exactly what you're evaluating. This vocabulary helps you cut through marketing, ask the right questions, and make informed build-vs-buy decisions.
 
@@ -63,7 +51,7 @@ graph TD
 
 ## What Is an LLM? The Thirty-Second Version
 
-An LLM is a machine learning model trained to predict the next word in a sequence, thousands of billions of times, using massive amounts of text data. Through this simple task — repeated at enormous scale — these models develop remarkable abilities to write, reason, code, summarize, translate, and answer questions.
+An LLM is a machine learning model trained to predict the next word in a sequence, thousands of billions of times, using massive amounts of text data. Through this simple task — repeated at enormous scale — these models develop remarkable abilities to write, reason, code, summarise, translate, and answer questions.
 
 That's it. The magic isn't in a secret algorithm. It's in the architecture (transformers), the data (billions of words), and the training approach (self-supervised learning). Let's unpack each piece.
 
@@ -79,10 +67,7 @@ A **neural network** does exactly this, but with extraordinary complexity. It's 
 
 Here's the structure:
 
-```
-Input Layer → Hidden Layers → Output Layer
-(your data)    (processing)    (prediction)
-```
+<img src="/AI-PM-Bootcamp/images/course-3/neural-network-structure.png" alt="Neural Network Structure - Input Layer, Hidden Layers, Output Layer" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
 For an LLM processing text, the input is your prompt, the hidden layers are where semantic understanding happens, and the output is the next predicted word.
 
@@ -100,7 +85,7 @@ Understanding how neural networks learn is essential for PMs because it explains
 
 4. **Weight update:** Each weight gets adjusted slightly in the direction that reduces the error. The size of each adjustment is controlled by the **learning rate** — too large and the model overshoots, too small and training takes forever.
 
-5. **Repeat:** This cycle runs millions of times across the training data. Over many iterations (**epochs**), the network's predictions improve as weights converge toward values that minimize loss.
+5. **Repeat:** This cycle runs millions of times across the training data. Over many iterations (**epochs**), the network's predictions improve as weights converge toward values that minimise loss.
 
 **Why this matters for PMs:** This is why training LLMs costs millions of dollars — it requires running this loop across billions of text examples on thousands of GPUs. It's also why **fine-tuning** is cheaper than training from scratch: you start with weights that already encode general language understanding, then adjust them slightly for your specific domain.
 
@@ -125,21 +110,26 @@ When text enters an LLM, it first gets broken into **tokens** (words or subwords
 
 **Why this matters for PMs:** Embeddings power some of your most valuable features — semantic search, recommendation engines, and similarity matching all depend on embeddings. When Spotify recommends a song similar to one you like, or when your search engine finds relevant documents despite different wording, embeddings are working behind the scenes.
 
-### Tokenization: How LLMs Actually Read Text
+### Tokenisation: How LLMs Actually Read Text
 
 Before text becomes embeddings, it must be split into tokens. This seems trivial but has significant product implications.
 
-Many people assume each word is one token. In practice, **tokens are often subwords** — parts of words, or sometimes individual characters. Tokenizers break text into pieces based on frequency patterns in training data. Common words like "the" become single tokens, while rare words get split. For example, "unhappiness" might become ["un", "happiness"], and the name "Jonathan" might become ["John", "athan"].
+Many people assume each word is one token. In practice, **tokens are often subwords** — parts of words, or sometimes individual characters. Tokenisers break text into pieces based on frequency patterns in training data. Common words like "the" become single tokens, while rare words get split. For example, "unhappiness" might become ["un", "happiness"], and the name "Jonathan" might become ["John", "athan"].
 
-This design exists because models can't have an infinitely large vocabulary. Subword tokenization gives them a manageable vocabulary (typically 30,000–100,000 tokens) while still being able to represent any text.
+This design exists because models can't have an infinitely large vocabulary. Subword tokenisation gives them a manageable vocabulary (typically 30,000–100,000 tokens) while still being able to represent any text.
 
-**Product implications of tokenization:**
+**Product implications of tokenisation:**
 
 - **Cost calculations:** API pricing is per-token, not per-word. A 1,000-word document might be 1,300+ tokens. Languages with complex scripts (Chinese, Japanese, Korean) can use 2-3x more tokens per character than English — directly affecting your international pricing.
 
 - **Context window budgets:** When your model has a 128k token context window, that doesn't translate neatly into "pages of text." Understanding the actual token count matters when you're designing features that process long documents.
 
-- **Known failure modes:** Because LLMs operate on tokens — not characters — they struggle with character-level tasks. Ask an LLM to count the letter "r" in "strawberry," and it may get it wrong, because "strawberry" is tokenized into subword chunks like ["straw", "berry"]. The model literally can't "see" individual characters the way you do. This matters when you're designing features that involve spelling, character manipulation, or precise text analysis.
+- **Known failure modes:** Because LLMs operate on tokens — not characters — they struggle with character-level tasks. Ask an LLM to count the letter "r" in "strawberry," and it may get it wrong, because "strawberry" is tokenised into subword chunks like ["straw", "berry"]. The model literally can't "see" individual characters the way you do. This matters when you're designing features that involve spelling, character manipulation, or precise text analysis.
+
+### Exercise: Understand embeddings
+Play around with OpenAI's tokeniser below. Explore how text is broken into tokens, and notice these tokens do not necessarily match with the entire word.
+
+[OpenAI Tokenizer](https://platform.openai.com/tokenizer) — Paste any text to see how it gets tokenised. Essential for understanding token counts and costs.
 
 ### The Transformer: The Architecture That Changed Everything
 
@@ -155,7 +145,7 @@ Transformers process all tokens in a sequence at once, not sequentially. This is
 
 This is the heartbeat of transformers. Self-attention allows each token to "look at" every other token in the input and understand their relationships.
 
-Here's a concrete example: in the sentence "The bank executive wouldn't authorize the **loan** because the **bank** was flooded," the transformer needs to understand that the second "bank" refers to a river bank, not a financial institution.
+Here's a concrete example: in the sentence "The bank executive wouldn't authorise the **loan** because the **bank** was flooded," the transformer needs to understand that the second "bank" refers to a river bank, not a financial institution.
 
 Self-attention does this by computing three things for each token:
 - **Query (Q):** "What am I looking for?"
@@ -166,19 +156,7 @@ The model compares queries to keys across all tokens, finds strong matches, and 
 
 **Multiple heads, multiple perspectives:** Transformers use "multi-head attention," meaning they run this process multiple times (typically 8–16 times) simultaneously. One attention head might capture grammar relationships, another captures semantic meaning, another captures discourse structure. This diversity makes the model more robust.
 
-```mermaid
-graph LR
-    Input["Input Tokens<br/>(embeddings)"]
-    QueryKey["Compute Queries,<br/>Keys, Values"]
-    Attention["Self-Attention:<br/>Match & Weight"]
-    Combine["Combine Information<br/>from All Tokens"]
-    Output["Output<br/>(enriched embeddings)"]
-
-    Input --> QueryKey
-    QueryKey --> Attention
-    Attention --> Combine
-    Combine --> Output
-```
+<img src="/AI-PM-Bootcamp/images/course-3/transformer-attention.png" alt="Transformer Attention Process - Input Tokens, Queries/Keys/Values, Self-Attention, Output" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
 #### 3. Feed-Forward Layers
 
@@ -200,7 +178,7 @@ Since then, the field has diverged into three architecture families:
 |---|---|---|---|
 | **Encoder-only** | Reads and understands text bidirectionally | BERT, RoBERTa | Classification, search, understanding tasks |
 | **Decoder-only** | Generates text one token at a time, left to right | GPT-4, Claude, Llama | Text generation, conversation, reasoning |
-| **Encoder-decoder** | Reads input fully, then generates output | T5, BART | Translation, summarization |
+| **Encoder-decoder** | Reads input fully, then generates output | T5, BART | Translation, summarisation |
 
 **Why this matters for PMs:** The models you're most likely building with — GPT-4, Claude, Gemini — are **decoder-only** transformers. They generate text autoregressively (one token at a time, each conditioned on all previous tokens). But if your use case is primarily about *understanding* text (classification, semantic search, entity extraction), an encoder-based model like BERT might be cheaper, faster, and more appropriate. Knowing this distinction prevents you from defaulting to the most expensive option.
 
@@ -208,7 +186,7 @@ Since then, the field has diverged into three architecture families:
 
 Let's follow what happens when you prompt Claude with "Why is the sky blue?"
 
-1. **Tokenization:** Text breaks into tokens: ["Why", "is", "the", "sky", "blue", "?"]
+1. **Tokenisation:** Text breaks into tokens: ["Why", "is", "the", "sky", "blue", "?"]
 2. **Embedding:** Each token becomes a vector (e.g., "sky" = [0.2, -0.5, 0.8, ...])
 3. **Positional encoding:** Position information is added (token 0, token 1, etc.) so the model knows word order — critical since transformers process all tokens in parallel
 4. **Transformer layers:**
@@ -219,24 +197,11 @@ Let's follow what happens when you prompt Claude with "Why is the sky blue?"
 5. **Prediction:** Final layer outputs probabilities for next tokens. Model picks "The" as most likely, then "sky", "appears", "blue"...
 6. **Autoregressive generation:** Each generated token becomes part of the context, and the entire process repeats for the next token
 
-```mermaid
-graph TD
-    A["Your Prompt:<br/>Why is the sky blue?"]
-    B["Tokenization:<br/>Break into tokens"]
-    C["Embedding:<br/>Convert to vectors"]
-    D["Positional Encoding:<br/>Add position info"]
-    E["Transformer Block 1<br/>Attention + Feed-Forward"]
-    F["Transformer Block 2<br/>Attention + Feed-Forward"]
-    G["Transformer Block N<br/>Attention + Feed-Forward"]
-    H["Output Layer:<br/>Predict next token"]
-    I["Generate next token<br/>Repeat process"]
-
-    A --> B --> C --> D --> E --> F --> G --> H --> I
-```
+<img src="/AI-PM-Bootcamp/images/course-3/llm-transformer-flowchart.png" alt="LLM Transformer Flowchart - from prompt through tokenisation, embedding, transformer blocks to output" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
 **Why this matters for PMs:** The transformer architecture is why LLMs are so good at language. The attention mechanism lets the model understand context — what words mean in relation to other words. This is why an LLM can write coherent essays, not just string together statistically common word pairs.
 
-> **Go deeper:** For a stunning interactive 3D visualization of this entire process, visit [Brendan Bycroft's LLM Visualization](https://bbycroft.net/llm). You can watch tokens flow through embedding, attention, and feed-forward layers in real time. It's the single best visual explanation of how LLMs work.
+> **Go deeper:** For a stunning interactive 3D visualisation of this entire process, visit [Brendan Bycroft's LLM Visualization](https://bbycroft.net/llm). You can watch tokens flow through embedding, attention, and feed-forward layers in real time. It's the single best visual explanation of how LLMs work.
 
 ---
 
@@ -281,7 +246,7 @@ In unsupervised learning, you provide data without labels. The model discovers h
 
 ### Reinforcement Learning: Learning Through Trial and Error
 
-In reinforcement learning (RL), an agent learns by taking actions in an environment, receiving rewards or penalties, and optimizing to maximize cumulative reward over time.
+In reinforcement learning (RL), an agent learns by taking actions in an environment, receiving rewards or penalties, and optimising to maximise cumulative reward over time.
 
 **Example:** Training a chess-playing AI
 - The agent makes moves (actions)
@@ -293,9 +258,9 @@ In reinforcement learning (RL), an agent learns by taking actions in an environm
 - Powerful for sequential decision-making
 - Can discover surprising strategies humans haven't considered
 - Computationally expensive
-- Used for: game-playing, robotics, resource optimization, autonomous systems
+- Used for: game-playing, robotics, resource optimisation, autonomous systems
 
-**Product examples:** Recommendation ranking (which content maximizes engagement), autonomous driving, game AI, resource allocation algorithms
+**Product examples:** Recommendation ranking (which content maximises engagement), autonomous driving, game AI, resource allocation algorithms
 
 **The LLM connection:** Standard LLMs are pre-trained with self-supervised learning (predicting next tokens from unlabeled text). But they are then fine-tuned with **Reinforcement Learning from Human Feedback (RLHF)** to align outputs with human preferences — this is what makes Claude helpful, harmless, and honest rather than just a raw text predictor. RLHF is why modern LLMs feel conversational rather than like autocomplete on steroids.
 
@@ -333,18 +298,18 @@ Now you understand the pieces. Let's connect this to your job as a PM.
 
 ### Constraint 1: Context Window
 
-Every transformer has a **context window** — a maximum number of tokens it can process at once. GPT-4 has 128k tokens; Claude has 200k. This determines:
+Every transformer has a **context window** — a maximum number of tokens it can process at once. GPT-5 supports up to 1M tokens; Claude has 200k. This determines:
 - How much context the model can "see" when generating responses
 - Whether you can feed an entire book or just 20 pages
 - Cost per API call (longer context = higher cost)
 
-**Product implication:** If your feature involves summarizing documents, customers with long documents need a high-context model (expensive) or a chunking strategy. Always estimate your real-world token requirements before choosing a model.
+**Product implication:** If your feature involves summarising documents, customers with long documents need a high-context model (expensive) or a chunking strategy. Always estimate your real-world token requirements before choosing a model.
 
 ### Constraint 2: Training Data Cutoff
 
-LLMs are trained on data up to a certain date — this is called the model's **knowledge cutoff**. For example, a model released in mid-2025 might have training data through early 2025. They can't learn new information without retraining or being given fresh context.
+LLMs are trained on data up to a certain date — this is called the model's **knowledge cutoff**. For example, a model released in early 2026 might have training data through late 2025. They can't learn new information without retraining or being given fresh context.
 
-**Product implication:** If your users need real-time information (stock prices, weather, news), you need to augment the LLM with retrieval systems or external APIs, not just rely on the model's training data. We'll cover this in detail in the Context Engineering module.
+**Product implication:** If your users need real-time information (stock prices, weather, news), you need to augment the LLM with retrieval systems or external APIs, not just rely on the model's training data. We'll cover this in detail in the Context Engineering lesson.
 
 ### Constraint 3: Accuracy vs. Creativity Tradeoff
 
@@ -358,14 +323,14 @@ LLMs generate tokens probabilistically. You control this with **temperature** (a
 
 Because LLMs operate on tokens (not characters or pixels), they have inherent blind spots:
 - **Character-level reasoning** is unreliable (counting letters, anagram solving) because the model can't "see" individual characters within subword tokens
-- **Precise arithmetic** breaks down for large numbers because numbers get tokenized unpredictably
+- **Precise arithmetic** breaks down for large numbers because numbers get tokenised unpredictably
 - **Spatial reasoning** is limited because transformers process sequential text, not visual layouts
 
 **Product implication:** Don't design features that rely on LLMs for tasks they're architecturally bad at. If your feature needs precise character manipulation or math, handle that in code and use the LLM for what it's good at — language understanding, reasoning, and generation.
 
 ### Opportunity 1: Few-Shot Learning
 
-Because transformers excel at understanding context, you can show an LLM a few examples of what you want (few-shot prompting) and it often generalizes well, without any retraining.
+Because transformers excel at understanding context, you can show an LLM a few examples of what you want (few-shot prompting) and it often generalises well, without any retraining.
 
 **Product implication:** You don't always need to fine-tune or retrain. Smart prompting can achieve 80% of what fine-tuning achieves, much faster and at a fraction of the cost.
 
@@ -380,9 +345,9 @@ The embeddings that power transformers also encode semantic similarity. You can 
 
 ### Opportunity 3: Multimodal Extensibility
 
-Modern LLMs aren't just text. Vision transformers can process images; multimodal models like GPT-4o and Claude can process text, images, and audio together.
+Modern LLMs aren't just text. Vision transformers can process images; today's frontier models routinely process text, images, and audio together.
 
-**Product implication:** You're no longer limited to text-only features. Let users upload screenshots for support, analyze charts and diagrams, or describe images. Multimodal inputs open product possibilities that were impossible even two years ago.
+**Product implication:** You're no longer limited to text-only features. Let users upload screenshots for support, analyse charts and diagrams, or describe images. Multimodal inputs open product possibilities that were impossible even two years ago.
 
 ---
 
@@ -404,8 +369,8 @@ Modern LLMs aren't just text. Vision transformers can process images; multimodal
 
 4. **For product decisions, what matters most:**
    - Context window limits determine what information the model can see
-   - Training cutoff means real-time data needs external integration (see the Context Engineering module)
-   - Tokenization affects pricing, multilingual performance, and feature feasibility
+   - Training cutoff means real-time data needs external integration
+   - Tokenisation affects pricing, multilingual performance, and feature feasibility
    - Architecture choice (encoder vs. decoder) should match your use case
    - Few-shot prompting is often sufficient; expensive fine-tuning isn't always needed
 
@@ -413,7 +378,7 @@ Modern LLMs aren't just text. Vision transformers can process images; multimodal
 
 ## Explore Further
 
-- [TensorFlow Playground](https://playground.tensorflow.org/) — Interactive neural network visualization. Spend 10 minutes experimenting with layers, neurons, and learning rates.
+- [TensorFlow Playground](https://playground.tensorflow.org/) — Interactive neural network visualisation. Spend 10 minutes experimenting with layers, neurons, and learning rates.
 - [Brendan Bycroft's LLM Visualization](https://bbycroft.net/llm) — 3D walkthrough of how an LLM processes text through every component.
 - [Transformer Explainer](https://poloclub.github.io/transformer-explainer/) — Visual explanation of the transformer architecture from Georgia Tech.
-- [OpenAI Tokenizer](https://platform.openai.com/tokenizer) — Paste any text to see how it gets tokenized. Essential for understanding token counts and costs.
+- [OpenAI Tokenizer](https://platform.openai.com/tokenizer) — Paste any text to see how it gets tokenised. Essential for understanding token counts and costs.

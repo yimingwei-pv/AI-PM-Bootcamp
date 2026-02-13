@@ -1,8 +1,8 @@
 ---
-title: "Extension: Context Engineering"
+title: "Context Engineering"
 course: 3
 module: 3
-description: "Learn the three pillars of context engineering -- prompt engineering techniques, Retrieval-Augmented Generation (RAG), and Model Context Protocol (MCP) -- to build AI features that deliver accurate, grounded results."
+description: "Master context engineering — the art and science of filling the context window with the right information. Covers prompt engineering techniques, RAG, and MCP."
 objectives:
   - "Understand different types of prompt engineering"
   - "Understand RAG and its use case"
@@ -11,26 +11,36 @@ resources:
   - title: "Anthropic: Effective Context Engineering for AI Agents"
     url: "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents"
     type: "article"
-  - title: "Introducing the Model Context Protocol - Anthropic"
+  - title: "Introducing the Model Context Protocol"
     url: "https://www.anthropic.com/news/model-context-protocol"
     type: "article"
   - title: "Prompt Engineering Guide"
     url: "https://www.promptingguide.ai/"
     type: "docs"
+  - title: "OpenAI Tokenizer"
+    url: "https://platform.openai.com/tokenizer"
+    type: "docs"
 quiz:
-  - question: "What is the key difference between RAG and MCP?"
+  - question: "What is the key difference between prompt engineering and context engineering?"
     options:
-      - "RAG is faster than MCP"
-      - "RAG retrieves stored knowledge from documents while MCP connects to live systems and tools"
-      - "MCP only works with Anthropic models"
-      - "RAG supports read and write operations while MCP is read-only"
+      - "They are the same thing"
+      - "Prompt engineering focuses on writing better instructions; context engineering architects the entire information environment"
+      - "Context engineering only applies to RAG systems"
+      - "Prompt engineering is more advanced"
     answer: 1
-  - question: "What phenomenon describes the degradation in model recall and accuracy as more tokens are packed into the context window?"
+  - question: "When should you use RAG instead of including information directly in the prompt?"
     options:
-      - "Token overflow"
-      - "Embedding drift"
-      - "Context rot"
-      - "Prompt collapse"
+      - "Always, because RAG is more accurate"
+      - "When the knowledge base is too large to fit in the context window or changes frequently"
+      - "Only for customer-facing applications"
+      - "When you need faster response times"
+    answer: 1
+  - question: "What is MCP best described as?"
+    options:
+      - "A replacement for RAG"
+      - "A type of prompt engineering"
+      - "A standardised protocol for connecting LLMs to live systems and tools"
+      - "A machine learning training technique"
     answer: 2
 ---
 
@@ -40,7 +50,9 @@ The difference between an AI feature that delights users and one they abandon of
 
 Andrej Karpathy, one of the most prominent voices in AI, captured this with a useful reframing: the term "prompt engineering" — writing better instructions — is giving way to **context engineering** — architecting the entire information environment your model operates in. Think of the distinction this way: **prompt engineering** is writing a perfect instruction on a sticky note; **context engineering** is designing the entire workspace — reference materials, tools, examples, and history — so your team member can do exceptional work.
 
-More formally: **context engineering is the art and science of filling the context window with just the right information for the next step.** As we covered in the LLMs module, the context window is the maximum number of tokens a model can process at once — everything inside is visible; everything outside is invisible. And as we discussed in the Agents module, agent failures are frequently context failures — the model is capable, but it's working with incomplete or poorly organized information. Your job as a PM: designing what goes into that context, in what order, at what time.
+<img src="/AI-PM-Bootcamp/images/course-3/context-engineering-tweet.png" alt="Andrej Karpathy on context engineering" style="max-width: 600px; margin: 2rem auto; display: block;" />
+
+More formally: **context engineering is the art and science of filling the context window with just the right information for the next step.** As we covered in the LLMs lesson, the context window is the maximum number of tokens a model can process at once — everything inside is visible; everything outside is invisible. And as we discussed in the Agents lesson, agent failures are frequently context failures — the model is capable, but it's working with incomplete or poorly organised information. Your job as a PM: designing what goes into that context, in what order, at what time.
 
 ---
 
@@ -48,17 +60,11 @@ More formally: **context engineering is the art and science of filling the conte
 
 Context engineering encompasses three complementary approaches. Understanding each helps you choose the right tool for different product challenges.
 
-```mermaid
-graph TD
-    A["Context Engineering"] --> B["Prompt Engineering<br/>Direct instruction<br/>In-context learning"]
-    A --> C["RAG<br/>External knowledge<br/>Document retrieval"]
-    A --> D["MCP<br/>Live connections<br/>Tool integration"]
-
-    style A fill:#e1f5ff
-    style B fill:#f3e5f5
-    style C fill:#e8f5e9
-    style D fill:#fff3e0
-```
+| Pillar | What It Does | Best For |
+|---|---|---|
+| **Prompt Engineering** | Direct instruction and in-context learning | Shaping model behaviour, providing examples |
+| **RAG** | External knowledge and document retrieval | Large knowledge bases, frequently updated info |
+| **MCP** | Live connections and tool integration | Real-time data, actions in external systems |
 
 ---
 
@@ -72,12 +78,12 @@ The simplest approach: ask the model to do something without providing any examp
 
 **Example:**
 ```
-Summarize the key risks in a Series A investment round.
+Summarise the key risks in a Series A investment round.
 ```
 
 The model draws on general knowledge to provide a reasonable answer. Zero-shot works surprisingly well for straightforward, well-defined tasks.
 
-**When to use:** Quick prototyping, well-understood tasks, or when you need to minimize token cost.
+**When to use:** Quick prototyping, well-understood tasks, or when you need to minimise token cost.
 
 ### Few-Shot Prompting
 
@@ -96,7 +102,7 @@ Now classify: "Great service, but expensive." →
 
 Few-shot prompting dramatically improves consistency and accuracy on domain-specific tasks, because the examples teach the model your exact format and standards.
 
-**When to use:** Domain-specific tasks, when you need consistent output format, or when zero-shot quality isn't good enough.
+**When to use:** Domain-specific tasks, when you need consistent output format, or when zero-shot quality isn't good enough. Multiple examples anchor the AI's behavior, reducing "hallucinations" and inconsistent responses compared to **zero-shot** prompting. It is also one of the best ways to ensure the AI follows a specific output structure, such as JSON or a specific bulleted list.
 
 ### Chain-of-Thought (CoT) Prompting
 
@@ -112,11 +118,11 @@ Think through this step-by-step before giving your recommendation.
 
 By forcing the model to reason explicitly, you reduce errors and get transparent logic you can audit — crucial for business decisions.
 
-**When to use:** Complex reasoning, multi-factor decisions, or when you need to understand (and validate) the model's thinking.
+**When to use:** Complex reasoning, multi-factor decisions, or when you need to understand (and validate) the model's thinking. Very valuable for providing transparency into the model's logic, making it easier for PMs to identify where mistakes occurred or refine the answer.
 
 ### System Prompts
 
-Your system prompt is hidden infrastructure that sets the model's behavior before it sees any user input. It's where you establish tone, constraints, domain expertise, and persona.
+Your system prompt is hidden infrastructure that sets the model's behaviour before it sees any user input. It's where you establish tone, constraints, domain expertise, and persona.
 
 **Example:**
 ```
@@ -128,7 +134,7 @@ rather than guessing.
 
 System prompts are powerful for controlling voice and establishing guardrails. One important nuance: research suggests that role prompting (assigning a persona) improves style and communication more than it improves factual accuracy. Don't expect a role to fix reasoning problems — use CoT for that.
 
-**When to use:** Customer-facing features where tone matters, setting behavioral constraints, or ensuring consistent perspective across interactions.
+**When to use:** Customer-facing features where tone matters, setting behavioural constraints, or ensuring consistent perspective across interactions. It can also be used to enforce strict boundaries (e.g. "Do not provide medical diagnoses") or standardise output formats.
 
 ### Structured Output
 
@@ -157,7 +163,7 @@ To make the value of these techniques visceral, here's the same task with a lazy
 ```
 Tell me about our Q3 performance.
 ```
-**Model response:** A generic, vague answer drawing on general knowledge. Probably hallucinated. Useless.
+**Model response:** A generic, vague answer drawing on general knowledge. Potentially hallucinated.
 
 **Well-engineered prompt (combining system prompt + structured output + CoT):**
 ```
@@ -169,7 +175,7 @@ Here is the Q3 financial summary:
 - Churn: 3.2% (up from 2.8%)
 - New logos: 14 (down from 19)
 
-Analyze Q3 performance vs Q2. Structure your response as:
+Analyse Q3 performance vs Q2. Structure your response as:
 1. Revenue change and key drivers
 2. Top 3 risks
 3. Recommended actions
@@ -177,6 +183,8 @@ Analyze Q3 performance vs Q2. Structure your response as:
 Think through each section step-by-step before concluding.
 ```
 **Model response:** A structured analysis grounded in the actual data you provided, with clear reasoning and actionable recommendations. Same model, radically different output — because you engineered the context.
+
+**Exercise:** Play around with these techniques and try improving your last 3 prompts.
 
 ### The Minimum Effective Dose Principle
 
@@ -196,27 +204,10 @@ That's where RAG comes in. **RAG is a system architecture that connects your LLM
 
 ### How RAG Works
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant App as Your Application
-    participant Search as Retrieval Engine
-    participant KB as Knowledge Base
-    participant LLM
-
-    User->>App: "What's our refund policy for enterprise?"
-    App->>Search: Convert question to embedding vector
-    Search->>KB: Find most similar documents
-    KB->>Search: Return top 3 matching passages
-    Search->>App: Package retrieved context
-    App->>LLM: User question + retrieved context
-    LLM->>User: Grounded, accurate response
-```
-
 The flow in plain language:
 
 1. **User asks a question.** "What's our refund policy for enterprise customers?"
-2. **Query becomes a vector.** The system converts the question into an embedding (as we covered in the LLMs module) so it can be compared mathematically against your knowledge base.
+2. **Query becomes a vector.** The system converts the question into an embedding (as we covered in the LLMs lesson) so it can be compared mathematically against your knowledge base.
 3. **Retrieval finds relevant documents.** A search algorithm identifies the passages most semantically similar to the question — your actual refund policy document, not a marketing page that mentions "refund" in passing.
 4. **Context gets augmented.** The retrieved passages are inserted into the LLM's prompt alongside the user's question.
 5. **LLM generates a grounded response.** The model answers using the retrieved information, not just its general training data.
@@ -270,26 +261,16 @@ With N data sources and M AI applications, you needed N×M custom connections. T
 
 ### MCP: The USB-C for AI
 
-Think of MCP like a **USB-C port for AI applications.** Just as USB-C provides a standardized connector that works with any compatible device, MCP provides a standardized protocol that lets any AI application connect with any MCP-compatible service.
+Think of MCP like a **USB-C port for AI applications.** Just as USB-C provides a standardised connector that works with any compatible device, MCP provides a standardised protocol that lets any AI application connect with any MCP-compatible service.
 
 **MCP is an open standard that defines how LLMs interact with external tools, systems, and data sources.**
 
 ### How MCP Works
 
-```mermaid
-graph LR
-    A["MCP Host<br/>(Your AI App)"] -->|"MCP Client"| B["MCP Protocol<br/>(Standard Interface)"]
-    B -->|"MCP Server"| C["External Systems<br/>(Jira, Slack, DB, etc.)"]
-
-    style A fill:#e3f2fd
-    style B fill:#f5f5f5
-    style C fill:#e8f5e9
-```
-
 Three components:
 - **MCP Host:** Your AI application — Claude, a chatbot, an agent. Where the LLM lives.
 - **MCP Client:** The intermediary inside your app that speaks the MCP protocol.
-- **MCP Server:** The external service (database, API, SaaS tool) that exposes its capabilities in a standardized way.
+- **MCP Server:** The external service (database, API, SaaS tool) that exposes its capabilities in a standardised way.
 
 MCP servers expose three types of capabilities:
 - **Resources:** Information retrieval. "Get the latest quarterly earnings report."
@@ -302,21 +283,21 @@ Here's MCP in action — a PM using an AI assistant with MCP connections:
 
 **User asks:** "What's my team's velocity this sprint, and are we on track for the release?"
 
-**Without MCP:** The PM would need to open Jira, pull sprint data, cross-reference the release timeline in Confluence, and synthesize the answer manually.
+**Without MCP:** The PM would need to open Jira, pull sprint data, cross-reference the release timeline in Confluence, and synthesise the answer manually.
 
 **With MCP:** The AI assistant has MCP connections to both Jira and Confluence. Here's what happens:
 
 1. It calls the **Jira MCP server** → pulls current sprint velocity, completed story points (34 of 55), and remaining stories
 2. It calls the **Confluence MCP server** → retrieves the release timeline and milestone dates
-3. It **synthesizes both** into a single answer: "Your team has completed 34 of 55 story points with 4 days remaining. Based on your average velocity of 12 points/day, you're on track. However, two backend stories are blocked — I'd flag those in your standup."
+3. It **synthesises both** into a single answer: "Your team has completed 34 of 55 story points with 4 days remaining. Based on your average velocity of 12 points/day, you're on track. However, two backend stories are blocked — I'd flag those in your standup."
 
-The LLM pulled live data from two different systems and synthesized an actionable answer — no tab-switching, no manual cross-referencing. That's the MCP difference.
+The LLM pulled live data from two different systems and synthesised an actionable answer — no tab-switching, no manual cross-referencing. That's the MCP difference.
 
 ### Why MCP Matters
 
 MCP creates a **network effect**: as more services implement MCP servers, every MCP-compatible AI application gains access to a growing ecosystem of tools. Build your MCP integration once, and it works with Claude, with internal tools, with any future MCP-compatible application.
 
-For PMs, this changes the build-vs-buy calculation. With thousands of pre-built MCP servers already available and the ecosystem growing rapidly, building custom integrations is increasingly hard to justify unless the integration is core to your unique value proposition.
+For PMs, this changes the build-vs-buy calculation. With over 10,000 pre-built MCP servers available, 97 million monthly SDK downloads, and the protocol now stewarded by the Linux Foundation's Agentic AI Foundation, building custom integrations is increasingly hard to justify unless the integration is core to your unique value proposition.
 
 ### When to Use MCP
 
@@ -350,30 +331,10 @@ Context engineering comes down to three questions:
 2. **How current does the information need to be?** Static → prompt engineering or RAG. Live → MCP.
 3. **How much fits in the context window?** If it fits and is consistent across queries, include it directly. If it's too large or varies per query, use RAG or MCP.
 
-### Decision Framework
-
-```mermaid
-graph TD
-    A["What info does<br/>the AI need?"] -->|"General knowledge<br/>+ examples"| B["Prompt Engineering"]
-    A -->|"Specific documents<br/>or knowledge base"| C["RAG"]
-    A -->|"Live systems<br/>or tool access"| D["MCP"]
-    A -->|"All of the above"| E["Hybrid"]
-
-    B --> F["Zero-shot, few-shot,<br/>CoT, system prompt,<br/>structured output"]
-    C --> G["Quality docs,<br/>smart chunking,<br/>semantic search"]
-    D --> H["MCP servers,<br/>tool definitions,<br/>error handling"]
-    E --> I["Orchestrate all three<br/>for each user interaction"]
-
-    style A fill:#e1f5ff
-    style B fill:#f3e5f5
-    style C fill:#e8f5e9
-    style D fill:#fff3e0
-    style E fill:#fce4ec
-```
-
-### Example 1: Customer Support Chatbot
+### Exercise 1: Customer Support Chatbot
 
 **Product goal:** Answer customer questions about policies, resolve common issues, escalate complex problems.
+**Exercise:** You are a product manager creating an AI customer support chatbot. Think through the information the chatbot needs, the sources for those information and the appropriate context engineering technique to provide it.
 
 | Information Needed | Source | Technique |
 |---|---|---|
@@ -383,9 +344,12 @@ graph TD
 | Response format standards | Few examples | Few-shot examples in system prompt |
 | Escalation reasoning | Complex decisions | Chain-of-thought for edge cases |
 
-### Example 2: Internal Research Assistant
+### Exercise 2: Internal Research Assistant
 
-**Product goal:** Help analysts quickly synthesize information from multiple internal sources.
+**Product goal:** Help analysts quickly synthesise information from multiple internal sources.
+**Exercise:** Take a minute to step back and think about what information is needed and where those information are sourced from. Now assume you are creating an internal research assistant. Identify the information the AI needs and the appropriate context engineering technique to provide it.
+
+**Answer:**
 
 | Information Needed | Source | Technique |
 |---|---|---|

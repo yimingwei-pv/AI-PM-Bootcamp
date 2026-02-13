@@ -1,10 +1,10 @@
 ---
-title: "Extension: AI Agents"
+title: "AI Agents"
 course: 3
 module: 2
-description: "Understand what AI agents are, how they differ from basic LLMs, and when to use agentic versus non-agentic architectures in your product."
+description: "Understanding AI agents — what differentiates them from basic LLMs, core agent architectures, and when to use agentic vs non-agentic AI in your products."
 objectives:
-  - "Define what is an AI agent and what differentiates it from basic LLM"
+  - "Define what is an AI agent and what differentiates it from a basic LLM"
   - "Understand basic agent architectures"
   - "Evaluate when to use agentic vs non-agentic AI"
 resources:
@@ -18,19 +18,26 @@ resources:
     url: "https://www.promptingguide.ai/techniques/react"
     type: "docs"
 quiz:
+  - question: "What is the fundamental difference between an LLM and an AI agent?"
+    options:
+      - "Agents use more powerful models"
+      - "Agents add an orchestration layer with tools, a loop, and the ability to observe and adapt"
+      - "Agents are always more accurate"
+      - "Agents don't use LLMs at all"
+    answer: 1
   - question: "If each step in an agentic workflow has a 95% success rate, what is the approximate overall success rate for a 10-step workflow?"
     options:
       - "95%"
       - "85%"
       - "60%"
-      - "36%"
+      - "45%"
     answer: 2
-  - question: "According to the simplicity hierarchy, what is the recommended starting point when designing an AI feature?"
+  - question: "According to the simplicity hierarchy, what should you do when choosing an agent architecture?"
     options:
-      - "Multi-agent orchestration"
-      - "ReAct agent"
-      - "The simplest architecture that could work"
-      - "Structured workflows with function calling"
+      - "Always use multi-agent systems for reliability"
+      - "Start with ReAct agents for maximum flexibility"
+      - "Start with the simplest architecture that could work and add complexity only when measured"
+      - "Use the same architecture for all use cases"
     answer: 2
 ---
 
@@ -46,11 +53,11 @@ As a PM, you'll increasingly be asked to evaluate whether a feature should be a 
 
 ## What Exactly Is an AI Agent?
 
-As we covered in the LLMs module, a large language model takes text in and generates text out. It's a powerful prediction engine, but fundamentally it's **stateless and passive** — it responds, then waits.
+As we covered in the LLMs lesson, a large language model takes text in and generates text out. It's a powerful prediction engine, but fundamentally it's **stateless and passive** — it responds, then waits.
 
 An AI agent wraps that LLM in an orchestration layer that transforms it from a passive responder into an active problem-solver. The simplest way to understand the difference:
 
-**An LLM is an expert consultant who can only talk.** They can analyze a problem brilliantly, but they can't pick up the phone, send an email, update your spreadsheet, or check a database. The conversation ends when they stop speaking.
+**An LLM is an expert consultant who can only talk.** They can analyse a problem brilliantly, but they can't pick up the phone, send an email, update your spreadsheet, or check a database. The conversation ends when they stop speaking.
 
 **An AI agent is an executive assistant who can act.** You give it an objective, and it autonomously figures out a plan, takes actions in the world, observes the results, adapts its approach, and continues until it achieves the goal — or determines it can't.
 
@@ -60,7 +67,7 @@ What makes this possible? Five capabilities that agents add on top of the base L
 
 1. **Tool use and action-taking.** Agents can call APIs, query databases, update files, send messages, and interact with external systems. The LLM decides *which* tools to use and *when*.
 
-2. **Planning and decomposition.** Agents break complex goals into steps. Ask an agent to "prepare a monthly report" and it plans a sequence: gather data → analyze trends → format results → deliver to stakeholders.
+2. **Planning and decomposition.** Agents break complex goals into steps. Ask an agent to "prepare a monthly report" and it plans a sequence: gather data → analyse trends → format results → deliver to stakeholders.
 
 3. **Looping and iteration.** Agents operate in cycles. They take an action, observe the outcome, reason about it, and decide what to do next. This feedback loop is fundamental — it's why agents can recover from mistakes.
 
@@ -84,23 +91,13 @@ The difference isn't intelligence — the underlying LLM is the same. The differ
 
 ### The Basic LLM Call
 
-```
-User Input → LLM → Text Output
-```
+<img src="/AI-PM-Bootcamp/images/course-3/basic-llm-call.png" alt="Basic LLM call - User Input to LLM to Text Output" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
 Simple, synchronous, stateless. One input, one output, no awareness of the outside world.
 
 ### The Agentic Loop
 
-```mermaid
-graph TD
-    A["Goal/Input"] --> B["Reason:<br/>Plan next step"]
-    B --> C["Act:<br/>Use a tool"]
-    C --> D["Observe:<br/>Check the result"]
-    D --> E{"Goal achieved?"}
-    E -->|No| B
-    E -->|Yes| F["Return Result"]
-```
+<img src="/AI-PM-Bootcamp/images/course-3/agentic-loop.png" alt="Agentic Loop - Goal, Reason, Act, Observe, repeat until goal achieved" style="max-width: 400px; margin: 2rem auto; display: block;" />
 
 This loop — reason, act, observe, repeat — is the heartbeat of every agent. The LLM powers the reasoning; the orchestration layer manages the loop and tool execution.
 
@@ -120,26 +117,19 @@ If each step in an agentic workflow has a 95% success rate — which sounds exce
 
 A twenty-step agent workflow with 95%-reliable steps **fails nearly two-thirds of the time.** This math is why most successful agent deployments keep workflows short, build in error recovery, and use human checkpoints for critical decisions.
 
-**Product implication:** When you're scoping an agent feature, count the steps. If you need more than five or six sequential decisions, look for ways to simplify the workflow, parallelize steps, or add human-in-the-loop checkpoints at critical junctures.
+**Product implication:** When you're scoping an agent feature, count the steps. If you need more than five or six sequential decisions, look for ways to simplify the workflow, parallelise steps, or add human-in-the-loop checkpoints at critical junctures.
 
 ---
 
 ## Agent Architectures: The Patterns You'll Encounter
 
-As a PM, you don't need to implement these patterns, but you need to recognize them — they have fundamentally different cost, speed, and reliability characteristics.
+As a PM, you don't need to implement these patterns, but you need to recognise them — they have fundamentally different cost, speed, and reliability characteristics.
 
 ### 1. Augmented LLM (Simplest)
 
 **How it works:** You give an LLM access to a few tools and let it decide — in a single pass — whether to call one. There's no loop. The LLM sees the user's question, optionally makes one tool call, and generates a final response.
 
-```mermaid
-graph LR
-    A["User Query"] --> B["LLM + Tools"]
-    B --> C{"Need a tool?"}
-    C -->|Yes| D["Call Tool"]
-    C -->|No| E["Generate Response"]
-    D --> E
-```
+<img src="/AI-PM-Bootcamp/images/course-3/augmented-llm.png" alt="Augmented LLM architecture" style="max-width: 500px; margin: 2rem auto; display: block;" />
 
 **Example:** A customer asks, "What's my account balance?" The LLM calls `get_account_info`, gets the data back, and writes a natural language response. One question, one tool call, one answer.
 
@@ -150,13 +140,6 @@ graph LR
 ### 2. Structured Workflows (Function Calling + Chaining)
 
 **How it works:** You pre-define a set of functions and can chain them in a fixed or semi-fixed sequence. The LLM outputs structured JSON to invoke tools, and the system can orchestrate multiple calls in a predefined order. Unlike the augmented LLM, this pattern supports **multi-step sequences** — but the steps are predictable, not open-ended.
-
-```json
-{
-  "function": "get_user",
-  "parameters": { "user_id": "123" }
-}
-```
 
 **Example:** A customer says "I want to return my order." The system: (1) calls `get_order_details`, (2) checks `return_eligibility`, (3) if eligible, calls `initiate_return`. Three steps, but the path is known in advance.
 
@@ -181,27 +164,16 @@ The loop repeats until the agent decides it has enough information.
 
 ### 4. Multi-Agent Orchestration
 
-**How it works:** Instead of one agent doing everything, multiple specialized agents coordinate under a central orchestrator — like assigning tasks to different team members.
+**How it works:** Instead of one agent doing everything, multiple specialised agents coordinate under a central orchestrator — like assigning tasks to different team members.
 
-```mermaid
-graph TB
-    A["User Request"] --> B["Orchestrator"]
-    B --> C["Sales Agent"]
-    B --> D["Inventory Agent"]
-    B --> E["Shipping Agent"]
-    C --> F["Results"]
-    D --> F
-    E --> F
-    F --> B
-    B --> G["Synthesized Response"]
-```
+<img src="/AI-PM-Bootcamp/images/course-3/multi-agent-orchestration.png" alt="Multi-agent orchestration pattern" style="max-width: 500px; margin: 2rem auto; display: block;" />
 
 **Example:** Customer asks, "Can you deliver 50 units of product X by Friday at the best price?"
 1. **Orchestrator** decomposes the request
 2. **Sales Agent** queries pricing for that quantity
 3. **Inventory Agent** checks stock availability
 4. **Shipping Agent** checks delivery feasibility and cost
-5. **Orchestrator** synthesizes all answers into a single response
+5. **Orchestrator** synthesises all answers into a single response
 
 **Pros:** Scalable (add new agents without rewriting), resilient (one agent failing doesn't stop all), agents can run in parallel (faster).
 **Cons:** Harder to debug, higher infrastructure complexity, agents can produce conflicting results.
@@ -213,15 +185,7 @@ You've now seen four patterns ranging from dead simple to highly complex. So whi
 
 > **Start with the simplest architecture that could work. Add complexity only when you measure that it's necessary.**
 
-```mermaid
-graph LR
-    A["Augmented LLM"] --> B["Structured Workflows"] --> C["ReAct Agent"] --> D["Multi-Agent"]
-
-    style A fill:#c8e6c9
-    style B fill:#fff9c4
-    style C fill:#ffe0b2
-    style D fill:#ffcdd2
-```
+<img src="/AI-PM-Bootcamp/images/course-3/simplicity-hierarchy.png" alt="Simplicity hierarchy - start simple, add complexity only when needed" style="max-width: 500px; margin: 2rem auto; display: block;" />
 
 Most problems that sound like they need a ReAct agent can be solved with structured workflows. Most problems that sound like they need multi-agent systems can be solved with a single well-designed agent. **Complexity is a cost, not a feature.**
 
@@ -236,7 +200,7 @@ This is the critical decision. Not every problem needs an agent, and reaching fo
 Work through these in order:
 
 **Question 1: Does the task require multiple steps or decisions?**
-- If NO → An augmented LLM or simple function call suffices. ("Summarize this document" doesn't need an agent.)
+- If NO → An augmented LLM or simple function call suffices. ("Summarise this document" doesn't need an agent.)
 - If YES → Continue to Question 2.
 
 **Question 2: Can you hard-code the sequence?**
@@ -244,7 +208,7 @@ Work through these in order:
 - If NO → The path is variable. Continue to Question 3.
 
 **Question 3: Does the task require action in external systems?**
-- If NO → An LLM with good prompting may be enough. ("Analyze this data and write insights" is generation, not action.)
+- If NO → An LLM with good prompting may be enough. ("Analyse this data and write insights" is generation, not action.)
 - If YES → You likely need an agent. Continue to Question 4.
 
 **Question 4: What's the cost of an error?**
@@ -260,7 +224,7 @@ Here's the four-question framework applied to common scenarios — use this as a
 | Customer support Q&A | No | No | No | Augmented LLM |
 | Lead scoring in CRM | Yes | No | Yes | Structured workflow |
 | Report generation with data | Yes | No | No | LLM + structured prompting |
-| Dynamic pricing optimizer | Yes | Yes | Yes | ReAct agent or function calling |
+| Dynamic pricing optimiser | Yes | Yes | Yes | ReAct agent or function calling |
 | E-commerce order fulfillment | Yes | Yes | Yes | Multi-agent (one per domain) |
 | Research assistant | Yes | Yes | No | ReAct with tool access |
 
@@ -272,13 +236,13 @@ Here's the four-question framework applied to common scenarios — use this as a
 
 ---
 
-## Real-World Agent Patterns (2024–2025)
+## Real-World Agent Patterns (2024–2026)
 
 Understanding how agents are actually being deployed — not in demos, but in production — helps calibrate your expectations.
 
 **Customer service (Zendesk, Intercom):** Agents auto-resolve tickets by checking knowledge bases, looking up account info, and applying standard policies. Architecture is typically augmented LLM + function calling. Early adopters report significant reductions in tickets requiring human handling — often 40% or more, depending on implementation quality and use case specificity. These are the most mature agent deployments today.
 
-**Sales workflows (Salesforce AgentForce):** Agents analyze deal pipelines, draft follow-up emails, update forecasts, and suggest next-best-actions. Typically ReAct or multi-agent. Sales teams report meaningful time savings on administrative work.
+**Sales workflows (Salesforce AgentForce):** Agents analyse deal pipelines, draft follow-up emails, update forecasts, and suggest next-best-actions. Typically ReAct or multi-agent. Sales teams report meaningful time savings on administrative work.
 
 **Code generation (GitHub Copilot, Cursor, Claude Code):** Coding agents that can read codebases, write code, run tests, and iterate on failures. This is the canonical example of the agentic loop working in production — the ability to run code and observe results creates a natural feedback loop.
 
@@ -302,7 +266,7 @@ The common thread: **narrow scope, human checkpoints, measurable goals.** No pro
 
 5. **Agents need different product design.** Users interact differently with systems that take autonomous action. You need transparency (what is the agent doing?), reversibility (can we undo it?), and trust-building (human approval for high-stakes actions).
 
-6. **Context engineering makes or breaks agents.** The quality of what goes into the agent's context window at each step determines success or failure — more on this in the Context Engineering module.
+6. **Context engineering makes or breaks agents.** The quality of what goes into the agent's context window at each step determines success or failure — more on this in the Context Engineering lesson.
 
 ---
 
