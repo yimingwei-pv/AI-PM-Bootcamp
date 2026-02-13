@@ -76,12 +76,24 @@
     @apply bg-propel-gray;
   }
 
-  .prose .wide-img {
-    @apply my-8;
-    width: 100vw;
-    max-width: 1100px;
-    margin-left: 50%;
-    transform: translateX(-50%);
+  .prose .expandable-img {
+    @apply my-6 cursor-pointer relative;
+  }
+
+  .prose .expandable-img img {
+    @apply w-full rounded-lg border border-gray-200;
+  }
+
+  .prose .expandable-img .expand-hint {
+    @apply flex items-center justify-center gap-1.5 mt-2 text-xs text-gray-400;
+  }
+
+  .prose .expandable-img:hover img {
+    @apply border-propel-blue;
+  }
+
+  .prose .expandable-img:hover .expand-hint {
+    @apply text-propel-blue;
   }
 
   .btn-primary {

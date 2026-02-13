@@ -53,5 +53,41 @@ const { title, description = 'AI PM Bootcamp - Learn AI Product Management' } = 
         </div>
       </div>
     </footer>
+    <!-- Expandable image overlay -->
+    <div id="img-overlay" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.85); cursor:zoom-out; padding:2rem; align-items:center; justify-content:center;">
+      <button id="img-overlay-close" style="position:absolute; top:1rem; right:1.5rem; background:none; border:none; color:white; font-size:2rem; cursor:pointer; line-height:1; padding:0.5rem;" aria-label="Close">✕</button>
+      <img id="img-overlay-img" src="" alt="" style="max-width:95vw; max-height:90vh; object-fit:contain; border-radius:8px;" />
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const overlay = document.getElementById('img-overlay');
+        const overlayImg = document.getElementById('img-overlay-img') as HTMLImageElement;
+
+        document.querySelectorAll('.expandable-img').forEach((el) => {
+          el.addEventListener('click', () => {
+            const img = el.querySelector('img');
+            if (img && overlay && overlayImg) {
+              overlayImg.src = img.src;
+              overlayImg.alt = img.alt;
+              overlay.style.display = 'flex';
+              document.body.style.overflow = 'hidden';
+            }
+          });
+        });
+
+        overlay?.addEventListener('click', () => {
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && overlay?.style.display === 'flex') {
+            overlay.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        });
+      });
+    </script>
   </body>
 </html>

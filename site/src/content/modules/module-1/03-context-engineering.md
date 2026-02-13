@@ -60,7 +60,10 @@ More formally: **context engineering is the art and science of filling the conte
 
 Context engineering encompasses three complementary approaches. Understanding each helps you choose the right tool for different product challenges.
 
-<img src="/AI-PM-Bootcamp/images/modules/context-engineering-strategies.png" alt="Context Engineering Strategies: Prompt Engineering, RAG, and MCP" style="max-width: 600px; margin: 2rem auto; display: block;" />
+<div class="expandable-img">
+<img src="/AI-PM-Bootcamp/images/modules/context-engineering-strategies.png" alt="Context Engineering Strategies: Prompt Engineering, RAG, and MCP" />
+<div class="expand-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>Click to expand</div>
+</div>
 
 | Pillar | What It Does | Best For |
 |---|---|---|
@@ -214,8 +217,9 @@ The flow in plain language:
 4. **Context gets augmented.** The retrieved passages are inserted into the LLM's prompt alongside the user's question.
 5. **LLM generates a grounded response.** The model answers using the retrieved information, not just its general training data.
 
-<div class="wide-img">
-<img src="/AI-PM-Bootcamp/images/modules/rag-sequence-diagram.png" alt="RAG sequence diagram showing the flow from user question through retrieval to grounded response" style="width: 100%;" />
+<div class="expandable-img">
+<img src="/AI-PM-Bootcamp/images/modules/rag-sequence-diagram.png" alt="RAG sequence diagram showing the flow from user question through retrieval to grounded response" />
+<div class="expand-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>Click to expand</div>
 </div>
 
 ### Why RAG Changes the Game
@@ -278,7 +282,10 @@ Three components:
 - **MCP Client:** The intermediary inside your app that speaks the MCP protocol.
 - **MCP Server:** The external service (database, API, SaaS tool) that exposes its capabilities in a standardised way.
 
-<img src="/AI-PM-Bootcamp/images/modules/mcp-architecture.png" alt="MCP architecture: MCP Host to MCP Client to MCP Protocol to MCP Server to External Systems" style="max-width: 700px; margin: 2rem auto; display: block;" />
+<div class="expandable-img">
+<img src="/AI-PM-Bootcamp/images/modules/mcp-architecture.png" alt="MCP architecture: MCP Host to MCP Client to MCP Protocol to MCP Server to External Systems" />
+<div class="expand-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>Click to expand</div>
+</div>
 
 MCP servers expose three types of capabilities:
 - **Resources:** Information retrieval. "Get the latest quarterly earnings report."
@@ -333,7 +340,10 @@ In practice, you'll often use both: RAG for your knowledge base, MCP for your li
 
 ## Putting It Together: A PM's Decision Framework
 
-<img src="/AI-PM-Bootcamp/images/modules/context-decision-framework.png" alt="Decision framework: What info does the AI need? Branching to Prompt Engineering, RAG, MCP, and Hybrid approaches" style="max-width: 700px; margin: 2rem auto; display: block;" />
+<div class="expandable-img">
+<img src="/AI-PM-Bootcamp/images/modules/context-decision-framework.png" alt="Decision framework: What info does the AI need? Branching to Prompt Engineering, RAG, MCP, and Hybrid approaches" />
+<div class="expand-hint"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>Click to expand</div>
+</div>
 
 Context engineering comes down to three questions:
 
