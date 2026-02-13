@@ -60,6 +60,8 @@ More formally: **context engineering is the art and science of filling the conte
 
 Context engineering encompasses three complementary approaches. Understanding each helps you choose the right tool for different product challenges.
 
+<img src="/AI-PM-Bootcamp/images/modules/context-engineering-strategies.png" alt="Context Engineering Strategies: Prompt Engineering, RAG, and MCP" style="max-width: 600px; margin: 2rem auto; display: block;" />
+
 | Pillar | What It Does | Best For |
 |---|---|---|
 | **Prompt Engineering** | Direct instruction and in-context learning | Shaping model behaviour, providing examples |
@@ -212,6 +214,8 @@ The flow in plain language:
 4. **Context gets augmented.** The retrieved passages are inserted into the LLM's prompt alongside the user's question.
 5. **LLM generates a grounded response.** The model answers using the retrieved information, not just its general training data.
 
+<img src="/AI-PM-Bootcamp/images/modules/rag-sequence-diagram.png" alt="RAG sequence diagram showing the flow from user question through retrieval to grounded response" style="max-width: 700px; margin: 2rem auto; display: block;" />
+
 ### Why RAG Changes the Game
 
 RAG solves four critical problems:
@@ -272,6 +276,8 @@ Three components:
 - **MCP Client:** The intermediary inside your app that speaks the MCP protocol.
 - **MCP Server:** The external service (database, API, SaaS tool) that exposes its capabilities in a standardised way.
 
+<img src="/AI-PM-Bootcamp/images/modules/mcp-architecture.png" alt="MCP architecture: MCP Host to MCP Client to MCP Protocol to MCP Server to External Systems" style="max-width: 700px; margin: 2rem auto; display: block;" />
+
 MCP servers expose three types of capabilities:
 - **Resources:** Information retrieval. "Get the latest quarterly earnings report."
 - **Tools:** Actions. "Send a Slack message," "create a Jira ticket," "update a database record."
@@ -324,6 +330,8 @@ In practice, you'll often use both: RAG for your knowledge base, MCP for your li
 ---
 
 ## Putting It Together: A PM's Decision Framework
+
+<img src="/AI-PM-Bootcamp/images/modules/context-decision-framework.png" alt="Decision framework: What info does the AI need? Branching to Prompt Engineering, RAG, MCP, and Hybrid approaches" style="max-width: 700px; margin: 2rem auto; display: block;" />
 
 Context engineering comes down to three questions:
 
