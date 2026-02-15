@@ -40,7 +40,24 @@ For this lab, you're going to build something real. Not a theoretical framework 
 
 You'll work in [Google AI Studio](https://aistudio.google.com) — it's free, runs in your browser, and you just need a Google account. If you prefer, the [Anthropic Console Workbench](https://console.anthropic.com) works too (free tier, plus it has built-in eval tools you'll find useful in Round 3).
 
-Open Google AI Studio now. You'll see a chat interface with a **System Instruction** box on the left — that's where your prompt will live. On the right, you can pick your model. Start with **Gemini 2.0 Flash** — it's fast, capable, and free for testing. You can always switch models later to see how results change.
+Open Google AI Studio now. Here's what you'll see:
+
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/google-ai-studio-overview.png" alt="Google AI Studio interface — Playground for testing prompts, model selector top-right, system instructions panel, prompt input at the bottom, and tools bar" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
+
+A quick orientation:
+
+- **Playground** (left sidebar) — this is where you'll spend your time. It's a sandbox for testing prompts and comparing model outputs.
+- **Model selector** (top right) — pick which model to test with. Start with **Gemini 3 Flash** — it's fast, capable, and free for testing. You can always switch models later to see how results change.
+- **System Instructions** (right panel) — this is where your prompt lives. Think of it as the persistent instructions the model follows for every message in the conversation.
+- **Prompt input** (bottom) — type or paste your test inputs here and hit send.
+- **Tools** (bottom bar) — this is where you can attach data sources or enable tool calling (the equivalent of RAG and function calling from Lesson 1.3). You won't need this for the basic exercise, but it's good to know it's there.
+- **Temperature and other settings** (right sidebar) — leave these at their defaults for now. Feel free to experiment later, but changing them mid-test makes it harder to compare results.
 
 While that loads, grab two things:
 

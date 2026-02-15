@@ -200,21 +200,13 @@ The AI works in the background, surfacing suggestions in the flow of work withou
 
 Start with the stakes:
 
-```
-              What are the stakes of failure?
-                         │
-            ┌────────────┴────────────┐
-            ▼                         ▼
-        Low stakes               High stakes
-            │                         │
-      ┌─────┴─────┐            ┌──────┴──────┐
-      ▼           ▼            ▼             ▼
-  High volume  Lower vol   Can a human    Volume too
-      │           │        review each?   high to review
-      ▼           ▼            ▼             ▼
-  Ambient/     Copilot    Human-in-     Autonomous
-   Inline                 the-Loop     + monitoring
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/interaction-pattern-decision-framework.png" alt="Decision framework for choosing AI interaction patterns — Low stakes with high volume leads to Ambient/Inline, low stakes with lower volume leads to Copilot, high stakes where a human can review each leads to Human-in-the-Loop, high stakes with volume too high to review leads to Autonomous plus monitoring" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 **Why this matters for PMs:** Default to Copilot or Human-in-the-Loop for your first launch. Earn the right to go autonomous through evidence — not conviction.
 
@@ -263,12 +255,13 @@ A customer support Q&A bot might use:
 
 The layering follows a clear progression:
 
-```
-  Prompt Engineering  ───→  + RAG  ───→  + Fine-Tuning
-       Start here.          Add when the       Add only when
-       Always.              model needs        the first two
-                            your data.         plateau.
-```
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/knowledge-layering-progression.png" alt="Knowledge layering progression — start with Prompt Engineering, add RAG when the model needs your data, add Fine-Tuning only when the first two plateau" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
 This ordering minimises cost, complexity, and time-to-ship at every step.
 
