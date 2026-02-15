@@ -2,9 +2,9 @@
 title: "Design AI Features"
 module: 4
 lesson: 1
-description: "Make the four critical design decisions that separate successful AI features from cautionary tales: model selection, failure design, interaction patterns, and knowledge architecture."
+description: "Make the four design decisions that separate AI features users trust from AI features that get quietly rolled back."
 objectives:
-  - "Evaluate and select AI models based on task quality, latency, cost, context window, and capabilities"
+  - "Evaluate and select AI models based on your task's actual performance, not leaderboard scores"
   - "Design failure-resilient AI features with fallback paths, confidence scoring, and drift detection"
   - "Choose the right AI interaction pattern (Copilot, Autonomous, Human-in-the-Loop, Chat, Ambient)"
   - "Decide between prompt engineering, RAG, and fine-tuning for giving models domain knowledge"
@@ -35,301 +35,259 @@ quiz:
     answer: 2
 ---
 
-Consider a scenario that plays out regularly across the industry: a well-funded fintech startup launches an AI feature that auto-categorises expenses for small business owners. The model is accurate, the UX is slick, and the launch blog post goes viral. Within six weeks, they quietly roll it back. The problem isn't the AI — it's the design decisions around it. No fallback when the model is uncertain. No way for users to correct miscategorisations. No monitoring to catch the drift that creeps in as tax season brings unusual expense patterns the model has never seen.
+## From Opportunity to Design
 
-You've found an opportunity. You've validated it's viable. Now comes the part where most AI features quietly die: the design decisions between "great idea" and "shipped product."
+In Module 3, you identified viable AI opportunities, scored them for viability (Lesson 3.2), and wrote opportunity briefs (Lesson 3.3). If you followed the exercise, you have a shortlist of candidates with specific problem statements and success criteria.
 
-This module covers the four design decisions that separate successful AI features from cautionary tales: choosing the right model, designing for inevitable failures, picking the right interaction pattern, and deciding how to give the model the knowledge it needs.
+Now you need to design the feature. The gap between "the AI works in a demo" and "the AI works in production" is filled by product decisions.
+
+This lesson covers the four decisions that matter most: choosing a model, designing for failure, picking the interaction pattern, and deciding how the model gets its knowledge. Each one directly determines whether users trust your feature — or whether it gets quietly rolled back six weeks after launch.
 
 ---
 
-## Part 1: Evaluating Different Models
+## Part 1: Choosing a Model
 
-### The Landscape (Without the Hype)
+New models drop monthly. Benchmarks shift. Pricing changes overnight. If you evaluate models by reading leaderboards, you'll make the wrong choice — because leaderboards measure academic tests, and your product isn't an academic test.
 
-The model market moves fast. New releases land monthly, benchmarks shift, and pricing changes overnight. Rather than give you a comparison table that will be outdated by next quarter, this section teaches you *how to evaluate* — a skill that stays relevant regardless of which models exist.
+The model market as of early 2026 includes OpenAI's GPT series, Anthropic's Claude series, Google's Gemini series, Meta's Llama (open-source), and Mistral (open-source). But the specific names matter less than knowing what to evaluate.
 
-As of this writing, the major model families include OpenAI's GPT series, Anthropic's Claude series, Google's Gemini series, Meta's Llama (open-source), and Mistral (open-source). But the specific models matter less than knowing what questions to ask.
+### Five Evaluation Dimensions (In Priority Order)
 
-### The Five Dimensions That Matter
+**1. Quality on YOUR task.** Not MMLU. Not HumanEval. Not whatever benchmark the provider is promoting this month. Assemble 50+ real inputs from your product, run them through 3–4 candidates, and score outputs on accuracy, tone, and format. This takes a day or two and saves months of building on the wrong foundation.
 
-When evaluating models for a product feature, assess these dimensions in order of importance for your use case:
+**Why this matters for PMs:** This is the single most important step. A model that ranks #3 on a leaderboard might outperform #1 on your specific use case. The only way to know is to test with your data.
 
-**1. Quality on YOUR task** — Not benchmark quality. YOUR task quality. MMLU, HumanEval, and other benchmarks tell you how a model performs on standardised academic tests. They correlate loosely with real-world performance, but a model that scores 2% higher on MMLU may perform worse on your specific customer support classification task. Always run your own evaluation with real examples from your product.
+**2. Latency.** For inline suggestions (smart compose), anything above 200ms feels sluggish. For background summarisation, 10 seconds is fine. Know your latency budget before you evaluate. This is particularly important for voice features and live AI editing features.
 
-**2. Latency** — How fast does the response arrive? This varies dramatically. A frontier model might take 3-8 seconds for a complex response; a smaller model might return in under 500ms. For inline suggestions (like smart compose), anything above 200ms feels sluggish. For a background summarisation job, 10 seconds is fine.
+**3. Cost per token.** The gap between frontier and small models can be 10–50× per token. Unlike traditional SaaS, AI features have marginal costs that scale with usage — every API call costs money. A feature that handles 1,000 requests a day might be affordable; the same feature at 100,000 requests needs a fundamentally different cost structure. This is the inference treadmill: your costs grow with your success. Model your costs at expected volume, at 5× volume, and at 10× volume. If the 10× number makes your manager uncomfortable, plan for model routing from day one. Build cost projections into your business case early, and revisit them at every usage milestone.
 
-**3. Cost per token** — Model pricing follows a pattern: larger, more capable models cost more per input and output token. The gap can be 10-50x between a frontier model and a small one. For a feature that processes thousands of requests daily, this difference is the difference between a viable product and a cost centre.
+**4. Context window.** How much text can you send at once? This ranges from 4K tokens in older models to 1M tokens in frontier models like Claude and Gemini. If your feature processes 50-page contracts, a small window is a dealbreaker — or forces chunking strategies that add complexity and degrade quality. (Remember from Lesson 1.1: context window limits directly determine what information the model can see.)
 
-**4. Context window** — How much text can you send the model at once? Ranges from 4K tokens (some older models) to 200K+ tokens (Claude, Gemini). If your feature needs to process a 50-page document, a small context window is a dealbreaker — or forces you into chunking strategies that add complexity.
-
-**5. Capabilities** — Does it handle images? Audio? Function calling? Structured JSON output? Not all models support all modalities. If your feature requires analysing screenshots, you need a multimodal model.
-
-### The Evaluation Framework
+**5. Capabilities.** Does it handle images? Audio? Function calling? Structured JSON output? Check actual capabilities, not marketing materials. Do desktop research on the leading LLM models for your use case or industry. Then test these models yourself! Below is a graph of top models used for finance on [OpenRouter](https://openrouter.ai/rankings?category=finance&context-length=100K#categories). As of 16/02/2026, Gemini 3 has 13% usage market share within finance. So if you are building an AI feature in finance, Gemini 3 is definitely worth investigating and testing out for yourself.
 
 <div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/08-evaluation-framework.png" alt="Model evaluation framework — define task, test candidates, score quality, measure latency, calculate cost, check capability fit, then ship or consider model routing" />
+  <img src="/AI-PM-Bootcamp/images/modules/openrouter-finance-rankings.png" alt="OpenRouter model rankings for finance — showing Gemini 3 with 13% market share" />
   <div class="expand-hint">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
     Click to expand
   </div>
 </div>
 
-**Key insight: Model routing.** You don't have to pick one model. Many production AI features use a lightweight model (fast, cheap) for 80% of requests and escalate complex cases to a frontier model. Think of it like a triage nurse before a specialist: most questions don't need the specialist.
+### In Practice: How Real Teams Choose Models
+
+Duolingo's approach illustrates how model selection plays out in production. When building their AI language features, they didn't pick one model — they layered several. Their internal system, Birdbrain, is a statistical model that trains nightly on roughly 500 million lessons from the previous day, handling personalised lesson difficulty and sequencing. For conversational practice and open-ended explanations — features that require natural language generation — they partnered with OpenAI and used GPT-4, fine-tuned on millions of lesson interactions across 40+ languages. The internal model handles the high-volume, personalisation-heavy work cheaply; the frontier model handles the complex, open-ended interactions where quality matters most.
+
+Notion AI takes a similar approach at an architectural level. Their team routes different tasks to different models: high-reasoning models for writing specs and long-form generation, large-context-window models for searching workspace history, and fine-tuned cost-efficient models for auto-filling fields. Rather than committing to one provider, they built an evaluation pipeline — combining LLM-as-judge scoring, structured test fixtures, and human-labelled feedback — that lets them rapidly test and deploy new models from any provider. The lesson: model selection isn't a one-time decision. It's an ongoing capability.
+
+### Model Routing
+
+You don't have to pick just one model. Many production features use a lightweight model for 80% of requests and route complex cases to a frontier model. A routing layer that classifies request complexity and dispatches accordingly can cut costs dramatically while maintaining quality where it matters. [OpenRouter](https://openrouter.ai/) is one such example where you can swap between model families with only a single integration.
+
+**Product implication:** Your engineers will handle the mechanics of model routing. Your job is to stay across the model landscape — which providers offer what, where capability gaps exist, and how pricing is shifting. This matters most when you're working on features where model performance is still developing and you need to know what's on the frontier versus what's production-ready today.
 
 ### Open Source vs. Closed Source
 
-This decision maps to the engagement spectrum from the Assessing AI Viability module.
+|               | Closed Source (GPT-5.2, Claude, Gemini)                                       | Open Source (Llama, Mistral, Qwen)                                    |
+| ------------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| **Strengths** | Higher capability on hardest tasks, managed infrastructure, rapid improvement | Full control, fine-tune freely, no per-token costs beyond compute     |
+| **Tradeoffs** | Vendor dependency on pricing, uptime, and policy                              | Operational complexity, generally lower capability on demanding tasks |
+| **Best for**  | Ship fast; cost isn't the binding constraint                                  | Strategic features at high volume; cost-sensitive at scale            |
 
-**Closed-source models** (GPT-4o, Claude, Gemini) offer higher capability, managed infrastructure, and rapid improvement — but you're dependent on a vendor's pricing, uptime, and policy changes.
+**Why this matters for PMs:** You don't need to make the open-source versus closed-source decision yourself — your engineering team will have strong views and they should. What you need to know is that the choice exists, that it affects your cost structure and vendor dependencies, and that many teams start with closed-source to validate quickly and consider open-source later if volume and cost justify the switch. Ask your engineers which approach they recommend and why — then factor their reasoning into your business case.
 
-**Open-source models** (Llama, Mistral, Qwen) give you full control: host them yourself, fine-tune freely, no per-token costs beyond compute. The tradeoff is operational complexity and generally lower capability on the hardest tasks.
-
-**The PM decision**: If your feature is strategic and cost-sensitive at scale, open-source deserves serious evaluation. If you need to ship fast and the feature isn't on a cost-critical path, closed-source models let you move faster.
+> **Exercise:** Take the AI opportunity you identified in Module 3. Write a one-paragraph model evaluation plan: what are the 50+ real inputs you'd test with? What's your latency budget? Estimate the cost per request at your expected volume and at 10× volume. Would you start with a single model or plan for routing from day one? Compare your reasoning against how Duolingo and Notion AI approached the same decisions.
 
 ---
 
-## Part 2: Designing for Failure Cases
+## Part 2: Designing for Failure
 
-This is the section that separates AI features that users trust from AI features that users abandon.
+Most teams skip this part — and it's the one that determines whether your AI feature earns trust or gets quietly abandoned.
 
-### Accept This First: AI Will Fail
+### Accept This: AI Will Fail
 
-Not might. *Will*. Every LLM hallucinates. Every classifier has false positives. Every extraction model misses edge cases. The question isn't "will it fail?" — it's "what happens when it does?"
+Not might. *Will.* LLMs hallucinate. Classifiers produce false positives. Extraction models miss edge cases. It's baked into how these systems work — as you learned in Lesson 1.1, LLMs are probabilistic text prediction engines, not truth engines. You already evaluated your opportunity's error tolerance in Lesson 3.1. Now you need to turn that assessment into concrete design decisions. Your job isn't to prevent failure. It's to make failure graceful.
 
-Recall from the LLMs module that LLMs are probabilistic, not deterministic. They generate the most likely next token, not the "correct" answer. This architectural reality means the system will fail. Your job is to make those failures graceful.
+The cost of skipping this work is real. In 2021, Zillow shut down its iBuying division, Zillow Offers, after its pricing algorithm systematically overvalued properties in a volatile market. The write-down exceeded $540 million and the company cut 25% of its workforce — roughly 2,000 jobs. The algorithm's aggregate accuracy looked acceptable in testing, but nobody had designed for the failure mode that actually hit: the model couldn't adapt when market conditions shifted rapidly. There was no graceful degradation, no human-in-the-loop override for high-risk purchases, and no kill criteria that would have paused buying before the losses compounded. The model wasn't the problem. The absence of failure design was.
 
-### The Failure Design Framework
+### Four Questions to Answer Before Writing Code
 
-For every AI feature, answer these four questions before writing a single line of code:
+**1. What does failure look like for this specific feature?**
 
-**1. What does failure look like?**
-
-Map the specific failure modes for your feature. For an AI that summarises customer support tickets:
-- **Hallucination**: Invents details that weren't in the ticket ("customer mentioned they're cancelling" when they didn't)
-- **Omission**: Misses the key issue and summarises the small talk
-- **Misclassification**: Tags a billing issue as a feature request
-- **Tone mismatch**: Produces a casual summary for an escalated legal complaint
+Map the concrete failure modes. For an AI ticket summariser: hallucination (inventing details), omission (missing the key issue), misclassification (tagging billing as feature request), tone mismatch (casual summary for a legal escalation). Each has different consequences and needs different mitigations.
 
 **2. What's the blast radius of each failure?**
 
-Not all failures are equal. A misclassified ticket that gets routed to the wrong queue adds 10 minutes of delay. A hallucinated claim that the customer threatened legal action could trigger an unnecessary legal review. Score each failure mode by frequency x severity.
+Failures aren't equal. A misrouted ticket adds 10 minutes of delay. A hallucinated claim that a customer threatened legal action could trigger an unnecessary legal review. Score each failure by frequency × severity to prioritise your mitigation work.
 
 **3. What's the fallback path?**
 
-For every AI-powered flow, design the non-AI path. If the model is down, slow, or producing garbage, what happens? Options include:
-- **Graceful degradation**: Show the original content without the AI summary
-- **Human escalation**: Route to a person when confidence is low
-- **Cached response**: Show the last good output until quality recovers
-- **Transparent failure**: "I wasn't able to summarise this ticket. Here's the original."
+For every AI-powered flow, design the non-AI path:
+- **Graceful degradation:** Show original content without AI enhancement
+- **Human escalation:** Route to a person when confidence is low
+- **Cached response:** Last good output until quality recovers
+- **Transparent failure:** "I wasn't able to summarise this ticket. Here's the original."
 
-The worst outcome is silent failure — the AI produces a confidently wrong answer and nobody notices.
+The worst outcome — far worse than any of these — is **silent failure**: a confidently wrong answer that nobody notices.
 
 **4. How will you detect failure in production?**
 
-You need monitoring. Specifically:
-- **Confidence scoring**: If your model outputs confidence scores, set thresholds. Below 0.7? Flag for human review.
-- **Output validation**: Does the summary mention entities that exist in the original ticket? Does the classification match one of the valid categories?
-- **User feedback loops**: Add thumbs up/down, "this is wrong" buttons, or edit tracking. If users edit 40% of AI suggestions, your feature has a quality problem.
-- **Drift detection**: Model performance degrades over time as your data distribution shifts. Monitor weekly accuracy, not just launch-day accuracy.
+Four mechanisms: **confidence scoring** (set thresholds, flag anything below for human review), **output validation** (does the summary mention entities from the original input?), **user feedback loops** (thumbs up/down, "this is wrong" flags, edit tracking), and **drift detection** (monitor weekly accuracy, not just launch-day accuracy). Pay particular attention to edit tracking — if users modify 40% of your AI's suggestions, you have a quality problem, even if your model metrics look good. Product-level signals often reveal issues that model metrics hide (more on this in Lesson 4.2).
+
+### Build Trust Into the Architecture
+
+Detection tells you when things go wrong. The best AI features go further — they earn trust by design.
+
+**Constrain outputs.** Don't let the model say anything it wants. A ticket classifier that returns one of eight predefined categories is far safer than one that generates freeform labels. Structured output formats — JSON schemas, enum fields, constrained generation — reduce the surface area for failure.
+
+**Surface uncertainty.** When the model isn't confident, say so. A confidence score next to every AI suggestion teaches users when to trust and when to double-check. Over time, users develop calibrated intuition about your feature's reliability — which is far better than blind trust or blanket scepticism.
+
+**Cite sources.** If your feature uses RAG, show users where the answer came from. "Based on your Help Centre article on billing disputes" is verifiable. "Here's what I think" is not. Source attribution transforms AI from a black box into a transparent assistant that users can fact-check.
+
+**Product implication:** Trust isn't a feeling — it's an architectural decision. Features that survive past launch are the ones designed so users can verify, override, and understand AI output without effort.
 
 ### Worked Example: AI Ticket Router
 
-Let's trace through the framework for a feature that automatically routes incoming support tickets to the right team.
+| Failure Mode | Frequency | Severity | Mitigation |
+|---|---|---|---|
+| Wrong team assignment | ~10% | Medium — 15 min delay | Show routing suggestion; agent confirms or overrides |
+| Unrecognised ticket type | ~3% | Low — falls to general queue | Default to general queue with "needs triage" flag |
+| Model downtime | ~0.1% | High — all routing stops | Automatic fallback to keyword-based rules engine |
+| Confident wrong answer | ~2% | High — agent trusts AI, doesn't verify | Display confidence score; flag low-confidence predictions |
 
-| Failure Mode | Frequency | Severity | Blast Radius | Mitigation |
-|---|---|---|---|---|
-| Wrong team assignment | ~10% of tickets | Medium — adds 15 min delay | Customer waits longer | Show routing suggestion to agent; agent confirms or overrides |
-| Unrecognised ticket type | ~3% of tickets | Low — falls to general queue | Slight delay | Default to general queue with "needs triage" flag |
-| Model downtime | ~0.1% of time | High — all routing stops | All tickets unrouted | Automatic fallback to keyword-based rules engine |
-| Confident wrong answer | ~2% of tickets | High — agent trusts AI, doesn't verify | Wrong resolution sent | Display confidence score; flag low-confidence predictions visibly |
-
-The design decision: this feature launches as **human-in-the-loop** (AI suggests, agent confirms) for the first month. After accuracy exceeds 95% on 1,000+ tickets, graduate to **autonomous with monitoring** (AI routes, agents can override, weekly accuracy audit).
+The design: launch as human-in-the-loop (AI suggests, agent confirms) for the first month. After accuracy exceeds 95% on 1,000+ tickets, graduate to autonomous with monitoring. That graduation path is designed into the feature from day one — not tacked on after launch.
 
 ---
 
-## Part 3: Design Patterns for AI Features
+## Part 3: Choosing the Interaction Pattern
 
-Not every AI feature should be a chatbot. The interaction pattern you choose determines how users experience your AI, how much trust they need to extend, and how much damage a failure can cause.
+The instinct is to build a chatbot. Resist it — the right interaction pattern depends on your workflow, and it's rarely obvious from the problem statement alone.
 
-### Pattern 1: Copilot (AI Assists, Human Decides)
+Before choosing a pattern, map the workflow you're augmenting. Find the exact moment where friction lives — not the whole process, but the specific step where a human is slow, bored, or error-prone. Gmail's Smart Compose doesn't help you think about what to write; it helps you type what you've already decided to say. That precision matters. An AI feature injected at the wrong moment feels intrusive. The same capability at the right moment feels invisible.
 
-The AI generates suggestions; the human accepts, edits, or rejects. The human remains in control at every step.
+The pattern you choose shapes how users experience the AI, how much trust they need to extend, and how much damage a failure can cause. Five patterns cover most production use cases.
 
-**Examples**: GitHub Copilot (code suggestions), Gmail Smart Compose (sentence completions), Notion AI (draft text that you edit).
+### Pattern 1: Copilot — AI Assists, Human Decides
 
-**When to use**:
-- The task requires human judgment or creativity
-- Errors are easy for the user to catch and correct
-- Users are skilled in the domain (they know good output from bad)
+The AI generates suggestions; the human accepts, edits, or rejects. GitHub Copilot is the canonical example: it suggests code inline, and the developer accepts, edits, or tabs past. When Copilot launched in 2022, its acceptance rate started at around 27% and climbed to 35% within six months — meaning even a well-built copilot gets rejected more often than accepted, and that's fine. The pattern works because each rejection costs the user almost nothing (a glance and a keypress), while each acceptance saves meaningful time.
 
-**Risk level**: Low. The human is the safety net.
+**Use when:** The task requires human judgement, errors are easy for users to spot, and users are domain experts. Risk is low because the human is the safety net.
 
-### Pattern 2: Autonomous Agent (AI Acts, Human Monitors)
+### Pattern 2: Autonomous Agent — AI Acts, Human Monitors
 
-The AI takes action independently. Humans review outcomes after the fact, not before.
+At the other end of the spectrum: the AI takes action independently, and humans review outcomes after the fact. Automated ticket routing, spam filters, fraud detection. If you're building an agent-based feature, revisit the Simplicity Hierarchy from Lesson 1.2 — start with the simplest architecture that works.
 
-**Examples**: Automated ticket routing, spam filters, fraud detection systems, dynamic pricing engines.
+**Use when:** Volume makes per-action human review impractical, the task is well-defined, and you have robust monitoring and rollback. Risk is medium to high — demands strong observability.
 
-**When to use**:
-- High volume makes human review impractical
-- The task is well-defined with clear success criteria
-- You have robust monitoring and rollback capability
-- False positives/negatives have manageable consequences
+### Pattern 3: Human-in-the-Loop — AI Suggests, Human Approves
 
-**Risk level**: Medium to high. Requires strong monitoring and fallback systems.
+A middle ground: the AI does the work but pauses for human approval before action. Content moderation queues, AI-drafted emails reviewed before sending.
 
-### Pattern 3: Human-in-the-Loop (AI Suggests, Human Approves)
-
-The AI does the work but pauses for human approval before any action takes effect. A middle ground between copilot and autonomous.
-
-**Examples**: Content moderation queues (AI flags, human decides), AI-drafted customer emails (agent reviews before sending), medical image analysis (AI highlights, radiologist confirms).
-
-**When to use**:
-- Errors have significant consequences
-- Volume is manageable for human review
-- Regulatory or compliance requirements demand human oversight
-- You're building trust in a new AI feature before graduating to autonomous
-
-**Risk level**: Low to medium. The approval step catches most errors.
+**Use when:** Errors have significant consequences and compliance requires human oversight. If you plan to eventually run a feature autonomously, this is where to start.
 
 ### Pattern 4: Conversational Interface (Chat)
 
-The user interacts through natural language dialogue. The AI interprets intent, asks clarifying questions, and provides responses.
+The user drives the interaction through natural language. Customer support chatbots, internal Q&A assistants.
 
-**Examples**: Customer support chatbots, Siri/Alexa, ChatGPT-style interfaces embedded in products.
+**Use when:** The task is exploratory, users have varying needs, and the interaction benefits from back-and-forth. The risk here is subtler: users tend to over-trust conversational AI, so set expectations clearly.
 
-**When to use**:
-- The task is exploratory or open-ended
-- Users have varying needs that can't be predicted with a fixed UI
-- The interaction benefits from back-and-forth refinement
+### Pattern 5: Ambient/Inline AI — Contextual Suggestions
 
-**Risk level**: Medium. Users may over-trust conversational AI or become frustrated when it misunderstands.
+The AI works in the background, surfacing suggestions in the flow of work without being asked. Gmail's Smart Compose is a masterclass in this pattern: suggestions appear as greyed-out text while you type, and a single tab press accepts them. Google's engineering team found that latency was the critical design constraint — anything above 100ms felt laggy, so they optimised their model to respond at the 90th percentile within 60ms. The feature only triggers when model confidence is high, which means users see suggestions often enough to be useful but not so often that they become noise. Spotify's Discover Weekly operates in the same pattern — 30 personalised songs generated every Monday, requiring zero user input.
 
-### Pattern 5: Ambient/Inline AI (Contextual Suggestions)
+**Use when:** The suggestion is low-stakes and easy to ignore. Risk stays low as long as users can dismiss suggestions; it spikes if suggestions auto-apply.
 
-AI surfaces information or suggestions proactively, without the user explicitly asking. It appears in the flow of work, not as a separate interface.
+### The Decision Framework
 
-**Examples**: Gmail's Smart Reply (suggested quick responses), Spotify Discover Weekly (personalised recommendations), IDE error detection with fix suggestions.
+Start with the stakes:
 
-**When to use**:
-- The suggestion is low-stakes and easy to ignore
-- The AI can infer context from the user's current activity
-- Minimal friction is essential (the feature should help, never interrupt)
+```
+              What are the stakes of failure?
+                         │
+            ┌────────────┴────────────┐
+            ▼                         ▼
+        Low stakes               High stakes
+            │                         │
+      ┌─────┴─────┐            ┌──────┴──────┐
+      ▼           ▼            ▼             ▼
+  High volume  Lower vol   Can a human    Volume too
+      │           │        review each?   high to review
+      ▼           ▼            ▼             ▼
+  Ambient/     Copilot    Human-in-     Autonomous
+   Inline                 the-Loop     + monitoring
+```
 
-**Risk level**: Low, if users can easily dismiss suggestions. High if suggestions auto-apply.
+**Why this matters for PMs:** Default to Copilot or Human-in-the-Loop for your first launch. Earn the right to go autonomous through evidence — not conviction.
 
-### Choosing Your Pattern
-
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/09-choosing-pattern.png" alt="Choosing your AI interaction pattern — decision tree based on stakes, volume, and human review capacity leading to Ambient, Copilot, Human-in-the-Loop, Autonomous, or Conversational patterns" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
-
-**Most AI features should start as Copilot or Human-in-the-Loop** and graduate to more autonomous patterns as you build confidence through data. Launching as fully autonomous is almost always premature unless you have extensive offline evaluation data.
+> **Exercise:** For the top opportunity you identified in the Module 3 exercise, which interaction pattern would you choose? Walk through the stakes analysis: what happens when the AI is wrong, and does that push you toward human oversight or away from it?
 
 ---
 
-## Part 4: Fine-Tune vs. Prompt Engineer vs. RAG
+## Part 4: How the Model Gets Its Knowledge
 
-You've chosen your model, designed for failure, and picked your interaction pattern. The last design decision: how does the model get the knowledge and behaviour it needs?
+Where does the model get the knowledge it needs for your task? Three approaches — and they're layers, not mutually exclusive choices.
 
-This connects directly to the foundations in the Context Engineering module. Here, we focus on the PM's decision framework.
+### Prompt Engineering (Start Here — Always)
 
-### Option 1: Prompt Engineering
+Craft instructions, examples, and constraints directly in the prompt. No model modification, no infrastructure beyond an API call.
 
-**What it is**: Crafting instructions, examples, and constraints in the prompt itself. No model modification. No infrastructure beyond an API call.
+**Works when:** The task can be described in natural language, you have a clear output format, and the model's general knowledge is sufficient.
 
-**When it works**:
-- The task is well-defined and can be described in natural language
-- You have a clear output format you can specify
-- The model's general knowledge is sufficient (you don't need proprietary data)
-- You want to ship this week, not this quarter
+**Stops working when:** The model consistently ignores instructions, requires knowledge it doesn't have, or prompt length is eating your context window and budget.
 
-**When it doesn't**:
-- The model consistently ignores your instructions on tone or format
-- Your task requires knowledge the model doesn't have (your product's features, internal terminology)
-- Prompt length is eating into your context window and cost budget
+Always start here. A well-crafted system prompt with 3–5 examples gets you further than most teams expect — and changes deploy instantly at minimal cost. (This builds directly on the PM Prompt Framework from Lesson 2.2 and the context engineering techniques from Lesson 1.3.)
 
-**Cost**: Essentially free beyond API usage. Changes deploy instantly.
+### RAG — Retrieval-Augmented Generation (When the Model Needs Your Data)
 
-**PM rule of thumb**: Always start here. You'd be surprised how far a well-crafted system prompt with 3-5 examples gets you. Reference the Prompt Engineering module for the practical techniques.
+At query time, retrieve relevant documents from your data and inject them into the prompt — the technique you covered in Lesson 1.3.
 
-### Option 2: RAG (Retrieval-Augmented Generation)
+**Works when:** The model needs your knowledge base, product docs, or customer records — especially when that data changes frequently.
 
-**What it is**: At query time, retrieve relevant documents from your data and inject them into the prompt. The model uses this context to answer. Covered in depth in the Context Engineering module.
+**Doesn't work well when:** Your data is unstructured, poorly organised, or contradictory. Critically: RAG doesn't fix behaviour problems. Wrong tone or format is a prompt engineering or fine-tuning issue, not a knowledge issue.
 
-**When it works**:
-- The model needs access to your proprietary data (product docs, knowledge base, customer records)
-- That data changes frequently (you don't want to retrain every time the docs update)
-- Accuracy on factual questions about your domain is critical
-- You want the model to cite its sources
+Slack AI is a good example of RAG in production. When a user asks a question, Slack retrieves relevant messages and threads from the workspace, injects them into the prompt, and generates an answer grounded in the organisation's actual conversations — not the public internet. Each request is stateless: the model retains no data between queries, and summaries are ephemeral. If a source message is later deleted (say, by a compliance policy), the derived summary is invalidated too. The product decisions here — stateless calls, ephemeral outputs, source-grounded answers — all stem from the specific constraints of enterprise communication data.
 
-**When it doesn't**:
-- Your data is unstructured, poorly organised, or contradictory
-- The task is about behaviour (how the model responds) rather than knowledge (what it knows)
-- Retrieval quality is poor — the system pulls irrelevant documents, and the model generates answers from the wrong context
+**Practical cost:** A vector database, an embedding model, a retrieval pipeline, and ongoing data ingestion. Expect 2–4 weeks of engineering for a basic setup.
 
-**Cost**: Moderate. You need a vector database, an embedding model, a retrieval pipeline, and ongoing data ingestion. Expect 2-4 weeks of engineering for a basic setup.
+### Fine-Tuning (Last Resort, Sometimes Necessary)
 
-**PM rule of thumb**: Use RAG when the model needs to know things it wasn't trained on. Don't use RAG to fix behaviour problems — that's a prompt engineering or fine-tuning issue.
+Training the model on your data to learn new behaviours, formats, or domain expertise.
 
-### Option 3: Fine-Tuning
+**Use when:** You need consistent behaviour that prompt engineering can't reliably produce. You have hundreds to thousands of high-quality examples. Latency matters and you want a smaller model performing like a bigger one on your specific task. Cost at scale justifies the upfront investment. That said, most teams that think they need fine-tuning actually need better prompts or RAG — it's the right answer far less often than people assume.
 
-**What it is**: Training the model on your data so it learns new behaviours, formats, or domain expertise. The training process modifies the model's weights.
+### In Production, Combine All Three
 
-**When it works**:
-- You need consistent behaviour that prompt engineering can't reliably produce (specific tone of voice, output format, domain terminology)
-- You have hundreds to thousands of high-quality input-output examples
-- Latency matters and you want a smaller, faster model that performs like a bigger one on your specific task
-- Cost at scale justifies the upfront investment (a fine-tuned small model is often cheaper per request than prompting a frontier model)
+A customer support Q&A bot might use:
+- **Fine-tuning** to teach a smaller model the company's tone (saving cost)
+- **RAG** to retrieve the latest help articles at query time (keeping answers current)
+- **Prompt engineering** to control each interaction (persona, examples, format constraints)
 
-**When it doesn't**:
-- You don't have enough training data (minimum ~100 examples, ideally 500+)
-- Your requirements change frequently (each change requires retraining)
-- The base model already performs well with good prompting
+The layering follows a clear progression:
 
-**Cost**: High upfront. Training runs, data preparation, evaluation, ongoing maintenance as data drifts. Expect weeks to months for a production-quality fine-tune.
+```
+  Prompt Engineering  ───→  + RAG  ───→  + Fine-Tuning
+       Start here.          Add when the       Add only when
+       Always.              model needs        the first two
+                            your data.         plateau.
+```
 
-**PM rule of thumb**: Fine-tuning is your last resort, not your first. Most teams that think they need fine-tuning actually need better prompts or RAG. Reserve fine-tuning for when you have clear evidence that the other approaches fall short.
-
-### The Decision Tree
-
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/10-decision-tree.png" alt="Prompt Engineering vs RAG vs Fine-Tune decision tree — based on data needs, change frequency, and training examples available" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
-
-### They're Not Mutually Exclusive
-
-In production, many AI features layer these approaches. Consider a customer support Q&A bot:
-
-- **Fine-tuning** teaches a smaller model your company's tone and response format (saving cost vs. a frontier model)
-- **RAG** retrieves the latest help articles and release notes at query time (so answers stay current without retraining)
-- **Prompt engineering** controls each interaction — system prompts define the persona, few-shot examples handle edge cases, and format constraints ensure the output is structured for your chat widget
-
-These are layers, not alternatives. Start with prompt engineering alone. Add RAG when the model needs your data. Add fine-tuning only when the first two approaches plateau on quality.
+This ordering minimises cost, complexity, and time-to-ship at every step.
 
 ---
 
 ## Key Takeaways
 
-- **Benchmark on your task, not leaderboards.** Model rankings change monthly; your use case doesn't. Test 3-4 candidates on 50+ real examples before committing.
-- **Design for failure first.** Map every failure mode, its blast radius, and the fallback path before you build. Silent failure is the worst outcome.
-- **Start with Copilot, graduate to autonomous.** Most AI features should launch with human oversight and earn trust through data before running independently.
-- **Prompt first, RAG second, fine-tune last.** This ordering minimises cost, complexity, and time-to-ship. Only escalate when you have evidence the simpler approach falls short.
-- **Model routing saves money.** Use a cheap, fast model for easy requests and a frontier model for hard ones. You don't have to pick just one.
+1. **Benchmark on your task, not on leaderboards.** Model rankings change monthly; your use case doesn't. Test 3–4 candidates on 50+ real examples before committing. A day of testing saves months of building on the wrong foundation.
+
+2. **Design for failure before you design for success.** Map every failure mode, its blast radius, and the fallback path. Silent failure — confident wrong answers that nobody catches — is the worst possible outcome.
+
+3. **Pick the interaction pattern that matches the stakes.** Map your workflow, find the friction point, and choose accordingly. Default to human oversight for launch — design the graduation path to autonomy before you ship, not after.
+
+4. **Layer your knowledge architecture.** Prompt engineering first, RAG when you need proprietary data, fine-tuning only when simpler approaches aren't enough. This ordering saves time, money, and complexity at every step.
 
 ---
 
 ## Explore Further
 
-- **Anthropic's Model Selection Guide** — Practical guidance on choosing between Claude model sizes for different use cases: https://docs.anthropic.com
-- **Google's People + AI Guidebook** — Comprehensive design patterns for AI features with UX research backing: https://pair.withgoogle.com/guidebook
-- **Hugging Face Open LLM Leaderboard** — Live benchmarks for open-source models, useful for tracking the landscape: https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard
+- [Anthropic Claude Documentation](https://docs.anthropic.com) — Model capabilities, pricing, context windows, and integration guides.
+- [Google People + AI Guidebook](https://pair.withgoogle.com/guidebook) — Design patterns and best practices for human-AI interaction.
+- [Hugging Face Open LLM Leaderboard](https://huggingface.co/spaces/open-llm-leaderboard/open_llm_leaderboard) — Compare model performance across benchmarks. Useful as a starting point, but remember: always test on your own data.

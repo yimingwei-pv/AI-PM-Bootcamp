@@ -2,7 +2,7 @@
 title: "Shipping with Quality"
 module: 4
 lesson: 2
-description: "Ensure AI features succeed in production by mastering data quality, three-layer metrics, automated evaluation suites, staged rollouts, and responsible AI practices."
+description: "Ship AI features that work in production — not just in demos — by mastering data quality, layered metrics, evaluation suites, staged rollouts, and responsible AI practices."
 objectives:
   - "Audit data quality across five dimensions before shipping AI features"
   - "Define and track AI success metrics at the model, product, and business layers"
@@ -15,9 +15,9 @@ resources:
   - title: "Anthropic Research on AI Safety"
     url: "https://www.anthropic.com/research"
     type: "article"
-  - title: "Hugging Face Model Evaluation Guide"
-    url: "https://huggingface.co/docs/evaluate"
-    type: "docs"
+  - title: "Avoiding AI Pitfalls in 2026: Lessons from 2025 Incidents — ISACA"
+    url: "https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2025/avoiding-ai-pitfalls-in-2026-lessons-learned-from-top-2025-incidents"
+    type: "article"
 quiz:
   - question: "When an AI feature underperforms in production, what should you inspect FIRST before trying a bigger model or fancier prompt?"
     options:
@@ -35,310 +35,237 @@ quiz:
     answer: 1
 ---
 
-An AI feature that works in a demo but fails in production is worse than no AI feature at all. It erodes user trust, creates support burden, and gives ammunition to every stakeholder who was skeptical about AI in the first place.
+## The Quality Gap
 
-This module covers the four pillars of shipping AI with quality: ensuring your data is solid, defining the right success metrics, building evaluation systems that catch problems before users do, and addressing bias and safety before they become headlines.
+You've chosen the right opportunity (Lesson 3.1), scored its viability (Lesson 3.2), selected a model, designed for failure, and picked an interaction pattern (Lesson 4.1). You're almost ready to ship.
 
----
+Almost — because an AI feature that works in a demo but fails in production is worse than no AI feature at all. It erodes trust, creates support burden, and gives ammunition to every stakeholder who was sceptical about AI in the first place.
 
-## Part 1: The Importance of Quality Data
-
-### Data Is Your Model's Worldview
-
-Every AI model is a reflection of the data it learned from. If the training data is biased, the model is biased. If your RAG pipeline feeds the model outdated documents, the model gives outdated answers. If your evaluation data doesn't represent real users, your accuracy numbers are fiction.
-
-This sounds obvious. It's also the #1 reason AI features fail in production. Not model choice. Not prompt engineering. Data.
-
-### The Data Quality Checklist
-
-Before you ship any AI feature, audit your data against these five dimensions:
-
-**1. Representativeness** — Does your data reflect the full range of inputs the model will encounter in production? A customer support classifier trained on English-only tickets will fail on Spanish tickets. A summariser tested on 200-word tickets will choke on 2,000-word escalation threads. The distribution of your evaluation data should match the distribution of your production traffic.
-
-**2. Freshness** — How current is your data? If you built a RAG pipeline over your knowledge base six months ago and haven't updated it, your model is answering based on stale information. Set up automated data ingestion or define a refresh cadence. For rapidly changing domains (pricing, product features, regulatory requirements), weekly or even daily refreshes may be necessary.
-
-**3. Accuracy (Labels)** — If you're using labelled data for evaluation or fine-tuning, how reliable are those labels? Human labelers disagree on ambiguous cases. If your "ground truth" has 15% inter-annotator disagreement, your model can't realistically exceed 85% accuracy — and that might be fine, or it might be fatal, depending on your use case.
-
-**4. Completeness** — Are there gaps? If 30% of your customer tickets are missing category labels, training a classifier on the remaining 70% introduces selection bias. The tickets without labels might be the hardest to classify — exactly the cases where you need AI most.
-
-**5. Privacy and Compliance** — Does your data contain PII, sensitive information, or content that shouldn't be used for model training? GDPR, CCPA, HIPAA, and industry-specific regulations may restrict what data you can feed to an AI model, especially third-party APIs. Work with your legal team early, not after you've built the pipeline.
-
-### The "Garbage In, Garbage Out" Diagnosis
-
-When your AI feature underperforms, resist the urge to immediately try a bigger model or fancier prompt. Instead, inspect the data:
-
-- **Pull 20 random production inputs** and check them manually. Are they what you expected?
-- **Check your retrieval pipeline** (for RAG). Are the retrieved documents actually relevant? Retrieval quality caps generation quality — as discussed in the Context Engineering module.
-- **Review your evaluation set**. When was it last updated? Does it include the hard cases, or just the easy ones that make accuracy look good?
-
-Most quality problems are data problems disguised as model problems.
+This lesson covers the four pillars of shipping AI with quality: data, metrics, evals, and responsible AI. Together, they form the quality infrastructure that lets you move fast without moving recklessly.
 
 ---
 
-## Part 2: Defining Metrics for Success
+## Pillar 1: Data Quality
 
-### The Three Layers of AI Metrics
+Here's the least glamorous truth in AI product management: most quality problems are data problems disguised as model problems.
 
-AI features need metrics at three levels. Most teams only measure the first and wonder why their feature doesn't improve.
+When an AI feature underperforms, the instinct is to try a bigger model or a fancier prompt. But the most common root cause isn't model capability — it's poor data. In Lesson 3.2, you scored data availability as part of the viability framework. Now you need to go deeper — not just "do we have data?" but "is our data good enough?" Before you ship any AI feature, audit your data against five dimensions.
 
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/11-metrics-layers.png" alt="Three layers of AI metrics — Layer 1: Model Metrics (does the model work?), Layer 2: Product Metrics (does the feature work?), Layer 3: Business Metrics (does the feature matter?)" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
+### The Five Dimensions
 
-### Layer 1: Model Metrics (Does the Model Work?)
+**Representativeness.** Does your data reflect the full range of inputs the model will encounter in production? A customer support classifier trained on English-only tickets will fail on Spanish tickets. A summariser tested on 200-word tickets will choke on 2,000-word escalation threads. The distribution of your evaluation data must match the distribution of your production traffic — if they don't, your test results are misleading.
 
-These measure the model's raw performance on your task. The specific metrics depend on your use case:
+**Freshness.** How current is your data? A RAG pipeline built over your knowledge base six months ago serves stale answers. For domains that change rapidly — pricing, product features, regulatory requirements — weekly or daily refreshes may be necessary.
 
-**For classification tasks** (ticket routing, sentiment analysis, spam detection):
-- **Accuracy**: % of predictions that are correct. Simple but misleading if classes are imbalanced (99% of emails aren't spam, so a model that always says "not spam" is 99% accurate and completely useless)
-- **Precision**: Of the items the model flagged as positive, what % actually were? High precision = few false alarms
-- **Recall**: Of the actual positive items, what % did the model catch? High recall = few missed cases
-- **F1 Score**: The harmonic mean of precision and recall. Useful when you need to balance both
+**Accuracy of labels.** If you're using labelled data, how reliable are the labels? Human labellers disagree on ambiguous cases. If your ground truth has 15% inter-annotator disagreement, your model can't realistically exceed 85% accuracy — that's the ceiling your data imposes, and it determines the maximum possible quality of your AI feature.
 
-**For generation tasks** (summarisation, drafting, Q&A):
-- **Factual accuracy**: Does the output contain only facts supported by the input? (Critical for RAG applications)
-- **Relevance**: Does the output address the actual question or task?
-- **Completeness**: Does it cover all the key points?
-- **Tone/format compliance**: Does it match the specified style and structure?
+**Completeness.** If 30% of your customer tickets are missing category labels, training on the remaining 70% introduces selection bias. The missing tickets might be the hardest to classify — exactly the cases where you need AI most.
 
-**For all tasks**:
-- **Latency** (p50, p95, p99): How fast does the model respond? The 95th and 99th percentile matter more than the average — a feature that's fast 90% of the time but takes 30 seconds for 10% of requests feels broken.
-- **Error rate**: How often does the model return an error, timeout, or fail to respond at all?
+These dimensions interact. Amazon's AI recruiting tool (2014–2018) failed on representativeness *and* label accuracy simultaneously. The model trained on ten years of résumés the company had received — overwhelmingly male, because the tech industry skews male. It learned to penalise signals associated with women: the word "women's" (as in "women's chess club captain"), graduates of all-women's colleges. Amazon spent four years trying to de-bias the model and ultimately scrapped it, unable to guarantee gender neutrality. The data represented Amazon's past applicants, not the qualified candidate pool they wanted to reach. That gap — between historical data and intended use — is exactly what a representativeness audit would have flagged.
 
-### Layer 2: Product Metrics (Does the Feature Work?)
+**Privacy and compliance.** Does your data contain PII or sensitive information that shouldn't be used for model training? With the EU AI Act's high-risk provisions becoming enforceable in August 2026, documentation of your data practices isn't optional for many use cases. Work with legal early and understand the risk.
 
-Model accuracy doesn't guarantee product value. A model might be 95% accurate but users might ignore its output. Product metrics measure what users actually do with the AI.
+### The Ten-Minute Diagnostic
 
-- **Adoption rate**: What % of eligible users engage with the AI feature?
-- **Acceptance rate**: When the AI makes a suggestion, how often do users accept it vs. dismiss or override it?
-- **Edit rate**: For generative features, how much do users modify the AI's output? High edit rates suggest the AI is close but not good enough.
-- **Fallback rate**: How often does the system fall back to the non-AI path? (If it's over 20%, your AI feature is mostly a fallback feature.)
-- **Task completion time**: Does the AI feature actually make users faster? Compare the AI-assisted workflow to the non-AI baseline.
-- **Reuse rate**: Do users come back? A feature used once and abandoned has a quality or trust problem.
+When your AI feature underperforms, before changing anything: pull 20 random production inputs and check them manually. Are they what you expected? If you're using RAG, check whether retrieved documents are actually relevant. Review your evaluation set: when was it last updated?
 
-### Layer 3: Business Metrics (Does the Feature Matter?)
+**Why this matters for PMs:** This catches the majority of quality issues. Most teams skip it and spend weeks tweaking prompts that were never the problem.
 
-Ultimately, AI features need to move business outcomes.
+> **Exercise:** For the AI opportunity you've been developing through this module, audit your data against the five dimensions. Where does your data come from? What demographics or use cases might be underrepresented? When was it last updated? If you're using labelled data, estimate the inter-annotator agreement — could two humans looking at the same input reliably agree on the correct output?
 
-- **Cost savings**: If the AI automates ticket triage, how many hours of agent time does it save per week? What's the dollar value?
-- **Revenue impact**: Does the AI feature increase conversion, upsell, or retention?
-- **Customer satisfaction**: NPS, CSAT, or support ticket volume changes after AI feature launch
-- **Time-to-value**: How quickly do new users get value from the AI feature?
+---
 
-### Setting Targets: The "Good Enough" Threshold
+## Pillar 2: Three Layers of Metrics
 
-Not every metric needs to be world-class. The target depends on the alternative — what users were doing before your AI feature.
+Clean data gets you a working model. But "working" in a test environment and "valuable" in production are different things — and the gap between them is measured in metrics. Most teams only track model-level numbers and wonder why the feature isn't improving. The answer is usually that the model *is* working, but users aren't getting value from it. You need three layers to see the full picture.
 
-A useful framework: **AI output should be at least as good as a median human performing the same task, in half the time.** If your AI classifier is 88% accurate and a typical support agent is 85% accurate, that's good enough to add value — even though 88% sounds imperfect.
+### Layer 1: Model Metrics — Does the Model Work?
 
-For high-stakes features, the bar is higher: the AI should match expert-level humans AND include guardrails for edge cases it can't handle.
+These are the numbers your engineering team will track. You don't need to calculate them yourself, but you need to know what they mean — because when your team says "precision is 92% but recall is only 71%," that sentence should tell you exactly where the problem is.
 
-### A Metrics Dashboard in Practice
+**For classification tasks** (ticket routing, sentiment analysis, spam detection), four metrics matter:
 
-To make this concrete, here's what a real metrics dashboard might look like for the customer feedback classifier from the Opportunity Exercise:
+**Accuracy** is the simplest: of all the predictions the model made, what percentage were correct? If your classifier correctly categorises 88 out of 100 tickets, accuracy is 88%. The catch: accuracy is misleading when your categories aren't evenly distributed. A spam filter that always says "not spam" is 99% accurate if only 1% of emails are actually spam — and completely useless.
+
+**Precision** answers: when the model says "this is a billing ticket," how often is it actually a billing ticket? High precision means few false alarms. If your classifier tags 50 tickets as billing and 47 of them really are, precision is 94%.
+
+**Recall** answers the opposite question: of all the actual billing tickets, how many did the model catch? High recall means few missed cases. If there were 60 real billing tickets and the model found 47, recall is 78%. You'd be missing nearly a quarter of them.
+
+**F1** balances the two into a single number. It's the harmonic mean of precision and recall — meaning it penalises you heavily if either one is low. An F1 of 85% tells you both precision and recall are reasonably strong. An F1 of 60% means at least one of them is dragging. Use F1 when you need one number to compare models, but always look at precision and recall separately to understand *where* the model is weak.
+
+**For generation tasks** (summarisation, drafting, Q&A): factual accuracy, relevance, completeness, and tone/format compliance. These are harder to measure automatically — which is why evals (Pillar 3) exist.
+
+**For all tasks, track latency — but not the average.** Latency percentiles tell you what real users experience. p50 is the median: half your requests are faster than this. p95 means 95% of requests are faster — only 1 in 20 is slower. p99 means 99% are faster — only 1 in 100 is slower. The reason this matters: a feature with a p50 of 500ms and a p99 of 12 seconds feels fast most of the time but infuriating for the unlucky users. Track p95 and p99, not averages — they reveal the experience your worst-off users are having.
+
+### Layer 2: Product Metrics — Does the Feature Work?
+
+Model accuracy doesn't guarantee product value. A 95% accurate classifier is useless if support agents ignore its suggestions and keep triaging manually.
+
+Product metrics reveal whether the AI is changing behaviour. **Adoption rate** tells you what percentage of eligible users engage at all — if only 30% of agents are using the classifier, you have a trust or discoverability problem, not a model problem. **Acceptance rate** tracks how often users go with the AI's suggestion. **Edit rate** measures how much they modify the output before accepting — high edit rates signal "close but not good enough." **Fallback rate** shows how often the system gives up and drops to the non-AI path; over 20% and your AI feature is mostly a fallback feature in disguise. **Task completion time** answers the bottom-line question: does AI actually make people faster? And **reuse rate** tells you whether users come back after their first experience — the clearest signal of whether the feature earns trust over time.
+
+### Layer 3: Business Metrics — Does the Feature Matter?
+
+Cost savings, revenue impact, customer satisfaction changes, time-to-value. These justify the investment and are what you'll report to leadership.
+
+### Setting Targets
+
+Your metrics don't all need to be world-class. A useful threshold: **AI output should be at least as good as a median human performing the same task, in half the time.** If your classifier is 88% accurate and a typical support agent is 85%, that's good enough to add value — even though 88% sounds imperfect.
+
+GitHub Copilot's metrics illustrate how product-layer data tells a richer story than model metrics alone. When Copilot launched in 2022, its suggestion acceptance rate was around 27% — meaning developers rejected nearly three out of four suggestions. Six months later, that climbed to 35%. A naïve reading says "the model is still wrong 65% of the time." A product reading says "developers are getting value on a third of all suggestions, each one saving a few seconds to a few minutes, and the cost of a bad suggestion is a single keypress to dismiss." The acceptance rate also varies significantly by context: routine boilerplate code gets accepted far more often than complex logic. That kind of segmented analysis — breaking a blended number into its component parts — is what turns metrics from a dashboard into a diagnostic tool.
+
+### Generic Metrics vs. App-Specific Metrics
+
+A common mistake: treating generic AI metrics as your north star. Hallucination rate, toxicity score, latency — these are guardrails, not goals. They tell you whether the system is safe, not whether it's useful.
+
+Your north-star metrics should be specific to what your feature actually does. For the feedback classifier from Module 3, "category accuracy" is an app-specific metric — it measures the thing users care about. "Hallucination rate" is a guardrail — if it spikes, something is broken, but optimising for zero hallucinations doesn't make the classifier better at classifying.
+
+The distinction matters because teams that optimise for generic metrics build features that are technically safe but practically useless. Teams that optimise for app-specific metrics build features that solve the actual problem — and use generic metrics as safety checks along the way.
+
+**Product implication:** Define your app-specific metrics before you define your guardrails. Ask: "What does this feature need to do well to be worth shipping?" That's your north star. Then ask: "What must this feature never do?" Those are your guardrails.
+
+### What a Real Dashboard Looks Like
+
+For the customer feedback classifier from the Module 3 exercise:
 
 | Metric | Layer | Target | Current | Status |
 |---|---|---|---|---|
-| Category accuracy | Model | >= 88% | 91.2% | On target |
-| Sentiment accuracy | Model | >= 90% | 87.5% | **Below target** |
+| Category accuracy | Model | ≥ 88% | 91.2% | On target |
+| Sentiment accuracy | Model | ≥ 90% | 87.5% | Below target |
 | p95 latency | Model | < 2s | 1.4s | On target |
-| User acceptance rate | Product | >= 80% | 76% | **Below target** |
+| User acceptance rate | Product | ≥ 80% | 76% | Below target |
 | Edit rate on summaries | Product | < 30% | 22% | On target |
 | Fallback rate | Product | < 10% | 4% | On target |
-| Agent hours saved/week | Business | >= 6 hrs | 7.5 hrs | On target |
-| Support ticket volume | Business | -15% | -12% | Trending |
+| Agent hours saved/week | Business | ≥ 6 hrs | 7.5 hrs | On target |
+| Support ticket volume | Business | −15% | −12% | Trending |
 
-This dashboard tells a story: the model works well on categorisation but underperforms on sentiment. Users accept AI suggestions 76% of the time — close but below target. Investigation reveals that the "Below target" metrics correlate: tickets with wrong sentiment get edited more often and accepted less. The fix is clear: improve sentiment detection, not the entire model.
+**Why this matters for PMs:** This dashboard tells a story. The model works well on categorisation but underperforms on sentiment. Users accept suggestions 76% of the time — close but below target. Investigation reveals the two "below target" metrics correlate: tickets with incorrect sentiment get edited more and accepted less. The fix: improve sentiment detection specifically. Without three layers, you'd never find that causal chain.
 
-### Staged Rollouts: How to Ship Without Betting the Farm
-
-Never launch an AI feature to 100% of users on day one. Use a staged rollout to limit blast radius and gather real production data:
-
-**Stage 1: Shadow Mode (1-2 weeks)** — The AI runs alongside the existing process but users don't see its output. You compare AI decisions to human decisions to measure accuracy on real production data.
-
-**Stage 2: Internal Dogfooding (1 week)** — Your team uses the AI feature internally. PMs, support leads, or engineers test it in their daily workflow and provide qualitative feedback.
-
-**Stage 3: Limited Rollout (2-4 weeks)** — Ship to 5-10% of users, ideally a segment you can monitor closely (e.g., one customer cohort, one region, or opt-in beta users). Monitor all three metric layers. Set a kill criterion: "If acceptance rate drops below 60% or accuracy below 80%, pause and investigate."
-
-**Stage 4: Gradual Expansion** — If metrics hold, expand to 25% then 50% then 100%, pausing at each stage for a few days to confirm stability.
-
-This approach costs you 4-8 weeks of additional timeline but dramatically reduces the risk of a public failure. For your first AI feature, the slower pace is worth it.
+> **Exercise:** For the AI opportunity you've been developing through this module, define one metric per layer. What model metric would you track? What product metric tells you users are actually getting value? What business metric justifies continued investment?
 
 ---
 
-## Part 3: Evals — Your Quality Safety Net
+## Pillar 3: Evals — Your Quality Safety Net
 
-### What Are Evals?
+A dashboard of green metrics is reassuring — but metrics are lagging indicators. They tell you something went wrong after users have already experienced it. Evals are leading indicators: automated tests that catch regressions before users do. If metrics tell you *what* is happening, evals tell you *why*.
 
-Evals (evaluations) are automated tests that measure your AI feature's quality over time. Think of them as unit tests for AI: they run against a defined set of inputs and expected outputs, and they tell you when something breaks.
+Think of evals as automated tests adapted for AI. Traditional software tests check deterministic outputs: "given input X, expect output Y." AI evals adapt this for non-deterministic systems where the same input can produce slightly different outputs each time. Without them, you're flying blind: a prompt change that fixes one issue silently breaks three others, a model provider update shifts your feature's tone overnight, or data drift degrades quality so gradually that nobody notices until it's a crisis.
 
-The difference from traditional testing: AI outputs are non-deterministic. The same input might produce slightly different outputs each time. Evals account for this by testing against quality criteria rather than exact matches.
+Building useful evals follows three steps: understand how your feature fails, build tests for those failures, then verify your tests actually work.
 
-### Why Evals Matter More Than You Think
+### Start with Error Analysis
 
-Without evals, you're flying blind. Here's what goes wrong:
+Before you can test for failure, you need to know what failure looks like. Pull 50–100 production examples where the AI got it wrong (or if you're pre-launch, run on real data and have a domain expert flag errors). Oversample from cases where users gave negative feedback, confidence was low, or the output was edited.
 
-- **You change the prompt** to fix one issue and silently break three others
-- **The model provider updates their model** and your feature's tone shifts overnight
-- **Your data distribution drifts** (seasonal changes, new customer segments) and accuracy degrades gradually — too slowly for anyone to notice until it's a crisis
-- **A new team member tweaks the system prompt** "to make it better" and doesn't test edge cases
+Read each failure and tag it specifically. "Hallucinated a customer name" is useful; "bad output" is not. As you tag, patterns emerge — group them into categories. Then rank by frequency × severity. A failure that hits 15% of inputs and erodes trust is more urgent than one that affects 2% with minor inconvenience. Your top three failure categories become the criteria your evals test against.
 
-Evals catch all of these. They're the difference between "we think the feature is working" and "we know."
+This is the step most teams skip — and it's the most important one. Without error analysis, you're writing tests for failures you imagined rather than failures that actually happen.
 
-### Building an Eval Suite
+### Build the Eval Suite
 
-A practical eval system has three components:
+You need three components.
 
-**1. The Test Set (Golden Dataset)**
+**A golden dataset:** 50–200 real examples with known-good outputs. Aim for roughly 60% common cases, 25% edge cases (unusual inputs, multilingual content, very long or short inputs), and 15% adversarial cases (prompt injections, contradictory information, out-of-scope requests). Update it quarterly or whenever error analysis reveals a new failure category.
 
-Curate 50-200 real examples with known-good outputs. These should cover:
-- **Common cases** (~60%): The bread-and-butter inputs your feature handles daily
-- **Edge cases** (~25%): Unusual inputs, ambiguous situations, multilingual content, very long or very short inputs
-- **Adversarial cases** (~15%): Inputs designed to confuse the model — prompt injections, contradictory information, out-of-scope requests
+**Scoring methods:** Two types, and knowing when to use each matters. *Code-based evaluators* handle objective criteria: did the classifier return a valid category? Is the output valid JSON? Is the summary under 200 words? These are fast, cheap, and perfectly reliable — use them for everything you can measure objectively. *LLM-as-judge evaluators* handle subjective criteria: is the summary faithful to the source? Does the tone match professional correspondence? A separate model grades the output against specific criteria. The key to making LLM judges consistent: frame each criterion as a binary pass/fail question, not a rating scale. "Does the summary contain any claims not in the source ticket? Yes or No" produces far more reliable judgements than "Rate faithfulness 1–5."
 
-Update this dataset quarterly or whenever you discover a new failure mode in production.
+**An automation pipeline:** Run evals on every prompt change before deploying, on a weekly schedule to catch drift, and whenever the model provider announces an update. Set alerts for score drops — a 5% accuracy decline should trigger investigation before users notice.
 
-**2. The Scoring Method**
+### Validate Your Evaluators
 
-How do you grade AI output? Three approaches, in order of ease:
+An LLM judge that approves bad outputs gives false confidence — worse than no eval at all. Test your judges the same way you'd test any tool: take 50–100 examples, have a human expert label each one, and compare. If your judge catches only 60% of real failures, it's a sieve, not a safety net. Iterate on the judge prompt until it reliably catches at least 85% of failures.
 
-- **Exact match / rule-based**: For classification tasks where the output is a category. Straightforward: did the model output "billing" when the correct label is "billing"?
-- **LLM-as-judge**: Use a separate (often stronger) model to grade the output. Give the judge the input, the expected output, and the actual output, and ask it to score on criteria like accuracy, completeness, and tone. This works surprisingly well for generative tasks and scales better than human review.
-- **Human evaluation**: The gold standard but expensive. Reserve for periodic deep dives (monthly) or for validating that your automated evals are calibrated correctly.
+### A Note on Architecture
 
-**3. The Automation Pipeline**
+If your feature uses RAG, eval the retriever and generator separately — a system can retrieve the right documents but generate a bad answer, or vice versa. If your feature uses agentic workflows, focus on the transitions: does the agent choose the right next action at each decision point? Your engineering team will handle the mechanics, but knowing where each architecture tends to break helps you ask the right questions.
 
-Run evals automatically:
-- **On every prompt/system change** (before deploying to production)
-- **On a weekly schedule** (to catch model drift and data distribution changes)
-- **On model provider updates** (when your API switches to a new model version)
+Notion AI's eval process shows what this looks like at scale. Because they route different tasks to different models (writing, search, auto-fill), they built a continuous evaluation pipeline — LLM-as-judge scoring combined with human-labelled feedback from their AI Data Specialists team. When testing a new model, they run it against real user tasks that Notion had flagged as high priority. The evals are continuous rather than one-time gates, which means Notion can rapidly swap models as the landscape shifts. The takeaway: eval infrastructure is what lets you move fast on model decisions without gambling on quality.
 
-Set alerts for score drops. A 5% accuracy decline on your eval set should trigger investigation before it becomes a user-facing incident.
-
-### Worked Example: Eval Suite for Feedback Classifier
-
-Suppose you built the customer feedback classifier from the Opportunity Exercise. Here's what your eval suite looks like:
-
-**Test set**: 150 real feedback items, manually labelled by two PMs (disagreements resolved through discussion). Categories: Bug Report, Feature Request, Praise, Complaint, Question.
-
-**Scoring**: Exact match on category (it's classification). Also track: "Was the sentiment correct?" and "Was the summary accurate?" using an LLM-as-judge.
-
-**Targets**: Category accuracy >= 88%. Sentiment accuracy >= 90%. Summary rated "acceptable or better" by LLM judge >= 85%.
-
-**Automation**: Runs nightly against the latest 100 production inputs (with human labels added next-day). Dashboard shows rolling 7-day accuracy. Alert if any metric drops below target for 3 consecutive days.
+> **Exercise:** For the AI opportunity you've been developing through this module, identify three likely failure modes using the error analysis process. Which would you test with code-based evaluators, and which would require an LLM judge?
 
 ---
 
-## Part 4: Bias, Fairness, and Safety
+## Pillar 4: Staged Rollouts
 
-### Why This Section Isn't Optional
+You've audited your data, set up layered metrics, and built evals. Now comes the moment where theory meets reality: shipping to real users. The temptation is to go big. Resist it.
 
-Every AI model carries biases from its training data. A hiring tool that recommends more men because historical hiring data skewed male. A content moderation system that flags African American English as toxic at higher rates. A medical triage chatbot that underestimates pain for certain demographics.
+Never launch an AI feature to 100% of users on day one. CNET learned this between November 2022 and January 2023, when it quietly published 77 AI-generated financial articles under the byline "CNET Money Staff." When the practice surfaced publicly, editors reviewed every article — 41 of them (53%) contained factual errors, including a compound interest article that confused total balance with earnings. Wikipedia downgraded CNET from a "generally reliable" source, the editor-in-chief resigned, and the reputational damage outlasted the corrections. The AI wasn't the problem — the rollout was. No shadow mode, no human review gate, no kill criteria. Every one of those errors could have been caught before a single reader saw them.
 
-These aren't hypothetical scenarios — they're documented failures from well-funded companies with smart teams. As the PM shipping an AI feature, bias and safety are your responsibility, not just your ML engineer's.
+These four stages map to the graduation path you designed in Lesson 4.1 — from human-in-the-loop to autonomous through evidence, not conviction.
 
-### The PM's Bias Checklist
+**Stage 1: Shadow mode (1–2 weeks).** The AI runs alongside the existing process, but users never see its output. You compare AI decisions to human decisions on real data. This answers: "Does our model actually perform in the real world the way it performed on our eval set?" The answer is often "not quite."
 
-Before launch, work through these questions with your team:
+**Stage 2: Internal dogfooding (1 week).** Your team uses the feature in their daily workflow. This catches issues that metrics miss — confusing UX, unexpected edge cases, "technically works but feels wrong" problems.
 
-**1. Who's in your training/evaluation data — and who isn't?**
+**Stage 3: Limited rollout (2–4 weeks).** Ship to 5–10% of users — one cohort, one region, or opt-in beta. Monitor all three metric layers. Set kill criteria before you start: "If acceptance rate drops below 60% or accuracy below 80%, we pause." Pre-defined criteria prevent debates about whether a dip is "bad enough."
 
-If your feedback classifier was trained on data from North American, English-speaking customers, it will likely perform worse on feedback from other regions, languages, or writing styles. Map the demographic and contextual dimensions that matter for your product and check for representation gaps.
+**Stage 4: Gradual expansion.** If metrics hold, expand to 25%, then 50%, then 100%. Pause at each stage for a few days to confirm stability.
 
-**2. What are the failure mode disparities?**
+**Why this matters for PMs:** This adds 4–8 weeks to your timeline but dramatically reduces the risk of a public failure. For your first AI feature, the slower pace is worth it.
 
-Don't just measure overall accuracy. Break it down by user segments. If your AI customer support tool resolves tickets for enterprise customers at 90% accuracy but only 70% for SMB customers, you have a fairness problem — even if the blended accuracy looks great.
+> **Going deeper: Traces and observability.** Once your feature is in production, your engineering team will likely set up *tracing* — logging every prompt, response, latency measurement, and cost for every request your AI feature handles. Tools like Langfuse, LangSmith, and Braintrust provide dashboards where you can inspect individual requests, spot patterns in failures, and debug issues after the fact. You don't need to implement tracing yourself, but you should know it exists and ask your engineers to set it up before launch. When something goes wrong in production, traces are how your team figures out *why* — without them, you're guessing. This topic is covered in more depth in Module 5.
 
-**3. What are the consequences of bias in your specific feature?**
+---
 
-A biased recommendation engine that shows slightly less relevant products to some users is annoying. A biased fraud detection system that disproportionately flags transactions from certain zip codes is discriminatory. The severity determines how much you invest in mitigation.
+## Bias, Fairness, and Safety
 
-**4. Can users contest or override AI decisions?**
+Staged rollouts protect you from technical failures. This section addresses a different kind of failure — one that metrics and evals alone won't catch.
 
-Every user affected by an AI decision should have a clear path to challenge it. This is both good UX and, increasingly, a legal requirement (the EU AI Act requires this for high-risk applications).
+Every AI model carries biases from its training data. This isn't theoretical — a lending company paid a $2.5 million settlement in 2025 because its AI underwriting model discriminated along racial lines. The model's aggregate accuracy looked fine; nobody had checked whether it performed equally across demographics. This is the gap between model metrics (Pillar 2) and responsible deployment.
 
-### Building Fairness Into Your Process
+### Four Questions Before Launch
 
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/12-fairness-process.png" alt="Building fairness into your process — Pre-Build (audit data), During Build (test across segments), At Launch (segment metrics), Post-Launch (monitor for emergent bias)" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
+**1. Who's in your data — and who isn't?** If your classifier was trained on data from North American, English-speaking customers, it will perform worse on feedback from other regions or writing styles. Map the dimensions that matter and check for gaps.
 
-**Pre-build**: Conduct a data audit. Document known gaps. Decide whether gaps are acceptable or need to be addressed before building.
+**2. What are the failure mode disparities?** Don't just measure overall accuracy. Break it down by user segments. If your AI resolves enterprise tickets at 90% accuracy but only 70% for SMB, you have a fairness problem — even if the blended number looks great.
 
-**During build**: Run your eval suite segmented by user demographics, geographies, languages, and any other relevant dimensions. A model that passes aggregate evals but fails for a subgroup needs work.
+**3. What are the consequences of bias in your specific feature?** A biased recommendation engine that shows slightly less relevant products is annoying. A biased fraud detection system that flags transactions from certain zip codes disproportionately is discriminatory. The severity determines your mitigation investment.
 
-**At launch**: Include segmented accuracy metrics in your launch dashboard. If you only track aggregate numbers, disparities hide.
-
-**Post-launch**: Set up ongoing monitoring for emergent bias. As your user base changes, biases may emerge that didn't exist at launch.
+**4. Can users contest or override AI decisions?** Every user affected by an AI decision should have a clear path to challenge it. Good UX — and increasingly a legal requirement under the EU AI Act.
 
 ### Safety Guardrails
 
-Beyond bias, AI features can create safety risks. Here are the guardrails every PM should consider:
+Beyond bias, four guardrails protect you from the failure modes that make headlines.
 
-**Content filtering**: If your AI generates text that users will see, implement output filtering for harmful, offensive, or inappropriate content. Most model providers offer built-in safety filters; supplement with your own rules for domain-specific risks.
+**Content filtering** catches harmful or inappropriate output before it reaches users. Most model providers offer built-in safety filters; supplement them with domain-specific rules for your context.
 
-**Rate limiting and abuse prevention**: AI features can be exploited. Bad actors can prompt a chatbot to generate spam or use a content generation tool to produce misinformation at scale. Implement rate limits, usage monitoring, and escalation paths for suspicious patterns.
+**Rate limiting** prevents abuse. AI features can be exploited — chatbots prompted to generate spam, content tools repurposed for misinformation. Implement usage caps, monitoring, and escalation paths.
 
-**Transparency**: Tell users when they're interacting with AI. Label AI-generated content clearly. This isn't just ethical — it manages expectations. Users are more forgiving of AI mistakes when they know it's AI.
+**Transparency** earns trust. Tell users when they're interacting with AI, and label AI-generated content clearly. Users are more forgiving of AI mistakes when they know it's AI. Loom does this well: its AI-generated video titles, summaries, and chapter headings are clearly marked and appear as editable suggestions, not final output. The user can accept, modify, or discard them. Compare that to CNET publishing AI articles under a human-sounding byline — the quality issues might have been manageable if readers had known to expect them.
 
-**Data handling**: Be explicit about how you store and use inputs to your AI feature, and whether you use them for training. Many users are uncomfortable with their data being used to improve models. Provide clear opt-out mechanisms and comply with your organisation's privacy policies.
-
-**Incident response**: Have a plan for when things go wrong. Who gets alerted? What's the escalation path? Can you disable the AI feature quickly without bringing down the entire product? (Feature flags are your friend here.) Your AI feature should have a kill switch that any on-call engineer can flip.
+**Incident response** means knowing who gets alerted when things go wrong, what the escalation path is, and whether you can disable the AI feature without taking down the product. Define this before launch — not during your first incident at 2 AM. Your AI feature should have a kill switch that any on-call engineer can flip, reverting to the non-AI path you designed in Lesson 4.1.
 
 ### The Responsible AI Decision Record
 
-For any AI feature with moderate to high user impact, document your decisions in a one-page record:
+For any AI feature with moderate to high user impact, document your decisions in a one-page record: feature name and risk level, what you checked for bias and what you found, which segments you're tracking and your fairness targets, how users know it's AI and how they contest decisions, content filtering and rate limiting approach, incident response plan and kill switch, and re-audit frequency.
 
-> **Feature**: [Name]
-> **Risk level**: Low / Medium / High
->
-> **Bias assessment**: [What did you check? What did you find?]
-> **Fairness metrics**: [Which segments are you tracking? What are the targets?]
-> **Transparency approach**: [How do users know it's AI? How do they contest decisions?]
-> **Safety guardrails**: [Content filtering, rate limits, abuse monitoring]
-> **Incident response**: [Who's on call? What's the kill switch?]
-> **Review cadence**: [How often will you re-audit?]
-
-This document takes an hour to write and saves you from the "we didn't think about that" conversation with your VP after an incident.
+**Why this matters for PMs:** This takes an hour to write and prevents the "we didn't think about that" conversation with your VP after an incident.
 
 ---
 
 ## Bringing It All Together
 
-You've now completed the full journey from understanding AI foundations to shipping quality AI features. Here's how the modules connect:
+These four pillars work as a system. Data quality determines the ceiling of what your model can achieve. Metrics tell you whether you're approaching that ceiling — and whether users care. Evals catch the moment quality starts slipping. Staged rollouts contain the blast radius while you learn. And responsible AI practices ensure that what you ship is fair, transparent, and resilient.
 
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/13-module-overview.png" alt="Course module overview — Module 1: Foundations leads to Module 2: Productivity, then Module 3: Opportunities, then Module 4: Ship" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
-  </div>
-</div>
-
-The best AI PMs combine technical fluency (Module 1) with personal productivity (Module 2), strategic thinking (Module 3), and execution discipline (Module 4). You don't need to be an ML engineer. You do need to ask the right questions, set the right quality bars, and make decisions that balance ambition with responsibility.
+With this lesson, you've completed the build-and-ship arc of the course. Module 3 helped you find the right opportunities; Module 4 showed you how to design them (Lesson 4.1) and ship them with quality (this lesson). But shipping is not the finish line. The best AI features require ongoing monitoring, iteration, and governance at scale — and that's what Module 5 covers.
 
 ---
 
 ## Key Takeaways
 
-- **Data quality trumps model quality.** Before you upgrade your model, audit your data. Most performance problems are data problems in disguise.
-- **Measure at three levels.** Model metrics tell you the model works. Product metrics tell you the feature works. Business metrics tell you it matters. You need all three.
-- **Evals are non-negotiable.** Without automated evaluation, every prompt change is a gamble. Build a golden dataset of 50-200 examples and test against it continuously.
-- **Bias isn't someone else's problem.** Segment your metrics by user demographics. If a subgroup gets worse results, fix it before launch — not after a PR crisis.
-- **Ship with a kill switch.** Feature flags, fallback paths, and incident response plans aren't overhead. They're how you ship AI responsibly.
+1. **Most quality problems are data problems.** When your AI feature underperforms, pull 20 random production inputs and check them manually before trying a bigger model or fancier prompt.
+
+2. **Measure at three layers.** Model metrics tell you if the model works. Product metrics tell you if users get value. Business metrics tell you if the investment is justified. You need all three.
+
+3. **Build evals from error analysis.** Start by understanding how your feature actually fails, then build targeted evals. Use code-based evaluators for objective criteria, LLM judges for subjective ones, and validate your judges against human labels.
+
+4. **Stage your rollout.** Shadow mode → dogfood → limited beta → gradual expansion. Set kill criteria before you start. Pre-defined criteria prevent debates about whether a dip is "bad enough."
+
+5. **Document your responsible AI decisions.** A one-page record: bias checks, fairness targets, transparency approach, and incident response plan. Takes an hour. Prevents disasters.
 
 ---
 
 ## Explore Further
 
-- **Google's Responsible AI Practices** — Practical guidelines for fairness, interpretability, and safety in AI systems: https://ai.google/responsibility/responsible-ai-practices/
-- **Anthropic's Research on AI Safety** — Perspectives on building AI systems that are safe and beneficial: https://www.anthropic.com/research
-- **Hugging Face Model Evaluation Guide** — Technical guide to running evals, building test sets, and using LLM-as-judge: https://huggingface.co/docs/evaluate
+- [Google Responsible AI Practices](https://ai.google/responsibility/responsible-ai-practices/) — Comprehensive framework for responsible AI development and deployment.
+- [Anthropic Research on AI Safety](https://www.anthropic.com/research) — Research papers and approaches to making AI systems safer and more reliable.
+- [Avoiding AI Pitfalls in 2026: Lessons from 2025 Incidents](https://www.isaca.org/resources/news-and-trends/isaca-now-blog/2025/avoiding-ai-pitfalls-in-2026-lessons-learned-from-top-2025-incidents) — Real-world case studies of AI failures and the lessons they teach.
