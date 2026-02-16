@@ -80,11 +80,29 @@ When you're deciding whether to hand a task to AI, two questions matter: **how m
 
 Plot any PM task on those two axes and it falls into one of four zones:
 
-<div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/01-task-delegation.png" alt="AI task delegation matrix — four quadrants based on judgment required vs AI capability: Automate (low judgment, high AI), AI + Human (high judgment, high AI), Keep Human (high judgment, low AI), Do Manually (low judgment, low AI)" />
-  <div class="expand-hint">
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-    Click to expand
+<div style="max-width:640px; margin:1.5rem auto; font-family:inherit;">
+  <div style="display:grid; grid-template-columns:auto 1fr 1fr; grid-template-rows:auto 1fr 1fr; gap:0;">
+    <div style="grid-row:1; grid-column:1;"></div>
+    <div style="grid-row:1; grid-column:2; text-align:center; padding:0.5rem; font-weight:600; font-size:0.85rem; color:#555;">Low Judgment</div>
+    <div style="grid-row:1; grid-column:3; text-align:center; padding:0.5rem; font-weight:600; font-size:0.85rem; color:#555;">High Judgment</div>
+    <div style="grid-row:2; grid-column:1; writing-mode:vertical-lr; transform:rotate(180deg); text-align:center; padding:0.5rem; font-weight:600; font-size:0.85rem; color:#555;">High AI Capability</div>
+    <div style="grid-row:2; grid-column:2; background:#d4edda; border:1px solid #c3e6cb; border-radius:8px 0 0 0; padding:1.25rem; text-align:center;">
+      <div style="font-weight:700; font-size:1.1rem; color:#2d6a4f; margin-bottom:0.5rem;">Automate</div>
+      <div style="font-size:0.8rem; color:#555; line-height:1.4;">Meeting summaries<br/>Release notes<br/>Transcription</div>
+    </div>
+    <div style="grid-row:2; grid-column:3; background:#fde8d0; border:1px solid #f5c6a0; border-radius:0 8px 0 0; padding:1.25rem; text-align:center;">
+      <div style="font-weight:700; font-size:1.1rem; color:#b45309; margin-bottom:0.5rem;">AI + Human</div>
+      <div style="font-size:0.8rem; color:#555; line-height:1.4;">Writing PRDs<br/>Competitive analysis<br/>Roadmapping</div>
+    </div>
+    <div style="grid-row:3; grid-column:1; writing-mode:vertical-lr; transform:rotate(180deg); text-align:center; padding:0.5rem; font-weight:600; font-size:0.85rem; color:#555;">Low AI Capability</div>
+    <div style="grid-row:3; grid-column:2; background:#e8e8e8; border:1px solid #d0d0d0; border-radius:0 0 0 8px; padding:1.25rem; text-align:center;">
+      <div style="font-weight:700; font-size:1.1rem; color:#555; margin-bottom:0.5rem;">Do Manually</div>
+      <div style="font-size:0.8rem; color:#555; line-height:1.4;">Update a status field<br/>Schedule a meeting<br/>Move a card</div>
+    </div>
+    <div style="grid-row:3; grid-column:3; background:#dbeafe; border:1px solid #bfdbfe; border-radius:0 0 8px 0; padding:1.25rem; text-align:center;">
+      <div style="font-weight:700; font-size:1.1rem; color:#1e40af; margin-bottom:0.5rem;">Keep Human</div>
+      <div style="font-size:0.8rem; color:#555; line-height:1.4;">Strategic planning<br/>Customer interviews<br/>Problem framing</div>
+    </div>
   </div>
 </div>
 
