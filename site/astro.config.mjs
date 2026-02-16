@@ -8,4 +8,7 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   output: 'static',
   trailingSlash: 'always',
+  markdown: {
+    syntaxHighlight: false,
+  },
 });
