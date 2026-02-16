@@ -100,7 +100,7 @@ The second prompt will produce something you can actually use — something clos
 
 ## Three Techniques That Cover 90% of PM Work
 
-In the [Context Engineering lesson](/AI-PM-Bootcamp/modules/context-engineering/) ([Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/)), we covered the theory behind techniques like few-shot prompting and chain-of-thought. Now let's apply them to real PM tasks. You only need three techniques to handle almost everything.
+In the [Context Engineering lesson (Lesson 1.3)](/AI-PM-Bootcamp/modules/context-engineering/), we covered the theory behind techniques like few-shot prompting and chain-of-thought. Now let's apply them to real PM tasks. You only need three techniques to handle almost everything.
 
 ### Few-Shot Prompting: Show, Don't Describe
 

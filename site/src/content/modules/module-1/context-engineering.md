@@ -356,6 +356,8 @@ Context engineering comes down to three questions:
 **Product goal:** Answer customer questions about policies, resolve common issues, escalate complex problems.
 **Exercise:** You are a product manager creating an AI customer support chatbot. Think through the information the chatbot needs, the sources for those information and the appropriate context engineering technique to provide it.
 
+**Answer:**
+
 | Information Needed | Source | Technique |
 |---|---|---|
 | General service skills | Model pre-training | System prompt sets tone and constraints |

@@ -52,7 +52,7 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Classification and routing** is the single most proven AI capability in enterprise software. Stripe flags fraud. Gmail filters spam. Zendesk routes tickets. It works because it's a bounded problem with a finite set of valid outputs and learnable patterns that predict them.
 
-**Product implication:** If your opportunity involves sorting things into categories at volume, you're on solid ground. This is well-understood territory with predictable costs and performance. If you experimented with classification in [Module 2](/AI-PM-Bootcamp/modules/prompt-engineering/)'s prompt engineering exercises, you've already seen this capability first-hand.
+**Product implication:** If your opportunity involves sorting things into categories at volume, you're on solid ground. This is well-understood territory with predictable costs and performance. If you experimented with classification in [Module 2](/AI-PM-Bootcamp/modules/ai-powered-mindset/)'s prompt engineering exercises, you've already seen this capability first-hand.
 
 **Summarisation and extraction** has matured rapidly. Slack summarises threads. Notion condenses pages. Legal tech tools pull key clauses from contracts. The model doesn't need to *know* things — it compresses what's already there. The failure mode is omission (missing something important), not fabrication, which is a far more manageable risk.
 
@@ -66,7 +66,7 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Complex reasoning and multi-step logic** improved dramatically in 2025, but inconsistently. Models can break down problems and check their own work — sometimes. A model that reasons correctly 85% of the time is impressive in a demo and dangerous in production. If your use case requires multi-step reasoning, plan for hybrid designs where AI handles parts and humans verify the whole.
 
-**Agentic workflows** — AI systems that take autonomous multi-step actions — are the defining trend of 2026. But "mainstream" and "reliable" are different things. As you learned in the Agents lesson, most agentic systems still cluster at low-stakes tasks. The deeper into a workflow you push autonomous AI (checkout, payments, compliance decisions), the more fragile it gets.
+**Agentic workflows** — AI systems that take autonomous multi-step actions — are the defining trend of 2026. But "mainstream" and "reliable" are different things. As you learned in the [Agents lesson](/AI-PM-Bootcamp/modules/agents/), most agentic systems still cluster at low-stakes tasks. The deeper into a workflow you push autonomous AI (checkout, payments, compliance decisions), the more fragile it gets.
 
 **Creative generation** (images, music, writing) produces impressive output but has persistent issues: legal uncertainty around training data - especially around music, videos and movies, a recognisable "AI voice" that sophisticated audiences detect, and a tendency to remix rather than genuinely create.
 

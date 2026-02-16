@@ -180,7 +180,7 @@ If your drop was small (less than 10%), your prompt is more robust than most. If
 
 Either way, you now have something you didn't have 30 minutes ago: evidence. Not "we think AI could help with this." Tested, on 30 real inputs, across three difficulty tiers, with a failure taxonomy, evals, and a rollout plan.
 
-That brief is the compound of everything in this course. [Module 1](/AI-PM-Bootcamp/modules/llms/) gave you the technical foundations for understanding why models fail. [Module 2](/AI-PM-Bootcamp/modules/prompt-engineering/) taught you how to write prompts that work. [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/) taught you where to aim. [Module 4](/AI-PM-Bootcamp/modules/design-ai-features/) taught you how to design, test, and ship. This lab is where it all came together.
+That brief is the compound of everything in this course. [Module 1](/AI-PM-Bootcamp/modules/llms/) gave you the technical foundations for understanding why models fail. [Module 2](/AI-PM-Bootcamp/modules/ai-powered-mindset/) taught you how to write prompts that work. [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/) taught you where to aim. [Module 4](/AI-PM-Bootcamp/modules/design-ai-features/) taught you how to design, test, and ship. This lab is where it all came together.
 
 Module 5 covers what comes after: operating AI products at scale.
 

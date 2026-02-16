@@ -128,7 +128,7 @@ For each candidate, complete this sentence: *"If the AI gets this wrong, the con
 
 *"Could a spreadsheet formula, a Zapier automation, or a better template solve 80% of this problem?"*
 
-If yes, start there. This catches the most common AI antipattern: overengineering a solution that's simpler than it looks. Remember the Simplicity Hierarchy from the Agents lesson — always start with the simplest approach that works.
+If yes, start there. This catches the most common AI antipattern: overengineering a solution that's simpler than it looks. Remember the Simplicity Hierarchy from the [Agents lesson](/AI-PM-Bootcamp/modules/agents/) — always start with the simplest approach that works.
 
 ### The "Data Reality" Test
 
