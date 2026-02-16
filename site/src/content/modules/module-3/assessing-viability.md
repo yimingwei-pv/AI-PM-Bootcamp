@@ -121,7 +121,7 @@ Score three things:
 
 **Feasibility Score: (4 + 5 + 4) / 3 = 4.3**
 
-**Product implication:** Feasibility is where most AI projects quietly die. The demo worked because someone hand-picked 20 examples. In production, you need it to work on the messy, misspelled, multi-topic tickets your users actually send. The data gap on "feature request" tickets is exactly the kind of thing that's easy to miss in a planning meeting and painful to discover three weeks into development.
+**Why this matters for PMs:** Feasibility is where most AI projects quietly die. The demo worked because someone hand-picked 20 examples. In production, you need it to work on the messy, misspelled, multi-topic tickets your users actually send. The data gap on "feature request" tickets is exactly the kind of thing that's easy to miss in a planning meeting and painful to discover three weeks into development.
 
 ### Question 3: What Could Go Wrong?
 
@@ -168,7 +168,7 @@ In this case, the answer was a time-boxed prototype. The team spent four weeks f
 
 The engagement mode followed naturally from the constraints. Auto-scoring isn't a core differentiator for this company, so Mode 4 was out. Off-the-shelf APIs could handle the basic scoring, but regulatory compliance required more control over the model. The decision was to **blend**: a fine-tuned model on their own infrastructure for compliance, vendor-backed bias monitoring, and a mandatory human review step — no pure AI decisions on loan approvals. Timeline: 3 months. Total cost: $150K. Expected annual payoff: $500K.
 
-**Product implication:** A score of 2.3 didn't mean "don't do it." It meant "prove the risk is manageable before committing." The prototype was the proof. This is the most important move in the framework — converting a conditional score into a confident one, without betting three months of engineering time on hope.
+**Why this matters for PMs:** A score of 2.3 didn't mean "don't do it." It meant "prove the risk is manageable before committing." The prototype was the proof. This is the most important move in the framework — converting a conditional score into a confident one, without betting three months of engineering time on hope.
 
 > **Exercise:** Take the top opportunity you identified in [Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/)'s quick filter. Score it across all three dimensions. Where does it land? If it's below 3.5, identify the single weakest dimension. What would a four-week prototype look like that specifically tests that weakness?
 

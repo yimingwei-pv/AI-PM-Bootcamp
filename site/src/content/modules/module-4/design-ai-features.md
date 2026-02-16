@@ -83,7 +83,7 @@ Notion AI takes a similar approach at an architectural level. Their team routes 
 
 You don't have to pick just one model. Many production features use a lightweight model for 80% of requests and route complex cases to a frontier model. A routing layer that classifies request complexity and dispatches accordingly can cut costs dramatically while maintaining quality where it matters. [OpenRouter](https://openrouter.ai/) is one such example where you can swap between model families with only a single integration.
 
-**Product implication:** Your engineers will handle the mechanics of model routing. Your job is to stay across the model landscape — which providers offer what, where capability gaps exist, and how pricing is shifting. This matters most when you're working on features where model performance is still developing and you need to know what's on the frontier versus what's production-ready today.
+**Why this matters for PMs:** Your engineers will handle the mechanics of model routing. Your job is to stay across the model landscape — which providers offer what, where capability gaps exist, and how pricing is shifting. This matters most when you're working on features where model performance is still developing and you need to know what's on the frontier versus what's production-ready today.
 
 ### Open Source vs. Closed Source
 
@@ -143,7 +143,7 @@ Detection tells you when things go wrong. The best AI features go further — th
 
 **Cite sources.** If your feature uses RAG, show users where the answer came from. "Based on your Help Centre article on billing disputes" is verifiable. "Here's what I think" is not. Source attribution transforms AI from a black box into a transparent assistant that users can fact-check.
 
-**Product implication:** Trust isn't a feeling — it's an architectural decision. Features that survive past launch are the ones designed so users can verify, override, and understand AI output without effort.
+**Why this matters for PMs:** Trust isn't a feeling — it's an architectural decision. Features that survive past launch are the ones designed so users can verify, override, and understand AI output without effort.
 
 ### Worked Example: AI Ticket Router
 

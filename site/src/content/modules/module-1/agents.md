@@ -117,7 +117,7 @@ If each step in an agentic workflow has a 95% success rate — which sounds exce
 
 A twenty-step agent workflow with 95%-reliable steps **fails nearly two-thirds of the time.** This math is why most successful agent deployments keep workflows short, build in error recovery, and use human checkpoints for critical decisions.
 
-**Product implication:** When you're scoping an agent feature, count the steps. If you need more than five or six sequential decisions, look for ways to simplify the workflow, parallelise steps, or add human-in-the-loop checkpoints at critical junctures.
+**Why this matters for PMs:** When you're scoping an agent feature, count the steps. If you need more than five or six sequential decisions, look for ways to simplify the workflow, parallelise steps, or add human-in-the-loop checkpoints at critical junctures.
 
 ---
 

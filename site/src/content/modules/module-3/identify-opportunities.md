@@ -52,7 +52,7 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Classification and routing** is the single most proven AI capability in enterprise software. Stripe flags fraud. Gmail filters spam. Zendesk routes tickets. It works because it's a bounded problem with a finite set of valid outputs and learnable patterns that predict them.
 
-**Product implication:** If your opportunity involves sorting things into categories at volume, you're on solid ground. This is well-understood territory with predictable costs and performance. If you experimented with classification in [Module 2](/AI-PM-Bootcamp/modules/ai-powered-mindset/)'s prompt engineering exercises, you've already seen this capability first-hand.
+**Why this matters for PMs:** If your opportunity involves sorting things into categories at volume, you're on solid ground. This is well-understood territory with predictable costs and performance. If you experimented with classification in [Module 2](/AI-PM-Bootcamp/modules/ai-powered-mindset/)'s prompt engineering exercises, you've already seen this capability first-hand.
 
 **Summarisation and extraction** has matured rapidly. Slack summarises threads. Notion condenses pages. Legal tech tools pull key clauses from contracts. The model doesn't need to *know* things — it compresses what's already there. The failure mode is omission (missing something important), not fabrication, which is a far more manageable risk.
 
@@ -80,7 +80,7 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Tasks requiring proprietary knowledge.** An LLM doesn't know your internal API, your business rules, or your customer data. It will make plausible-sounding guesses that are wrong. You can solve this with RAG (covered in [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/)), but "just add AI" without a knowledge architecture will fail.
 
-**Product implication:** These aren't "temporary" limitations you can wait out. They're structural properties of how LLMs work — rooted in the transformer architecture you studied in [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/). Design around them rather than hoping the next model release fixes them.
+**Why this matters for PMs:** These aren't "temporary" limitations you can wait out. They're structural properties of how LLMs work — rooted in the transformer architecture you studied in [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/). Design around them rather than hoping the next model release fixes them.
 
 ---
 
@@ -100,7 +100,7 @@ Consider Meta's ad system. The advertiser inputs (budget, targeting criteria) ar
 
 That's the sweet spot. AI drives the prediction. Rules enforce the constraints. Most successful AI features in production follow this hybrid pattern.
 
-**Product implication:** When scoping an AI feature, separate the probabilistic parts (where AI adds value) from the deterministic parts (where rules are safer and cheaper). Many failed AI projects try to make the entire workflow probabilistic when only one step actually benefits from it.
+**Why this matters for PMs:** When scoping an AI feature, separate the probabilistic parts (where AI adds value) from the deterministic parts (where rules are safer and cheaper). Many failed AI projects try to make the entire workflow probabilistic when only one step actually benefits from it.
 
 | Task | Best Approach | Why |
 |------|---------------|-----|
@@ -157,7 +157,7 @@ Watch for these patterns:
 - You can't explain to a customer why the AI made a specific decision
 - The real motivation is "our competitors announced an AI feature" rather than a genuine user problem
 
-**Product implication:** The most common PM mistake in 2026 isn't building bad AI features — it's building AI features for the wrong reasons. MIT's research found that the majority of failed AI projects were driven by peer pressure and tooling excitement, not by a clearly defined business problem.
+**Why this matters for PMs:** The most common PM mistake in 2026 isn't building bad AI features — it's building AI features for the wrong reasons. MIT's research found that the majority of failed AI projects were driven by peer pressure and tooling excitement, not by a clearly defined business problem.
 
 > **Exercise:** Pick two features on your current backlog (or two that a stakeholder has suggested). Run them through the five-question quick filter. How many "yes" answers does each get? Does the result match your intuition about which one is more suited to AI? If the scores surprise you, dig into which questions flipped — that often reveals the real constraint.
 

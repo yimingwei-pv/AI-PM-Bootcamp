@@ -121,7 +121,7 @@ Your north-star metrics should be specific to what your feature actually does. F
 
 The distinction matters because teams that optimise for generic metrics build features that are technically safe but practically useless. Teams that optimise for app-specific metrics build features that solve the actual problem — and use generic metrics as safety checks along the way.
 
-**Product implication:** Define your app-specific metrics before you define your guardrails. Ask: "What does this feature need to do well to be worth shipping?" That's your north star. Then ask: "What must this feature never do?" Those are your guardrails.
+**Why this matters for PMs:** Define your app-specific metrics before you define your guardrails. Ask: "What does this feature need to do well to be worth shipping?" That's your north star. Then ask: "What must this feature never do?" Those are your guardrails.
 
 ### What a Real Dashboard Looks Like
 

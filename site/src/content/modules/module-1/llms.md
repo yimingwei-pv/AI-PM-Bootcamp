@@ -118,7 +118,7 @@ Many people assume each word is one token. In practice, **tokens are often subwo
 
 This design exists because models can't have an infinitely large vocabulary. Subword tokenisation gives them a manageable vocabulary (typically 30,000–100,000 tokens) while still being able to represent any text.
 
-**Product implications of tokenisation:**
+**Why this matters for PMs:**
 
 - **Cost calculations:** API pricing is per-token, not per-word. A 1,000-word document might be 1,300+ tokens. Languages with complex scripts (Chinese, Japanese, Korean) can use 2-3x more tokens per character than English — directly affecting your international pricing.
 
@@ -303,13 +303,13 @@ Every transformer has a **context window** — a maximum number of tokens it can
 - Whether you can feed an entire book or just 20 pages
 - Cost per API call (longer context = higher cost)
 
-**Product implication:** If your feature involves summarising documents, customers with long documents need a high-context model (expensive) or a chunking strategy. Always estimate your real-world token requirements before choosing a model.
+**Why this matters for PMs:** If your feature involves summarising documents, customers with long documents need a high-context model (expensive) or a chunking strategy. Always estimate your real-world token requirements before choosing a model.
 
 ### Constraint 2: Training Data Cutoff
 
 LLMs are trained on data up to a certain date — this is called the model's **knowledge cutoff**. For example, a model released in early 2026 might have training data through late 2025. They can't learn new information without retraining or being given fresh context.
 
-**Product implication:** If your users need real-time information (stock prices, weather, news), you need to augment the LLM with retrieval systems or external APIs, not just rely on the model's training data. We'll cover this in detail in the [Context Engineering lesson](/AI-PM-Bootcamp/modules/context-engineering/).
+**Why this matters for PMs:** If your users need real-time information (stock prices, weather, news), you need to augment the LLM with retrieval systems or external APIs, not just rely on the model's training data. We'll cover this in detail in the [Context Engineering lesson](/AI-PM-Bootcamp/modules/context-engineering/).
 
 ### Constraint 3: Accuracy vs. Creativity Tradeoff
 
@@ -317,7 +317,7 @@ LLMs generate tokens probabilistically. You control this with **temperature** (a
 - Low temperature → More deterministic, repetitive, accurate
 - High temperature → More creative, diverse, sometimes inaccurate
 
-**Product implication:** For customer service chatbots, use low temperature. For creative writing, use high temperature. Your choice of temperature is a product decision, not a technical one.
+**Why this matters for PMs:** For customer service chatbots, use low temperature. For creative writing, use high temperature. Your choice of temperature is a product decision, not a technical one.
 
 ### Constraint 4: Architectural Limitations
 
@@ -326,13 +326,13 @@ Because LLMs operate on tokens (not characters or pixels), they have inherent bl
 - **Precise arithmetic** breaks down for large numbers because numbers get tokenised unpredictably
 - **Spatial reasoning** is limited because transformers process sequential text, not visual layouts
 
-**Product implication:** Don't design features that rely on LLMs for tasks they're architecturally bad at. If your feature needs precise character manipulation or math, handle that in code and use the LLM for what it's good at — language understanding, reasoning, and generation.
+**Why this matters for PMs:** Don't design features that rely on LLMs for tasks they're architecturally bad at. If your feature needs precise character manipulation or math, handle that in code and use the LLM for what it's good at — language understanding, reasoning, and generation.
 
 ### Opportunity 1: Few-Shot Learning
 
 Because transformers excel at understanding context, you can show an LLM a few examples of what you want (few-shot prompting) and it often generalises well, without any retraining.
 
-**Product implication:** You don't always need to fine-tune or retrain. Smart prompting can achieve 80% of what fine-tuning achieves, much faster and at a fraction of the cost.
+**Why this matters for PMs:** You don't always need to fine-tune or retrain. Smart prompting can achieve 80% of what fine-tuning achieves, much faster and at a fraction of the cost.
 
 ### Opportunity 2: Embeddings for Similarity
 
@@ -341,13 +341,13 @@ The embeddings that power transformers also encode semantic similarity. You can 
 - Match customers to relevant content
 - Detect duplicate support tickets or user requests
 
-**Product implication:** If you have embeddings from your LLM, you get semantic search "for free" — it's just finding nearby vectors. This is one of the highest-ROI AI features you can ship.
+**Why this matters for PMs:** If you have embeddings from your LLM, you get semantic search "for free" — it's just finding nearby vectors. This is one of the highest-ROI AI features you can ship.
 
 ### Opportunity 3: Multimodal Extensibility
 
 Modern LLMs aren't just text. Vision transformers can process images; today's frontier models routinely process text, images, and audio together.
 
-**Product implication:** You're no longer limited to text-only features. Let users upload screenshots for support, analyse charts and diagrams, or describe images. Multimodal inputs open product possibilities that were impossible even two years ago.
+**Why this matters for PMs:** You're no longer limited to text-only features. Let users upload screenshots for support, analyse charts and diagrams, or describe images. Multimodal inputs open product possibilities that were impossible even two years ago.
 
 ---
 

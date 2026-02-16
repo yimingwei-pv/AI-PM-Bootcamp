@@ -136,7 +136,7 @@ But the parts that matter most? Those are getting more important, not less. Deci
 
 These require judgment, emotional intelligence, and the ability to hold multiple conflicting perspectives simultaneously. Based on what we know about how LLMs work ([Lesson 1.1](/AI-PM-Bootcamp/modules/llms/)), these are not capabilities that scale with more parameters or training data — they require a fundamentally different kind of intelligence.
 
-**Product implication:** The PMs who thrive will be the ones who adopt AI aggressively for the processing layer and redirect that freed-up time into deeper customer work, sharper strategy, and better leadership. The PMs at risk are those who either resist AI entirely or, just as dangerously, use it as an excuse to skip thinking.
+**Why this matters for PMs:** The PMs who thrive will be the ones who adopt AI aggressively for the processing layer and redirect that freed-up time into deeper customer work, sharper strategy, and better leadership. The PMs at risk are those who either resist AI entirely or, just as dangerously, use it as an excuse to skip thinking.
 
 ---
 

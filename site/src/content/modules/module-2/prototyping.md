@@ -92,7 +92,7 @@ AI prototyping shines in specific situations. Recognising them is the skill.
 
 **Compliance, accessibility, and performance.** AI generates reasonable accessible HTML for standard patterns, but nuanced accessibility (complex forms, custom widgets) benefits from expert review. Same for regulated industries — AI handles the presentation layer, but domain-specific logic and validation need specialist oversight.
 
-**Product implication:** The most effective approach isn't "use AI for everything" or "use AI for nothing." It's using AI to handle the fast iteration — generating and testing prototypes quickly — while bringing in designers and engineers for the parts that require craftsmanship, domain expertise, or integration knowledge.
+**Why this matters for PMs:** The most effective approach isn't "use AI for everything" or "use AI for nothing." It's using AI to handle the fast iteration — generating and testing prototypes quickly — while bringing in designers and engineers for the parts that require craftsmanship, domain expertise, or integration knowledge.
 
 ---
 
