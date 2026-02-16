@@ -2,7 +2,7 @@
 title: "Prompt Engineering"
 module: 2
 lesson: 2
-description: "Master the PM Prompt Framework (Role, Context, Task, Format, Constraints) and six practical prompt templates for everyday product management work."
+description: "Master the PM Prompt Framework (Role, Context, Task, Format, Constraints) and learn practical prompting techniques that turn AI from a novelty into a daily tool."
 objectives:
   - "Apply the ROLE | CONTEXT | TASK | FORMAT | CONSTRAINTS framework to craft effective prompts"
   - "Use few-shot prompting, chain-of-thought, and structured output techniques for real PM tasks"
@@ -14,9 +14,12 @@ resources:
   - title: "ProdPad: Prompt Engineering for Product Managers"
     url: "https://www.prodpad.com/blog/prompt-engineering-for-product-managers/"
     type: "article"
-  - title: "Prompt Engineering for Product Managers - Freeplay"
-    url: "https://freeplay.ai/blog/prompt-engineering-for-product-managers-part-1-composing-prompts"
-    type: "article"
+  - title: "Anthropic Prompt Engineering Guide"
+    url: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview"
+    type: "docs"
+  - title: "Prompt Cowboy"
+    url: "https://www.promptcowboy.ai/"
+    type: "docs"
 quiz:
   - question: "What is the single highest-impact prompting technique for getting consistent, comparable outputs?"
     options:
@@ -34,759 +37,313 @@ quiz:
     answer: 2
 ---
 
-## Why This Matters for PMs
+## The Skill You Already Have
 
-You already know how to write a good spec. You know that vague requirements lead to misaligned work, wasted sprints, and shipping the wrong thing.
+You already know how to write a great spec. You know that vague requirements produce misaligned work, wasted sprints, and features that miss the mark. You've felt the difference between a crisp brief that a team can execute on and a vague one that spawns three rounds of clarification meetings.
 
-Prompt engineering is exactly the same skill, applied to AI. A bad prompt is like a bad spec—ambiguous, incomplete, and leaves the executor (in this case, an LLM) guessing. A great prompt is crisp, specific, and produces exactly what you need.
+Prompt engineering is the same skill, applied to AI. A bad prompt is a bad spec — ambiguous, incomplete, leaving the executor guessing. A great prompt is specific, structured, and produces exactly what you need. The difference is speed: a spec goes to engineers who need days. A prompt goes to an AI that's ready to work *right now*.
 
-The difference? A spec goes to engineers. A prompt goes to an AI that's **ready to work right now**, with no clarification meetings needed.
-
-This is your next superpower. Teams that craft precise prompts ship faster, reduce iteration loops, and build reusable prompt libraries that compound in value over months. Teams that wing it get mediocre outputs, waste time reprompting, and throw away AI projects.
-
-Let's make you a great prompt engineer.
+This lesson gives you a framework and three techniques that will cover 90% of your PM prompting needs. You'll use these constantly — in this course and in your daily work.
 
 ---
 
 ## The PM Prompt Framework
 
-Before jumping to templates, let's build a mental model. Every effective prompt has five core components:
+Every effective prompt has five components. Think of them like the sections of a good spec:
 
-```
-ROLE | CONTEXT | TASK | FORMAT | CONSTRAINTS
-```
+**ROLE** — Who are you asking the AI to act as? ("You are an experienced product strategist at a B2B SaaS company.") This sets the perspective and expertise level. Just like you'd brief a consultant differently from an intern, the role shapes the output.
 
-Think of it like writing a spec section:
+**CONTEXT** — What's the background? What problem are we solving? ("We build a project management tool for remote teams. Users frequently request time-zone-aware deadlines. Currently all deadlines are UTC, which confuses international users.") The more specific your context, the more relevant the output. Vague context produces generic answers.
 
-- **ROLE**: Who are you asking the AI to act as? (e.g., "You are an experienced product strategist")
-- **CONTEXT**: What's the background? What problem are we solving? (e.g., "We're a B2B SaaS tool for design teams")
-- **TASK**: What exactly do you want? (e.g., "Generate 5 competitive positioning statements")
-- **FORMAT**: How should the output be structured? (e.g., "Use a bulleted list; each 1–2 sentences max")
-- **CONSTRAINTS**: Any guardrails? (e.g., "Focus only on platforms launched in the last 18 months"; "Avoid jargon")
+**TASK** — What exactly do you want? ("Write a concise one-page PRD for a Multi-Timezone Deadline feature.") Be precise. "Help me with the roadmap" is vague. "Prioritise these six features by impact and effort for Q2" is actionable.
 
-Let's see this in action:
+**FORMAT** — How should the output be structured? ("Problem statement in 2–3 sentences, two user personas, three success metrics with targets, scope in/out, one user walkthrough.") This is where most PMs underinvest. Specifying format eliminates the most common frustration — getting a wall of text when you wanted a crisp table, or bullet points when you wanted a narrative.
 
-### Bad Prompt (Vague)
+**CONSTRAINTS** — What guardrails apply? ("Keep it under 500 words. Focus on user problems, not implementation. This is timezone deadlines only — not timezone display elsewhere.") Constraints prevent hallucination, scope creep, and the AI's tendency to over-elaborate.
+
+Let's see the difference this makes.
+
+**Without the framework:**
 ```
 Write a PRD for a new feature.
 ```
+This will produce something generic and probably useless. No context about your product, no clarity on scope, no format specified. The AI is guessing.
 
-**Why it fails:**
-- No context about the product
-- No clarity on feature scope
-- No output format specified
-- AI will guess and probably miss
-
-### Good Prompt (Structured)
+**With the framework:**
 ```
 ROLE: You are a senior product manager at a B2B SaaS company.
 
 CONTEXT: We build a project management tool for remote teams. Users
-frequently request the ability to set time-zone-aware deadlines.
-Currently, all deadlines are in UTC, which confuses users in different regions.
+frequently request time-zone-aware deadlines. Currently all deadlines
+are in UTC, which confuses users in different regions.
 
 TASK: Write a concise one-page PRD for a "Multi-Timezone Deadline" feature.
 
 FORMAT:
 - Problem statement (2–3 sentences)
 - User personas affected (2 personas)
-- Success metrics (3 metrics)
-- Technical scope (what's in/out of scope)
-- Use case walkthrough (1 scenario)
+- Success metrics (3 metrics with targets)
+- Scope: what's in, what's out
+- One detailed user walkthrough
 
 CONSTRAINTS:
-- Keep it under 500 words
+- Max 500 words
 - Focus on user problems, not technical implementation
-- Avoid feature creep (this is timezone deadlines only, not timezone display elsewhere)
+- Timezone deadlines only — not timezone display elsewhere
 ```
 
-**Why it works:**
-- Role sets the mindset
-- Context makes the output relevant
-- Task is crystal clear
-- Format removes ambiguity
-- Constraints prevent hallucinations
+The second prompt will produce something you can actually use — something close enough to your final document that you're refining, not rewriting.
+
+**Why this matters for PMs:** You'll use this framework again in Lesson 4.1 when designing AI features for your users, not just yourself. The same principles — clear role, specific context, explicit format — apply whether you're prompting an AI for your own work or writing system prompts for a production feature.
 
 ---
 
-## Key Prompting Techniques (Practical Application)
+## Three Techniques That Cover 90% of PM Work
 
-As we covered in the Context Engineering module, techniques like few-shot prompting and chain-of-thought improve output quality. Now let's apply them to real PM work.
+In the Context Engineering lesson (Lesson 1.3), we covered the theory behind techniques like few-shot prompting and chain-of-thought. Now let's apply them to real PM tasks. You only need three techniques to handle almost everything.
 
-### Technique 1: Few-Shot Prompting (The Cheat Code)
+### Few-Shot Prompting: Show, Don't Describe
 
-Providing 2–5 examples is the single highest-impact technique. It's like showing developers the design mockups instead of just describing the feature.
+This is the single highest-impact technique. Instead of describing what you want, you *show* the AI an example. It's like giving a developer a design mockup instead of a verbal description — dramatically less ambiguity.
 
-**When to use:** Whenever you want consistent style, structure, or tone.
+Say you need competitive analyses for three products. Instead of asking for a vague comparison, you show the AI exactly what one good analysis looks like:
 
-**Example: Competitive Analysis**
-
-Instead of:
 ```
-Analyse Notion vs. Confluence vs. Microsoft 365.
-```
-
-Use:
-```
-Compare these three products. For each, structure your analysis like this example:
+Compare these three products. Structure each analysis like this example:
 
 EXAMPLE:
 **Asana**
 - Core use case: Team project management
 - Key differentiator: Timeline & portfolio views
 - User base: Mid-market (50–500 person teams)
-- Pricing model: Seat-based, $10.99–24.99/user/month
+- Pricing: Seat-based, $10.99–24.99/user/month
 - Biggest gap vs. us: Lacks deep customisation for technical workflows
 
 Now analyse: Notion, Confluence, Microsoft 365.
-Use the same structure for each. Keep each to 3–4 bullets.
+Same structure. 3–4 bullets each.
 ```
 
-Few-shot prompting ensures you get consistent, comparable outputs that you can actually use in a presentation.
+Two to five examples is the sweet spot. You get consistent, comparable outputs that you can drop straight into a presentation or a spreadsheet. Without examples, every response is a surprise. With examples, every response matches the pattern.
 
-### Technique 2: Chain-of-Thought (Show Your Work)
+Use few-shot prompting whenever you want consistency — competitive analyses, user stories, release notes, status updates. Anything you'll create repeatedly in the same format.
 
-Ask the AI to **think through** the problem step-by-step, not just give you the answer. This is particularly useful for analysis, strategic decisions, and problem-solving.
+### Chain-of-Thought: Make the AI Show Its Work
 
-**When to use:** Complex decisions, data interpretation, root cause analysis.
-
-**Example: Sprint Planning Conflict**
+For complex analysis and trade-off decisions, ask the AI to think step-by-step rather than jump to an answer. This is particularly useful when you're the one making the decision — you want to see the reasoning, not just the conclusion.
 
 ```
 You are a product manager handling a resource constraint.
 
 SITUATION:
-- We have 2 engineers for 3 weeks
-- We could build Feature A (user-requested, medium effort)
-- Or Feature B (critical bug fix, high urgency)
-- Or split across both (means both ship late)
+- 2 engineers for 3 weeks
+- Option A: User-requested feature (medium effort)
+- Option B: Critical bug fix (high urgency)
+- Option C: Split across both (both ship late)
 
-TASK: Help me think through this trade-off. Please:
-1. Define what "success" means for each option (what outcomes matter?)
-2. List the consequences of choosing each option
-3. Identify what information we're missing that would help decide
-4. Recommend an approach with your reasoning
+Help me think through this trade-off:
+1. What does "success" look like for each option?
+2. What are the consequences of each choice?
+3. What information are we missing?
+4. Your recommendation, with reasoning.
 
-Show your thinking for each step. Don't just tell me what to do.
+Show your thinking at each step.
 ```
 
-Chain-of-thought outputs are longer but far more useful because you see the reasoning. You can push back on specific steps instead of just accepting/rejecting the answer.
+Chain-of-thought outputs are longer, but far more useful. You see which assumptions the AI is making, so you can push back on specific steps rather than just accepting or rejecting the whole answer. You're using the AI as a thinking partner, not an oracle.
 
-### Technique 3: Structured Output (JSON for Data)
+### Structured Output: When You Need Data, Not Prose
 
-When you're asking for data or want to feed the output into another tool, force JSON output. It reduces hallucinations and makes parsing reliable.
-
-**When to use:** User stories, roadmap export, competitive feature matrices, priority scoring.
-
-**Example: User Story Generation**
+When you're generating data that feeds into another tool — user stories for Jira, features for a roadmap spreadsheet, priority scores for a matrix — force the AI to output structured JSON. It reduces hallucination (the AI has to fill specific fields, not ramble) and makes the output machine-readable.
 
 ```
 Generate 5 user stories for a "search filters" feature.
 
-Output as JSON with this exact structure:
-{
-  "stories": [
-    {
-      "id": "story_001",
-      "title": "...",
-      "persona": "...",
-      "problem": "...",
-      "acceptance_criteria": ["...", "...", "..."]
-    }
-  ]
-}
-```
-
-Structured output ensures you get machine-readable data that you can import into Jira, convert to a spreadsheet, or feed into the next process.
-
----
-
-## Six PM Prompt Templates (With Before & After)
-
-### Template 1: PRD Writing
-
-**Before (Bad):**
-```
-Write a PRD for [feature name].
-```
-
-**After (Good):**
-```
-ROLE: You are a product manager at a mid-market SaaS company.
-
-CONTEXT:
-Product: [Product name and what it does]
-Problem: [Why users need this feature - include a specific user quote or use case]
-Success metric: [What will we measure? E.g., "adoption rate > 30% in first month"]
-
-TASK: Write a PRD for [feature name].
-
-FORMAT:
-- 1-sentence problem statement
-- 2-3 affected personas (name + 1-sentence description)
-- 3 success metrics with targets
-- Feature scope: What's in/out
-- One detailed user walkthrough (narrative)
-- Technical considerations (1 paragraph)
-- Risks & mitigation (2–3 risks)
-
-CONSTRAINTS:
-- Max 1200 words
-- Avoid technical jargon in the problem section
-- Focus on user outcome, not implementation
-- No speculative features (only what we know we need)
-```
-
-**Why it's better:**
-- Context makes the PRD relevant to your product
-- Format ensures consistency and completeness
-- Constraints prevent scope creep and fluff
-
----
-
-### Template 2: Competitive Analysis
-
-**Before (Bad):**
-```
-Compare our product to Competitor X.
-```
-
-**After (Good):**
-```
-ROLE: You are a competitive strategist.
-
-CONTEXT:
-Our product: [Product name, target market, key strengths]
-Our positioning: [How we describe ourselves]
-Competitor: [Name, what they do]
-Analysis purpose: [E.g., "Understand their go-to-market strategy for SMBs"]
-
-TASK: Create a competitive analysis.
-
-FORMAT:
-For both us and the competitor, analyse:
-- Feature breadth: What's included? (Use a simple table or list)
-- Target personas: Who are they building for?
-- Pricing model: (Seat-based? Usage-based? Enterprise custom?)
-- Go-to-market: How do they acquire users?
-- Key differentiators: What do they do better? What do we do better?
-- Market positioning: How do they describe themselves?
-- Biggest gap: (For them vs. us, and us vs. them)
-
-CONSTRAINTS:
-- Base analysis only on public information (website, pricing page, reviews)
-- Limit to 1000 words total
-- Structure as a comparison table where possible
-- Be objective; avoid marketing language
-```
-
-**Why it's better:**
-- Competitor is specified (not vague comparison)
-- Purpose frames the analysis (not just "compare everything")
-- Format makes it easy to extract competitive insights for presentations
-- Constraints keep it to facts, not opinion
-
----
-
-### Template 3: User Story Generation (Batch)
-
-**Before (Bad):**
-```
-Write user stories for the search feature.
-```
-
-**After (Good):**
-```
-ROLE: You are an agile product manager writing stories for a development team.
-
-CONTEXT:
-Product: [Product name and what users do with it]
-Feature: Search across [objects: documents, projects, conversations, etc.]
-Current state: [How do users search now, or do they not?]
-Target user: [Who uses this most? E.g., "Project managers with 50+ items to navigate"]
-
-TASK: Generate user stories for this search feature.
-
-FORMAT:
-For each story, use this format:
----
-**Story ID:** SEARCH-001
-**Title:** [One sentence, user-focused]
-**As a** [persona], **I want to** [action] **so that** [benefit]
-**Acceptance Criteria:**
-- Given [context], when [action], then [outcome]
-- Given [context], when [action], then [outcome]
-- Given [context], when [action], then [outcome]
-**Effort estimate:** [Small / Medium / Large]
-**Dependencies:** [Any blockers or dependencies?]
----
-
-Generate 6–8 stories covering:
-- Basic search (keyword)
-- Filters (by date, type, owner, etc.)
-- Search operators (AND, OR, NOT)
-- Search performance (speed expectations)
-- Mobile search experience
-- Search analytics/insights
-
-CONSTRAINTS:
-- Each story must be testable (not vague)
-- Avoid technical jargon in the "As a / I want to" section
-- Stories should be independent (don't overlap)
-- Acceptance criteria should match user intent, not implementation
-```
-
-**Output as JSON:**
-```json
+Output as JSON:
 {
   "stories": [
     {
       "id": "SEARCH-001",
       "title": "...",
-      "as_a": "...",
-      "i_want_to": "...",
-      "so_that": "...",
+      "persona": "...",
       "acceptance_criteria": ["...", "...", "..."],
-      "effort": "Medium",
-      "dependencies": null
+      "effort": "Small | Medium | Large"
     }
   ]
 }
 ```
 
-**Why it's better:**
-- Scope is clear (what's included)
-- Format is ready to drop into Jira or export
-- JSON output is machine-readable
-- Batch generation saves time vs. writing individually
+You can paste this straight into a spreadsheet, import it into Jira, or feed it into the next step of your workflow. Structured output turns AI from a writing tool into a data tool.
 
 ---
 
-### Template 4: Sprint Planning & Roadmap Prioritisation
+## Putting It Together: Two Worked Examples
 
-**Before (Bad):**
+Let's walk through two real PM scenarios to see how the framework and techniques combine.
+
+### Example 1: Turning User Research Into a PRD
+
+You've just finished a round of customer interviews. You have transcripts, notes, and a rough sense of the problem. You need a PRD by end of day.
+
+**Step 1 — Synthesise the research (chain-of-thought):**
 ```
-Should we prioritise Feature A or Feature B?
+CONTEXT: I've attached transcripts from 8 customer interviews about
+our onboarding experience. These are mid-market SaaS customers
+(50–200 employees).
+
+TASK: Analyse these transcripts and identify:
+1. The top 3 pain points, ranked by frequency
+2. Any patterns in who experiences each pain point
+3. Direct quotes that best illustrate each pain point
+4. What surprised you — anything I might have missed
+
+Think through each step before giving your final analysis.
 ```
 
-**After (Good):**
+**Step 2 — Draft the PRD (framework + few-shot):**
 ```
-ROLE: You are a product strategist helping a PM prioritise.
+ROLE: Senior product manager at a mid-market SaaS company.
 
-CONTEXT:
-Product: [What you build, target market]
-Sprint capacity: [How many story points / engineering days available?]
-Shipping window: [Timeline: e.g., "Q1 2026"]
-Current metric: [What are we measuring? E.g., "user retention", "revenue"]
+CONTEXT: Based on the research synthesis above, our top pain point
+is [X]. Here's our product context: [brief description].
 
-Option A: [Feature name]
-- Effort: [estimate in story points or days]
-- User benefit: [Who wants this? Why?]
-- Business impact: [Revenue uplift / retention / churn reduction / etc.]
-- Risk: [What could go wrong?]
+TASK: Write a one-page PRD for solving this pain point.
 
-Option B: [Feature name]
-- Effort: [estimate]
-- User benefit: [Who wants this? Why?]
-- Business impact: [Revenue uplift / retention / churn reduction / etc.]
-- Risk: [What could go wrong?]
-
-Option C: [Technical debt / bug fix / etc.]
-- Effort: [estimate]
-- User benefit: [Who wants this? Why?]
-- Business impact: [Stability / performance / etc.]
-- Risk: [What could go wrong?]
-
-TASK: Help me prioritise. For each option, assess:
-1. Impact vs. effort ratio (High/Medium/Low)
-2. Strategic alignment (Does it match our roadmap?)
-3. Risk assessment (What blockers exist?)
-4. Opportunity cost (What do we miss by choosing this?)
-5. Recommendation with reasoning
-
-FORMAT:
-Create a prioritisation matrix or scoring table showing:
-- Option name
-- Effort
-- Estimated impact (qualitative)
-- Strategic fit (% alignment with roadmap)
-- Risk level
-- Recommendation rank (1st / 2nd / 3rd)
-- One sentence reasoning for the rank
+FORMAT: Use this structure (here's an example of a good PRD section):
+[paste a previous PRD section as your few-shot example]
 
 CONSTRAINTS:
-- Base recommendations only on the data provided
-- Don't assume we'll "do it next sprint too"
-- Flag if any option is missing critical info
-- Keep reasoning brief (1–2 sentences per option)
+- Max 800 words
+- User outcomes, not implementation
+- Include three success metrics with specific targets
 ```
 
-**Why it's better:**
-- Full context for the AI to make a good recommendation
-- Framework prevents gut-feel decisions
-- Matrix format is presentation-ready
-- Constraints keep reasoning honest
+**Step 3 — Refine (20 minutes of your judgment):** Read the draft critically. The AI got the structure right, but the success metrics are probably too generic. The user walkthrough might miss edge cases you heard in the interviews. The tone might not match your team's style. This is where your judgment adds the value AI can't — you're refining, not writing from scratch.
 
----
+Total time: ~45 minutes instead of 3 hours. And the quality is higher because you started from a structured draft instead of a blank page.
 
-### Template 5: Status Update & Stakeholder Communication
+### Example 2: Sprint Planning Prioritisation
 
-**Before (Bad):**
+You have three competing priorities and two engineers for three weeks. You need to make a recommendation to your engineering lead.
+
 ```
-Write a status update for our feature launch.
-```
-
-**After (Good):**
-```
-ROLE: You are a product manager writing a status update for executive leadership.
+ROLE: Product strategist helping a PM prioritise.
 
 CONTEXT:
-Audience: [C-level executives / Board / Stakeholders who don't use the product daily]
-Feature: [Name]
-Status: [On track / At risk / Delayed]
-What's happened this week: [Milestones, blockers, wins, surprises]
-- Completed: [What shipped or was decided?]
-- In progress: [What are we working on?]
-- Blocked: [Any risks? Any dependencies on other teams?]
-- Next week: [What's the priority?]
+Product: [name, target market]
+Sprint capacity: 2 engineers, 3 weeks
+Current focus metric: user retention
 
-Key metrics:
-- Target users impacted: [How many?]
-- Success metric: [What are we measuring?]
-- Timeline: [When do we ship?]
+Option A: Onboarding revamp
+- Effort: 2.5 weeks
+- Impact: Addresses #1 churn driver (day-1 drop-off)
+- Risk: Requires design resources we may not have
 
-TASK: Write a status update.
+Option B: Performance fix
+- Effort: 1 week
+- Impact: p95 load time from 4s to 1.5s
+- Risk: Low — well-scoped
 
-FORMAT:
-- 1-sentence headline (Is this on track? Is this exciting? Lead with the news.)
-- 2-3 sentence status summary (What happened? What's the status?)
-- Wins this week (2–3 bullets)
-- Risks / blockers (2–3 bullets, with mitigation)
-- Next steps (3–4 bullets, prioritised)
-- Ask for stakeholder input (Is there anything we need from you?)
+Option C: Both (rushed)
+- Effort: 3 weeks, both delivered at lower quality
+- Risk: Neither done well
 
-CONSTRAINTS:
-- Keep it to 300 words (1 page max)
-- Use plain language (no jargon)
-- Lead with the news (good or bad; don't bury it)
-- Be specific about dates and metrics
-- Don't over-promise on next week's plans
+TASK: Help me think through this trade-off. Show your reasoning
+for each option, then recommend an approach.
+
+FORMAT: Prioritisation matrix showing impact, effort, risk, and
+strategic fit. Then a one-paragraph recommendation.
 ```
 
-**Why it's better:**
-- Format is executive-ready (respects their time)
-- Context includes all the info stakeholders need to decide
-- Constraints keep it concise and actionable
-- Template prevents rambling status updates
+The AI will lay out the trade-offs clearly. You'll probably agree with its analysis but make a different call based on context it doesn't have — maybe the CEO just flagged performance in an all-hands, or maybe you know the designer is free next week. That's the collaboration: AI structures the thinking, you make the judgment call.
 
 ---
 
-### Template 6: Data Analysis & Interpretation
+## The Mistakes That Cost You the Most Time
 
-**Before (Bad):**
-```
-Analyse our user engagement data and tell me what it means.
-```
+After helping enough PMs with prompts, clear patterns emerge in what goes wrong.
 
-**After (Good):**
-```
-ROLE: You are a data analyst and product strategist.
+**Vague context** is the most common. "We need a new feature. Can you help?" gives the AI nothing to work with. Compare: "We're a B2B SaaS tool for design teams. Our users struggle with version control across files. Competitors solve it with branching, but we think there's a better way." Explicit context, every time.
 
-CONTEXT:
-Product: [What it does]
-Metric we care about: [E.g., "user retention", "daily active users", "feature adoption"]
-Time period: [E.g., "Last 90 days"]
-Background: [What's changed? New feature launch? Marketing campaign? Competitive pressure?]
+**No examples** is the second biggest miss. "Write user stories in our format" means nothing to an AI. Paste in one good example and say "write five more like this." Examples reduce iteration cycles by 80% — they're the single highest-leverage addition to any prompt.
 
-Here's the data:
-[Paste your CSV, table, or data summary]
+**Asking for everything at once** is the third. "Analyse our market, competitors, and opportunities, then recommend a new product" is four separate tasks crammed into one prompt. Complex tasks compound errors. Break them into steps. Verify each step before moving on.
 
-Data columns represent: [Explain what each column means]
+**Conflicting constraints** are subtler. "Write something comprehensive but concise" is a contradiction. Pick one. "Max 500 words, covering problem, metrics, and scope" is clear.
 
-TASK:
-1. Describe what the data shows (What's the trend?)
-2. Identify anomalies (What's surprising or unexpected?)
-3. Hypothesise why (What caused this trend?)
-4. Recommend actions (What should we do about it?)
-
-FORMAT:
-- Headline insight (1 sentence: "Retention improved 8% but only for users 30+")
-- Trend summary (2–3 sentences: What's happening?)
-- Key findings (3–4 bullets with data quotes)
-- Anomalies (What stood out? Positive or negative?)
-- Hypothesis (Why did this happen?)
-- Recommended actions (2–3 specific next steps)
-- Data quality note (Is there anything we should doubt or investigate further?)
-
-CONSTRAINTS:
-- Only use the data provided; don't speculate beyond it
-- Cite specific numbers (not just "users increased")
-- Flag if sample size is small or data seems incomplete
-- Prioritise insights by business impact (not statistical significance)
-- Recommend only actions we can actually take
-```
-
-**Why it's better:**
-- Keeps AI honest (only use provided data, flag gaps)
-- Format forces structured thinking (not just raw insights)
-- Removes the "so what?" problem (recommends actions, not just observations)
-- Constraints prevent over-confident analysis of weak data
+And finally, **not iterating**. The first version of a prompt is rarely the best. Use it, read the output, notice what's 70% right and 30% wrong, then adjust. The second version is always better. The third version is a tool you'll reuse for months. Save your improved prompts — that's how you build a library that compounds.
 
 ---
 
-## Building Your Personal Prompt Library
+## Building Your Prompt Library
 
-You're not writing prompts once and throwing them away. Great product managers build a **reusable library** that gets better over time.
+Every time you refine a prompt and get a good result, save it. Over time, you'll build a personal library — a collection of prompts for the tasks you do most often.
 
-### Step 1: Create a System
+Organise however works for you: a Notion database, a folder of text files, a spreadsheet with columns for category, prompt, and notes. What matters is that you can find the right prompt when you need it. Tag by use case (PRD, competitive analysis, status update) rather than by technique.
 
-Use one of these:
-- **Obsidian/Notion database:** Each prompt is a note with tags for category (PRD, Competitive, User stories, etc.)
-- **GitHub repo:** Organised by folder (e.g., `/prd-writing`, `/competitive-analysis`)
-- **Spreadsheet:** Columns for Category, Use Case, Prompt, Output Example, Notes
-- **Claude Projects feature:** Save prompts with context as pinned instructions
+Each time you use a prompt and improve it, save the updated version. Note what you changed and why. The tenth version of your PRD prompt will be dramatically better than the first — that's compounding value.
 
-What matters: **You can find it when you need it.** Tag by use case, not just format.
+And share them. Your prompt library becomes a team asset. A junior PM who inherits your competitive analysis prompt starts at your level of quality instead of figuring it out from scratch. Consistent prompts across a team produce consistent outputs.
 
-### Step 2: Populate with Your Prompts
+**Why this matters for PMs:** In Lesson 4.1 (Design AI Features), you'll apply these same prompting skills to write system prompts for production AI features. The framework doesn't change — ROLE, CONTEXT, TASK, FORMAT, CONSTRAINTS works whether you're prompting AI for yourself or for thousands of users. The difference is that production prompts need even more rigour, which is exactly what this practice prepares you for.
 
-Start with the six templates above. Then add variations:
-- PRD prompt for API products (different structure than consumer features)
-- Competitive analysis for enterprise vs. SMB (different focus areas)
-- User story templates for different team types (engineering, design, support)
+## Extension: How Propel Ventures Does Prompt Engineering
 
-Each time you use a prompt and refine it, save the **improved version**. This is compounding value.
+Everything in this lesson — the PM Prompt Framework, few-shot examples, chain-of-thought reasoning — works. But writing great prompts from scratch every time takes practice, and even experienced prompters leave performance on the table.
 
-### Step 3: Version & Iterate
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/prompt-cowboy-overview.png" alt="Prompt Cowboy interface — a prompt engineering tool that rewrites rough prompts into structured, high-performing versions" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-Good prompts get better over time. Track versions:
+At Propel Ventures, we love [Prompt Cowboy](https://www.promptcowboy.ai/) as a force multiplier. Prompt Cowboy is a prompt engineering tool that takes your rough prompt — the kind you'd naturally type — and rewrites it into a structured, high-performing version optimised for models like Claude, ChatGPT, and Gemini. You paste in your "lazy prompt," and it generates an expanded version with clearer instructions, better structure, and more explicit constraints.
 
-```
-Prompt: PRD Writing
-Version: 2.1 (Updated Jan 2026)
-Last used: Jan 23, 2026
-Output quality: Excellent
+Here's how we use it in practice:
 
-Changes from 2.0:
-- Added "Constraints" section to reduce scope creep
-- Moved "context" above task (better for Claude)
-- Added JSON option for outputs
-- Removed outdated template format
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/prompt-cowboy-annotation.png" alt="Annotated Prompt Cowboy workflow showing how a rough prompt gets rewritten into a structured, high-performing version" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-Next iteration: Test with new feature example
-```
+**First drafts.** When you're starting a new prompt from scratch, Prompt Cowboy gives you a solid structural foundation. Instead of staring at a blank text box and trying to remember every element of the framework, you write what you want in plain language and let the tool add the scaffolding. Then you refine from there — adjusting the role, adding your specific context, tuning the format.
 
-The second time you use a prompt, you notice what was missing. The third time, it's tight. The tenth time, it's a superpower.
+**Prompt improvement.** When a prompt is producing decent-but-not-great output, paste it into Prompt Cowboy to see what you're missing. Often the tool identifies gaps you didn't notice — a missing constraint, an underspecified format, or a vague task description.
 
-### Step 4: Share with Your Team
+**Learning by example.** For PMs who are still building their prompting instincts, comparing your original prompt to Prompt Cowboy's rewrite is one of the fastest ways to internalise what "good" looks like. Over time, you'll find yourself writing prompts that need less and less rewriting.
 
-Your personal library becomes a team asset. Document how each prompt works, why it works, and when to use it. This compresses the learning curve for junior PMs and keeps team output consistent.
+You still need to understand your context, define success criteria, and iterate based on outputs. But it handles the structural heavy lifting, which means you spend less time formatting prompts and more time refining the ideas inside them. Think of it as a linter for your prompts: it catches the common mistakes so you can focus on the substance.
 
 ---
 
-## Common Mistakes PMs Make (And How to Fix Them)
+## Exercise: Build Your First Prompt
 
-### Mistake 1: Vague Context
+Pick a task you did manually this week — a PRD draft, a competitive analysis, a feedback synthesis, a status update. Write a prompt for it using the full framework: ROLE, CONTEXT, TASK, FORMAT, CONSTRAINTS. Add at least one few-shot example.
 
-**Bad:**
-```
-We need a new feature. Can you help?
-```
+Run it. Read the output critically. What's good? What's missing? What would you change in the prompt to fix it?
 
-**Fix:**
-```
-We're a [product type] for [users]. Our users struggle with [specific problem].
-Our competitors solve it by [how], but we think there's a better way: [your approach].
-Can you help flesh out...?
-```
-
-**Why:** AI can't read minds. Explicit context = better output.
-
----
-
-### Mistake 2: No Examples
-
-**Bad:**
-```
-Write user stories in our format.
-```
-
-**Fix:**
-```
-Write user stories in this format (here's an example):
-
-SEARCH-001 | Search: Filter by date range
-As a project manager, I want to filter search results by date range so that I find
-recent conversations without scrolling through months of history.
-AC: Given I've searched for a term, when I click the "Date" filter, then I see
-options (Last week / Last month / Last 3 months / Custom range).
-AC: Given I've set a custom date range, when I search, then only results in that
-range appear.
-Effort: Medium | Blocker: None
-
-Now write 5 more stories covering [specific areas].
-```
-
-**Why:** Examples are the highest-impact technique. They reduce iteration cycles by 80%.
-
----
-
-### Mistake 3: Asking for Everything at Once
-
-**Bad:**
-```
-Analyse our market, our competitors, our opportunities, and recommend a new product.
-```
-
-**Fix:**
-```
-Let's break this into steps.
-
-Step 1: Analyse our market (TAM, growth, trends)
-Step 2: Competitive landscape (who's winning, how)
-Step 3: Market gaps (where we could fit)
-Step 4: Then recommend a new product that fills those gaps.
-
-Let's start with Step 1. Here's our market data: [...]
-```
-
-**Why:** Complex tasks compound error. Smaller prompts = better outputs. You can verify each step before moving on.
-
----
-
-### Mistake 4: Conflicting Constraints
-
-**Bad:**
-```
-Write a PRD that's comprehensive but also super concise.
-It should cover everything but avoid jargon and stay simple.
-Make it creative but also practical.
-```
-
-**Fix:**
-```
-Write a one-page PRD (max 500 words). Focus on:
-- Problem (why we're building this)
-- Success metrics (how we'll measure success)
-- User walkthrough (one detailed scenario)
-
-Skip the technical architecture and detailed acceptance criteria (that's for later).
-```
-
-**Why:** AI optimises for clarity. Give it one constraint set, not five competing goals.
-
----
-
-### Mistake 5: Not Iterating
-
-**Bad:**
-```
-[Use a prompt once, get an output, never look at it again]
-```
-
-**Fix:**
-```
-[Use a prompt, get output, read it and think]
-↓
-"This is 70% good but missing X, too verbose on Y, and should add Z."
-↓
-[Edit the prompt to fix those things]
-↓
-[Run again, get better output]
-↓
-[Save this improved version to your library]
-```
-
-**Why:** Prompt engineering is iterative. You're not looking for perfect on the first try. You're looking for **good and getting better**.
-
----
-
-## Pro Tips (The Next Level)
-
-### Tip 1: Put Instructions After Context (For Claude)
-
-Claude processes information better when documents/context come first, then instructions. Unlike some models, Claude benefits from seeing the data before being asked to analyse it.
-
-```
-CONTEXT: [your situation]
-DOCUMENT: [data/example]
-TASK: [what to do with it]
-```
-
-### Tip 2: Use XML Tags for Structure
-
-XML tags help Claude parse structured data:
-
-```
-<product_info>
-Name: [Product]
-Target users: [Who uses it]
-</product_info>
-
-<market_data>
-TAM: $X billion
-Growth rate: Y% YoY
-</market_data>
-
-<task>
-Given this product and market, recommend a GTM strategy.
-</task>
-```
-
-### Tip 3: Tell AI What NOT to Do (Sparingly)
-
-Negative constraints can backfire. Instead of "Don't be too technical," try "Use simple language that a non-technical stakeholder would understand."
-
-### Tip 4: Pre-Fill to Guide Output
-
-If you want JSON, start with `{`. If you want a numbered list, start with `1. `. AI will complete the pattern.
-
-```
-Analyse this competitive market.
-
-Analysis:
-1. Market size:
-2. Key players:
-3. Market trends:
-4. Opportunity gaps:
-```
-
-### Tip 5: Use "Thinking" for Complex Problems
-
-For Claude, you can ask it to show its reasoning:
-
-```
-I need help prioritising these three features. Please think through the trade-offs
-and then give me a recommendation. Show your reasoning for each step.
-```
-
-Claude will take more time and produce more thoughtful output.
+Save the improved version. That's the first entry in your prompt library — and you'll use it again in the prototyping lesson (Lesson 2.3) and the Module 4 lab (Lesson 4.3).
 
 ---
 
 ## Key Takeaways
 
-- **Prompt engineering is the new spec writing.** A clear prompt saves iteration loops.
+1. **The PM Prompt Framework covers 90% of use cases.** ROLE, CONTEXT, TASK, FORMAT, CONSTRAINTS — five components, same structure every time. The better your spec, the better the output.
 
-- **Use the ROLE | CONTEXT | TASK | FORMAT | CONSTRAINTS framework.** It works for every prompt type.
+2. **Three techniques, three use cases.** Few-shot for consistency (show, don't describe). Chain-of-thought for complex reasoning (make the AI show its work). Structured output for data (JSON when you need machine-readable results).
 
-- **Few-shot prompting (examples) is the highest-impact technique.** 3–5 examples beat a thousand words of explanation.
+3. **Context engineering is the foundation.** This lesson builds on the theory from Lesson 1.3. The PM Prompt Framework is how you practise context engineering at the individual prompt level — choosing what information the model needs and structuring it for the best result.
 
-- **Build a personal prompt library.** Version it, iterate, and share with your team.
+4. **Iteration is the skill.** Your first prompt is rarely your best. Use it, read the output, adjust. The third version is usually the one worth saving. Tools like Prompt Cowboy can accelerate this cycle.
 
-- **Iterate ruthlessly.** The second and third version of a prompt is always better than the first.
-
-- **Apply to your real work:** PRDs, competitive analysis, user stories, sprint planning, status updates, and data analysis. These six templates cover 80% of what PMs actually do.
-
-- **Start simple, then layer in sophistication.** Chain-of-thought and structured output are powerful once your basics are solid. (In the Design AI Features module, you'll apply these same skills to building AI features for your users, not just yourself.)
-
----
+5. **Build a library that compounds.** Every refined prompt is a reusable asset. Share them across your team for consistent, high-quality outputs.
 
 ## Explore Further
 
-- [Context Engineering](/AI-PM-Bootcamp/modules/context-engineering/) — Theory behind few-shot prompting, chain-of-thought, and structured output
-- **Claude's Prompt Engineering Guide** — Advanced techniques from Anthropic
-- **Prompt Engineering 2025: The Latest Best Practices** — Research roundup from industry leaders
-- **ProdPad Guide: Prompt Engineering for Product Managers** — PM-specific examples and frameworks
-- **GitHub: Awesome Claude Prompts** — Community library of real prompts you can adapt
-- **Anthropic's Interactive Prompt Engineering Tutorial** — Hands-on practice (Claude-focused)
+- [Prompt Engineering Guide](https://www.promptingguide.ai/) — Community-maintained reference covering all major prompting techniques with examples and research citations.
+- [Anthropic Prompt Engineering Guide](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — Anthropic's official guidance on getting the best results from Claude, including advanced techniques.
+- [Prompt Cowboy](https://www.promptcowboy.ai/) — The prompt rewriting tool Propel Ventures uses to turn rough prompts into structured, high-performing versions.

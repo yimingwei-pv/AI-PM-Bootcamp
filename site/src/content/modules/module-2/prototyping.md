@@ -2,14 +2,14 @@
 title: "Prototyping with AI"
 module: 2
 lesson: 3
-description: "Leverage AI-powered prototyping tools to collapse the timeline from idea to validated prototype, enabling faster product decisions and user testing."
+description: "Use AI-powered prototyping tools to collapse the timeline from idea to validated prototype, enabling faster product decisions and user testing."
 objectives:
   - "Evaluate and choose between major AI prototyping platforms based on project needs"
   - "Build a functional prototype using AI tools within a compressed timeline"
   - "Integrate AI prototyping into existing product development workflows"
 resources:
   - title: "v0 by Vercel"
-    url: "https://v0.dev"
+    url: "https://v0.app"
     type: "docs"
   - title: "Claude Artifacts Tutorial"
     url: "https://support.claude.com/en/articles/11649438-prototype-ai-powered-apps-with-claude-artifacts"
@@ -18,7 +18,7 @@ resources:
     url: "https://www.lennysnewsletter.com/p/a-guide-to-ai-prototyping-for-product"
     type: "article"
 quiz:
-  - question: "Which AI prototyping tool is best suited for converting Figma designs or sketches into production-ready React components?"
+  - question: "Which AI prototyping tool is best suited for converting Figma designs or sketches into production-ready Next.js code with built-in deployment?"
     options:
       - "Lovable"
       - "Replit Agent"
@@ -34,323 +34,275 @@ quiz:
     answer: 2
 ---
 
-## The Timeline Collapse: Why This Matters Now
+## The Shift
 
-A decade ago, turning a product idea into a clickable prototype took weeks. Designers would sketch concepts, create wireframes, gather feedback, iterate, build high-fidelity mockups in Figma, hand off to developers, and hope they built the right thing. If you discovered major UX issues at that point? You'd restart.
+Prototyping used to be slow. Wireframes, design review, high-fidelity mockups, engineering hand-off — validating a single idea could easily take two or three weeks. If user testing surfaced problems, you'd loop back and spend another sprint.
 
-Today? AI collapses that timeline from weeks to hours.
+AI prototyping tools have compressed that timeline significantly. You can describe a feature in plain English, generate an interactive prototype, test it with users, and iterate — often in a single day. That means you can validate multiple ideas before committing engineering resources, rather than betting a sprint on one direction.
 
-You can now describe a feature, generate interactive prototypes, test assumptions with users, iterate based on feedback, and deliver production-ready code—all within a single workday. This shift fundamentally changes how product teams validate ideas. Instead of relying on lengthy spec documents and abstract discussions, you can show working prototypes and get concrete feedback.
-
-For product managers, this is a superpower. You move faster than your competitors. You derisk product decisions by testing with real users earlier. You can explore more options without burning weeks of design and engineering capacity.
-
-**Why this matters for PMs:** The ability to prototype fast compounds your leverage. You're no longer bottlenecked by design queues or developer bandwidth. You can run 3–4 design sprints in the time a traditional team runs one.
+Here's how the landscape works and how to get the most from it.
 
 ---
 
-## The AI Prototyping Landscape (2025–2026)
+## The Tool Landscape
 
-The market has crystallised around a small number of dominant players, each with distinct strengths. Understanding which tool fits which problem is critical.
+The AI prototyping market moves fast, so rather than deep-diving each tool (which would be outdated in months), here's the mental model. Tools fall into four categories:
 
-### The Major Categories
+**Full-stack builders** (Bolt.new, Lovable, Replit Agent, v0 by Vercel) generate complete applications — UI, backend, database, authentication — from a text description. You describe what you want, and they produce a running app in your browser. Best for MVPs and proof-of-concepts where you need the whole stack. v0 stands out for its tight integration with Vercel's deployment infrastructure and its ability to take images as input — Figma designs, sketches, even napkin drawings — and convert them to production-ready Next.js code.
 
-**Full-Stack Application Builders**
-These generate complete, deployable applications from natural language. You describe what you want—including backend logic, databases, and authentication—and they generate working code.
+**In-conversation prototyping** (Claude Artifacts) lets you generate and iterate on code within a chat. No deployment, no context-switching. Best for technical PMs who want to explore ideas quickly or prototype AI-powered features.
 
-**Frontend Component Generators**
-These specialise in UI creation from text and images. They're fast for visual iteration but typically produce only frontend code.
+**AI-assisted design tools** (Figma AI) sit inside your existing design workflow. Figma Make lets you prompt-to-app directly within Figma, and Code Layers add interactive elements through natural language — blurring the line between design tool and code generator.
 
-**AI-Assisted Design Tools**
-These sit within traditional design workflows (like Figma) and speed up mockup creation and copy generation.
+Here's how they compare:
 
-**Image-to-Code Converters**
-Take screenshots or mockups and convert them to functional code.
+| Platform             | Best for                                                                       | Full-stack?     |
+| -------------------- | ------------------------------------------------------------------------------ | --------------- |
+| **Bolt.new**         | Quick and dirty MVPs with minimal prompts                                      | Yes             |
+| **Lovable**          | PMs new to AI prototyping, and want to focus on front end                      | Front end focus |
+| **v0**               | For PMs who are more technical. Design has SaaS / B2B aesthetic. Fairly robust | Yes             |
+| **Claude Artifacts** | Fast generation. Designs or features, not full prototype                       | Artifact        |
+| **Replit Agent**     | PMs new to AI prototyping. Focused on collaboration and some coding exposure   | Yes             |
+| **Figma Make**       | PMs whose teams work in Figma frequently. Easy to edit the design              | Yes             |
+| **Google Stitch**    | PMs who want UI not a prototype                                                | UI design only  |
 
-### Market-Leading Platforms
+The right choice depends on your situation. Need a full working app fast? Lovable or Bolt. Converting Figma designs into Next.js? v0. Exploring an AI feature idea? Claude Artifacts. Staying in your design workflow? Figma AI.
 
-#### **Bolt.new** (StackBlitz)
-**Category:** Full-stack application builder (browser-based IDE)
-
-Bolt is the speed champion. You input a text description or upload a screenshot, and it generates a complete, running application directly in your browser. No local setup required. The interface shows code side-by-side with a live preview, meaning you see changes instantly. Its key strength is blazing-fast generation (minutes, not hours), intuitive UI, and ability to convert screenshots into functional apps—perfect for quick MVPs and proof-of-concepts. The tradeoff: generated code can be brittle and require cleanup, and it works best for greenfield projects rather than integrating into existing codebases, with limited control over architecture decisions.
-
-**Best for:** Quick prototypes, screenshot-to-app conversions, and non-technical stakeholders wanting to see ideas materialised fast.
-
-#### **Lovable** (formerly GPT Engineer)
-**Category:** Full-stack application builder (browser-based)
-
-Lovable — which rebranded from GPT Engineer in late 2024 — emphasises full-stack generation with built-in hosting. You describe your app in natural language, and it generates UI, backend, database schema, authentication, and deployment infrastructure—all from one browser tab. Its core advantage is comprehensive full-stack generation with integrated deployment and hosting, plus an ability to turn vague ideas into working prototypes. The tradeoff: it offers less control over code architecture than Bolt, slightly slower initial generation (though still fast by traditional standards), and deployment can be slower for large projects.
-
-**Best for:** Non-technical product managers wanting end-to-end app generation, rapid MVP validation, and teams wanting working deployed apps without infrastructure setup.
-
-#### **v0 by Vercel**
-**Category:** Frontend component generator
-
-v0 is React-focused and excels at generating UI components. Unique among the major platforms: it can take images as input (your Figma designs, sketches, even napkin drawings) and convert them to React code, making it exceptional for design-heavy teams. Its key strength is unmatched image-to-code capability combined with clean, reusable React code with Tailwind CSS and seamless integration with the Next.js and Vercel ecosystem, making it excellent for component libraries and design systems. The limitation: it's frontend-only with no backend, database, or server logic, requires React/Next.js knowledge to extend, and isn't suitable for full-app prototyping alone.
-
-**Best for:** Design-first teams, teams using React/Next.js, companies wanting production-ready component code, and design system maintenance.
-
-#### **Claude Artifacts**
-**Category:** Code snippet and prototype generator (within chat)
-
-Claude is an AI assistant that can generate code directly in your conversation via "Artifacts"—interactive code blocks that live alongside your chat. You describe what you want, Claude writes it, and you can run, test, and iterate on it immediately without leaving the chat. Its key strength is seamless integration into your daily workflow without context switching, excellent reasoning about architecture and tradeoffs, the ability to build AI-powered applications using Claude's own API, and no deployment friction since code runs directly in the browser. The tradeoff: code is ephemeral and lives only in your chat (hard to share or version control), there's no hosting or database integration, and it requires comfort with code.
-
-**Best for:** Technical PMs, exploring ideas with AI reasoning, prototyping AI-powered features, and rapid iteration within a conversation.
-
-#### **Replit Agent**
-**Category:** Full-stack development agent (browser-based IDE)
-
-Replit Agent is an autonomous agent that can build, test, and fix code on its own. You describe a feature or app, and Agent works independently for up to 200 minutes, generating code, testing it in an integrated browser, and fixing bugs automatically. Its main advantage is autonomous operation without requiring constant iteration, integrated browser testing and bug fixing, full-stack support, and cloud-based deployment with no local setup. The limitation: it offers less interactive iteration compared to Bolt or Lovable, requires clearer upfront specifications, and is less effective at design-heavy work.
-
-**Best for:** Teams wanting autonomous development, backend-heavy prototypes, and developers who prefer automation over interactive iteration.
-
-#### **Figma AI & Design Tools**
-**Category:** AI-assisted design plugin ecosystem
-
-Figma has integrated AI capabilities directly into its design tool, including prototype generation (describe screens and get design mockups), copy generation (tools like Frontitude provide UX copy suggestions), and layout assistance (AI helps structure designs according to best practices). Its main advantage is seamless integration into existing design workflows with no context switching, and teams already using Figma can start immediately with good visual consistency. The limitation: it generates mockups rather than code (you still hand off to developers) and is less comprehensive than dedicated prototyping platforms.
-
-**Best for:** Design teams using Figma, teams wanting to stay in their existing design workflow, and mockup-heavy work.
+These tools change constantly — new features ship monthly, and new competitors appear regularly. The durable skill isn't knowing one tool; it's knowing *when* to use AI prototyping and *how* to get the most from it. That's what the rest of this lesson covers.
 
 ---
 
-## Platform Comparison Matrix
+## When AI Prototyping Creates the Most Value
 
-| **Platform** | **Speed** | **Full-Stack?** | **Code Quality** | **Deployment** | **Learning Curve** | **Best For** |
-|---|---|---|---|---|---|---|
-| **Bolt.new** | Very Fast | Yes | Good | Manual | Very Low | Quick MVPs, screenshots-to-app |
-| **Lovable** | Fast | Yes | Good | Built-in | Very Low | Full-stack rapid prototypes, hosting included |
-| **v0** | Very Fast | Frontend only | Excellent | Vercel | Low | React/design-heavy projects |
-| **Claude Artifacts** | Fast | Yes | Excellent | None (ephemeral) | Medium | AI features, exploration, technical iteration |
-| **Replit Agent** | Moderate | Yes | Good | Manual | Medium | Autonomous development, backend work |
-| **Figma AI** | Fast | Mockups only | N/A | Manual handoff | Low | Design mockups, visual iteration |
+AI prototyping shines in specific situations. Recognising them is the skill.
 
----
+**Validating ideas before committing resources.** You have a hypothesis about what users need, but you're not certain. Instead of writing a 10-page spec and waiting weeks for a build, generate a prototype in a few hours, put it in front of five users, and learn. If the idea falls flat, you've spent a day, not a sprint. If it resonates, you have a working prototype and real user feedback to bring to sprint planning.
 
-## When to Use AI Prototyping (And When Not To)
+**Exploring multiple directions in parallel.** Traditionally, you'd pick one design direction and invest in it. With AI prototyping, you can generate three or four variations in a day, test all of them, and commit only to the winner. This is particularly valuable early in the product process when the problem space is still ambiguous.
 
-AI prototyping is powerful, but it's not a replacement for traditional methods in all scenarios. Understanding the tradeoffs is critical.
+**Communicating vision concretely.** A working prototype is 10x clearer than a requirements document. When you're aligning stakeholders, investors, or a new engineering team, showing them a clickable prototype eliminates the "I imagined something different" conversation.
 
-### **Use AI Prototyping When:**
+**Compressing time-sensitive decisions.** You have 48 hours to validate a hypothesis before a board meeting or a pivot decision. AI prototyping makes that timeline realistic.
 
-**Validating ideas and exploring options.** When you have an idea but aren't certain it solves the problem, build a quick prototype in 2–3 hours, show users, and iterate—at a fraction of traditional development cost. Similarly, instead of committing to one design direction, AI makes it feasible to generate and test 3–4 different approaches in parallel, with each variant taking hours instead of weeks.
+### Where AI Prototyping Falls Short
 
-**You need working code or technical prototypes fast.** For backend features, complex logic, or full-stack functionality, AI generates working, testable code faster than traditional development, especially for CRUD features and standard patterns. This is particularly valuable for time-sensitive decisions—when you have 48 hours to validate a hypothesis before pitching investors or making a major pivot, AI's timeline compression becomes a genuine competitive advantage.
+**Brand sophistication and visual polish.** AI generates functional, usable UI — not beautiful, distinctive, brand-coherent design. If your product's value proposition includes premium design or novel navigation patterns, use AI for rapid functional iteration, then hand the winning direction to a designer for polish.
 
-**Non-designers need to express ideas or you're building AI-powered features.** A product manager, marketer, or founder can communicate a vision without requiring design resources. If you're building AI-powered functionality, Claude Artifacts or similar tools let you prototype the feature and the AI integration simultaneously.
+**Complex integrations and legacy systems.** AI excels at greenfield code. If you're integrating with undocumented APIs, complex legacy architectures, or specific engineering patterns (GraphQL, event-driven systems), AI will produce code that needs significant rework. Start with simplified mocks, then have engineers integrate with the real system.
 
-### **Avoid AI Prototyping When:**
+**Compliance, accessibility, and performance.** AI generates reasonable accessible HTML for standard patterns, but nuanced accessibility (complex forms, custom widgets) benefits from expert review. Same for regulated industries — AI handles the presentation layer, but domain-specific logic and validation need specialist oversight.
 
-**Design and brand sophistication matter.** If brand consistency is paramount or your product lives or dies on beautiful UI, AI tools often generate generic, template-heavy designs. You're better off with a designer iterating within your system (though v0 can be trained on design components). Similarly, if your app requires deeply considered information architecture—like complex dashboards, multi-step flows, or intricate permission structures—start with a designer and use AI to accelerate implementation, not lead the strategy.
-
-**You're integrating with legacy systems or have strict technical constraints.** AI excels at greenfield code. If you're integrating into complex, undocumented legacy systems, legacy APIs, or have tight architectural requirements, AI will struggle. The same applies if your success depends on specific engineering patterns (GraphQL, event-driven architecture, particular libraries)—AI might generate REST endpoints when you need GraphQL, and you'll spend more time rewriting than coding from scratch.
-
-**Accessibility, compliance, or performance is complex.** AI generates accessible HTML by default, but nuanced patterns (complex forms, live regions, custom widgets) benefit from human expertise. If you're building a medical device, financial software, or highly regulated product, AI can help with the presentation layer, but domain-specific logic and validation require expert oversight. Similarly, AI generates working code, not optimised code—if you're building something with strict performance requirements, you'll need engineers to optimise before production.
+**Product implication:** The most effective approach isn't "use AI for everything" or "use AI for nothing." It's using AI to handle the fast iteration — generating and testing prototypes quickly — while bringing in designers and engineers for the parts that require craftsmanship, domain expertise, or integration knowledge.
 
 ---
 
-## Step-by-Step: Building a Customer Dashboard Prototype with v0
+## Walkthrough: Validating a Feature in 4 Hours
 
-Let's walk through a realistic example: **a product manager wants to validate a customer analytics dashboard feature before committing engineering resources.**
+Let's make this concrete. You're a PM for a SaaS product that serves marketing teams. You want to add an analytics dashboard showing customer engagement metrics. You have rough wireframes and five customers willing to give feedback.
 
-### The Scenario
+**10 minutes in — Prepare and generate.** Gather your wireframes (or sketches), a list of the metrics you want to display, and any brand guidelines. Open v0 (or Bolt, or Lovable — pick whichever matches your stack). Write a prompt using the framework from Lesson 2.2:
 
-Your SaaS product serves marketing teams. You want to add a dashboard showing customer engagement metrics: active users, feature adoption, usage trends. You have rough wireframes in Figma and want a functional prototype to test with 5 customers before greenlit it.
-
-Timeline: 4 hours (vs 2–3 weeks traditionally).
-
-### Step 1: Prepare Your Input (15 minutes)
-
-Gather materials:
-- Screenshot of your Figma wireframe (or sketch)
-- Clear description of the data you'd show
-- List of metrics to display
-- Specific colour palette or brand guidelines (optional)
-
-**Your prompt to v0:**
 ```
 I'm designing an analytics dashboard for a SaaS product management tool.
-The dashboard should show:
-- Active users (metric card showing number + 30-day trend)
-- Feature adoption rate (percentage + line chart showing adoption over time)
-- Top features by usage (table showing feature name, user count, % of active users)
-- Usage timeline (line chart showing total events per day over last 30 days)
+Show: Active users (metric card + 30-day trend), feature adoption rate
+(percentage + line chart), top features by usage (sortable table),
+usage timeline (line chart, last 30 days).
 
-Use a clean, professional design. Colour scheme: primary blue (#0066cc), dark text, light gray backgrounds.
-The dashboard should be responsive and work on tablets.
-Here's my Figma wireframe [ATTACH IMAGE].
+Clean, professional design. Primary blue (#0066cc), dark text, light
+gray backgrounds. Responsive — must work on tablets.
+
+[Attach your wireframe screenshot]
 ```
 
-### Step 2: Generate Initial Prototype (5 minutes)
+Within minutes, you'll have a running prototype with responsive layout, interactive charts, metric cards, and navigation.
 
-v0 processes your input and generates a React component. You see a live preview alongside the code. This includes:
-- Responsive layout
-- Interactive charts (using a library like Recharts)
-- Metric cards
-- Navigation structure
+**30 minutes in — Iterate.** The first output is never perfect. The line chart is hard to read. The table needs better sorting. The colours are slightly off. Request changes conversationally — "make the adoption rate card background #0066cc with white text, add a legend to the line chart, let users sort the table by clicking column headers." The tool regenerates in seconds. Three or four rounds of this and you have something that looks and feels real.
 
-**This is production-adjacent code you can actually use.**
+**1 hour in — Test with users.** Deploy to a staging environment or share a preview link. Walk your five customers or colleagues through it. Collect concrete feedback: the metric order should change, they want CSV export, the timeframe should be customisable.
 
-### Step 3: Refine and Iterate (30 minutes)
+**End of day — Iterate and document.** Feed the user feedback straight back into the tool. Each change takes 10–15 minutes. You end the day with a validated prototype, specific user feedback, and a clear list of what engineering needs to build.
 
-Your preview shows the dashboard. You notice:
-- The line chart is hard to read with overlapping lines
-- The "Top Features" table needs better sorting
-- The colour of the adoption rate card should match your brand blue more closely
-
-You request changes via chat:
-```
-Make the adoption rate card background #0066cc with white text.
-On the line chart, add a legend and make the lines thicker.
-Let users sort the "Top Features" table by clicking column headers.
-```
-
-v0 regenerates the code within seconds. You see changes in the live preview immediately.
-
-### Step 4: Add Real Data (30 minutes)
-
-The prototype currently shows hardcoded sample data. You want to connect it to your API so you can test with real data.
-
-You export the component and:
-- Replace the hardcoded data array with an API fetch
-- Add loading and error states
-- Connect it to your authentication system
-
-**Because v0 generates clean, readable React, this is straightforward.** Even if a developer helps here, it's 30 minutes of work, not 3 days.
-
-### Step 5: Test with Users (1 hour)
-
-You deploy the dashboard to a staging environment or share a Vercel preview link. Your 5 target customers test it in their environment.
-
-**Feedback you collect:**
-- The metric order should be different
-- They want to export data as CSV
-- The timeframe should be customisable (7 days, 30 days, 90 days)
-
-### Step 6: Iterate (1 hour)
-
-Rather than brief a designer and developer, you go straight to v0 with the feedback. Each requested change takes 10–15 minutes to regenerate and test.
-
-### Step 7: Hand Off or Build (2 hours)
-
-Once validated, you have two options:
-
-**Option A: Hand the code to engineering**
-The code is clean React, so a developer can extend it, integrate it properly, add backend endpoints, handle authentication, and ship it. Typically 3–5 days instead of 2–3 weeks.
-
-**Option B: Deploy it directly**
-If the feature is simpler than expected and doesn't require complex backend integration, you might deploy the prototype nearly as-is (with some polish).
-
-### Why This Works
-
-- **Fast feedback loops:** You iterate in hours, not days
-- **Concrete validation:** Users interact with a working prototype, not a wireframe
-- **Reduced miscommunication:** No gap between what you imagined and what was built
-- **Lower risk:** You're validating demand before committing weeks of engineering
+Traditional timeline: 2–3 weeks. With AI tools, you can do it in a day. And the prototype you hand to engineering isn't a wireframe with annotations — it's an interactive prototype your engineers and designers can play with directly. That cuts miscommunication and speeds up the design process.
 
 ---
 
-## The Practical Workflow: Integrating AI Prototyping Into Your Process
+## Integrating AI Prototyping Into Your Workflow
 
-Most teams don't use AI prototyping alone. Instead, they fold it into existing workflows:
+AI prototyping works best as an acceleration layer within your existing process, not a replacement for it.
 
 <div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/02-prototyping-workflow.png" alt="Prototyping workflow — from idea through AI rapid prototype, user testing, and decision to archive, pivot, or greenlight" />
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/02-prototyping-workflow.png" alt="AI prototyping workflow — from idea through AI-generated prototype to user testing and iteration" />
   <div class="expand-hint">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
     Click to expand
   </div>
 </div>
 
-**The loop from idea to validated learning takes 1 week instead of 4.**
+The key insight: AI compresses the *build-test-learn* cycle from weeks to days. You still need the same discipline around problem definition (Module 3), design decisions (Lesson 4.1), and quality (Lesson 4.2). AI just lets you run more cycles in less time.
 
-### For Product Managers
+For you as a PM, that means you can explore multiple product directions before committing resources, validate assumptions with working software instead of slide decks, and communicate more clearly — because showing a working prototype beats describing one every time.
 
-1. **Use AI to explore multiple options:** When faced with an ambiguous problem, generate 2–3 different prototype directions in parallel.
-2. **Validate assumptions fast:** Don't wait for design and engineering estimates. Generate a quick prototype and test your hypothesis.
-3. **Communicate more clearly:** A working prototype is 10x clearer than a 10-page requirements document.
-4. **Compress design sprints:** Run a 1-week design sprint with AI. Generate prototypes, test, iterate, decide all in 5 days.
+For your design team, AI handles exploration while designers focus on the craft that AI can't replicate: brand coherence, information architecture, and the subtle interaction details that make a product feel polished.
 
-### For Design Teams
-
-1. **Use AI for exploration, not execution:** Generate quick wireframe variations, then a designer refines the winning direction.
-2. **Accelerate iteration:** Rather than redoing mockups by hand, iterate faster with AI, then hand off clean designs to engineering.
-3. **Stay in your design system:** Use v0 trained on your component library to keep generated UI consistent.
-
-### For Engineering Teams
-
-1. **Reduce handoff friction:** Prototypes come with working code, reducing the "what did they actually want?" ambiguity.
-2. **Focus on architecture, not boilerplate:** AI handles standard CRUD UIs and components. Engineers focus on complex logic, integration, and scalability.
-3. **Validate before committing:** Engineering can generate quick prototypes to validate architectural decisions before committing to a direction.
+For your engineering team, AI-generated prototypes arrive with working code, reducing the "what did they actually mean?" gap. Engineers focus on architecture, performance, and integration — the hard problems — instead of boilerplate UI.
 
 ---
 
-## What AI Prototyping Can't Do Well (The Honest Limits)
+## Exercise: Build a Prototype in Under an Hour
 
-AI is powerful, but it's not magic. Knowing its limits prevents wasted effort and unmet expectations.
+Let's do this together. By the end of this exercise, you'll have a working, interactive prototype you could show to a user or stakeholder tomorrow. We'll use [Lovable](https://lovable.dev) as our primary tool — it's the most approachable for PMs who haven't done this before, and it handles the full stack so you're not wiring things together yourself.
 
-**Design and visual sophistication.** AI generates functional, usable UI, but not delightful, beautiful, distinctive design. It's good at straightforward layouts (dashboards, lists, forms, feeds) but struggles with deeply considered information architecture where the structure itself is the core innovation. If your product's value proposition includes premium design or novel navigation patterns, you need designers. Use AI for rapid iteration on flows and functionality, then hand the winning direction to a designer for polish and to ensure visual consistency with your brand system.
+You can use this [invite link](https://lovable.dev/invite/PIDLT11) to receive bonus free credits on sign up.
 
-**Technical constraints and integrations.** AI generates working code, not optimised code. If you're building something with strict performance requirements (real-time data, animations, heavy computation), AI-generated code might need significant optimisation by engineers. Similarly, AI excels at greenfield development but struggles with complex legacy systems or undocumented APIs. If you're integrating with a complex legacy architecture, start with simplified API mocks to establish patterns, then have engineers integrate with the real system.
+If you'd prefer a different tool, [Bolt.new](https://bolt.new) is great for quick-and-dirty MVPs, [v0](https://v0.app) is excellent if your team uses Next.js, and [Claude Artifacts](https://claude.ai) works well for exploring ideas without leaving a chat window. The steps below work with any of them — just adapt the interface instructions.
 
-**Domain-specific decisions and accessibility nuance.** If you're building a medical device, financial software, or highly regulated product, AI can help with the presentation layer but can't make domain-specific decisions that require expertise. Accessibility is similar: AI generates accessible HTML for standard patterns, but non-standard interactions (complex widgets, custom forms) sometimes miss accessibility edge cases. Involve accessibility experts and domain experts where their knowledge is critical. Multi-stakeholder alignment also can't be automated—if your team has different mental models of what you're building, a prototype alone won't force that conversation. Align on requirements before prototyping and use the prototype to validate, not discover, intent.
+Before we start, here's an example of what's possible: [Pancake Rank](https://stack-a-pancake.lovable.app/) is a lightweight Jira Discovery clone built in Lovable in about 30 minutes. Watch the [1-minute demo](https://www.loom.com/share/24372f2d34464dc5a9368315173f4c7f) to see what the finished product looks like.
 
----
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/lovable-example-pancake-rank.png" alt="Pancake Rank — a Jira Discovery clone built in Lovable in about 30 minutes" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-## Evaluating AI Prototyping Tools: A Decision Framework
+### Step 1: Pick Your Feature (5 minutes)
 
-**Choosing the right tool depends on your answer to these questions:**
+Think about your current product or a product you use frequently. You need one feature idea — something specific enough to prototype but interesting enough to hold your attention for the next hour.
 
-1. **Do I need a full-stack app (backend + database + hosting)?**
-   - Yes → Lovable or Replit Agent
-   - No, just frontend UI → v0 or Bolt
+Some starting points if you're stuck:
 
-2. **How important is code quality and reusability?**
-   - Very important → v0 (clean React) or Claude Artifacts (with review)
-   - Important but not critical → Bolt or Lovable
+- A dashboard you wish existed at work (metrics, team activity, customer health)
+- A feature your users have been requesting that you haven't had time to validate
+- A tool you use daily that's frustrating — reimagine one screen of it
+- A simple internal tool your team needs (an approval workflow, a feedback tracker, a meeting scheduler)
 
-3. **Do I have design mockups or Figma designs to convert?**
-   - Yes → v0 (exceptional at image-to-code)
-   - No → Lovable or Bolt (work from text description)
+You don't need a polished spec. A sentence or two describing what it does and who it's for is enough. Write it down — you'll use it in the next step.
 
-4. **What's my team's technical sophistication?**
-   - Non-technical → Lovable (most approachable)
-   - Somewhat technical → Bolt (intuitive UI)
-   - Technical → Claude Artifacts or Replit Agent (more control)
+### Step 2: Write Your First Prototype Prompt (5 minutes)
 
-5. **How much iteration will I do before handoff?**
-   - Lots (5+ rounds) → Bolt or v0 (best interactive experience)
-   - Moderate (2–3 rounds) → Lovable
-   - Minimal → Replit Agent (generates more autonomously)
+Open [Lovable](https://lovable.dev) (or your chosen tool) and write a prompt using the framework from Lesson 2.2. Don't overthink it — your first prompt won't be your last. Here's a template:
+
+```
+I'm building a [what it is] for [who it's for].
+
+It should show/do:
+- [Core feature 1]
+- [Core feature 2]
+- [Core feature 3]
+
+Design: [any preferences — clean/minimal, dark mode, specific colours,
+similar to a product you like]
+
+[If you have a sketch or wireframe, attach it as an image]
+```
+
+For example, if you're building an internal feedback tracker:
+
+```
+I'm building an internal feedback tracker for a product team of 10.
+
+It should:
+- Let anyone submit feedback with a category (bug, feature request, praise)
+- Show a dashboard with feedback grouped by category and sorted by recency
+- Allow the PM to change the status of each item (new, reviewing, shipped, won't do)
+- Include a simple chart showing feedback volume by category over the last 30 days
+
+Design: Clean, professional. Light theme. Similar to Linear's aesthetic.
+```
+
+Hit enter and watch it build. Within a minute or two, you'll have a running application in your browser.
+
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/lovable-build-plan.png" alt="Lovable build plan review — the AI generates a plan and asks for approval before building the application" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
+
+Here Lovable put together a plan and asked for my approval before building the application. This is a great opportunity for you to review the AI's work and make any edits to the plan before it commits and spends your credits.
+
+
+### Step 3: Iterate — This Is Where It Gets Good (20 minutes)
+
+The first output will be about 60–80% of what you imagined. That's normal and expected. Now you iterate, and this is the part that feels like a superpower.
+
+Look at what Lovable generated and ask yourself: what's the most important thing that's wrong or missing? Fix that first. Then the next thing. Then the next. Talk to it like you'd talk to a designer sitting next to you:
+
+- "Make the feedback cards more compact — I want to see at least 8 on screen without scrolling"
+- "Add a search bar at the top that filters feedback by keyword"
+- "The chart colours don't match the category labels — use the same colour for both"
+- "Add a 'priority' field to each feedback item: low, medium, high. Show high-priority items with a red border"
+
+Each iteration takes 30–60 seconds. After 15–20 minutes of this, you'll be surprised how close to "real" it looks and feels. You're not writing code — you're having a conversation about what you want, and the tool builds it.
+
+A few tips from experience:
+
+- **Be specific.** "Make it look better" gives the AI nothing to work with. "Increase the font size of the card titles to 16px and add 8px of padding between cards" gets you exactly what you want.
+- **Fix one thing per prompt.** If you ask for five changes at once, some will land and some won't, and it's hard to tell which. One change, verify, next change.
+- **Attach screenshots if possible.** If you see a design you like elsewhere, screenshot it and paste it in. "Make my sidebar look like this" with an image is more effective than 200 words of description.
+
+### Step 4: Step Back and Evaluate (10 minutes)
+
+After 20 minutes of iteration, stop and look at what you have. Open the prototype in a new tab and use it like a real user would. Click through the flows. Try to break it.
+
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/lovable-prototype-result.png" alt="Completed Lovable prototype — a working interactive application ready for user testing" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
+
+Ask yourself:
+
+- Could I show this to a stakeholder and have a productive conversation about the feature?
+- Could I put this in front of a user and learn something useful about whether this solves their problem?
+- What are the two or three biggest gaps between this prototype and what I'd actually want to ship?
+- Does this accelerate my discovery or help communicate what's in my head to devs/designers?
+
+Write down those gaps. That's your handoff document — the start of the conversation with your design and engineering team about what to build next.
+
+
+### Step 5: Record and Share (10 minutes)
+
+You need to submit two things:
+
+1. **A one-minute Loom video** walking through your prototype
+2. **A link to your live prototype** (the shareable URL from Lovable, Bolt, or whichever tool you used)
+
+Open [Loom](https://www.loom.com), hit record, and keep it to **exactly one minute** — no longer. Here's how to structure it:
+
+- **10 seconds:** What is this and who is it for?
+- **40 seconds:** Walk through the main flow — show the key screens and interactions
+- **Optional: 10 seconds:** What would you change or build next if you had more time?
+
+If your recording is over a minute, re-record it shorter. Brevity is a PM skill — practise it here.
+
+Upload both to the **[AI PM Bootcamp Community Folder](https://loom.com/share/folder/2840211189a14b47a430fbfadb32dac7)**. Put the prototype URL in your Loom description so others can click through it themselves.
+
+Then browse what others have built. Click through their live prototypes, not just the videos — you'll learn more from interacting with a working prototype than watching a recording of one. You'll pick up prompting techniques, tool tricks, and product ideas from seeing how other people approach the same exercise.
+
+Share your prototype link with your colleagues or add it as a comment in your loom video.
+
 
 ---
 
 ## Key Takeaways
 
-- **Timeline compression is real:** AI prototyping collapses weeks into hours, changing how fast teams can validate ideas.
+1. **AI prototyping changes the economics of product decisions.** You can test three ideas in a day instead of committing two weeks to validate one. That's a fundamentally different way of working.
 
-- **Different tools, different strengths:** No single tool is best for everything. v0 owns image-to-code and React components. Lovable is unbeatable for full-stack rapid apps. Bolt excels at speed. Claude Artifacts integrate into daily workflow.
+2. **Tools fall into three categories.** Full-stack builders (Bolt, Lovable, v0, Replit), in-conversation prototyping (Claude Artifacts), and AI-assisted design tools (Figma AI). Pick based on your need, not the hype.
 
-- **Prototyping is hypothesis testing, not final design:** Use AI to validate assumptions quickly, not to replace designers and engineers.
+3. **Know when it shines and when it falls short.** AI prototyping excels at rapid validation, parallel exploration, and concrete communication. It struggles with brand sophistication, complex integrations, and compliance-heavy work.
 
-- **Integration matters more than any single tool:** The best teams fold AI prototyping into their existing workflows, using it to compress timelines without disrupting process.
+4. **The durable skill is judgment, not tool mastery.** Tools change monthly. Knowing *when* to use AI prototyping and *how* to integrate it into your workflow is what lasts.
 
-- **Know the limits:** AI isn't good at brand differentiation, complex IA, or domain-specific decisions. Use it where it excels (UI generation, rapid iteration, boilerplate reduction) and pair it with human expertise elsewhere.
-
-- **Speed creates advantage:** The ability to test 3 product directions instead of 1 before committing resources is a genuine competitive advantage.
-
----
+5. **AI compresses the build-test-learn cycle.** You still need the same discipline around problem definition, design decisions, and quality. AI just lets you run more cycles in less time.
 
 ## Explore Further
 
-- [Prompt Engineering](/AI-PM-Bootcamp/modules/prompt-engineering/) – Learn to write better prompts for all your AI prototyping tools
-- [AI-Powered Mindset](/AI-PM-Bootcamp/modules/ai-powered-mindset/) – Understand how to think about AI as a PM
-- [Identify Opportunities for AI](/AI-PM-Bootcamp/modules/identify-opportunities/) – Spot where AI prototyping creates the most value in your product workflow
-
-### Resources & Links
-
-- [v0 Documentation](https://v0.dev) – Official v0 by Vercel docs
-- [Bolt.new](https://bolt.new) – AI full-stack builder
-- [Lovable](https://lovable.dev) – Full-stack app generator
-- [Claude Artifacts Tutorial](https://support.claude.com/en/articles/11649438-prototype-ai-powered-apps-with-claude-artifacts) – Official guide to building with artifacts
-- [Replit Agent Overview](https://replit.com) – Autonomous AI coding agent
-- [Frontitude](https://write.frontitude.com) – AI UX writing tool for Figma
-- [Complete Comparison: v0 vs Bolt vs Lovable](https://www.nxcode.io/resources/news/v0-vs-bolt-vs-lovable-ai-app-builder-comparison-2025) – Detailed platform comparison
+- [A Guide to AI Prototyping for Product Managers — Lenny's Newsletter](https://www.lennysnewsletter.com/p/a-guide-to-ai-prototyping-for-product) — Comprehensive overview of AI prototyping tools, workflows, and real-world examples from PMs.
+- [v0 by Vercel](https://v0.app) — Full-stack AI development platform. Paste in a screenshot or describe an app and get production-ready Next.js code with built-in deployment.
+- [Claude Artifacts Tutorial](https://support.claude.com/en/articles/11649438-prototype-ai-powered-apps-with-claude-artifacts) — Official guide to building interactive prototypes within Claude conversations.

@@ -14,9 +14,6 @@ resources:
   - title: "n8n Documentation"
     url: "https://docs.n8n.io/"
     type: "docs"
-  - title: "MCP Awesome (directory of MCP servers)"
-    url: "https://mcp-awesome.com/"
-    type: "repo"
 quiz:
   - question: "What is the recommended approach before automating a PM workflow?"
     options:
@@ -34,462 +31,177 @@ quiz:
     answer: 2
 ---
 
-## The PM's Hidden Pain: Glue Work
+## The Hidden Time Sink
 
-Every PM knows the drain. You spend 10 minutes gathering feedback from Slack, another 15 copying it into a spreadsheet, then 20 more categorising it manually. By the time you've routed the third message to the design team, you've burned an hour on pure busywork—tasks that require zero creativity, just rote execution.
+A lot of PM time goes to *glue work* — shuttling information between tools that don't talk to each other. Copying feedback from Slack into a spreadsheet. Categorising support tickets. Pulling data from Jira, Linear, and Google Docs to assemble a status report. It's repetitive, it doesn't compound, and you'll do the same thing again next week.
 
-This is *glue work*. It's the connective tissue between systems that should talk to each other but don't. For PMs, it's particularly toxic because every hour spent shuffling data is an hour *not* spent thinking about strategy, talking to customers, or making product decisions.
-
-**The good news?** This is exactly what AI workflow automation solves.
-
-Rather than manually copying, pasting, categorising, and routing information between tools, you define the workflow once, then let AI and automations do the busywork 24/7. The result: fewer errors, faster decisions, and reclaimed hours for actual product thinking.
+AI workflow automation handles this for you. You define the workflow once and it runs in the background without you touching it. This lesson walks you through building one, then helps you pick a second one to build on your own.
 
 ---
 
-## What Is AI Workflow Automation?
+## Exercise: Build Your First Automation (30 minutes)
 
-At its core, **AI workflow automation** connects AI capabilities into repeatable, event-driven processes that eliminate manual steps.
+We're going to build an actual workflow together in Zapier. By the end of this exercise, you'll have a working automation running in the background — no code required.
 
-Think of it as building a system that:
+We'll use **Zapier** because it has the lowest barrier to entry. If you'd prefer a different platform, [Make.com](https://www.make.com) has a generous free tier with a visual builder, or [n8n](https://n8n.io) if you want something open-source. The steps below translate directly to any of them.
 
-1. **Listens** for a trigger (new Slack message, customer feedback, competitor mention)
-2. **Processes** using AI (extracts sentiment, categorises, summarises, generates a response)
-3. **Acts** automatically (routes to Slack channel, creates ticket, sends email, updates spreadsheet)
+### Before You Start
 
-It's not just dumb automation (if X, then Y). It's intelligent automation—AI evaluates context, interprets nuance, and makes decisions in-flight.
+Think about a repetitive task you do every week — something that involves moving information from one tool to another. Copying updates from a project board into Slack. Forwarding survey responses into a spreadsheet. Sending status updates when tasks are completed. That's your target.
 
-The workflow runs in the background, across all your tools, 24/7.
+Got one? Good. Let's build.
 
----
+### Step 1: Set Up Zapier (5 minutes)
 
-## The Landscape: Tools & Platforms
+Go to [Zapier](https://zapier.com) and sign up for a free account if you don't have one. The free tier gives you 100 tasks per month — more than enough to get started.
 
-The ecosystem has matured significantly. You don't need to code. Here's what's available:
+Once you're in, you'll see a textbox. Enter what you would like to automate today.
 
-### 1. **Zapier AI**
-**Best for:** Speed to market, small/medium teams, minimal technical lift.
+Here's what my example Zapier home page looks like — yours will look similar:
 
-Connects 8,000+ apps (Slack, Notion, Google Sheets, HubSpot, Stripe, Airtable, etc.). Zapier's natural language Copilot lets you describe what you want—*"summarise Slack conversations daily and email me the digest"*—and it builds the workflow. No coding required.
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/zapier-home.png" alt="Zapier home page — enter what you want to automate in the textbox" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-- Strength: Ecosystem depth, ease of use, AI Copilot
-- Weakness: Less customisation than code-based tools, costs scale with workflow complexity
-- Cost model: Pay per task/action executed
+Every AI workflow follows a three-step pattern: **Listen** (something triggers it), **Process** (AI evaluates the content), **Act** (something happens with the result). You'll see each step as we build.
 
-### 2. **Make.com** (formerly Integromat)
-**Best for:** Teams seeking visual simplicity and intuitive UI.
+### Step 2: Listen — Set the Trigger (5 minutes)
 
-Flowchart-style builder makes workflows feel like drawing a diagram. Recently introduced AI Agents (2025), letting you write workflows in plain English and let the system figure out execution.
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/zapier-trigger-setup.png" alt="Zapier trigger setup — choose the app and event that kicks off your workflow" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-- Strength: Visual clarity, fast to build
-- Weakness: Limited self-hosting options (cloud-only), less AI depth than n8n
-- Cost model: Credits-based (each workflow step consumes credits)
+The trigger is the event that kicks off your workflow. In Zapier, you'll choose an app where the trigger starts — whichever tool holds the information you want to act on.
 
-### 3. **n8n**
-**Best for:** Technical teams, complex workflows, self-hosting, AI agent complexity.
+In my example, I want to automate sending updates when tasks are completed in Trello. So I chose Trello as my trigger app, connected my account, selected the board I want to automate, and set the trigger to fire when a card is moved to the Done column.
 
-Open-source and self-hosted option. Node-based builder (connect apps via nodes). Deep AI capabilities including RAG (Retrieval Augmented Generation) and AI agents. over 1,000 workflow nodes available.
+For your case, select whichever app and trigger event matches the task you picked above.
 
-- Strength: Flexibility, self-hosting, advanced AI features, open-source transparency
-- Weakness: Steeper learning curve, requires more technical comfort
-- Cost model: Self-hosted (free) or cloud subscription
+### Step 3: Act — Set the Action (5 minutes)
 
-### 4. **Relay.app**
-**Best for:** Larger organisations needing collaborative workflows and governance.
+Now add a second step — the action that happens when the trigger fires. Choose the destination app (Slack, email, a spreadsheet, Jira — whatever makes sense for your workflow) and configure what you want it to do.
 
-Modern automation with human-in-the-loop approval steps, shared workflow libraries, version control, and role-based permissions.
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/zapier-action-setup.png" alt="Zapier action setup — configure the destination app and what happens when the trigger fires" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-- Strength: Team collaboration, approvals built-in, workflow governance
-- Weakness: Newer platform, smaller ecosystem
-- Cost model: Per-user subscription
+In my example, I connected Slack and configured the Zapier bot to send me a private message with the Trello card details. I'm not ready to set the recipient to my manager yet, so for now I've assigned it to myself — a good practice while you're still testing.
 
-### 5. **Claude MCP** (Model Context Protocol)
-**Best for:** Custom AI automation deeply integrated with Claude.
+For you, this means selecting the action you want to happen as a result of the trigger and configuring the output.
 
-New standard (2025/2026) for connecting Claude to external tools, databases, files, and APIs. Enables Claude itself to orchestrate multi-step workflows. Thousands of pre-built MCP servers available for databases, Slack, Linear, GitHub, Figma, and more — with the ecosystem growing rapidly.
+### Step 4: Test and Publish (5 minutes)
 
-- Strength: Leverage Claude directly, extremely flexible, integrates with context engineering principles
-- Weakness: Requires Claude-aware workflow setup (newer paradigm)
-- Cost model: Based on Claude API usage
+Continue building on your automation — add more steps if you want. When you're ready, test it with real data to make sure the trigger and action are wired up correctly, then publish.
 
-### 6. **Custom Scripts**
-**Best for:** Highly specific, proprietary workflows.
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/zapier-test-publish.png" alt="Zapier test and publish — verify your automation works with real data before going live" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
 
-Python/Node.js scripts with libraries (e.g., `schedule`, `requests`) that call APIs and integrate tools. Often combined with serverless functions (AWS Lambda, Google Cloud Functions).
+### Step 5: Document and Maintain (ongoing)
 
-- Strength: Complete control, low recurring cost
-- Weakness: Requires technical expertise, maintenance burden
-- Cost model: Developer time + cloud infrastructure
+Automation isn't set-and-forget. As your list of automations grows, good documentation becomes essential. Name your automation clearly so that if it breaks, or you need to revisit it, or you need to hand it off to someone, the purpose and configuration are obvious.
 
----
-
-## Concrete Workflow Examples
-
-Here are four realistic workflows PMs actually build:
-
-### **Example 1: Auto-Summarise Slack Conversations into Daily Digest**
-
-**Problem:** 50+ messages in your product-feedback channel daily. You can't read them all, but might miss critical insights.
-
-**Workflow:**
-
-```
-Slack trigger: 8 AM daily
-  ↓
-Fetch all messages from #product-feedback (past 24 hours)
-  ↓
-Send to Claude via API: "Summarise these into 3-5 key themes"
-  ↓
-Format summary as email + Slack post
-  ↓
-Email to product@company.com + post in #daily-digest
-```
-
-**Tools:** Zapier or n8n (for orchestration) + Claude API (for summarisation)
-
-**Time saved:** 20-30 min/day reading and synthesising
-
-**Build time:** 30 minutes in Zapier, 2 hours in n8n
+Go ahead and give your automation a descriptive name and add any notes you'll want later.
 
 ---
 
-### **Example 2: Auto-Triage Customer Feedback & Route to Teams**
+## Deciding What's Worth Automating
 
-**Problem:** Customer feedback comes from Intercom, email, and survey platforms. Right now, it lands in Slack and someone manually reads each piece, categorises it, and routes it.
+Before you build a second workflow, it's worth having a quick framework for what's actually worth the effort — and what isn't.
 
-**Workflow:**
+**Automate when** a workflow runs more than 10 times per month, is highly repetitive, is error-prone when done manually, and crosses 3+ tools.
 
-```
-Trigger: New feedback submitted (Intercom, survey, email)
-  ↓
-Extract text + metadata (customer name, product area, sentiment)
-  ↓
-Send to Claude: "Categorise this into: Bug, Feature Request, Pricing, Support, Other"
-  ↓
-Extract sentiment: Positive, Neutral, Negative
-  ↓
-Route based on rules:
-   - Bug + Negative → #critical-bugs channel + create JIRA ticket
-   - Feature Request → #feature-ideas + add to Airtable
-   - Pricing → email sales-team@
-   - Support + Negative → escalate to support@
-  ↓
-Send customer thank-you email (personalised based on sentiment)
-```
+**Don't automate when** it runs fewer than 5 times per month (manual is faster), requires real judgment each time, changes frequently, or is a one-off task.
 
-**Tools:** Zapier (simpler) or n8n (more complex) + Claude API
+**Watch for red flags:** workflows that touch customer-facing systems (support tickets, billing, messaging) without human review in the loop. A miscategorised daily digest is annoying. A miscategorised critical bug report that goes unnoticed is a different story. Always include human oversight for high-stakes decisions — a confidence signal like "I routed this to #bugs, but I'm only 67% confident — review?" goes a long way.
 
-**Channels reached:** Slack, email, JIRA, Airtable—automatically
-
-**Time saved:** 5-10 min per feedback item (hundreds/week = 50+ hours/month)
-
-**Build time:** 4-6 hours design + testing
+Budget for maintenance too. Expect 2–3 hours per month per workflow for debugging, prompt tuning, and handling tool updates. Treat your prompts like code — version them, test changes on 5–10 examples before pushing live, and monitor accuracy weekly.
 
 ---
 
-### **Example 3: Auto-Generate Weekly Status Reports from Project Tools**
+## Now Build Your Own
 
-**Problem:** Every Friday, you manually pull data from Jira, Linear, and Google Drive, synthesise it into a status report, and email stakeholders.
+With your first automation under your belt and the evaluation framework above, pick a second workflow to build. Here are the most common patterns PMs automate — choose the one that sounds most like your week:
 
-**Workflow:**
+| Workflow | Trigger | AI does | Output |
+|---|---|---|---|
+| **Status report** | Friday at 4 PM | Summarises tickets closed, PRs merged, blockers from Jira/Linear | Email to exec team + Slack post |
+| **Feedback triage** | New feedback arrives (Intercom, email, survey) | Classifies (Bug / Feature / Pricing / Support), rates sentiment | Routes to the right Slack channel + creates a Jira ticket |
+| **Competitor alert** | Daily at 9 AM | Checks RSS feeds or websites for new features, pricing changes | Posts to #competitive-intelligence only when something matters |
+| **Meeting prep** | 30 minutes before a calendar event | Pulls recent docs, tickets, and notes related to the attendees | Sends you a one-page briefing via email |
 
-```
-Trigger: Friday 4 PM
-  ↓
-Query Jira API: All tickets closed this week + in-progress tickets
-  ↓
-Query Linear API: PRs merged, bugs fixed, sprints completed
-  ↓
-Fetch Google Drive docs: Design updates, user research findings
-  ↓
-Send to Claude: "Create a 1-page status report highlighting progress, blockers, and next week's focus"
-  ↓
-Format as email + PDF attachment
-  ↓
-Email to exec-team@, post to Slack #status-updates
-```
+Don't see yours? Any workflow that follows Listen → Process → Act works. The trigger can be a schedule, an incoming message, a form submission, a new row in a spreadsheet — anything Zapier connects to.
 
-**Tools:** Make or n8n (good for multi-API querying) + Claude API
+### Build It (30 minutes)
 
-**Quality:** Claude synthesises raw data into narrative, pulling themes
+Open Zapier and create a new Zap. Follow the same three-step structure you just practised:
 
-**Time saved:** 45 min – 1 hour/week
+1. **Listen** — Set your trigger. What event starts this workflow?
+2. **(Optional) Process** — Add an AI step between the trigger and the action. Zapier lets you insert an AI model (ChatGPT, Claude, or AI by Zapier) that can process, classify, summarise, or reformat the trigger data before it reaches the destination. Write a prompt using the ROLE / CONTEXT / TASK / FORMAT / CONSTRAINTS framework from Lesson 2.2.
+3. **Act** — Choose the destination. Where should the result go? Slack, email, Jira, a spreadsheet?
 
-**Build time:** 2-3 hours (API research + testing)
+Test each step as you go.
 
----
+### Record and Share What You Built
 
-### **Example 4: Auto-Monitor Competitors & Send Alerts**
+Submit **a one-minute Loom video** showing your workflow. Open [Loom](https://www.loom.com), screen-record Zapier, and keep it to **exactly one minute** — no longer. Here's how to structure it:
 
-**Problem:** You should track competitor announcements, pricing changes, and feature releases. Today, it's a manual weekly check.
+- **10 seconds:** What problem does this solve? ("Every Friday I spend 45 minutes assembling a status report…")
+- **30 seconds:** Walk through your automation — show the trigger, the AI prompt, and the output destination
+- **10 seconds:** Show a real output the workflow produced and how much time you estimate it saves per week
+- **10 seconds:** What would you improve or build next if you had more time?
 
-**Workflow:**
+If your recording is over a minute, re-record it shorter.
 
-```
-Trigger: Daily at 9 AM
-  ↓
-Web scrape competitor websites (Playwright/headless browser)
-  ↓
-Check RSS feeds + news aggregators (TechCrunch, Product Hunt)
-  ↓
-Send scraped content to Claude: "Identify any new features, pricing changes, or market moves"
-  ↓
-If changes detected:
-   - Create bullet-point summary
-   - Post alert to #competitive-intelligence Slack channel
-   - Tag product team members
-  ↓
-If no changes: silently pass (no alert noise)
-```
-
-**Tools:** n8n (has Playwright node for web scraping) or custom script + Claude API
-
-**Nuance:** Claude filters noise—only alerts on *meaningful* changes, not every page refresh
-
-**Time saved:** 2-3 hours/week manual research
-
-**Build time:** 3-4 hours (web scraping can be finicky)
+Upload your Loom to the **[AI PM Bootcamp Community Folder](https://loom.com/share/folder/2840211189a14b47a430fbfadb32dac7)** — the same shared space where prototyping demos from Lesson 2.3 live. Browse what other participants have automated. You'll spot workflow ideas you hadn't considered, and you'll often find that someone else has already solved a problem you've been putting off.
 
 ---
 
-## Step-by-Step: Building One Complete Workflow
+## Other Tools to Know
 
-Let's build **Example 2** (customer feedback triage) together using Zapier, since it's the most accessible.
+We used Zapier for this exercise, but the ecosystem is broader. As your automation needs grow, here's what to consider:
 
-### **Setup Phase**
+**Make.com** (formerly Integromat) uses a visual flowchart builder. Its AI Agents feature lets you drop an AI module into any workflow — describe what you want in plain English, attach a knowledge base, and the agent makes routing decisions itself. Good balance of visual clarity and power.
 
-#### **Step 1: Choose Your Trigger & Data Source**
+**n8n** is open-source and self-hostable. Deepest AI capabilities including RAG and AI agents. Steepest learning curve, but the most flexible — the choice for technical teams with complex needs.
 
-Let's assume feedback comes from Intercom (popular for PM teams). You'll need:
-- Intercom API access
-- A Zapier account (free tier works for testing)
+**Claude MCP** (Model Context Protocol, covered in Lesson 1.3) is a newer approach: instead of a separate automation platform, Claude itself orchestrates multi-step workflows through direct connections to your tools — Slack, Linear, GitHub, databases. The ecosystem is growing fast, with thousands of pre-built MCP servers available.
 
-In Zapier, create a new Zap:
-- **Trigger:** Intercom → "New Conversation"
-- **Test trigger:** Send yourself a test message in Intercom to confirm Zapier can read it
+A reasonable progression: **Zapier to get started, then graduate to n8n or MCP as your needs get more complex.**
 
-#### **Step 2: Extract & Structure the Data**
-
-Zapier automatically extracts:
-- `conversation_body` (the feedback text)
-- `customer_name`
-- `customer_email`
-- `timestamp`
-
-You may need to add a **Formatter** step if the data is nested:
-- Use Zapier's Formatter to extract `sentiment_score` or clean up text
-
-#### **Step 3: Call Claude to Categorise**
-
-Add a new step: **Code by Zapier** (or **OpenAI** integration if you prefer).
-
-```javascript
-// Pseudocode—actual Zapier Code step syntax
-const feedback = inputData.conversation_body;
-const customerName = inputData.customer_name;
-
-const prompt = `Categorise this customer feedback into ONE of: Bug, Feature Request, Pricing, Support, Other.
-Also rate sentiment as Positive, Neutral, or Negative.
-
-Feedback: "${feedback}"
-
-Respond in JSON: { "category": "...", "sentiment": "..." }`;
-
-// Call Claude API
-const response = await fetch('https://api.anthropic.com/v1/messages', {
-  method: 'POST',
-  headers: {
-    'x-api-key': process.env.CLAUDE_API_KEY,
-    'content-type': 'application/json'
-  },
-  body: JSON.stringify({
-    model: 'claude-sonnet-4-5-20250929',
-    max_tokens: 200,
-    messages: [{ role: 'user', content: prompt }]
-  })
-});
-
-const result = JSON.parse(response.text);
-return result; // { category, sentiment }
-```
-
-**Output:** `category` and `sentiment` variables for next steps.
-
-#### **Step 4: Route Based on Category**
-
-Add **Zapier Paths** (conditional branching):
-
-```
-IF category == "Bug" AND sentiment == "Negative"
-  → POST to Slack #critical-bugs
-  → CREATE JIRA ticket (Bug priority)
-  → SEND email to support@
-
-IF category == "Feature Request"
-  → CREATE Airtable row in Features table
-  → POST to Slack #feature-ideas
-  → SEND thank-you email to customer
-
-IF category == "Pricing"
-  → EMAIL sales-team@
-
-... etc
-```
-
-#### **Step 5: Send Confirmation Email to Customer**
-
-Add **Gmail** step:
-
-```
-To: {customer_email}
-Subject: We've received your feedback – thanks!
-Body: "Hi {customer_name}, thanks for reaching out. We've categorised your feedback as '{category}' and routed it to the right team. We'll follow up within 48 hours."
-```
-
-Personalisation via Zapier variables (`{category}`, `{customer_name}`) makes it feel human.
-
-#### **Step 6: Test End-to-End**
-
-- Send yourself a test message in Intercom
-- Watch the workflow execute in Zapier's logs
-- Verify the Slack message appeared, JIRA ticket created, email sent
-- Iterate: Refine the Claude prompt if categorisation is wrong
-
-#### **Step 7: Monitor & Maintain**
-
-- **Weekly check:** Spot-check 5-10 categorisations for accuracy
-- **Adjust prompt:** If feedback keeps miscategorising, refine the prompt (e.g., *"Pricing complaints about feature paywalls should be 'Feature Request', not 'Pricing'"*)
-- **Add rules:** New team? Add a path. New product area? Update the categories
-
----
-
-## When Is Automation Worth It?
-
-Not every workflow is worth automating. Here's the mental model:
-
-### **The Equation**
-
-```
-Time saved per run × Runs per month × Months you'll use it
-  vs.
-Build time + Maintenance burden per month × Months
-```
-
-**Automate if:**
-- **Runs >10 times/month** (enough volume to justify build time)
-- **Highly repetitive** (no creative judgment needed each time)
-- **Error-prone manually** (transcription mistakes, missed routes)
-- **Cross-tool** (glue work connecting 3+ systems)
-
-**Don't automate if:**
-- **Runs <5 times/month** (manual is faster)
-- **Requires judgment** (e.g., "decide if this is a real bug or user error")
-- **Changes frequently** (weekly prompt adjustments = maintenance hell)
-- **One-off task** (no recurring benefit)
-
-### **Hidden Costs to Account For**
-
-1. **Build time:** 2-8 hours depending on complexity
-2. **Debugging:** 1-3 hours when it inevitably breaks (API changes, tool updates)
-3. **Prompt tuning:** Ongoing—10 min/week to refine accuracy
-4. **Tool subscriptions:** Zapier/n8n costs compound per workflow
-5. **Monitoring:** You need someone checking logs weekly, at minimum
-
-### **Red Flags**
-
-- Workflow uses 5+ tool integrations (more dependencies = more breakage)
-- Relies on web scraping (brittle, breaks when sites redesign)
-- Requires parsing unstructured text with zero tolerance for error (e.g., *"extract contract value from PDFs"*)
-- Touches customer-facing systems (support tickets, billing) without human review
-
----
-
-## Best Practices
-
-1. **Start Small**
-   - Pick one low-risk workflow (e.g., daily digest, not critical bug routing)
-   - Prove the pattern before automating 10 workflows
-   - A failed digest is annoying; a miscategorised critical bug is a disaster
-
-2. **Always Include a Human-in-the-Loop Option**
-   - Never fully black-box decisions
-   - Include a Slack alert: *"I routed this to #bugs, but I'm only 67% confident. Review?"*
-   - Make it easy to override
-
-3. **Monitor Continuously**
-   - Set a calendar reminder: *"Weekly audit of last 10 automated decisions"*
-   - Track accuracy metrics: *"Out of 50 feedback items routed this week, 48 were correct = 96% accuracy"*
-   - If accuracy drops below 90%, pause and retune
-
-4. **Treat Prompts Like Code**
-   - Version them: Keep old prompts in a doc so you can revert
-   - Test changes: Before pushing a new prompt to production, run it on 5-10 test cases
-   - Document assumptions: *"This prompt assumes non-technical customers; adjust tone if audience changes"*
-
-5. **Plan for Maintenance**
-   - Assign one person to "workflow owner"—they handle debugging
-   - Budget 2-3 hours/month per workflow for maintenance
-   - Document the workflow diagram so someone new can understand it in 5 minutes
-
----
-
-## The Decision Tree
-
-When faced with a tedious PM task, ask yourself:
-
-```
-Is this done >10 times/month?
-  |-- No → Do it manually
-  |
-  └-- Yes → Is it repetitive, with clear steps?
-     |-- No (requires judgment) → Do it manually or find a human process
-     |
-     └-- Yes → Does it touch 3+ tools?
-        |-- No → Maybe not worth automation complexity
-        |
-        └-- Yes → Will it run for the next 6+ months unchanged?
-           |-- No (changes weekly) → Document the manual process instead
-           |
-           └-- Yes → BUILD IT
-```
+In Module 3, you'll apply this same evaluation lens — frequency, impact, risk — to finding AI opportunities in your product, not just your workflow. The thinking is the same; the scale is different.
 
 ---
 
 ## Key Takeaways
 
-- **Workflow automation frees PMs from glue work**—the busywork of shuttling data between tools. It's the highest-leverage automation PMs can do.
+1. **Every AI workflow follows Listen → Process → Act.** The AI processing step is what makes these intelligent automations — understanding content, not just matching patterns.
 
-- **The tool landscape is mature:** Zapier is fastest for small teams; n8n is most flexible; Make balances both. Claude MCP is emerging for deeply integrated AI workflows.
+2. **Automate glue work first.** Feedback triage, daily digests, status reports, competitor monitoring. These are high-frequency, low-judgment tasks that eat PM hours every week.
 
-- **Three repeatable workflow types** cover most PM needs: **summarisation** (daily digests), **routing** (categorise & send), and **reporting** (synthesise & email).
+3. **The ROI formula is simple.** Time saved per run × runs per month × months of use, versus build time + maintenance. If it doesn't clear that bar, don't automate it.
 
-- **Build once, run forever:** A 4-hour build effort that saves 5 hours/week pays for itself in 50 days.
+4. **Always include human oversight for high-stakes decisions.** Never fully black-box a routing decision that touches customers. Include confidence signals and make overrides easy.
 
-- **Prompt quality is everything:** Your AI workflow is only as good as your prompt. Treat it like code—version it, test it, refine it.
-
-- **Start small, measure accuracy, then scale:** Prove the pattern on one workflow before automating your entire PM stack.
-
-- **Budget for maintenance:** Expect 2-3 hours/month per workflow to handle tool updates, prompt tuning, and debugging.
-
----
+5. **Treat prompts like code.** Version them, test changes on examples before pushing to production, and monitor accuracy over time. The prompt is the brain of your workflow.
 
 ## Explore Further
 
-- **Related modules:**
-  - [AI-Powered Mindset](/AI-PM-Bootcamp/modules/ai-powered-mindset/) – understanding when (and when not) to use AI
-  - [Prompt Engineering](/AI-PM-Bootcamp/modules/prompt-engineering/) – prompt strategies that improve automation accuracy
-  - [Prototyping](/AI-PM-Bootcamp/modules/prototyping/) – rapid testing before full automation
-  - [Agents](/AI-PM-Bootcamp/modules/agents/) – understanding agentic workflows and multi-step reasoning
-  - [Context Engineering](/AI-PM-Bootcamp/modules/context-engineering/) – building custom integrations with MCP
-
-- **Hands-on next steps:**
-  - Pick one workflow from the examples above
-  - Build it in Zapier (free tier) or n8n over a weekend
-  - Measure time saved over the first month
-  - Share learnings with your team
-
-- **Tools to explore:**
-  - [Zapier Workflows](https://zapier.com/workflows)
-  - [n8n Documentation](https://docs.n8n.io/)
-  - [Make.com Editor](https://www.make.com)
-  - [Relay.app](https://www.relay.app)
-  - [MCP Awesome (directory of MCP servers)](https://mcp-awesome.com/)
+- [Zapier Workflows](https://zapier.com/workflows) — The fastest path to your first automation. Natural language Copilot builds workflows from descriptions.
+- [n8n Documentation](https://docs.n8n.io/) — Open-source, self-hostable workflow automation with deep AI capabilities including RAG and AI agents.

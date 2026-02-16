@@ -17,6 +17,15 @@ resources:
   - title: "To Drive AI Adoption, Build Your Team's Product Management Skills - HBR"
     url: "https://hbr.org/2026/02/to-drive-ai-adoption-build-your-teams-product-management-skills"
     type: "article"
+  - title: "An Opinionated Guide to Using AI Right Now - Ethan Mollick"
+    url: "https://www.oneusefulthing.org/p/an-opinionated-guide-to-using-ai"
+    type: "article"
+  - title: "Claude Cowork Documentation"
+    url: "https://docs.anthropic.com/en/docs/claude-cowork"
+    type: "docs"
+  - title: "Claude Cowork Is Out. Here's When You Still Want Claude Desktop — Product Compass"
+    url: "https://www.productcompass.pm/p/claude-cowork-is-out"
+    type: "article"
 quiz:
   - question: "According to the task delegation matrix, which type of task should be fully automated with AI?"
     options:
@@ -34,211 +43,185 @@ quiz:
     answer: 2
 ---
 
-## The Time Is Now
+## Motivation
 
-Product managers are drowning in busywork. You manage 40% more data sources today than you did five years ago—analytics platforms, customer feedback channels, internal communications, market research. You're writing PRDs, synthesising feedback, analysing competitors, drafting roadmaps, transcribing meetings, writing release notes.
+Most PMs use AI occasionally — a quick summary here, a draft there. But few have a clear system for deciding *what* to hand to AI and what to keep doing themselves. Without that system, you either spend time on tasks a model could handle, or you delegate things that actually need your judgment and get polished-looking outputs that miss the point.
 
-This is not the work you should be doing.
-
-Most high-performing product teams already use at least one AI-powered tool. The question isn't whether to adopt AI—it's how fast you can integrate it into your workflow without losing rigor or human judgment.
-
-**Why this matters for PMs:** Early adopters consistently report reclaiming several hours per week by offloading administrative tasks to AI — hours they redirect to what only humans can do: strategy, customer empathy, and difficult trade-off decisions. But only if you know which tasks to delegate and which to keep.
+This lesson gives you a framework for making that call consistently, so you can focus your time where it matters most.
 
 ---
 
-## The Product Manager Lifecycle
+## Where AI Creates Real Leverage
 
-Before we talk about AI, let's map the full PM lifecycle. You already know these phases — the question is which tasks within them are ripe for AI delegation.
+Think about your last week. How much time did you spend on *processing* — reading feedback, summarising meetings, drafting documents, compiling reports, writing release notes? Now how much time did you spend on *thinking* — deciding what to build next, understanding a customer's real problem, navigating a tricky stakeholder conversation?
 
-| Phase | Goal | Typical PM Tasks |
+If you're like most PMs, the ratio skews heavily toward processing. That's the opportunity.
+
+LLMs are pattern-recognition engines trained on text (Lesson 1.1). They're exceptionally good at tasks that involve reading, summarising, drafting, comparing, and structuring information. They struggle with tasks that require judgment under uncertainty, emotional intelligence, or strategic vision. The key is knowing which is which.
+
+Here's how that maps across your PM lifecycle:
+
+| Phase | AI handles well | You handle |
 |---|---|---|
-| **Discovery** | Understand the problem | User interviews, feedback synthesis, competitive research, pattern identification, problem framing |
-| **Definition** | Define the solution | PRDs, acceptance criteria, user journeys, success metrics, stakeholder alignment, prioritisation |
-| **Design** | Create the blueprint | UX collaboration, prototype review, edge-case stress testing, design iteration |
-| **Development** | Build and test | Standups, unblocking engineers, scope management, QA, acceptance testing |
-| **Delivery** | Ship to users | Launch planning, release notes, marketing coordination, rollout monitoring |
-| **Analytics** | Measure and learn | Metrics analysis, post-launch feedback synthesis, retrospectives, next-iteration planning |
+| **Discovery** | Summarise 20 interview transcripts in minutes. Surface patterns across feedback. Monitor competitor pricing and features automatically. | Decide which problem is worth solving. Read between the lines in a customer conversation. Frame the real problem, not the stated one. |
+| **Definition** | Draft 80% of a structured PRD from your inputs. Organise features into roadmap themes. Generate acceptance criteria and edge cases. | Make the trade-off calls. Decide what's in scope and what's not. Set the vision for what "good" looks like. |
+| **Development** | Transcribe and summarise standups. Draft status updates from ticket data. Flag blockers early. | Unblock your engineers on ambiguous requirements. Manage scope when timelines slip. Make the hard call on what to cut. |
+| **Delivery** | Draft launch copy, release notes, executive briefings. Aggregate post-launch metrics into summaries. | Decide the rollout strategy. Handle the conversation when something goes wrong. Own the narrative. |
 
-Look at that list. Notice how many tasks are fundamentally about *processing information* — reading, synthesising, summarising, drafting, comparing. These are exactly the tasks that LLMs (large language models) handle well — recall from the LLMs module that they are trained to recognise patterns in text. That's where AI creates the most leverage, as we'll see next.
+Notice the pattern. AI excels at the *information-processing layer* — the grunt work that sits between raw data and human decisions. Your job is the decision layer above it.
 
----
-
-## Which PM Tasks Can AI Handle?
-
-Here's where AI genuinely shines—and where it falls short.
-
-### High-Value AI Applications
-
-In **discovery**, AI creates the most leverage through feedback analysis—summarising dozens of user interviews in minutes and surfacing patterns you might have missed—alongside competitive intelligence systems that monitor competitor sites, pricing, and features automatically, and market research synthesis that distills research reports and trends into actionable insights.
-
-During **definition**, AI becomes your co-writer. It drafts 80% of structured PRDs from your inputs, organises features into roadmap themes by impact and effort, transforms raw tickets into polished release notes, and generates initial technical specs for clarity. The entire definition phase accelerates dramatically.
-
-In **design** and **development**, AI handles the mechanical tasks. It converts high-level features into detailed user stories, brainstorms edge cases and scenarios you might have missed, auto-transcribes and summarises standups, drafts weekly status updates from ticket data, and flags blockers and risks early.
-
-At **delivery**, AI handles the final-mile work: drafting launch copy (emails, in-app messages, changelog entries), creating executive briefings for stakeholders, and aggregating post-launch metrics with early user feedback into comprehensive summaries.
-
-### Where AI Falls Short
-
-AI cannot replace human judgment in these areas:
-
-- **Strategic Vision:** Why are we building this? What bet are we making? AI can't answer "why"—only humans can.
-- **Customer Empathy:** AI can't read between the lines in user interviews or understand emotional context. You need to feel the pain.
-- **Trade-off Decisions:** When you're choosing between speed and quality, user requests and business goals, feature A and feature B—these decisions are yours.
-- **Stakeholder Leadership:** Building trust, negotiating, inspiring teams. These are fundamentally human.
-- **Problem Framing:** What's the real problem? Is this worth solving? AI can suggest, but you decide.
+**Why this matters for PMs:** Early adopters consistently report reclaiming several hours per week by offloading processing tasks to AI. But the hours only matter if you redirect them to the work that actually needs you — strategy, customer empathy, and the difficult trade-offs that shape your product.
 
 ---
 
-## The AI Capability vs. Human Judgment Matrix
+## The Delegation Matrix
 
-How do you know what to delegate? Use this framework:
+When you're deciding whether to hand a task to AI, two questions matter: **how much judgment does it require?** and **how capable is AI at it today?**
+
+Plot any PM task on those two axes and it falls into one of four zones:
 
 <div class="expandable-img">
-  <img src="/AI-PM-Bootcamp/images/modules/diagrams/01-task-delegation.png" alt="Task Delegation Matrix — a quadrant chart showing PM tasks plotted by judgment level and AI capability" />
+  <img src="/AI-PM-Bootcamp/images/modules/diagrams/01-task-delegation.png" alt="AI task delegation matrix — four quadrants based on judgment required vs AI capability: Automate (low judgment, high AI), AI + Human (high judgment, high AI), Keep Human (high judgment, low AI), Do Manually (low judgment, low AI)" />
   <div class="expand-hint">
     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
     Click to expand
   </div>
 </div>
 
-**The zones explained:**
+**Automate** (top-left) — Low judgment, high AI capability. Meeting summaries, release notes, data compilation, transcription. AI handles these end-to-end. Spot-check occasionally, but don't review every output.
 
-| Zone | Task Type | What to Do |
-|------|-----------|-----------|
-| **Automate** | Repetitive, low judgment, low AI complexity | Let AI handle it end-to-end. Examples: transcription, data compilation. |
-| **AI + Human** | Repetitive, low judgment, high AI capability | AI drafts; you review and refine. Examples: PRDs, feedback summaries, release notes. |
-| **Keep Human** | High judgment, variable AI capability | You lead; AI assists. Examples: strategy, roadmapping, customer conversations. |
+**AI + Human** (top-right) — Higher judgment, but AI is still capable. PRD drafts, feedback synthesis, competitive analysis, roadmapping. AI produces a strong first draft; you refine it and make the final call. This zone is where most of your productivity gains come from.
 
----
+**Keep Human** (bottom-right) — High judgment, low AI capability. Strategy, vision, stakeholder leadership, trade-off decisions, customer empathy. AI can provide background research, but you own the decision. These tasks become *more* important as AI handles the rest.
 
-## AI Tools PMs Use Today
+**Do Manually** (bottom-left) — Low judgment, low AI capability. Simple tasks like updating a status field, scheduling a meeting, or moving a card across a board. Not worth automating, not worth overthinking.
 
-Here's a practical toolkit of the most valuable options available today:
+Before delegating any task, five quick checks:
 
-| Tool | Category | What It Does |
-|------|----------|--------------|
-| **Claude (Anthropic)** | General AI Model | Strongest for complex PM tasks—strategic thinking, PRD writing, competitive analysis. Excellent at nuance. |
-| **ChatGPT (OpenAI)** | General AI Model | Broadly capable, great for brainstorming and ideation. Good for fast iteration. |
-| **Gemini (Google)** | General AI Model | Competitive alternative with strong research capabilities. |
-| **ChatPRD** | PM-Specific | Converts basic inputs into structured PRDs and roadmaps. Saves 30–45 minutes per document. |
-| **Kraftful** | PM-Specific | Analyses user feedback at scale, surfacing themes and sentiment. |
-| **Notion AI / Slite AI** | PM-Specific | Integrated summarisation and drafting within your workspace. |
-| **Visualping** | PM-Specific | Monitors competitor sites, flags pricing and feature changes automatically. |
-| **Linear AI** | Workflow Automation | Automatically triages issues and drafts summaries. |
-| **Slack / Teams AI** | Workflow Automation | Meeting transcription and message summarisation built in. |
+1. **Can you verify the output quickly?** A feedback summary is easy to assess. A strategic recommendation is not.
+2. **What's the cost if AI gets it wrong?** An internal draft has low stakes. Customer-facing messaging has high stakes.
+3. **Can you define success clearly?** "Summarise this feedback" has clear criteria. "Write a visionary PRD" does not.
+4. **Is your input high-quality?** Structured data in, good output out. Rambling notes in, mediocre output out.
+5. **Does review take less time than doing it yourself?** If reviewing takes longer than writing it, the leverage disappears.
+
+The sweet spot: tasks where AI saves you 30–60 minutes and review takes 10–15.
 
 ---
 
-## The Framework: How to Delegate Safely
+## What AI Can't Replace
 
-Not every PM task is ready for AI. Before automating, ask yourself five key questions that cover the critical safety criteria.
+This is worth saying directly, because the anxiety is real: **AI will not replace product managers.** But it is changing what the job looks like.
 
-First, **can you verify the output quickly?** PRD drafts and feedback summaries are easy to assess—but strategic decisions are not. Similarly, **what's the cost if AI gets it wrong?** A feedback summary has low stakes; customer-facing messaging has much higher stakes. Tasks with high error costs deserve extra scrutiny.
+AI is eliminating the parts of your role that are routine, deterministic, and easily verified. The parts that involve processing information into structured outputs. If your job was mostly this — summarising, drafting, compiling — then yes, AI is coming for a chunk of your workload.
 
-Next, **can you define success clearly?** "Summarise this feedback" has clear success criteria. "Write a visionary PRD" does not. Tasks with vague success metrics are hard for AI to nail. Additionally, **is your input high-quality?** Garbage in, garbage out applies to AI more than humans. Feed AI structured data, not rambling notes, and you'll get better results.
+But the parts that matter most? Those are getting more important, not less. Deciding which problems are worth solving. Building genuine customer empathy — not summarised empathy, but the kind you get from sitting in a room and hearing someone describe their frustration. Making complex trade-offs where the data is ambiguous and the stakes are real. Leading a team through uncertainty. Setting a vision for where the product should go.
 
-Finally, **can you review the output quickly?** If review takes longer than doing the task yourself, the leverage disappears. The sweet spot is tasks where AI saves you 30–60 minutes and review takes 10–15.
+These require judgment, emotional intelligence, and the ability to hold multiple conflicting perspectives simultaneously. Based on what we know about how LLMs work (Lesson 1.1), these are not capabilities that scale with more parameters or training data — they require a fundamentally different kind of intelligence.
 
----
-
-## Concrete Examples: AI in the PM Lifecycle
-
-### Discovery
-**Before:** Spend 8 hours synthesising 20 user interviews.
-**With AI:** Feed interview transcripts to Claude. Ask: "What are the top 3 pain points? Which are mentioned most frequently? What surprised you?" Get structured analysis in 10 minutes. You review for accuracy and add context.
-
-**Competitive Analysis**
-**Before:** Spend 5 hours per month visiting competitor sites.
-**With AI:** Set up Visualping or similar. AI watches competitor pricing, features, and jobs. Alerts you to changes. You decide if they're strategic threats.
-
-### Definition
-**Before:** Spend 3 hours drafting a PRD from scratch.
-**With AI:** Provide basic inputs: problem statement, success metrics, constraints. Claude generates a 2000-word PRD structure. You spend 30 minutes refining and adding strategic nuance.
-
-**Roadmap Generation**
-**Before:** Spend 4 hours organising features into a roadmap.
-**With AI:** Dump all feature requests into Claude. Ask it to categorise by theme, estimate impact/effort, and suggest a sequence. You make final prioritisation calls based on business goals.
-
-### Development
-**Before:** Spend 30 minutes per week synthesising standup notes.
-**With AI:** Linear or Slack AI auto-transcribes standups, flags blockers, drafts status update. You copy-paste and edit.
-
-**Release Notes**
-**Before:** Spend 2 hours writing cohesive release notes from tickets.
-**With AI:** Feed your changelog. Ask Claude to write marketing-friendly copy organised by user benefit. You polish and approve.
+**Product implication:** The PMs who thrive will be the ones who adopt AI aggressively for the processing layer and redirect that freed-up time into deeper customer work, sharper strategy, and better leadership. The PMs at risk are those who either resist AI entirely or, just as dangerously, use it as an excuse to skip thinking.
 
 ---
 
-## The Fear: "Will AI Replace PMs?"
+## Putting It Into Practice
 
-Let's be direct: **No. But the PM job is changing.**
+You don't need to overhaul your workflow on day one. Start with one task this week.
 
-AI *will* eliminate the parts of your job that are:
-- Routine and repetitive
-- Deterministic and rule-based
-- Easily verified and iterable
+Pick something from the "Automate" or "AI + Human" zone — feedback synthesis is a great starting point. Take your last 10 customer interviews or feedback tickets and paste them into Claude, ChatGPT, or whichever model you prefer. Ask: "What are the top 5 pain points? Rank by frequency. Which surprised you?"
 
-AI *cannot* handle:
-- Deciding what problems matter most
-- Building customer empathy and trust
-- Making complex trade-offs under uncertainty
-- Leading teams and aligning stakeholders
-- Imagining the future and setting vision
+Compare the output to your own instinct. What did the AI capture that you might have missed? What context did it lack that you'd add? This teaches you the shape of the collaboration — where AI adds value and where it falls short.
 
-The PMs who thrive will be those who:
-1. Adopt AI aggressively for admin work
-2. Redirect freed-up time to customer conversations, strategy, and execution
-3. Develop deeper critical thinking to judge AI outputs
-4. Focus on skills AI can't replicate: leadership, judgment, vision
+Then try a document. Write a PRD with AI as your co-writer: 15 minutes defining the problem and inputs, 10 minutes letting AI draft, 20 minutes refining and adding strategic nuance. Track the time savings. Most PMs save 30–45 minutes per document this way.
 
-The PMs at risk are those who:
-- Resist AI and try to do everything manually
-- Use AI as an excuse to skip thinking
-- Delegate without reviewing or understanding
+In Lesson 2.2, you'll learn how to write prompts that make these collaborations dramatically more effective. In Lesson 2.3, you'll use AI to build working prototypes in hours instead of weeks. And in Lesson 2.4, you'll automate entire workflows so the processing layer runs on its own.
 
-**Why this matters for PMs:** Your job is becoming 50% more strategic. Use AI to buy back the time to actually do strategy.
+For now, the important thing is the mindset shift: **AI handles the information processing. You handle the judgment. The faster you build that habit, the more strategic your role becomes.**
 
 ---
 
-## Getting Started: Your First Week
+## Exercise: Map Your AI Leverage
 
-You don't need to overhaul your workflow. Start small.
+Take 10 minutes and list the five tasks you spent the most time on last week. For each one, plot it on the delegation matrix: how much judgment does it require (low/medium/high)? How capable is AI at it today (low/medium/high)?
 
-### Day 1–2: Feedback Analysis
-Take your last 10 customer interviews (or feedback tickets). Paste them into Claude and ask: "What are the top 5 pain points? Rank by frequency. Which would have the biggest business impact if solved?"
+You'll probably find that 2–3 of those tasks sit squarely in the "AI + Human" zone. Those are your quick wins — the tasks where AI can give you back hours this month, starting with the prompting techniques in the next lesson.
 
-Compare AI output to your instinct. Did it capture the nuance? What did it miss? This teaches you how to work with AI.
+---
 
-### Day 3–4: Meeting Summarisation
-Turn on transcript-to-summary for your next three meetings (Slack, Google Meet, or Notion). Review the summaries. Are the action items clear? Did it capture context correctly?
+## Extension: How Propel Ventures Uses AI Today
 
-### Day 5: Draft a Document with AI
-Write a PRD or roadmap with AI as your co-writer. Spend 15 minutes defining the problem and inputs. Let Claude draft for 10 minutes. Spend 20 minutes refining and adding strategic thinking.
+The delegation matrix above gives you a framework for *deciding* what to hand to AI. This section shows you what it looks like when a team actually does it.
 
-Track the time savings. Most PMs save 30–45 minutes per document.
+At Propel Ventures, we've been running structured AI experiments across areas of our business in the recent few years. Not everything worked. Some experiments saved hours per week; others taught us more about AI's limits than its strengths. Both outcomes were valuable.
 
-### Week 2+: Build a Workflow
-Identify your 3 most time-consuming tasks. Automate one per week. Review, iterate, and refine.
+### 1. Research — Replacing the Tab-Sprawl for Internal Documentation
+
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/propel-ai-research.png" alt="Propel Ventures AI-powered research workflow using Microsoft 365 for sourced, synthesised answers" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
+
+Market research, competitive analysis, and technical due diligence used to mean hours of Googling and synthesising across dozens of tabs. We moved exploratory research across company documents to AI-powered search tools like Microsoft 365 which provide sourced, synthesised answers rather than a list of blue links.
+
+For broad landscape questions — "What are the main players in X space?" or "What are the regulatory requirements for Y?" — this cut research time significantly. The key habit: verify sources rather than taking answers at face value. For deep, nuanced research (e.g., understanding a specific customer segment), traditional methods still win.
+
+### 2. Marketing — Automating the Content Pipeline
+
+Producing consistent marketing content — social posts, blog drafts, email sequences — required more bandwidth than the team had. We built automated content pipelines using workflow automation tools that pull triggers from one system, run content through an LLM, and push outputs to another. For example: a new case study gets published → AI drafts three social posts in different formats → a human reviews and schedules them.
+
+The Listen → Process → Act pattern from Lesson 2.4 works well here. The critical insight: review is not optional. AI-generated marketing content that ships without human polish sounds generic and can damage brand voice. The automation saves time on the draft; the human saves the brand.
+
+*Automate* for the pipeline mechanics. *AI + Human* for the content itself.
+
+<div class="expandable-img">
+  <img src="/AI-PM-Bootcamp/images/modules/propel-ai-marketing.png" alt="Propel Ventures automated marketing content pipeline" />
+  <div class="expand-hint">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    Click to expand
+  </div>
+</div>
+
+### What We'd Tell You Before You Start
+
+**Start with one workflow, not five.** Pick the task that annoys you most and has the clearest success criteria. Get that working before you expand.
+
+**Invest in input quality.** The single biggest predictor of AI output quality is the quality of what you give it. Structured prompts, clean data, and clear context beat a better model every time. This is why Lesson 2.2 exists.
+
+**Build verification habits early.** The risk with AI isn't that it produces terrible output — it's that it produces *plausible* output that's subtly wrong. Always verify facts, figures, and anything customer-facing.
+
+**Share what works.** The fastest way to build AI fluency across a team is to share prompts, custom configurations, and workflows that actually work. We maintain an internal prompt library — you'll build the start of yours in Lesson 2.2.
+
+**Track the time.** It's easy to *feel* like AI is saving time without actually measuring it. We track time-saved estimates for each experiment. Some workflows save 5+ hours per week; others save 20 minutes. Knowing the difference helps you prioritise.
+
+---
+
+## Extension: Claude Cowork
+
+Claude Cowork is Anthropic's desktop tool that gives Claude direct access to files on your computer. Unlike the standard chat interface (where you paste text or upload files into a conversation), Cowork lets Claude read, create, and edit documents in a folder you select — working more like a colleague sitting at your desk than a chatbot in a browser tab.
+
+The practical difference: instead of copying content back and forth between Claude and your documents, you point Cowork at a folder and say "read the brief in that folder and draft a PRD." It reads the file, writes the document, and saves it where you can open it immediately.
+
+Cowork also connects to external tools through connectors — Slack, Outlook, SharePoint, and others — so it can pull context from your actual work environment rather than relying on what you paste in.
+
+The general rule: if you're producing a *file* as the output, Cowork is usually the better choice. If you're producing a *response* (an answer, an idea, a quick rewrite), chat is faster.
 
 ---
 
 ## Key Takeaways
 
-1. **AI excels at synthesis, not judgment.** Use it to process data and draft content. Keep the strategic thinking for yourself.
+1. **AI handles information processing; you handle judgment.** The delegation matrix gives you two axes — judgment required and AI capability — to decide what to hand off, what to co-create, and what to keep human.
 
-2. **Map before you automate.** Identify which lifecycle phases have the most repetitive, information-processing work. Start there — that's where AI creates the most leverage.
+2. **Five checks before you delegate.** Can you verify the output? What's the cost of error? Can you define success? Is your input quality high enough? Does review take less time than doing it yourself?
 
-3. **Use the delegation matrix.** High judgment? Keep it human. Low judgment + high AI capability? Automate aggressively.
+3. **The job is changing, not disappearing.** AI eliminates the routine processing layer of PM work. The parts that matter most — strategy, customer empathy, trade-off decisions — are becoming more important, not less.
 
-4. **Verify before trusting.** AI outputs look polished but can be subtly wrong. Always review critically, especially for facts and numbers.
+4. **Start with one workflow.** Pick the task that annoys you most and has the clearest success criteria. Get that working before you expand.
 
-5. **The PM job is becoming more strategic, not obsolete.** Embrace AI for the administrative work. Redirect that time to what only humans can do: customer empathy, trade-off decisions, and vision.
-
----
+5. **Track the time.** Measure what AI actually saves you. Some workflows save hours per week; others save minutes. Knowing the difference helps you prioritise.
 
 ## Explore Further
 
-- [Prompt Engineering](/AI-PM-Bootcamp/modules/prompt-engineering/) — Learn how to write better prompts to get better outputs
-- [Prototyping](/AI-PM-Bootcamp/modules/prototyping/) — Use AI to accelerate prototyping and design iteration
-- [Workflow Automation](/AI-PM-Bootcamp/modules/workflow-automation/) — Build automated workflows that save hours per week
-- [LLMs](/AI-PM-Bootcamp/modules/llms/) — Refresh on how LLMs work to better understand their limits
+- [An Opinionated Guide to Using AI Right Now — Ethan Mollick](https://www.oneusefulthing.org/p/an-opinionated-guide-to-using-ai) — Practical advice on which AI models to use for different tasks and when free models are good enough.
+- [Claude Cowork Documentation](https://docs.anthropic.com/en/docs/claude-cowork) — Official guide to Anthropic's desktop AI tool for file and task management.
+- [To Drive AI Adoption, Build Your Team's Product Management Skills — HBR](https://hbr.org/2026/02/to-drive-ai-adoption-build-your-teams-product-management-skills) — Harvard Business Review on building AI fluency within product teams.
