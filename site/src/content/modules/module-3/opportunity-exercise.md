@@ -33,7 +33,7 @@ quiz:
 
 ## Applying the Frameworks
 
-You've now learned how to distinguish proven AI capabilities from emerging ones (Lesson 3.1) and how to score opportunities for viability (Lesson 3.2). This exercise applies those frameworks to something concrete — your own team's work.
+You've now learned how to distinguish proven AI capabilities from emerging ones ([Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/)) and how to score opportunities for viability ([Lesson 3.2](/AI-PM-Bootcamp/modules/assessing-viability/)). This exercise applies those frameworks to something concrete — your own team's work.
 
 The exercise takes 20–30 minutes. By the end, you'll have a prioritised shortlist of AI opportunities grounded in actual workflows, and opportunity briefs specific enough to bring to a stakeholder conversation.
 
@@ -74,7 +74,7 @@ For each workflow, estimate hours per week and note the primary pain point — t
 
 ## Step 2: Score Each Workflow for AI Fit (10 Minutes)
 
-Now evaluate each workflow against five dimensions on a 1–5 scale. Maximum possible score is 25. These dimensions map directly to the capability tiers and checklist from Lesson 3.1.
+Now evaluate each workflow against five dimensions on a 1–5 scale. Maximum possible score is 25. These dimensions map directly to the capability tiers and checklist from [Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/).
 
 **1. Pattern Match — Does AI excel at this type of task?**
 - 5 = core AI strength (text generation, classification, summarisation, search)
@@ -148,7 +148,7 @@ For your top 3, fill in this brief. This is what you'd bring to a stakeholder co
 >
 > **Proposed AI approach:** Which AI capability? Classification, summarisation, generation, semantic search?
 >
-> **Engagement mode:** Off-the-shelf tool? API integration? Fine-tuned model? (Reference the spectrum from Lesson 3.2.)
+> **Engagement mode:** Off-the-shelf tool? API integration? Fine-tuned model? (Reference the spectrum from [Lesson 3.2](/AI-PM-Bootcamp/modules/assessing-viability/).)
 >
 > **Success looks like:** What measurable outcome would make this worth it? e.g., "Reduce triage time from 4 hours to 30 minutes per week with 90% routing accuracy."
 >
@@ -233,7 +233,7 @@ Here's what a simplified version of that mapping looks like:
 
 ## Reflection
 
-Before you move to Module 4, sit with these questions:
+Before you move to [Module 4](/AI-PM-Bootcamp/modules/design-ai-features/), sit with these questions:
 
 **Which opportunity surprised you?** The highest-scoring workflow is often something unglamorous that nobody thought of as an "AI opportunity." Pay attention to that — the best AI features solve boring problems at scale.
 
@@ -245,4 +245,4 @@ Before you move to Module 4, sit with these questions:
 
 ## What's Next
 
-With your top opportunities identified, scored, and pressure-tested, Module 4 takes you from "what to build" to "how to build it." The opportunity briefs you wrote above become a real running example you can use throughout both lessons.
+With your top opportunities identified, scored, and pressure-tested, [Module 4](/AI-PM-Bootcamp/modules/design-ai-features/) takes you from "what to build" to "how to build it." The opportunity briefs you wrote above become a real running example you can use throughout both lessons.

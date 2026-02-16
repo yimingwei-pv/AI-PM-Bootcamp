@@ -94,13 +94,13 @@ CONSTRAINTS:
 
 The second prompt will produce something you can actually use — something close enough to your final document that you're refining, not rewriting.
 
-**Why this matters for PMs:** You'll use this framework again in Lesson 4.1 when designing AI features for your users, not just yourself. The same principles — clear role, specific context, explicit format — apply whether you're prompting an AI for your own work or writing system prompts for a production feature.
+**Why this matters for PMs:** You'll use this framework again in [Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/) when designing AI features for your users, not just yourself. The same principles — clear role, specific context, explicit format — apply whether you're prompting an AI for your own work or writing system prompts for a production feature.
 
 ---
 
 ## Three Techniques That Cover 90% of PM Work
 
-In the Context Engineering lesson (Lesson 1.3), we covered the theory behind techniques like few-shot prompting and chain-of-thought. Now let's apply them to real PM tasks. You only need three techniques to handle almost everything.
+In the [Context Engineering lesson](/AI-PM-Bootcamp/modules/context-engineering/) ([Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/)), we covered the theory behind techniques like few-shot prompting and chain-of-thought. Now let's apply them to real PM tasks. You only need three techniques to handle almost everything.
 
 ### Few-Shot Prompting: Show, Don't Describe
 
@@ -284,7 +284,7 @@ Each time you use a prompt and improve it, save the updated version. Note what y
 
 And share them. Your prompt library becomes a team asset. A junior PM who inherits your competitive analysis prompt starts at your level of quality instead of figuring it out from scratch. Consistent prompts across a team produce consistent outputs.
 
-**Why this matters for PMs:** In Lesson 4.1 (Design AI Features), you'll apply these same prompting skills to write system prompts for production AI features. The framework doesn't change — ROLE, CONTEXT, TASK, FORMAT, CONSTRAINTS works whether you're prompting AI for yourself or for thousands of users. The difference is that production prompts need even more rigour, which is exactly what this practice prepares you for.
+**Why this matters for PMs:** In [Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/) (Design AI Features), you'll apply these same prompting skills to write system prompts for production AI features. The framework doesn't change — ROLE, CONTEXT, TASK, FORMAT, CONSTRAINTS works whether you're prompting AI for yourself or for thousands of users. The difference is that production prompts need even more rigour, which is exactly what this practice prepares you for.
 
 ## Extension: How Propel Ventures Does Prompt Engineering
 
@@ -326,7 +326,7 @@ Pick a task you did manually this week — a PRD draft, a competitive analysis, 
 
 Run it. Read the output critically. What's good? What's missing? What would you change in the prompt to fix it?
 
-Save the improved version. That's the first entry in your prompt library — and you'll use it again in the prototyping lesson (Lesson 2.3) and the Module 4 lab (Lesson 4.3).
+Save the improved version. That's the first entry in your prompt library — and you'll use it again in the prototyping lesson ([Lesson 2.3](/AI-PM-Bootcamp/modules/prototyping/)) and the Module 4 lab ([Lesson 4.3](/AI-PM-Bootcamp/modules/stress-test-exercise/)).
 
 ---
 
@@ -336,7 +336,7 @@ Save the improved version. That's the first entry in your prompt library — and
 
 2. **Three techniques, three use cases.** Few-shot for consistency (show, don't describe). Chain-of-thought for complex reasoning (make the AI show its work). Structured output for data (JSON when you need machine-readable results).
 
-3. **Context engineering is the foundation.** This lesson builds on the theory from Lesson 1.3. The PM Prompt Framework is how you practise context engineering at the individual prompt level — choosing what information the model needs and structuring it for the best result.
+3. **Context engineering is the foundation.** This lesson builds on the theory from [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/). The PM Prompt Framework is how you practise context engineering at the individual prompt level — choosing what information the model needs and structuring it for the best result.
 
 4. **Iteration is the skill.** Your first prompt is rarely your best. Use it, read the output, adjust. The third version is usually the one worth saving. Tools like Prompt Cowboy can accelerate this cycle.
 

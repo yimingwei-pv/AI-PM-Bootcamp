@@ -100,7 +100,7 @@ AI prototyping shines in specific situations. Recognising them is the skill.
 
 Let's make this concrete. You're a PM for a SaaS product that serves marketing teams. You want to add an analytics dashboard showing customer engagement metrics. You have rough wireframes and five customers willing to give feedback.
 
-**10 minutes in — Prepare and generate.** Gather your wireframes (or sketches), a list of the metrics you want to display, and any brand guidelines. Open v0 (or Bolt, or Lovable — pick whichever matches your stack). Write a prompt using the framework from Lesson 2.2:
+**10 minutes in — Prepare and generate.** Gather your wireframes (or sketches), a list of the metrics you want to display, and any brand guidelines. Open v0 (or Bolt, or Lovable — pick whichever matches your stack). Write a prompt using the framework from [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/):
 
 ```
 I'm designing an analytics dashboard for a SaaS product management tool.
@@ -138,7 +138,7 @@ AI prototyping works best as an acceleration layer within your existing process,
   </div>
 </div>
 
-The key insight: AI compresses the *build-test-learn* cycle from weeks to days. You still need the same discipline around problem definition (Module 3), design decisions (Lesson 4.1), and quality (Lesson 4.2). AI just lets you run more cycles in less time.
+The key insight: AI compresses the *build-test-learn* cycle from weeks to days. You still need the same discipline around problem definition ([Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/)), design decisions ([Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/)), and quality ([Lesson 4.2](/AI-PM-Bootcamp/modules/shipping-with-quality/)). AI just lets you run more cycles in less time.
 
 For you as a PM, that means you can explore multiple product directions before committing resources, validate assumptions with working software instead of slide decks, and communicate more clearly — because showing a working prototype beats describing one every time.
 
@@ -181,7 +181,7 @@ You don't need a polished spec. A sentence or two describing what it does and wh
 
 ### Step 2: Write Your First Prototype Prompt (5 minutes)
 
-Open [Lovable](https://lovable.dev) (or your chosen tool) and write a prompt using the framework from Lesson 2.2. Don't overthink it — your first prompt won't be your last. Here's a template:
+Open [Lovable](https://lovable.dev) (or your chosen tool) and write a prompt using the framework from [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/). Don't overthink it — your first prompt won't be your last. Here's a template:
 
 ```
 I'm building a [what it is] for [who it's for].

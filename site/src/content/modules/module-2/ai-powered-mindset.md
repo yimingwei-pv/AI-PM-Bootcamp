@@ -57,7 +57,7 @@ Think about your last week. How much time did you spend on *processing* — read
 
 If you're like most PMs, the ratio skews heavily toward processing. That's the opportunity.
 
-LLMs are pattern-recognition engines trained on text (Lesson 1.1). They're exceptionally good at tasks that involve reading, summarising, drafting, comparing, and structuring information. They struggle with tasks that require judgment under uncertainty, emotional intelligence, or strategic vision. The key is knowing which is which.
+LLMs are pattern-recognition engines trained on text ([Lesson 1.1](/AI-PM-Bootcamp/modules/llms/)). They're exceptionally good at tasks that involve reading, summarising, drafting, comparing, and structuring information. They struggle with tasks that require judgment under uncertainty, emotional intelligence, or strategic vision. The key is knowing which is which.
 
 Here's how that maps across your PM lifecycle:
 
@@ -134,7 +134,7 @@ AI is eliminating the parts of your role that are routine, deterministic, and ea
 
 But the parts that matter most? Those are getting more important, not less. Deciding which problems are worth solving. Building genuine customer empathy — not summarised empathy, but the kind you get from sitting in a room and hearing someone describe their frustration. Making complex trade-offs where the data is ambiguous and the stakes are real. Leading a team through uncertainty. Setting a vision for where the product should go.
 
-These require judgment, emotional intelligence, and the ability to hold multiple conflicting perspectives simultaneously. Based on what we know about how LLMs work (Lesson 1.1), these are not capabilities that scale with more parameters or training data — they require a fundamentally different kind of intelligence.
+These require judgment, emotional intelligence, and the ability to hold multiple conflicting perspectives simultaneously. Based on what we know about how LLMs work ([Lesson 1.1](/AI-PM-Bootcamp/modules/llms/)), these are not capabilities that scale with more parameters or training data — they require a fundamentally different kind of intelligence.
 
 **Product implication:** The PMs who thrive will be the ones who adopt AI aggressively for the processing layer and redirect that freed-up time into deeper customer work, sharper strategy, and better leadership. The PMs at risk are those who either resist AI entirely or, just as dangerously, use it as an excuse to skip thinking.
 
@@ -150,7 +150,7 @@ Compare the output to your own instinct. What did the AI capture that you might 
 
 Then try a document. Write a PRD with AI as your co-writer: 15 minutes defining the problem and inputs, 10 minutes letting AI draft, 20 minutes refining and adding strategic nuance. Track the time savings. Most PMs save 30–45 minutes per document this way.
 
-In Lesson 2.2, you'll learn how to write prompts that make these collaborations dramatically more effective. In Lesson 2.3, you'll use AI to build working prototypes in hours instead of weeks. And in Lesson 2.4, you'll automate entire workflows so the processing layer runs on its own.
+In [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/), you'll learn how to write prompts that make these collaborations dramatically more effective. In [Lesson 2.3](/AI-PM-Bootcamp/modules/prototyping/), you'll use AI to build working prototypes in hours instead of weeks. And in [Lesson 2.4](/AI-PM-Bootcamp/modules/workflow-automation/), you'll automate entire workflows so the processing layer runs on its own.
 
 For now, the important thing is the mindset shift: **AI handles the information processing. You handle the judgment. The faster you build that habit, the more strategic your role becomes.**
 
@@ -188,7 +188,7 @@ For broad landscape questions — "What are the main players in X space?" or "Wh
 
 Producing consistent marketing content — social posts, blog drafts, email sequences — required more bandwidth than the team had. We built automated content pipelines using workflow automation tools that pull triggers from one system, run content through an LLM, and push outputs to another. For example: a new case study gets published → AI drafts three social posts in different formats → a human reviews and schedules them.
 
-The Listen → Process → Act pattern from Lesson 2.4 works well here. The critical insight: review is not optional. AI-generated marketing content that ships without human polish sounds generic and can damage brand voice. The automation saves time on the draft; the human saves the brand.
+The Listen → Process → Act pattern from [Lesson 2.4](/AI-PM-Bootcamp/modules/workflow-automation/) works well here. The critical insight: review is not optional. AI-generated marketing content that ships without human polish sounds generic and can damage brand voice. The automation saves time on the draft; the human saves the brand.
 
 *Automate* for the pipeline mechanics. *AI + Human* for the content itself.
 
@@ -204,11 +204,11 @@ The Listen → Process → Act pattern from Lesson 2.4 works well here. The crit
 
 **Start with one workflow, not five.** Pick the task that annoys you most and has the clearest success criteria. Get that working before you expand.
 
-**Invest in input quality.** The single biggest predictor of AI output quality is the quality of what you give it. Structured prompts, clean data, and clear context beat a better model every time. This is why Lesson 2.2 exists.
+**Invest in input quality.** The single biggest predictor of AI output quality is the quality of what you give it. Structured prompts, clean data, and clear context beat a better model every time. This is why [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/) exists.
 
 **Build verification habits early.** The risk with AI isn't that it produces terrible output — it's that it produces *plausible* output that's subtly wrong. Always verify facts, figures, and anything customer-facing.
 
-**Share what works.** The fastest way to build AI fluency across a team is to share prompts, custom configurations, and workflows that actually work. We maintain an internal prompt library — you'll build the start of yours in Lesson 2.2.
+**Share what works.** The fastest way to build AI fluency across a team is to share prompts, custom configurations, and workflows that actually work. We maintain an internal prompt library — you'll build the start of yours in [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/).
 
 **Track the time.** It's easy to *feel* like AI is saving time without actually measuring it. We track time-saved estimates for each experiment. Some workflows save 5+ hours per week; others save 20 minutes. Knowing the difference helps you prioritise.
 

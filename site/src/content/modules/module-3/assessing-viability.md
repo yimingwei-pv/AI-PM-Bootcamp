@@ -36,7 +36,7 @@ quiz:
 
 ## The Decision That Actually Matters
 
-You've identified some AI opportunities using the quick filter from Lesson 3.1. Your backlog has candidates that scored well. Maybe your VP has been asking about AI. Maybe an engineer prototyped something over a weekend and it looked promising in a demo.
+You've identified some AI opportunities using the quick filter from [Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/). Your backlog has candidates that scored well. Maybe your VP has been asking about AI. Maybe an engineer prototyped something over a weekend and it looked promising in a demo.
 
 Now comes the decision that makes or breaks the next three months of your team's time: **should you actually commit to this, and if so, how?**
 
@@ -83,7 +83,7 @@ For this problem, the answer is almost certainly **Mode 2**, with a possible mov
 
 **Why this matters for PMs:** Most healthy companies live in Modes 1–2 for the vast majority of their AI use cases. Volkswagen's Cariad project accumulated $7.5 billion in losses building a custom unified software platform for twelve car brands, when proven third-party solutions could have handled most of it. If someone on your team is pushing for Mode 3 or 4 on a non-differentiating feature, push back. Ask them: "What specific evidence do we have that Mode 2 won't work?"
 
-> **Exercise:** Think about the top opportunity from your Lesson 3.1 quick filter. Which mode would you start with? If your instinct is Mode 3 or 4, challenge yourself: what specific evidence do you have that Modes 1–2 won't work?
+> **Exercise:** Think about the top opportunity from your [Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/) quick filter. Which mode would you start with? If your instinct is Mode 3 or 4, challenge yourself: what specific evidence do you have that Modes 1–2 won't work?
 
 ---
 
@@ -170,7 +170,7 @@ The engagement mode followed naturally from the constraints. Auto-scoring isn't 
 
 **Product implication:** A score of 2.3 didn't mean "don't do it." It meant "prove the risk is manageable before committing." The prototype was the proof. This is the most important move in the framework — converting a conditional score into a confident one, without betting three months of engineering time on hope.
 
-> **Exercise:** Take the top opportunity you identified in Lesson 3.1's quick filter. Score it across all three dimensions. Where does it land? If it's below 3.5, identify the single weakest dimension. What would a four-week prototype look like that specifically tests that weakness?
+> **Exercise:** Take the top opportunity you identified in [Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/)'s quick filter. Score it across all three dimensions. Where does it land? If it's below 3.5, identify the single weakest dimension. What would a four-week prototype look like that specifically tests that weakness?
 
 ---
 
@@ -234,7 +234,7 @@ Third, blockers were named upfront. Every use case included a list of dependenci
 
 ## Reflection
 
-Before moving to the exercise in Lesson 3.3, sit with these questions:
+Before moving to the exercise in [Lesson 3.3](/AI-PM-Bootcamp/modules/opportunity-exercise/), sit with these questions:
 
 **Did your viability score surprise you?** If it was lower than expected, which dimension pulled it down? That dimension is where you should focus your de-risking work — not the overall score.
 

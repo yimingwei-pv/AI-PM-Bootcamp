@@ -309,7 +309,7 @@ Every transformer has a **context window** — a maximum number of tokens it can
 
 LLMs are trained on data up to a certain date — this is called the model's **knowledge cutoff**. For example, a model released in early 2026 might have training data through late 2025. They can't learn new information without retraining or being given fresh context.
 
-**Product implication:** If your users need real-time information (stock prices, weather, news), you need to augment the LLM with retrieval systems or external APIs, not just rely on the model's training data. We'll cover this in detail in the Context Engineering lesson.
+**Product implication:** If your users need real-time information (stock prices, weather, news), you need to augment the LLM with retrieval systems or external APIs, not just rely on the model's training data. We'll cover this in detail in the [Context Engineering lesson](/AI-PM-Bootcamp/modules/context-engineering/).
 
 ### Constraint 3: Accuracy vs. Creativity Tradeoff
 

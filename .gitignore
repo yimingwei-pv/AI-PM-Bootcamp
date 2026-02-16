@@ -17,6 +17,9 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Drafts
+drafts/
+
 # Logs
 *.log
 npm-debug.log*

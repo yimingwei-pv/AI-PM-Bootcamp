@@ -37,7 +37,7 @@ quiz:
 
 ## From Opportunity to Design
 
-In Module 3, you identified viable AI opportunities, scored them for viability (Lesson 3.2), and wrote opportunity briefs (Lesson 3.3). If you followed the exercise, you have a shortlist of candidates with specific problem statements and success criteria.
+In Module 3, you identified viable AI opportunities, scored them for viability ([Lesson 3.2](/AI-PM-Bootcamp/modules/assessing-viability/)), and wrote opportunity briefs ([Lesson 3.3](/AI-PM-Bootcamp/modules/opportunity-exercise/)). If you followed the exercise, you have a shortlist of candidates with specific problem statements and success criteria.
 
 Now you need to design the feature. The gap between "the AI works in a demo" and "the AI works in production" is filled by product decisions.
 
@@ -61,7 +61,7 @@ The model market as of early 2026 includes OpenAI's GPT series, Anthropic's Clau
 
 **3. Cost per token.** The gap between frontier and small models can be 10–50× per token. Unlike traditional SaaS, AI features have marginal costs that scale with usage — every API call costs money. A feature that handles 1,000 requests a day might be affordable; the same feature at 100,000 requests needs a fundamentally different cost structure. This is the inference treadmill: your costs grow with your success. Model your costs at expected volume, at 5× volume, and at 10× volume. If the 10× number makes your manager uncomfortable, plan for model routing from day one. Build cost projections into your business case early, and revisit them at every usage milestone.
 
-**4. Context window.** How much text can you send at once? This ranges from 4K tokens in older models to 1M tokens in frontier models like Claude and Gemini. If your feature processes 50-page contracts, a small window is a dealbreaker — or forces chunking strategies that add complexity and degrade quality. (Remember from Lesson 1.1: context window limits directly determine what information the model can see.)
+**4. Context window.** How much text can you send at once? This ranges from 4K tokens in older models to 1M tokens in frontier models like Claude and Gemini. If your feature processes 50-page contracts, a small window is a dealbreaker — or forces chunking strategies that add complexity and degrade quality. (Remember from [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/): context window limits directly determine what information the model can see.)
 
 **5. Capabilities.** Does it handle images? Audio? Function calling? Structured JSON output? Check actual capabilities, not marketing materials. Do desktop research on the leading LLM models for your use case or industry. Then test these models yourself! Below is a graph of top models used for finance on [OpenRouter](https://openrouter.ai/rankings?category=finance&context-length=100K#categories). As of 16/02/2026, Gemini 3 has 13% usage market share within finance. So if you are building an AI feature in finance, Gemini 3 is definitely worth investigating and testing out for yourself.
 
@@ -95,7 +95,7 @@ You don't have to pick just one model. Many production features use a lightweigh
 
 **Why this matters for PMs:** You don't need to make the open-source versus closed-source decision yourself — your engineering team will have strong views and they should. What you need to know is that the choice exists, that it affects your cost structure and vendor dependencies, and that many teams start with closed-source to validate quickly and consider open-source later if volume and cost justify the switch. Ask your engineers which approach they recommend and why — then factor their reasoning into your business case.
 
-> **Exercise:** Take the AI opportunity you identified in Module 3. Write a one-paragraph model evaluation plan: what are the 50+ real inputs you'd test with? What's your latency budget? Estimate the cost per request at your expected volume and at 10× volume. Would you start with a single model or plan for routing from day one? Compare your reasoning against how Duolingo and Notion AI approached the same decisions.
+> **Exercise:** Take the AI opportunity you identified in [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/). Write a one-paragraph model evaluation plan: what are the 50+ real inputs you'd test with? What's your latency budget? Estimate the cost per request at your expected volume and at 10× volume. Would you start with a single model or plan for routing from day one? Compare your reasoning against how Duolingo and Notion AI approached the same decisions.
 
 ---
 
@@ -105,7 +105,7 @@ Most teams skip this part — and it's the one that determines whether your AI f
 
 ### Accept This: AI Will Fail
 
-Not might. *Will.* LLMs hallucinate. Classifiers produce false positives. Extraction models miss edge cases. It's baked into how these systems work — as you learned in Lesson 1.1, LLMs are probabilistic text prediction engines, not truth engines. You already evaluated your opportunity's error tolerance in Lesson 3.1. Now you need to turn that assessment into concrete design decisions. Your job isn't to prevent failure. It's to make failure graceful.
+Not might. *Will.* LLMs hallucinate. Classifiers produce false positives. Extraction models miss edge cases. It's baked into how these systems work — as you learned in [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/), LLMs are probabilistic text prediction engines, not truth engines. You already evaluated your opportunity's error tolerance in [Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/). Now you need to turn that assessment into concrete design decisions. Your job isn't to prevent failure. It's to make failure graceful.
 
 The cost of skipping this work is real. In 2021, Zillow shut down its iBuying division, Zillow Offers, after its pricing algorithm systematically overvalued properties in a volatile market. The write-down exceeded $540 million and the company cut 25% of its workforce — roughly 2,000 jobs. The algorithm's aggregate accuracy looked acceptable in testing, but nobody had designed for the failure mode that actually hit: the model couldn't adapt when market conditions shifted rapidly. There was no graceful degradation, no human-in-the-loop override for high-risk purchases, and no kill criteria that would have paused buying before the losses compounded. The model wasn't the problem. The absence of failure design was.
 
@@ -174,7 +174,7 @@ The AI generates suggestions; the human accepts, edits, or rejects. GitHub Copil
 
 ### Pattern 2: Autonomous Agent — AI Acts, Human Monitors
 
-At the other end of the spectrum: the AI takes action independently, and humans review outcomes after the fact. Automated ticket routing, spam filters, fraud detection. If you're building an agent-based feature, revisit the Simplicity Hierarchy from Lesson 1.2 — start with the simplest architecture that works.
+At the other end of the spectrum: the AI takes action independently, and humans review outcomes after the fact. Automated ticket routing, spam filters, fraud detection. If you're building an agent-based feature, revisit the Simplicity Hierarchy from [Lesson 1.2](/AI-PM-Bootcamp/modules/agents/) — start with the simplest architecture that works.
 
 **Use when:** Volume makes per-action human review impractical, the task is well-defined, and you have robust monitoring and rollback. Risk is medium to high — demands strong observability.
 
@@ -210,7 +210,7 @@ Start with the stakes:
 
 **Why this matters for PMs:** Default to Copilot or Human-in-the-Loop for your first launch. Earn the right to go autonomous through evidence — not conviction.
 
-> **Exercise:** For the top opportunity you identified in the Module 3 exercise, which interaction pattern would you choose? Walk through the stakes analysis: what happens when the AI is wrong, and does that push you toward human oversight or away from it?
+> **Exercise:** For the top opportunity you identified in the [Module 3 exercise](/AI-PM-Bootcamp/modules/opportunity-exercise/), which interaction pattern would you choose? Walk through the stakes analysis: what happens when the AI is wrong, and does that push you toward human oversight or away from it?
 
 ---
 
@@ -226,11 +226,11 @@ Craft instructions, examples, and constraints directly in the prompt. No model m
 
 **Stops working when:** The model consistently ignores instructions, requires knowledge it doesn't have, or prompt length is eating your context window and budget.
 
-Always start here. A well-crafted system prompt with 3–5 examples gets you further than most teams expect — and changes deploy instantly at minimal cost. (This builds directly on the PM Prompt Framework from Lesson 2.2 and the context engineering techniques from Lesson 1.3.)
+Always start here. A well-crafted system prompt with 3–5 examples gets you further than most teams expect — and changes deploy instantly at minimal cost. (This builds directly on the PM Prompt Framework from [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/) and the context engineering techniques from [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/).)
 
 ### RAG — Retrieval-Augmented Generation (When the Model Needs Your Data)
 
-At query time, retrieve relevant documents from your data and inject them into the prompt — the technique you covered in Lesson 1.3.
+At query time, retrieve relevant documents from your data and inject them into the prompt — the technique you covered in [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/).
 
 **Works when:** The model needs your knowledge base, product docs, or customer records — especially when that data changes frequently.
 

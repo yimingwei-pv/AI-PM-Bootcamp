@@ -153,7 +153,7 @@ Don't see yours? Any workflow that follows Listen → Process → Act works. The
 Open Zapier and create a new Zap. Follow the same three-step structure you just practised:
 
 1. **Listen** — Set your trigger. What event starts this workflow?
-2. **(Optional) Process** — Add an AI step between the trigger and the action. Zapier lets you insert an AI model (ChatGPT, Claude, or AI by Zapier) that can process, classify, summarise, or reformat the trigger data before it reaches the destination. Write a prompt using the ROLE / CONTEXT / TASK / FORMAT / CONSTRAINTS framework from Lesson 2.2.
+2. **(Optional) Process** — Add an AI step between the trigger and the action. Zapier lets you insert an AI model (ChatGPT, Claude, or AI by Zapier) that can process, classify, summarise, or reformat the trigger data before it reaches the destination. Write a prompt using the ROLE / CONTEXT / TASK / FORMAT / CONSTRAINTS framework from [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/).
 3. **Act** — Choose the destination. Where should the result go? Slack, email, Jira, a spreadsheet?
 
 Test each step as you go.
@@ -169,7 +169,7 @@ Submit **a one-minute Loom video** showing your workflow. Open [Loom](https://ww
 
 If your recording is over a minute, re-record it shorter.
 
-Upload your Loom to the **[AI PM Bootcamp Community Folder](https://loom.com/share/folder/2840211189a14b47a430fbfadb32dac7)** — the same shared space where prototyping demos from Lesson 2.3 live. Browse what other participants have automated. You'll spot workflow ideas you hadn't considered, and you'll often find that someone else has already solved a problem you've been putting off.
+Upload your Loom to the **[AI PM Bootcamp Community Folder](https://loom.com/share/folder/2840211189a14b47a430fbfadb32dac7)** — the same shared space where prototyping demos from [Lesson 2.3](/AI-PM-Bootcamp/modules/prototyping/) live. Browse what other participants have automated. You'll spot workflow ideas you hadn't considered, and you'll often find that someone else has already solved a problem you've been putting off.
 
 ---
 
@@ -181,11 +181,11 @@ We used Zapier for this exercise, but the ecosystem is broader. As your automati
 
 **n8n** is open-source and self-hostable. Deepest AI capabilities including RAG and AI agents. Steepest learning curve, but the most flexible — the choice for technical teams with complex needs.
 
-**Claude MCP** (Model Context Protocol, covered in Lesson 1.3) is a newer approach: instead of a separate automation platform, Claude itself orchestrates multi-step workflows through direct connections to your tools — Slack, Linear, GitHub, databases. The ecosystem is growing fast, with thousands of pre-built MCP servers available.
+**Claude MCP** (Model Context Protocol, covered in [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/)) is a newer approach: instead of a separate automation platform, Claude itself orchestrates multi-step workflows through direct connections to your tools — Slack, Linear, GitHub, databases. The ecosystem is growing fast, with thousands of pre-built MCP servers available.
 
 A reasonable progression: **Zapier to get started, then graduate to n8n or MCP as your needs get more complex.**
 
-In Module 3, you'll apply this same evaluation lens — frequency, impact, risk — to finding AI opportunities in your product, not just your workflow. The thinking is the same; the scale is different.
+In [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/), you'll apply this same evaluation lens — frequency, impact, risk — to finding AI opportunities in your product, not just your workflow. The thinking is the same; the scale is different.
 
 ---
 

@@ -52,7 +52,7 @@ Andrej Karpathy, one of the most prominent voices in AI, captured this with a us
 
 <img src="/AI-PM-Bootcamp/images/modules/context-engineering-tweet.png" alt="Andrej Karpathy on context engineering" style="max-width: 600px; margin: 2rem auto; display: block;" />
 
-More formally: **context engineering is the art and science of filling the context window with just the right information for the next step.** As we covered in the LLMs lesson, the context window is the maximum number of tokens a model can process at once — everything inside is visible; everything outside is invisible. And as we discussed in the Agents lesson, agent failures are frequently context failures — the model is capable, but it's working with incomplete or poorly organised information. Your job as a PM: designing what goes into that context, in what order, at what time.
+More formally: **context engineering is the art and science of filling the context window with just the right information for the next step.** As we covered in the [LLMs lesson](/AI-PM-Bootcamp/modules/llms/), the context window is the maximum number of tokens a model can process at once — everything inside is visible; everything outside is invisible. And as we discussed in the [Agents lesson](/AI-PM-Bootcamp/modules/agents/), agent failures are frequently context failures — the model is capable, but it's working with incomplete or poorly organised information. Your job as a PM: designing what goes into that context, in what order, at what time.
 
 ---
 
@@ -212,7 +212,7 @@ That's where RAG comes in. **RAG is a system architecture that connects your LLM
 The flow in plain language:
 
 1. **User asks a question.** "What's our refund policy for enterprise customers?"
-2. **Query becomes a vector.** The system converts the question into an embedding (as we covered in the LLMs lesson) so it can be compared mathematically against your knowledge base.
+2. **Query becomes a vector.** The system converts the question into an embedding (as we covered in the [LLMs lesson](/AI-PM-Bootcamp/modules/llms/)) so it can be compared mathematically against your knowledge base.
 3. **Retrieval finds relevant documents.** A search algorithm identifies the passages most semantically similar to the question — your actual refund policy document, not a marketing page that mentions "refund" in passing.
 4. **Context gets augmented.** The retrieved passages are inserted into the LLM's prompt alongside the user's question.
 5. **LLM generates a grounded response.** The model answers using the retrieved information, not just its general training data.

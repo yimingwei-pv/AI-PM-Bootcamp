@@ -56,12 +56,12 @@ A quick orientation:
 - **Model selector** (top right) — pick which model to test with. Start with **Gemini 3 Flash** — it's fast, capable, and free for testing. You can always switch models later to see how results change.
 - **System Instructions** (right panel) — this is where your prompt lives. Think of it as the persistent instructions the model follows for every message in the conversation.
 - **Prompt input** (bottom) — type or paste your test inputs here and hit send.
-- **Tools** (bottom bar) — this is where you can attach data sources or enable tool calling (the equivalent of RAG and function calling from Lesson 1.3). You won't need this for the basic exercise, but it's good to know it's there.
+- **Tools** (bottom bar) — this is where you can attach data sources or enable tool calling (the equivalent of RAG and function calling from [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/)). You won't need this for the basic exercise, but it's good to know it's there.
 - **Temperature and other settings** (right sidebar) — leave these at their defaults for now. Feel free to experiment later, but changing them mid-test makes it harder to compare results.
 
 While that loads, grab two things:
 
-1. **Your opportunity brief** from the Module 3 exercise (Lesson 3.3). You need the specific problem you identified — what the AI feature does, who it's for, what inputs it processes.
+1. **Your opportunity brief** from the Module 3 exercise ([Lesson 3.3](/AI-PM-Bootcamp/modules/opportunity-exercise/)). You need the specific problem you identified — what the AI feature does, who it's for, what inputs it processes.
 
 2. **30 real examples** of the data your feature would handle. Customer tickets, Slack messages, support emails, Jira issues — whatever your feature would process in production. If you genuinely don't have access to real data, pull from your own inbox or team chat. The key is *real* messy human-generated text, not examples you write yourself. A great starting point if you're stumped is customer support enquiries.
 
@@ -86,9 +86,9 @@ Here's your scorecard — keep it open as you work through the three rounds:
 
 ## Your First Prompt
 
-In the **System Instruction** box in Google AI Studio, write a prompt for your feature using the PM Prompt Framework from Lesson 2.2. Give the model a **Role** (who it's acting as), the **Task** (what it should do), the **Format** (how to structure the output), and **Constraints** (rules, edge cases, things it must not do). Then add 2–3 few-shot examples showing exactly what good input → output looks like.
+In the **System Instruction** box in Google AI Studio, write a prompt for your feature using the PM Prompt Framework from [Lesson 2.2](/AI-PM-Bootcamp/modules/prompt-engineering/). Give the model a **Role** (who it's acting as), the **Task** (what it should do), the **Format** (how to structure the output), and **Constraints** (rules, edge cases, things it must not do). Then add 2–3 few-shot examples showing exactly what good input → output looks like.
 
-Also jot down four quick design decisions from Lesson 4.1, one paragraph each:
+Also jot down four quick design decisions from [Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/), one paragraph each:
 
 > **Model:** [Which model and why — you're testing with Gemini Flash, but what would you ship with?] Answer this as if you could choose any model in the world.
 >
@@ -124,7 +124,7 @@ This is usually where things get interesting. The model that looked sharp on cle
 
 Your accuracy will probably drop 15–25% from Round 1. That's normal, and it's exactly why you're doing this — you're seeing the gap between demo performance and production performance in real time.
 
-Now read every failure carefully. Not just "it got this wrong," but *why*. Tag each one specifically: "classified a feature request as a bug because the customer described a workaround" tells you something actionable. "Bad output" tells you nothing. Group similar failures together. What you're building is a **failure taxonomy** — the same error analysis process from Lesson 4.2. You'll likely find that 2–3 root causes explain most of your failures.
+Now read every failure carefully. Not just "it got this wrong," but *why*. Tag each one specifically: "classified a feature request as a bug because the customer described a workaround" tells you something actionable. "Bad output" tells you nothing. Group similar failures together. What you're building is a **failure taxonomy** — the same error analysis process from [Lesson 4.2](/AI-PM-Bootcamp/modules/shipping-with-quality/). You'll likely find that 2–3 root causes explain most of your failures.
 
 Here's the satisfying part: go back to your system instruction and add targeted fixes. An extra constraint for multi-topic inputs. A few-shot example showing the edge case the model got wrong. Re-run Batch B with the updated prompt. Watch your accuracy recover.
 
@@ -140,9 +140,9 @@ Paste in the sarcastic complaint: "Absolutely love how the app crashes every tim
 
 Some of these will fail. That's the point — you're mapping the boundaries of where your feature works and where it breaks down.
 
-Here's where the thinking shifts. In Rounds 1 and 2, you fixed failures by improving the prompt. In Round 3, not every failure *should* be fixed with the prompt. Some failures need a **fallback path** instead (Lesson 4.1): a confidence threshold that routes to a human, a graceful "I wasn't able to process this" message, or an automatic flag for manual review. For each Round 3 failure, decide: is this a prompt problem or a design problem?
+Here's where the thinking shifts. In Rounds 1 and 2, you fixed failures by improving the prompt. In Round 3, not every failure *should* be fixed with the prompt. Some failures need a **fallback path** instead ([Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/)): a confidence threshold that routes to a human, a graceful "I wasn't able to process this" message, or an automatic flag for manual review. For each Round 3 failure, decide: is this a prompt problem or a design problem?
 
-For the failure modes that will persist in production — the ones you can't prompt-engineer away — write an **eval** for each. One binary yes/no question that would catch this failure automatically: "Does the classification reflect the customer's actual sentiment, including sarcasm? Yes/No." Code-based if you can check it with a simple rule. LLM-as-judge if it requires comprehension. These evals become your safety net once the feature is live (Lesson 4.2).
+For the failure modes that will persist in production — the ones you can't prompt-engineer away — write an **eval** for each. One binary yes/no question that would catch this failure automatically: "Does the classification reflect the customer's actual sentiment, including sarcasm? Yes/No." Code-based if you can check it with a simple rule. LLM-as-judge if it requires comprehension. These evals become your safety net once the feature is live ([Lesson 4.2](/AI-PM-Bootcamp/modules/shipping-with-quality/)).
 
 **Record your Round 3 accuracy, failure modes, and the number of evals you wrote.**
 
@@ -154,7 +154,7 @@ Look at your scorecard. You've got three accuracy numbers that tell a story — 
 
 That's more evidence than most AI features ship with. Now write it up as a brief — the document you'd bring to sprint planning. Tell the story of what you tested and what you found:
 
-> **The problem** you're solving and what it costs today (from your Module 3 brief).
+> **The problem** you're solving and what it costs today (from your [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/) brief).
 >
 > **What you built** — your four design decisions: model, pattern, fallback, knowledge approach.
 >
@@ -164,7 +164,7 @@ That's more evidence than most AI features ship with. Now write it up as a brief
 >
 > **What you'd fix before shipping** — the prompt improvements that worked, plus the failures that need fallback paths, confidence thresholds, or human review gates.
 >
-> **How you'd measure success** — one metric per layer: model (accuracy/F1), product (acceptance rate/edit rate), business (time saved/cost reduced). The three layers from Lesson 4.2.
+> **How you'd measure success** — one metric per layer: model (accuracy/F1), product (acceptance rate/edit rate), business (time saved/cost reduced). The three layers from [Lesson 4.2](/AI-PM-Bootcamp/modules/shipping-with-quality/).
 >
 > **How you'd roll it out** — Shadow → Dogfood → Limited rollout → Expand. Your kill criteria: the specific numbers that would trigger a pause.
 >
@@ -180,7 +180,7 @@ If your drop was small (less than 10%), your prompt is more robust than most. If
 
 Either way, you now have something you didn't have 30 minutes ago: evidence. Not "we think AI could help with this." Tested, on 30 real inputs, across three difficulty tiers, with a failure taxonomy, evals, and a rollout plan.
 
-That brief is the compound of everything in this course. Module 1 gave you the technical foundations for understanding why models fail. Module 2 taught you how to write prompts that work. Module 3 taught you where to aim. Module 4 taught you how to design, test, and ship. This lab is where it all came together.
+That brief is the compound of everything in this course. [Module 1](/AI-PM-Bootcamp/modules/llms/) gave you the technical foundations for understanding why models fail. [Module 2](/AI-PM-Bootcamp/modules/prompt-engineering/) taught you how to write prompts that work. [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/) taught you where to aim. [Module 4](/AI-PM-Bootcamp/modules/design-ai-features/) taught you how to design, test, and ship. This lab is where it all came together.
 
 Module 5 covers what comes after: operating AI products at scale.
 

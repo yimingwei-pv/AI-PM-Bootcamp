@@ -52,13 +52,13 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 **Classification and routing** is the single most proven AI capability in enterprise software. Stripe flags fraud. Gmail filters spam. Zendesk routes tickets. It works because it's a bounded problem with a finite set of valid outputs and learnable patterns that predict them.
 
-**Product implication:** If your opportunity involves sorting things into categories at volume, you're on solid ground. This is well-understood territory with predictable costs and performance. If you experimented with classification in Module 2's prompt engineering exercises, you've already seen this capability first-hand.
+**Product implication:** If your opportunity involves sorting things into categories at volume, you're on solid ground. This is well-understood territory with predictable costs and performance. If you experimented with classification in [Module 2](/AI-PM-Bootcamp/modules/prompt-engineering/)'s prompt engineering exercises, you've already seen this capability first-hand.
 
 **Summarisation and extraction** has matured rapidly. Slack summarises threads. Notion condenses pages. Legal tech tools pull key clauses from contracts. The model doesn't need to *know* things — it compresses what's already there. The failure mode is omission (missing something important), not fabrication, which is a far more manageable risk.
 
 **Semantic search** replaces keyword search (which returns irrelevant results) with meaning-based retrieval (which understands what you *meant*). Notion, GitHub, and thousands of internal knowledge bases now use embeddings — numerical representations of meaning — to retrieve by meaning rather than exact text match.
 
-**Why this matters for PMs:** Remember from Lesson 1.1 — embeddings encode semantic similarity. Semantic search is one of the highest-ROI AI features you can ship because you're surfacing content that already exists in your data, with minimal risk.
+**Why this matters for PMs:** Remember from [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/) — embeddings encode semantic similarity. Semantic search is one of the highest-ROI AI features you can ship because you're surfacing content that already exists in your data, with minimal risk.
 
 **Code generation** has crossed from novelty to genuine productivity tool. GitHub Copilot and Cursor are used by millions of developers daily. The key: it's an accelerant, not a replacement. Developers still review everything, keeping risk manageable.
 
@@ -74,13 +74,13 @@ Before evaluating opportunities, you need an honest map of current AI capabiliti
 
 ### Where AI Still Fails
 
-**Precise arithmetic and financial calculations.** As you learned in Lesson 1.1, LLMs are text prediction engines — they predict what maths answers *look like*, not what they are. No bank uses a raw LLM for interest calculations. If your feature requires numerical precision, pair AI with deterministic calculation engines.
+**Precise arithmetic and financial calculations.** As you learned in [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/), LLMs are text prediction engines — they predict what maths answers *look like*, not what they are. No bank uses a raw LLM for interest calculations. If your feature requires numerical precision, pair AI with deterministic calculation engines.
 
 **Perfect-accuracy tasks.** AI is probabilistic. It makes confident-sounding mistakes. Medical diagnosis, legal interpretation, compliance decisions — these require accuracy thresholds that current AI can't reliably hit without human oversight.
 
-**Tasks requiring proprietary knowledge.** An LLM doesn't know your internal API, your business rules, or your customer data. It will make plausible-sounding guesses that are wrong. You can solve this with RAG (covered in Lesson 1.3), but "just add AI" without a knowledge architecture will fail.
+**Tasks requiring proprietary knowledge.** An LLM doesn't know your internal API, your business rules, or your customer data. It will make plausible-sounding guesses that are wrong. You can solve this with RAG (covered in [Lesson 1.3](/AI-PM-Bootcamp/modules/context-engineering/)), but "just add AI" without a knowledge architecture will fail.
 
-**Product implication:** These aren't "temporary" limitations you can wait out. They're structural properties of how LLMs work — rooted in the transformer architecture you studied in Lesson 1.1. Design around them rather than hoping the next model release fixes them.
+**Product implication:** These aren't "temporary" limitations you can wait out. They're structural properties of how LLMs work — rooted in the transformer architecture you studied in [Lesson 1.1](/AI-PM-Bootcamp/modules/llms/). Design around them rather than hoping the next model release fixes them.
 
 ---
 

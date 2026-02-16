@@ -79,11 +79,11 @@
   }
 
   .prose pre {
-    @apply bg-propel-gray border border-gray-200 rounded-lg p-5 my-6 overflow-x-auto;
+    @apply bg-propel-navy rounded-lg p-5 my-6 overflow-x-auto;
   }
 
   .prose pre code {
-    @apply bg-transparent p-0 text-sm leading-relaxed;
+    @apply bg-transparent p-0 text-sm leading-relaxed text-white;
   }
 
   .prose blockquote {

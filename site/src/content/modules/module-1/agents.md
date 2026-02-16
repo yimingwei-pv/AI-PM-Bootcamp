@@ -53,7 +53,7 @@ As a PM, you'll increasingly be asked to evaluate whether a feature should be a 
 
 ## What Exactly Is an AI Agent?
 
-As we covered in the LLMs lesson, a large language model takes text in and generates text out. It's a powerful prediction engine, but fundamentally it's **stateless and passive** — it responds, then waits.
+As we covered in the [LLMs lesson](/AI-PM-Bootcamp/modules/llms/), a large language model takes text in and generates text out. It's a powerful prediction engine, but fundamentally it's **stateless and passive** — it responds, then waits.
 
 An AI agent wraps that LLM in an orchestration layer that transforms it from a passive responder into an active problem-solver. The simplest way to understand the difference:
 
@@ -266,4 +266,4 @@ The common thread: **narrow scope, human checkpoints, measurable goals.** No pro
 
 5. **Agents need different product design.** Users interact differently with systems that take autonomous action. You need transparency (what is the agent doing?), reversibility (can we undo it?), and trust-building (human approval for high-stakes actions).
 
-6. **Context engineering makes or breaks agents.** The quality of what goes into the agent's context window at each step determines success or failure — more on this in the Context Engineering lesson.
+6. **Context engineering makes or breaks agents.** The quality of what goes into the agent's context window at each step determines success or failure — more on this in the [Context Engineering lesson](/AI-PM-Bootcamp/modules/context-engineering/).

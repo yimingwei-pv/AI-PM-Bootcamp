@@ -37,7 +37,7 @@ quiz:
 
 ## The Quality Gap
 
-You've chosen the right opportunity (Lesson 3.1), scored its viability (Lesson 3.2), selected a model, designed for failure, and picked an interaction pattern (Lesson 4.1). You're almost ready to ship.
+You've chosen the right opportunity ([Lesson 3.1](/AI-PM-Bootcamp/modules/identify-opportunities/)), scored its viability ([Lesson 3.2](/AI-PM-Bootcamp/modules/assessing-viability/)), selected a model, designed for failure, and picked an interaction pattern ([Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/)). You're almost ready to ship.
 
 Almost — because an AI feature that works in a demo but fails in production is worse than no AI feature at all. It erodes trust, creates support burden, and gives ammunition to every stakeholder who was sceptical about AI in the first place.
 
@@ -49,7 +49,7 @@ This lesson covers the four pillars of shipping AI with quality: data, metrics, 
 
 Here's the least glamorous truth in AI product management: most quality problems are data problems disguised as model problems.
 
-When an AI feature underperforms, the instinct is to try a bigger model or a fancier prompt. But the most common root cause isn't model capability — it's poor data. In Lesson 3.2, you scored data availability as part of the viability framework. Now you need to go deeper — not just "do we have data?" but "is our data good enough?" Before you ship any AI feature, audit your data against five dimensions.
+When an AI feature underperforms, the instinct is to try a bigger model or a fancier prompt. But the most common root cause isn't model capability — it's poor data. In [Lesson 3.2](/AI-PM-Bootcamp/modules/assessing-viability/), you scored data availability as part of the viability framework. Now you need to go deeper — not just "do we have data?" but "is our data good enough?" Before you ship any AI feature, audit your data against five dimensions.
 
 ### The Five Dimensions
 
@@ -117,7 +117,7 @@ GitHub Copilot's metrics illustrate how product-layer data tells a richer story 
 
 A common mistake: treating generic AI metrics as your north star. Hallucination rate, toxicity score, latency — these are guardrails, not goals. They tell you whether the system is safe, not whether it's useful.
 
-Your north-star metrics should be specific to what your feature actually does. For the feedback classifier from Module 3, "category accuracy" is an app-specific metric — it measures the thing users care about. "Hallucination rate" is a guardrail — if it spikes, something is broken, but optimising for zero hallucinations doesn't make the classifier better at classifying.
+Your north-star metrics should be specific to what your feature actually does. For the feedback classifier from [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/), "category accuracy" is an app-specific metric — it measures the thing users care about. "Hallucination rate" is a guardrail — if it spikes, something is broken, but optimising for zero hallucinations doesn't make the classifier better at classifying.
 
 The distinction matters because teams that optimise for generic metrics build features that are technically safe but practically useless. Teams that optimise for app-specific metrics build features that solve the actual problem — and use generic metrics as safety checks along the way.
 
@@ -125,7 +125,7 @@ The distinction matters because teams that optimise for generic metrics build fe
 
 ### What a Real Dashboard Looks Like
 
-For the customer feedback classifier from the Module 3 exercise:
+For the customer feedback classifier from the [Module 3 exercise](/AI-PM-Bootcamp/modules/opportunity-exercise/):
 
 | Metric | Layer | Target | Current | Status |
 |---|---|---|---|---|
@@ -190,7 +190,7 @@ You've audited your data, set up layered metrics, and built evals. Now comes the
 
 Never launch an AI feature to 100% of users on day one. CNET learned this between November 2022 and January 2023, when it quietly published 77 AI-generated financial articles under the byline "CNET Money Staff." When the practice surfaced publicly, editors reviewed every article — 41 of them (53%) contained factual errors, including a compound interest article that confused total balance with earnings. Wikipedia downgraded CNET from a "generally reliable" source, the editor-in-chief resigned, and the reputational damage outlasted the corrections. The AI wasn't the problem — the rollout was. No shadow mode, no human review gate, no kill criteria. Every one of those errors could have been caught before a single reader saw them.
 
-These four stages map to the graduation path you designed in Lesson 4.1 — from human-in-the-loop to autonomous through evidence, not conviction.
+These four stages map to the graduation path you designed in [Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/) — from human-in-the-loop to autonomous through evidence, not conviction.
 
 **Stage 1: Shadow mode (1–2 weeks).** The AI runs alongside the existing process, but users never see its output. You compare AI decisions to human decisions on real data. This answers: "Does our model actually perform in the real world the way it performed on our eval set?" The answer is often "not quite."
 
@@ -232,7 +232,7 @@ Beyond bias, four guardrails protect you from the failure modes that make headli
 
 **Transparency** earns trust. Tell users when they're interacting with AI, and label AI-generated content clearly. Users are more forgiving of AI mistakes when they know it's AI. Loom does this well: its AI-generated video titles, summaries, and chapter headings are clearly marked and appear as editable suggestions, not final output. The user can accept, modify, or discard them. Compare that to CNET publishing AI articles under a human-sounding byline — the quality issues might have been manageable if readers had known to expect them.
 
-**Incident response** means knowing who gets alerted when things go wrong, what the escalation path is, and whether you can disable the AI feature without taking down the product. Define this before launch — not during your first incident at 2 AM. Your AI feature should have a kill switch that any on-call engineer can flip, reverting to the non-AI path you designed in Lesson 4.1.
+**Incident response** means knowing who gets alerted when things go wrong, what the escalation path is, and whether you can disable the AI feature without taking down the product. Define this before launch — not during your first incident at 2 AM. Your AI feature should have a kill switch that any on-call engineer can flip, reverting to the non-AI path you designed in [Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/).
 
 ### The Responsible AI Decision Record
 
@@ -246,7 +246,7 @@ For any AI feature with moderate to high user impact, document your decisions in
 
 These four pillars work as a system. Data quality determines the ceiling of what your model can achieve. Metrics tell you whether you're approaching that ceiling — and whether users care. Evals catch the moment quality starts slipping. Staged rollouts contain the blast radius while you learn. And responsible AI practices ensure that what you ship is fair, transparent, and resilient.
 
-With this lesson, you've completed the build-and-ship arc of the course. Module 3 helped you find the right opportunities; Module 4 showed you how to design them (Lesson 4.1) and ship them with quality (this lesson). But shipping is not the finish line. The best AI features require ongoing monitoring, iteration, and governance at scale — and that's what Module 5 covers.
+With this lesson, you've completed the build-and-ship arc of the course. [Module 3](/AI-PM-Bootcamp/modules/identify-opportunities/) helped you find the right opportunities; Module 4 showed you how to design them ([Lesson 4.1](/AI-PM-Bootcamp/modules/design-ai-features/)) and ship them with quality (this lesson). But shipping is not the finish line. The best AI features require ongoing monitoring, iteration, and governance at scale — and that's what Module 5 covers.
 
 ---
 
