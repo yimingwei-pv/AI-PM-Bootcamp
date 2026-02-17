@@ -1,6 +1,6 @@
 # AI PM Bootcamp
 
-A 10 hour intensive program covering AI foundations, improving productivity, opportunity identification, AI features and operating model. Course is split over 5 modules, each requiring ~3 hours of commitment.
+An intensive program covering AI foundations, improving productivity, opportunity identification, and shipping AI features. The course is split across four modules with 13 lessons.
 
 **Live site:** https://yimingwei-pv.github.io/AI-PM-Bootcamp/
 
@@ -10,8 +10,8 @@ A 10 hour intensive program covering AI foundations, improving productivity, opp
 
 | Lesson | Topic |
 |--------|-------|
-| 1.1 | LLMs |
-| 1.2 | Agents |
+| 1.1 | Large Language Models (LLMs) |
+| 1.2 | AI Agents |
 | 1.3 | Context Engineering |
 
 ### Module 2: Improving Productivity with AI
@@ -20,16 +20,16 @@ A 10 hour intensive program covering AI foundations, improving productivity, opp
 |--------|-------|
 | 2.1 | AI-Powered Mindset |
 | 2.2 | Prompt Engineering |
-| 2.3 | Prototyping |
-| 2.4 | Workflow Automation |
+| 2.3 | Prototyping with AI |
+| 2.4 | Extension: Workflow Automation |
 
 ### Module 3: Finding the Right AI Opportunities
 
 | Lesson | Topic |
 |--------|-------|
-| 3.1 | Identify Opportunities |
-| 3.2 | Assessing Viability |
-| 3.3 | Opportunity Exercise |
+| 3.1 | Identify Opportunities for AI |
+| 3.2 | Assessing AI Viability |
+| 3.3 | Exercise: Map Workflows and Identify AI Opportunities |
 
 ### Module 4: Shipping AI Features
 
@@ -37,6 +37,7 @@ A 10 hour intensive program covering AI foundations, improving productivity, opp
 |--------|-------|
 | 4.1 | Design AI Features |
 | 4.2 | Shipping with Quality |
+| 4.3 | Lab: Stress-Test Your AI Feature |
 
 ### Module 5: Operating AI Products at Scale (Coming Soon)
 
@@ -52,13 +53,13 @@ The dev server runs at http://localhost:4321
 
 ## Adding Content
 
-Module content lives in `site/src/content/modules/course-3/`. Each lesson is a markdown file with frontmatter:
+Module content lives in `site/src/content/modules/module-{N}/`. Each lesson is a markdown file with frontmatter:
 
 ```yaml
 ---
 title: "Lesson Title"
-course: 3
 module: 1
+lesson: 1
 description: "Brief description"
 objectives:
   - "Learning objective 1"
